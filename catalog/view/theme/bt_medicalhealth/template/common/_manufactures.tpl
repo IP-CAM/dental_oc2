@@ -38,6 +38,11 @@ $uri = "?".implode("",$query_string_arr);
                         }
 
                         ?>
+                        <li>
+                            <input onclick='reload_page()' 
+                            type="checkbox" class="" value="All" />
+                            All
+                        </li
                     </ul>
                 </div>
             </div>
@@ -146,5 +151,9 @@ $uri = "?".implode("",$query_string_arr);
                 window.location.href = url;
             })
         })
+
+        function reload_page(){
+            window.location = $("#boss_menu ul li:eq(1) a:eq(0)").attr("href");
+        }
 </script>    
 
