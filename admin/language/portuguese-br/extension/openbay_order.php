@@ -1,0 +1,21 @@
+<?php
+$_['lang_btn_status'] = '';
+$_['lang_cancel'] = '';
+$_['lang_carrier'] = '';
+$_['lang_column_addtional'] = '';
+$_['lang_column_comments'] = '';
+$_['lang_column_notify'] = '';
+$_['lang_confirm_change_text'] = '';
+$_['lang_confirm_title'] = '';
+$_['lang_confirmed'] = '';
+$_['lang_e_ajax_1'] = '';
+$_['lang_e_ajax_2'] = '';
+$_['lang_e_ajax_3'] = '';
+$_['lang_no_orders'] = '';
+$_['lang_order_channel'] = '';
+$_['lang_other'] = '';
+$_['lang_refund_message'] = '';
+$_['lang_refund_reason'] = '';
+$_['lang_title_order_update'] = '';
+$_['lang_tracking'] = '';
+$_['lang_update'] = '';

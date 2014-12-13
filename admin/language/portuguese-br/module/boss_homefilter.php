@@ -1,0 +1,25 @@
+<?php
+$_['entry_image'] = '';
+$_['entry_layout'] = '';
+$_['entry_limit'] = '';
+$_['entry_position'] = '';
+$_['entry_sort_order'] = '';
+$_['entry_status'] = '';
+$_['error_category'] = '';
+$_['error_image'] = '';
+$_['error_numproduct'] = '';
+$_['error_permission'] = '';
+$_['heading_title'] = '';
+$_['tab_add_tab'] = '';
+$_['tab_best_seller_products'] = '';
+$_['tab_choose_a_category'] = '';
+$_['tab_get_products_from'] = '';
+$_['tab_latest_products'] = '';
+$_['tab_popular_products'] = '';
+$_['tab_special_products'] = '';
+$_['tab_title'] = '';
+$_['text_content_bottom'] = '';
+$_['text_content_top'] = '';
+$_['text_home'] = '';
+$_['text_module'] = '';
+$_['text_success'] = '';

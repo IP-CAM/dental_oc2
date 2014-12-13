@@ -1,0 +1,23 @@
+<?php
+$_['lang_ajax_import_confirm'] = '';
+$_['lang_ajax_import_notify'] = '';
+$_['lang_ajax_load_error'] = '';
+$_['lang_btn_return'] = '';
+$_['lang_ebay'] = '';
+$_['lang_error_validation'] = '';
+$_['lang_heading'] = '';
+$_['lang_import'] = '';
+$_['lang_import_categories'] = '';
+$_['lang_import_ebay_items'] = '';
+$_['lang_import_images_msg1'] = '';
+$_['lang_import_images_msg2'] = '';
+$_['lang_import_images_msg3'] = '';
+$_['lang_import_item_advanced'] = '';
+$_['lang_maintenance_fail'] = '';
+$_['lang_openbay'] = '';
+$_['lang_page_title'] = '';
+$_['lang_sync_import_line1'] = '';
+$_['lang_sync_import_line3'] = '';
+$_['lang_sync_item_description'] = '';
+$_['lang_sync_memory_size'] = '';
+$_['lang_sync_server_size'] = '';

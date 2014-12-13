@@ -1,0 +1,23 @@
+<?php
+$_['lang_ajax_load_error'] = '';
+$_['lang_as_described'] = '';
+$_['lang_btn_return'] = '';
+$_['lang_communication'] = '';
+$_['lang_count'] = '';
+$_['lang_ebay'] = '';
+$_['lang_ebay_limit_head'] = '';
+$_['lang_ebay_limit_t1'] = '';
+$_['lang_ebay_limit_t2'] = '';
+$_['lang_ebay_limit_t3'] = '';
+$_['lang_error_validation'] = '';
+$_['lang_heading'] = '';
+$_['lang_limits_heading'] = '';
+$_['lang_load'] = '';
+$_['lang_openbay'] = '';
+$_['lang_report_30'] = '';
+$_['lang_report_52'] = '';
+$_['lang_score'] = '';
+$_['lang_shipping_charge'] = '';
+$_['lang_shippingtime'] = '';
+$_['lang_title_dsr'] = '';
+$_['lang_use_desc'] = '';

@@ -1,0 +1,26 @@
+<?php
+$_['heading_title'] = '';
+$_['text_compare'] = '';
+$_['text_default'] = '';
+$_['text_display'] = '';
+$_['text_empty'] = '';
+$_['text_error'] = '';
+$_['text_grid'] = '';
+$_['text_limit'] = '';
+$_['text_list'] = '';
+$_['text_manufacturer'] = '';
+$_['text_model'] = '';
+$_['text_model_asc'] = '';
+$_['text_model_desc'] = '';
+$_['text_name_asc'] = '';
+$_['text_name_desc'] = '';
+$_['text_points'] = '';
+$_['text_price'] = '';
+$_['text_price_asc'] = '';
+$_['text_price_desc'] = '';
+$_['text_quantity'] = '';
+$_['text_rating_asc'] = '';
+$_['text_rating_desc'] = '';
+$_['text_reviews'] = '';
+$_['text_sort'] = '';
+$_['text_tax'] = '';

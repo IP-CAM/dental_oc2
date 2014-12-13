@@ -1,0 +1,27 @@
+<?php
+$_['invalid_permission'] = '';
+$_['lang_added'] = '';
+$_['lang_btn_add'] = '';
+$_['lang_btn_cancel'] = '';
+$_['lang_btn_delete'] = '';
+$_['lang_btn_edit'] = '';
+$_['lang_btn_remove'] = '';
+$_['lang_btn_return'] = '';
+$_['lang_btn_save'] = '';
+$_['lang_confirm_delete'] = '';
+$_['lang_ebay'] = '';
+$_['lang_error_name'] = '';
+$_['lang_heading'] = '';
+$_['lang_no'] = '';
+$_['lang_no_results'] = '';
+$_['lang_no_template'] = '';
+$_['lang_openbay'] = '';
+$_['lang_page_title'] = '';
+$_['lang_template_action'] = '';
+$_['lang_template_html'] = '';
+$_['lang_template_name'] = '';
+$_['lang_title_list'] = '';
+$_['lang_title_list_add'] = '';
+$_['lang_title_list_edit'] = '';
+$_['lang_updated'] = '';
+$_['lang_yes'] = '';

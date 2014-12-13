@@ -1,0 +1,20 @@
+<?php
+$_['button_link'] = '';
+$_['button_load'] = '';
+$_['button_return'] = '';
+$_['column_asin'] = '';
+$_['column_combination'] = '';
+$_['column_name'] = '';
+$_['column_price'] = '';
+$_['column_quantity'] = '';
+$_['column_sku'] = '';
+$_['heading_title'] = '';
+$_['text_amazon'] = '';
+$_['text_bulk_linking'] = '';
+$_['text_load_listings'] = '';
+$_['text_loading_listings'] = '';
+$_['text_local'] = '';
+$_['text_openbay'] = '';
+$_['text_overview'] = '';
+$_['text_report_request_failed'] = '';
+$_['text_report_requested'] = '';

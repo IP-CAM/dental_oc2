@@ -1,0 +1,27 @@
+<?php
+$_['btn_capture'] = '';
+$_['btn_void'] = '';
+$_['column_action'] = '';
+$_['column_amount'] = '';
+$_['column_created'] = '';
+$_['column_pend_reason'] = '';
+$_['column_status'] = '';
+$_['column_trans_id'] = '';
+$_['column_type'] = '';
+$_['error_capture_amt'] = '';
+$_['error_timeout'] = '';
+$_['error_transaction_missing'] = '';
+$_['success_transaction_resent'] = '';
+$_['text_amount_auth'] = '';
+$_['text_amount_captured'] = '';
+$_['text_amount_refunded'] = '';
+$_['text_capture_amount'] = '';
+$_['text_capture_status'] = '';
+$_['text_complete'] = '';
+$_['text_complete_capture'] = '';
+$_['text_confirm_void'] = '';
+$_['text_payment_info'] = '';
+$_['text_refund'] = '';
+$_['text_resend'] = '';
+$_['text_transactions'] = '';
+$_['text_view'] = '';

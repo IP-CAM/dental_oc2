@@ -1,0 +1,22 @@
+<?php
+$_['lang_ajax_acc_load_plan'] = '';
+$_['lang_ajax_acc_load_plan2'] = '';
+$_['lang_ajax_acc_load_text1'] = '';
+$_['lang_ajax_acc_load_text2'] = '';
+$_['lang_ajax_acc_load_text3'] = '';
+$_['lang_ajax_acc_load_text4'] = '';
+$_['lang_ajax_acc_load_text5'] = '';
+$_['lang_ajax_acc_load_text6'] = '';
+$_['lang_ajax_load_error'] = '';
+$_['lang_btn_return'] = '';
+$_['lang_ebay'] = '';
+$_['lang_error_validation'] = '';
+$_['lang_heading'] = '';
+$_['lang_load'] = '';
+$_['lang_openbay'] = '';
+$_['lang_page_title'] = '';
+$_['lang_subscription_avail'] = '';
+$_['lang_subscription_avail1'] = '';
+$_['lang_subscription_avail2'] = '';
+$_['lang_subscription_current'] = '';
+$_['lang_usage_title'] = '';
