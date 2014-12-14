@@ -3077,3 +3077,12 @@ div.tags {
     float:left;
     margin-right:10px;
 }
+.ta-review {
+    cursor: pointer;;
+}
+#review-title {
+     cursor: pointer;;
+}
+#review-form {
+    display:none;
+}

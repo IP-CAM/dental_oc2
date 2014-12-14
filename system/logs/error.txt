@@ -43368,3 +43368,5 @@
 2014-12-13 9:42:49 - PHP Warning:  Illegal offset type in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/common/_manufactures.tpl on line 15
 2014-12-13 9:42:49 - PHP Warning:  Illegal offset type in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/common/_manufactures.tpl on line 15
 2014-12-13 9:46:53 - PHP Notice:  Undefined variable: url in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/common/_manufactures.tpl on line 22
+2014-12-14 12:42:59 - PHP Notice:  Undefined index: youtube in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_product_product.php on line 398
+2014-12-14 12:43:30 - PHP Notice:  Undefined index: youtube in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_product_product.php on line 398

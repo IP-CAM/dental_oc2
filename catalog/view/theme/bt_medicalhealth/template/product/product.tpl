@@ -298,35 +298,39 @@
   <?php if ($review_status) { ?>
   <h2 class="ta-review"><span><?php echo $tab_review; ?></span></h2>
   <div id="tab-review" class="tab-content">
-    <div id="review"></div>
-    <h2 id="review-title"><?php echo $text_write; ?></h2>
-    <b><?php echo $entry_name; ?></b><br />
-    <input type="text" name="name" value="" />
-    <br />
-    <b><?php echo $entry_review; ?></b><br/>
-    <textarea name="text" cols="40" rows="8" style="width: 98%;"></textarea><br/>
-    <span style="font-size: 11px;"><?php echo $text_note; ?></span><br />
-    <br />
-    <span><?php echo $entry_rating; ?></span> &nbsp;&nbsp;<span class="entry"><?php echo $entry_bad; ?></span>&nbsp;&nbsp;
-    <input type="radio" name="rating" value="1" />
-    &nbsp;
-    <input type="radio" name="rating" value="2" />
-    &nbsp;
-    <input type="radio" name="rating" value="3" />
-    &nbsp;
-    <input type="radio" name="rating" value="4" />
-    &nbsp;
-    <input type="radio" name="rating" value="5" />
-    &nbsp;&nbsp;<span class="entry"><?php echo $entry_good; ?></span><br />
-    <br />
-    <b><?php echo $entry_captcha; ?></b><br />
-    <input type="text" name="captcha" value="" />
-    <br />
-    <img src="index.php?route=product/product/captcha" alt="" id="captcha" /><br />
-    <br />
-    <div class="buttons">
-      <div class="left"><a id="button-review" class="orange_button"><span><?php echo $button_continue; ?></span></a></div>
+    <div id="review" style="display:none"></div>
+   
+      <h2 id="review-title"><?php echo $text_write; ?></h2>
+     <div id="review-form">  
+      <b><?php echo $entry_name; ?></b><br />
+      <input type="text" name="name" value="" />
+      <br />
+      <b><?php echo $entry_review; ?></b><br/>
+      <textarea name="text" cols="40" rows="8" style="width: 98%;"></textarea><br/>
+      <span style="font-size: 11px;"><?php echo $text_note; ?></span><br />
+      <br />
+      <span><?php echo $entry_rating; ?></span> &nbsp;&nbsp;<span class="entry"><?php echo $entry_bad; ?></span>&nbsp;&nbsp;
+      <input type="radio" name="rating" value="1" />
+      &nbsp;
+      <input type="radio" name="rating" value="2" />
+      &nbsp;
+      <input type="radio" name="rating" value="3" />
+      &nbsp;
+      <input type="radio" name="rating" value="4" />
+      &nbsp;
+      <input type="radio" name="rating" value="5" />
+      &nbsp;&nbsp;<span class="entry"><?php echo $entry_good; ?></span><br />
+      <br />
+      <b><?php echo $entry_captcha; ?></b><br />
+      <input type="text" name="captcha" value="" />
+      <br />
+      <img src="index.php?route=product/product/captcha" alt="" id="captcha" /><br />
+      <br />
+      <div class="buttons">
+        <div class="left"><a id="button-review" class="orange_button"><span><?php echo $button_continue; ?></span></a></div>
+      </div>
     </div>
+    
   </div>
   <?php } ?>
   
@@ -373,6 +377,18 @@
 
 
 <script type="text/javascript"><!--
+
+$(function(){
+  $(".ta-review").live("click",function(){
+  
+    $("#review").toggle("slow");
+  })
+
+  $("#review-title").live("click",function(){
+  
+    $("#review-form").toggle("slow");
+  })
+})
 function goToByScroll(id){
 		$('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
 }
