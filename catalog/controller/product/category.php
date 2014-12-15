@@ -97,6 +97,17 @@ class ControllerProductCategory extends Controller {
         if (!empty($this->request->get['manu_f'])) {
             $manu_f = $this->request->get['manu_f'];
         }
+        $video_filter = '';
+
+        if(!empty($this->request->get['video_filter'])){
+            if($this->request->get['video_filter']=='video'){
+                $video_filter = 1;
+            }
+            else {
+                $video_filter = 0;
+            }
+            
+        }
 
 
         $category_info = $this->model_catalog_category->getCategory($category_id);
@@ -210,6 +221,7 @@ class ControllerProductCategory extends Controller {
             $data = array(
                 'filter_category_id' => $category_id,
                 'filter_manufacturer_ids' => $manus_f,
+                'filter_video'=>$video_filter,
                 'filter_filter' => $filter,
                 'sort' => $sort,
                 'order' => $order,
@@ -218,7 +230,8 @@ class ControllerProductCategory extends Controller {
             );
 
             $product_total = $this->model_catalog_product->getTotalProducts($data);
-
+            
+        
             $results = $this->model_catalog_product->getProducts($data);
 
             foreach ($results as $result) {
