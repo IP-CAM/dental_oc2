@@ -12,14 +12,20 @@
     <?php if ($thumb || $images) { ?>
     <div class="left">
       <?php if ($thumb) { ?>
-      <div class="image a_bossthemes"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>
+      <div class="image a_bossthemes"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image"
+         data-zoom-image="<?php echo $popup; ?>"
+
+       /></a></div>
       <?php } ?>
       <?php if ($images) { ?>
       <div class="image-additional a_bossthemes">
 		<div class="es-carousel">
 		  <ul  class="skin-opencart">
 			<?php foreach ($images as $image) { ?>
-			<li><div class="boss-image-add"><a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a></div></li>
+			<li><div class="boss-image-add"><a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" 
+        alt="<?php echo $heading_title; ?>" 
+        data-zoom-image="<?php echo $image['popup']; ?>"
+        /></a></div></li>
 			<?php } ?>
 		  </ul>
 		</div>
@@ -541,6 +547,18 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
 <?php } ?>
 <?php } ?>
 <?php } ?>
+<script type="text/javascript" 
+src="catalog/view/javascript/bossthemes/jquery.elevatezoom.js"></script>
+
+<script>
+
+    $(".image.a_bossthemes img,.boss-image-add img").elevateZoom({
+      //zoomType: "inner",
+      cursor: "crosshair",
+      zoomWindowFadeIn: 500,
+      zoomWindowFadeOut: 750
+   }); 
+</script>
 <script type="text/javascript"><!--
 $('#review .pagination a').live('click', function() {
 	$('#review').fadeOut('slow');
