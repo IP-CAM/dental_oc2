@@ -3,6 +3,53 @@ class ControllerCatalogProduct extends Controller {
 	private $error = array(); 
 
 	
+                protected function dbProductArcade(){
+                    $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_arcade'");
+                    if(!$query->num_rows){
+                     $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_arcade (
+                            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+                            `value` varchar(150) NOT NULL,
+                            `date_added` datetime NOT NULL,
+                            `date_modified` datetime NOT NULL,
+
+                            PRIMARY KEY (`id`)
+                          ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                           
+                    $this->db->query($sql);
+                    }
+                }
+                protected function dbTamanho(){
+                    $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_tamanho'");
+                    if(!$query->num_rows){
+                     $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_tamanho (
+                            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+
+                            `value` varchar(150) NOT NULL,
+                            `date_added` datetime NOT NULL,
+                            `date_modified` datetime NOT NULL,
+
+                            PRIMARY KEY (`id`)
+                          ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                  
+                    $this->db->query($sql);
+                    }
+                }
+                protected function dbCor(){
+                    $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_cor'");
+                    if(!$query->num_rows){
+                     $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_cor (
+                            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+
+                            `value` varchar(150) NOT NULL,
+                            `date_added` datetime NOT NULL,
+                            `date_modified` datetime NOT NULL,
+
+                            PRIMARY KEY (`id`)
+                          ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                    $this->db->query($sql);
+                    }
+                }
+                
 			protected function dbCheck(){
 				$query = $this->db->query("SHOW COLUMNS FROM `".DB_PREFIX."product_description` LIKE 'youtube'");
 				if(!$query->num_rows){
@@ -13,6 +60,11 @@ class ControllerCatalogProduct extends Controller {
 			$this->dbCheck();
 			
 			
+                    $this->dbProductArcade();
+                    $this->dbTamanho();
+                    $this->dbCor();
+                
+            
 		$this->language->load('catalog/product');
 
 		$this->document->setTitle($this->language->get('heading_title')); 
