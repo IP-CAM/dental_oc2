@@ -43393,3 +43393,16 @@
 2014-12-31 20:21:44 - PHP Notice:  Undefined index: sort_order in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 96
 2014-12-31 20:21:53 - PHP Notice:  Undefined index: sort_order in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 96
 2014-12-31 20:22:01 - PHP Notice:  Undefined index: sort_order in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 96
+2014-12-31 20:30:59 - PHP Notice:  Undefined variable: conf_product_arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_common_header.tpl on line 80
+2014-12-31 20:30:59 - PHP Notice:  Undefined variable: conf_product_cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_common_header.tpl on line 81
+2014-12-31 20:30:59 - PHP Notice:  Undefined variable: conf_product_tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_common_header.tpl on line 82
+2014-12-31 20:34:15 - PHP Notice:  Undefined index: model in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 10
+2014-12-31 20:34:15 - PHP Notice:  Error: Could not load model catalog/conf_product_! in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-system_engine_loader.php on line 48
+2014-12-31 20:34:35 - PHP Notice:  Undefined index: model in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 10
+2014-12-31 20:34:35 - PHP Notice:  Error: Could not load model catalog/conf_product_! in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-system_engine_loader.php on line 48
+2014-12-31 20:34:40 - PHP Notice:  Undefined index: model in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 10
+2014-12-31 20:34:40 - PHP Notice:  Error: Could not load model catalog/conf_product_! in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-system_engine_loader.php on line 48
+2014-12-31 20:36:48 - PHP Notice:  Undefined index: model in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 10
+2014-12-31 20:36:48 - PHP Notice:  Error: Could not load model catalog/conf_product_! in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-system_engine_loader.php on line 48
+2014-12-31 20:36:49 - PHP Notice:  Undefined index: model in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 10
+2014-12-31 20:36:49 - PHP Notice:  Error: Could not load model catalog/conf_product_! in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-system_engine_loader.php on line 48
