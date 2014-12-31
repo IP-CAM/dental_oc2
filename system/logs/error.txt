@@ -43370,3 +43370,26 @@
 2014-12-13 9:46:53 - PHP Notice:  Undefined variable: url in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/common/_manufactures.tpl on line 22
 2014-12-14 12:42:59 - PHP Notice:  Undefined index: youtube in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_product_product.php on line 398
 2014-12-14 12:43:30 - PHP Notice:  Undefined index: youtube in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_product_product.php on line 398
+2014-12-31 19:17:05 - PHP Notice:  Error: Could not load model catalog/conf_productarcade! in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-system_engine_loader.php on line 48
+2014-12-31 19:22:10 - PHP Notice:  Undefined variable: pagination in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 68
+2014-12-31 19:22:40 - PHP Notice:  Undefined variable: error_warning in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 8
+2014-12-31 19:22:40 - PHP Notice:  Undefined variable: success in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 11
+2014-12-31 19:30:05 - PHP Notice:  Undefined variable: error_warning in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 8
+2014-12-31 19:30:05 - PHP Notice:  Undefined variable: success in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 11
+2014-12-31 19:30:55 - PHP Notice:  Undefined variable: success in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 11
+2014-12-31 19:32:46 - PHP Notice:  Error: Could not load language catalog/conf_product! in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-system_library_language.php on line 39
+2014-12-31 19:36:58 - PHP Notice:  Undefined index: model in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 9
+2014-12-31 19:36:58 - PHP Notice:  Error: Could not load model catalog/conf_product_! in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-system_engine_loader.php on line 48
+2014-12-31 20:04:35 - PHP Notice:  Undefined variable: categories in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 31
+2014-12-31 20:13:52 - PHP Notice:  Undefined variable: count_function in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 84
+2014-12-31 20:14:05 - PHP Notice:  Undefined variable: categories in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 31
+2014-12-31 20:15:32 - PHP Notice:  Undefined variable: categories in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 31
+2014-12-31 20:17:15 - PHP Notice:  Undefined variable: results in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 31
+2014-12-31 20:20:48 - PHP Notice:  Undefined index: sort_order in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 96
+2014-12-31 20:20:48 - PHP Notice:  Undefined index: id in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 37
+2014-12-31 20:20:48 - PHP Notice:  Undefined index: value in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 39
+2014-12-31 20:21:34 - PHP Notice:  Undefined index: sort_order in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 96
+2014-12-31 20:21:34 - PHP Notice:  Undefined index: value in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_list.tpl on line 39
+2014-12-31 20:21:44 - PHP Notice:  Undefined index: sort_order in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 96
+2014-12-31 20:21:53 - PHP Notice:  Undefined index: sort_order in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 96
+2014-12-31 20:22:01 - PHP Notice:  Undefined index: sort_order in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 96
