@@ -9,7 +9,7 @@ class ModelCatalogConfProductArcade extends Model {
 	}
 
 	public function editArcade($conf_arcade_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "conf_product_arcade SET value = '" . $data['value']."' WHERE id = '" . (int)$conf_arcade_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "_conf_product_arcade SET value = '" . $data['value']."' WHERE id = '" . (int)$conf_arcade_id . "'");
 
 		
 	}
@@ -20,7 +20,7 @@ class ModelCatalogConfProductArcade extends Model {
 	}
 
 	public function getArcade($conf_arcade_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . " conf_product_arcade WHERE id = '" . (int)$conf_arcade_id);
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_arcade WHERE id = " . (int)$conf_arcade_id);
 
 		return $query->row;
 	}
