@@ -2,7 +2,7 @@
 class ModelCatalogConfProductTamanho extends Model {
     
 	public function addTamanho($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "conf_product_tamanho SET value = '" . $data['value']."'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "conf_product_tamanho SET value = '" . $data['name']."'");
 
 		$conf_arcade = $this->db->getLastId();
 
@@ -10,7 +10,7 @@ class ModelCatalogConfProductTamanho extends Model {
 	}
 
 	public function editTamanho($conf_arcade_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "conf_product_tamanho SET value = '" . $data['value']."' WHERE id = '" . (int)$conf_arcade_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "conf_product_tamanho SET value = '" . $data['name']."' WHERE id = '" . (int)$conf_arcade_id . "'");
 
 		
 	}

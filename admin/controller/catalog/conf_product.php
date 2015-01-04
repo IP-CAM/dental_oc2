@@ -13,6 +13,37 @@ class ControllerCatalogConfProduct extends Controller {
         $this->getList();
     }
 
+    public function insert() {
+        $this->_model = $this->request->get['model'];
+        $this->language->load('catalog/conf_product_' . $this->_model);
+
+        $this->document->setTitle($this->language->get('heading_title'));
+        $this->load->model('catalog/conf_product_' . $this->_model);
+        $model = 'model_catalog_conf_product_' . $this->_model;
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+
+            if ($this->_model == "arcade") {
+                $this->$model->addArcade($this->request->post);
+            } else if ($this->_model == "cor") {
+                $this->$model->addCor($this->request->post);
+            } else if ($this->_model == "tamanho") {
+                $this->$model->addTamanho($this->request->post);
+            }
+
+
+            $this->session->data['success'] = $this->language->get('text_success');
+
+            $url = '&model=' . $this->_model;
+
+            if (isset($this->request->get['page'])) {
+                $url .= '&page=' . $this->request->get['page'];
+            }
+
+            $this->redirect($this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+        }
+        $this->getForm();
+    }
+
     public function update() {
         $this->_model = $this->request->get['model'];
         $this->language->load('catalog/conf_product_' . $this->_model);
@@ -24,7 +55,7 @@ class ControllerCatalogConfProduct extends Controller {
 //        echo $this->request->server['REQUEST_METHOD'];
 //        die;
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-            
+
             if ($this->_model == "arcade") {
                 $this->$model->editArcade($this->request->get['conf_product_id'], $this->request->post);
             } else if ($this->_model == "cor") {
@@ -278,12 +309,12 @@ class ControllerCatalogConfProduct extends Controller {
     }
 
     protected function validateForm() {
-        
+
         if (!$this->user->hasPermission('modify', 'catalog/conf_product')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 
-        if(empty($this->request->post['name'])){
+        if (empty($this->request->post['name'])) {
             $this->error['warning'] = $this->language->get('entry_name_error');
         }
 

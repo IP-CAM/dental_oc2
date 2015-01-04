@@ -1,7 +1,7 @@
 <?php 
 class ModelCatalogConfProductCor extends Model {
 	public function addCor($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "conf_product_cor SET value = '" . $data['value']."'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "conf_product_cor SET value = '" . $data['name']."'");
 
 		$conf_arcade = $this->db->getLastId();
 
@@ -9,7 +9,7 @@ class ModelCatalogConfProductCor extends Model {
 	}
 
 	public function editCor($conf_arcade_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "conf_product_cor SET value = '" . $data['value']."' WHERE id = '" . (int)$conf_arcade_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "conf_product_cor SET value = '" . $data['name']."' WHERE id = '" . (int)$conf_arcade_id . "'");
 
 		
 	}
