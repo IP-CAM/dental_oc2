@@ -729,6 +729,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['tab_special'] = $this->language->get('tab_special');
 		$this->data['tab_image'] = $this->language->get('tab_image');
 		$this->data['tab_links'] = $this->language->get('tab_links');
+		$this->data['custom_product_options'] = $this->language->get('custom_product_options');
 		$this->data['tab_reward'] = $this->language->get('tab_reward');
 		$this->data['tab_design'] = $this->language->get('tab_design');
 		$this->data['tab_marketplace_links'] = $this->language->get('tab_marketplace_links');

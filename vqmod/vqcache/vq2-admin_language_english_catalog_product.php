@@ -15,6 +15,9 @@ $_['text_option_value']      = 'Option Value';
 $_['text_percent']           = 'Percentage';
 $_['text_amount']            = 'Fixed Amount';
 
+//special tabs
+$_['custom_product_options']            = 'Product Options';
+
 // Column
 $_['column_name']            = 'Product Name';
 $_['column_model']           = 'Model';

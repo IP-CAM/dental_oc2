@@ -43431,3 +43431,5 @@
 2015-01-04 13:07:44 - PHP Notice:  Undefined variable: name_br in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_form.tpl on line 36
 2015-01-04 13:09:15 - PHP Notice:  Undefined variable: name_br in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_form.tpl on line 36
 2015-01-04 13:17:47 - PHP Notice:  Undefined index: name_ in /var/www/html/brian/real_dental/Dental/admin/model/catalog/conf_product_arcade.php on line 8
+2015-01-04 15:11:07 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 21
+2015-01-04 15:11:14 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 21
