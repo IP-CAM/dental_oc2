@@ -43411,3 +43411,12 @@
 2015-01-02 20:14:47 - PHP Notice:  Undefined variable: language in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/conf_product_form.tpl on line 27
 2015-01-02 20:40:57 - PHP Notice:  Undefined variable: category_info in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 254
 2015-01-02 20:40:57 - PHP Notice:  Undefined index: name in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 266
+2015-01-04 7:45:59 - PHP Notice:  Undefined index: conf_product_id in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 29
+2015-01-04 7:45:59 - PHP Notice:  Undefined index: value in /var/www/html/brian/real_dental/Dental/admin/model/catalog/conf_product_arcade.php on line 12
+2015-01-04 7:46:14 - PHP Notice:  Undefined index: conf_product_id in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 29
+2015-01-04 7:46:14 - PHP Notice:  Undefined index: value in /var/www/html/brian/real_dental/Dental/admin/model/catalog/conf_product_arcade.php on line 12
+2015-01-04 7:46:35 - PHP Notice:  Undefined index: conf_product_id in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 29
+2015-01-04 7:46:35 - PHP Notice:  Undefined index: value in /var/www/html/brian/real_dental/Dental/admin/model/catalog/conf_product_arcade.php on line 12
+2015-01-04 7:46:37 - PHP Notice:  Undefined index: value in /var/www/html/brian/real_dental/Dental/admin/model/catalog/conf_product_arcade.php on line 12
+2015-01-04 7:47:22 - PHP Notice:  Undefined index: value in /var/www/html/brian/real_dental/Dental/admin/model/catalog/conf_product_arcade.php on line 12
+2015-01-04 7:47:27 - PHP Notice:  Undefined index: value in /var/www/html/brian/real_dental/Dental/admin/model/catalog/conf_product_arcade.php on line 12

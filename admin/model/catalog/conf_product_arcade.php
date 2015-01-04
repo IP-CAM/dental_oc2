@@ -1,7 +1,7 @@
 <?php 
 class ModelCatalogConfProductArcade extends Model {
 	public function addArcade($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "conf_product_arcade SET value = '" . $data['value']."'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "conf_product_arcade SET value = '" . $data['name']."'");
 
 		$conf_arcade = $this->db->getLastId();
 
@@ -9,7 +9,7 @@ class ModelCatalogConfProductArcade extends Model {
 	}
 
 	public function editArcade($conf_arcade_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "_conf_product_arcade SET value = '" . $data['value']."' WHERE id = '" . (int)$conf_arcade_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "conf_product_arcade SET value = '" . $data['name']."' WHERE id = '" . (int)$conf_arcade_id . "'");
 
 		
 	}

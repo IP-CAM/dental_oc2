@@ -21,15 +21,16 @@ class ControllerCatalogConfProduct extends Controller {
 
         $this->load->model('catalog/conf_product_' . $this->_model);
         $model = 'model_catalog_conf_product_' . $this->_model;
-
+//        echo $this->request->server['REQUEST_METHOD'];
+//        die;
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-
+            
             if ($this->_model == "arcade") {
-                $this->$model->editArcade($this->request->get['id'], $this->request->post);
+                $this->$model->editArcade($this->request->get['conf_product_id'], $this->request->post);
             } else if ($this->_model == "cor") {
-                $this->$model->editCor($this->request->get['id'], $this->request->post);
+                $this->$model->editCor($this->request->get['conf_product_id'], $this->request->post);
             } else if ($this->_model == "tamanho") {
-                $this->$model->editTamanho($this->request->get['id'], $this->request->post);
+                $this->$model->editTamanho($this->request->get['conf_product_id'], $this->request->post);
             }
 
 
@@ -41,7 +42,7 @@ class ControllerCatalogConfProduct extends Controller {
                 $url .= '&page=' . $this->request->get['page'];
             }
 
-            $this->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            $this->redirect($this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
         }
 
         $this->getForm();
@@ -219,10 +220,10 @@ class ControllerCatalogConfProduct extends Controller {
             'separator' => ' :: '
         );
 
-        if (!isset($this->request->get['id'])) {
+        if (!isset($this->request->get['conf_product_id'])) {
             $this->data['action'] = $this->url->link('catalog/conf_product/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
         } else {
-            $this->data['action'] = $this->url->link('catalog/conf_product/update', 'token=' . $this->session->data['token'] . $url . '&id=' . $this->request->get['id'], 'SSL');
+            $this->data['action'] = $this->url->link('catalog/conf_product/update', 'token=' . $this->session->data['token'] . $url . '&conf_product_id=' . $this->request->get['conf_product_id'], 'SSL');
         }
 
         $this->data['cancel'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . $url, 'SSL');
@@ -248,18 +249,16 @@ class ControllerCatalogConfProduct extends Controller {
             }
         }
 
- 
+
 
         if (isset($this->request->post['conf_product_id'])) {
             $this->data['conf_product_id'] = $this->request->post['conf_product_id'];
         }
         if (isset($this->request->post['name'])) {
             $this->data['name'] = $this->request->post['name'];
-        }
-        elseif (!empty($info)) {
+        } elseif (!empty($info)) {
             $this->data['name'] = $info['value'];
-        }
-        else {
+        } else {
             $this->data['name'] = '';
         }
 
@@ -276,6 +275,27 @@ class ControllerCatalogConfProduct extends Controller {
         );
 
         $this->response->setOutput($this->render());
+    }
+
+    protected function validateForm() {
+        
+        if (!$this->user->hasPermission('modify', 'catalog/conf_product')) {
+            $this->error['warning'] = $this->language->get('error_permission');
+        }
+
+        if(empty($this->request->post['name'])){
+            $this->error['warning'] = $this->language->get('entry_name_error');
+        }
+
+        if ($this->error && !isset($this->error['warning'])) {
+            $this->error['warning'] = $this->language->get('error_warning');
+        }
+
+        if (!$this->error) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
