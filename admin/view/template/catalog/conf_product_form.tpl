@@ -23,9 +23,25 @@
                         <table class="form">
                             <tr>
                                 <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-                                <td><input type="text" name="name" value="<?php echo $name; ?>"  />
-
-                                </td>
+                                <td><?php foreach ($languages as $language) { ?>
+                                    <?php
+                                        if($language['code']=='en'){
+                                    ?>
+                                        <input type="text" name="name" value="<?php echo $name; ?>" />
+                                    <?php
+                                     }
+                                     else {
+                                      $value_other = "name_".$language['code'];
+                                    ?>
+                                    <input type="text" name="name_<?php echo $language['code']; ?>" value="<?php echo $$value_other ; ?>" />
+                                    <?php
+                                     }
+                                    ?>
+                                    <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /><br />
+                                    <?php if (isset($error_name[$language['language_id']])) { ?>
+                                    <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />
+                                    <?php } ?>
+                                    <?php } ?></td>
                             </tr>
 
                         </table>

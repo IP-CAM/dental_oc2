@@ -301,6 +301,8 @@ class ControllerCatalogConfProduct extends Controller {
 
         $this->data['languages'] = $this->model_localisation_language->getLanguages();
 
+
+
         if (isset($this->request->get['conf_product_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 
             $model = 'model_catalog_conf_product_' . $this->_model;
@@ -310,7 +312,7 @@ class ControllerCatalogConfProduct extends Controller {
             } else if ($this->_model == "cor") {
                 $info = $this->$model->getCor($this->request->get['conf_product_id']);
             } else if ($this->_model == "tamanho") {
-                $info = $this->$model->Tamanho($this->request->get['conf_product_id']);
+                $info = $this->$model->getTamanho($this->request->get['conf_product_id']);
             }
         }
 
@@ -327,8 +329,20 @@ class ControllerCatalogConfProduct extends Controller {
             $this->data['name'] = '';
         }
 
+        foreach ($this->data['languages'] as $lang) {
+            if ($lang['code'] !== "en") {
+                if (isset($this->request->post['name'])) {
+                    $this->data['name_'.$lang['code']] = $this->request->post['name_'.$lang['code']];
+                } elseif (!empty($info)) {
+                    $this->data['name_'.$lang['code']] = $info['value_'.$lang['code']];
+                } else {
+                    $this->data['name_'.$lang['code']] = '';
+                }
+            }
+        }
 
 
+       
         $this->load->model('design/layout');
 
         $this->data['layouts'] = $this->model_design_layout->getLayouts();
