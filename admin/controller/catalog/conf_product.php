@@ -79,6 +79,40 @@ class ControllerCatalogConfProduct extends Controller {
         $this->getForm();
     }
 
+    public function delete() {
+        $this->_model = $this->request->get['model'];
+        $this->language->load('catalog/conf_product_' . $this->_model);
+
+        $this->document->setTitle($this->language->get('heading_title'));
+
+        $this->load->model('catalog/conf_product_' . $this->_model);
+        $model = 'model_catalog_conf_product_' . $this->_model;
+
+        if (isset($this->request->post['selected']) && $this->validateDelete()) {
+            foreach ($this->request->post['selected'] as $conf_id) {
+                if ($this->_model == "arcade") {
+                    $this->$model->deleteArcade($conf_id);
+                } else if ($this->_model == "cor") {
+                    $this->$model->deleteCor($conf_id);
+                } else if ($this->_model == "tamanho") {
+                    $this->$model->deleteTamanho($conf_id);
+                }
+            }
+
+            $this->session->data['success'] = $this->language->get('text_success');
+
+            $url = '&model=' . $this->_model;
+
+            if (isset($this->request->get['page'])) {
+                $url .= '&page=' . $this->request->get['page'];
+            }
+
+            $this->redirect($this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+        }
+
+        $this->getList();
+    }
+
     protected function getList() {
 
         $this->language->load('catalog/conf_product_' . $this->_model);
@@ -320,6 +354,18 @@ class ControllerCatalogConfProduct extends Controller {
 
         if ($this->error && !isset($this->error['warning'])) {
             $this->error['warning'] = $this->language->get('error_warning');
+        }
+
+        if (!$this->error) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function validateDelete() {
+        if (!$this->user->hasPermission('modify', 'catalog/conf_product')) {
+            $this->error['warning'] = $this->language->get('error_permission');
         }
 
         if (!$this->error) {

@@ -3,22 +3,49 @@ class ControllerCatalogProduct extends Controller {
 	private $error = array(); 
 
 	
-                protected function dbProductArcade(){
+                protected function getLanguages(){
+                  $res = $this->db->query("Select * FROM ".DB_PREFIX."language WHERE code <>'en'");
+                  $array = array();  
+                  foreach($res->rows as $row){
+                    $array[] = "value_".$row['code'];
+                  }
+                  return $array;
+                }
+                protected function add_column_custom($table,$languages){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    foreach($languages as $column){
+                        if(!in_array($column,$fields)){
+                            $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) NOT NULL after value";
+                            $this->db->query($query);;
+                        }
+                    }
+                
+                }
+                protected function dbProductArcade($languages){
                     $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_arcade'");
                     if(!$query->num_rows){
-                     $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_arcade (
-                            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
-                            `value` varchar(150) NOT NULL,
-                            `date_added` datetime NOT NULL,
-                            `date_modified` datetime NOT NULL,
+                        $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_arcade (
+                               `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+                               `value` varchar(150) NOT NULL,
+                               `date_added` datetime NOT NULL,
+                               `date_modified` datetime NOT NULL,
 
-                            PRIMARY KEY (`id`)
-                          ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                               PRIMARY KEY (`id`)
+                             ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
                            
-                    $this->db->query($sql);
+                        $this->db->query($sql);
                     }
+                
+                    $this->add_column_custom("conf_product_arcade",$languages);
+                    
+                    
                 }
-                protected function dbTamanho(){
+                protected function dbTamanho($languages){
                     $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_tamanho'");
                     if(!$query->num_rows){
                      $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_tamanho (
@@ -33,8 +60,9 @@ class ControllerCatalogProduct extends Controller {
                   
                     $this->db->query($sql);
                     }
+                    $this->add_column_custom("conf_product_tamanho",$languages);
                 }
-                protected function dbCor(){
+                protected function dbCor($languages){
                     $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_cor'");
                     if(!$query->num_rows){
                      $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_cor (
@@ -48,6 +76,7 @@ class ControllerCatalogProduct extends Controller {
                           ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
                     $this->db->query($sql);
                     }
+                    $this->add_column_custom("conf_product_cor",$languages);
                 }
                 
 			protected function dbCheck(){
@@ -60,9 +89,13 @@ class ControllerCatalogProduct extends Controller {
 			$this->dbCheck();
 			
 			
-                    $this->dbProductArcade();
-                    $this->dbTamanho();
-                    $this->dbCor();
+                    $languages = $this->getLanguages();
+                   
+                    $this->dbProductArcade($languages);
+                    $this->dbTamanho($languages);
+                    $this->dbCor($languages);
+                    
+               
                 
             
 		$this->language->load('catalog/product');

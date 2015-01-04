@@ -43424,3 +43424,7 @@
 2015-01-04 8:07:50 - PHP Notice:  Undefined index: conf_product_id in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 26
 2015-01-04 8:08:13 - PHP Notice:  Undefined index: conf_product_id in /var/www/html/brian/real_dental/Dental/admin/controller/catalog/conf_product.php on line 26
 2015-01-04 8:10:04 - PHP Notice:  Undefined index: value in /var/www/html/brian/real_dental/Dental/admin/model/catalog/conf_product_cor.php on line 4
+2015-01-04 12:40:12 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 31
+2015-01-04 12:40:12 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 31
+2015-01-04 12:40:12 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 31
+2015-01-04 12:40:12 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 31
