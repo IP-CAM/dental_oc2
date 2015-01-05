@@ -82,6 +82,12 @@ $_['entry_reward']           = 'Reward Points:';
 $_['entry_layout']           = 'Layout Override:';
 $_['entry_profile']          = 'Profile:';
 
+//for product config options
+$_['entry_arcade']          = 'Arcade :';
+$_['entry_tamanho']          = 'Tamanho:';
+$_['entry_cor']          = 'Cor:';
+
+
 $_['text_recurring_help']    = 'Recurring amounts are calculated by the frequency and cycles. <br />For example if you use a frequency of "week" and a cycle of "2", then the user will be billed every 2 weeks. <br />The length is the number of times the user will make a payment, set this to 0 if you want payments until they are cancelled.';
 $_['text_recurring_title']   = 'Recurring payments';
 $_['text_recurring_trial']   = 'Trial period';

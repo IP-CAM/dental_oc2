@@ -120,7 +120,15 @@ class ModelCatalogProduct extends Model {
 			foreach ($data['product_profiles'] as $profile) {
 				$this->db->query("INSERT INTO `" . DB_PREFIX . "product_profile` SET `product_id` = " . (int)$product_id . ", customer_group_id = " . (int)$profile['customer_group_id'] . ", `profile_id` = " . (int)$profile['profile_id']);
 			}
-		} 
+		}
+                
+                if (isset($data['arcade'])) {
+                    $columns [] = "arcade = '" . (int)$data['arcade'] . "'";
+                    $columns [] = "cor = '" . (int)$data['cor'] . "'";
+                    $columns [] = "tamanho = '" . $data['tamanho'] . "'";
+                    $columns [] = "product_id = '" . (int)$product_id . "'";
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "product_config_options SET ".implode($columns,","));
+		}
 
 		$this->cache->delete('product');
 	}
@@ -262,6 +270,14 @@ class ModelCatalogProduct extends Model {
 				}
 			}
 		}
+                
+                if (isset($data['arcade'])) {
+                    $columns [] = "arcade = '" . (int)$data['arcade'] . "'";
+                    $columns [] = "cor = '" . (int)$data['cor'] . "'";
+                    $columns [] = "tamanho = '" . $data['tamanho'] . "'";
+                    $columns [] = "product_id = '" . (int)$product_id . "'";
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "product_config_options SET ".implode($columns,","));
+		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id. "'");
 
@@ -333,6 +349,29 @@ class ModelCatalogProduct extends Model {
 		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "') AS keyword FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
+	}
+        /**
+         *  Get Product Config options
+         * @param type $product_id
+         * @return typePro
+         */
+	public function getProductConfigOptions($product_id) {
+     
+            $query = $this->db->query("SELECT * FROM ".DB_PREFIX."product_config_options WHERE  product_id = ".(int)$product_id);
+            return $query->rows;
+	}
+	public function getProductConfigOption($product_config_id) {
+     
+            $query = $this->db->query("SELECT * FROM ".DB_PREFIX."product_config_options WHERE  id = ".(int)$product_config_id);
+            return $query->row;
+	}
+	public function getConfigurations() {
+     
+		$query1 = $this->db->query("SELECT * FROM ".DB_PREFIX."conf_product_arcade ");
+		$query2 = $this->db->query("SELECT * FROM ".DB_PREFIX."conf_product_cor ");
+		$query3 = $this->db->query("SELECT * FROM ".DB_PREFIX."conf_product_tamanho ");
+
+		return array("arcade"=>$query1->rows,"cor"=>$query1->rows,"tamanho"=>$query3->rows);
 	}
 
 	public function getProducts($data = array()) {

@@ -331,20 +331,100 @@
           </table>
         </div>
           <div id="c-product-options">
+            <table class="list" style="width:80%;">
+                <thead>
+                    <tr>
+                        <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+                        <td class="left"><?php echo $entry_arcade; ?></td>
+                        <td class="left"><?php echo $entry_tamanho; ?></td>
+                        <td class="left"><?php echo $entry_cor; ?></td>
+
+                        <td class="right"><?php echo $column_action; ?></td>
+                    </tr>
+                </thead>
+                 <tbody>
+                    <?php if ($product_config_options) { ?>
+                   
+                    <?php foreach ($product_config_options as $result) { ?>
+                    <tr>
+                        <td style="text-align: center;">
+                            <input type="checkbox" name="selected[]" value="<?php echo $result['id']; ?>" />
+                        </td>
+                        <td class="left"><?php echo $result['arcade']; ?></td>
+                        <td class="left"><?php echo $result['tamanho']; ?></td>
+                        <td class="left"><?php echo $result['cor']; ?></td>
+
+                        <td class="right">
+                            [ <a href="<?php echo $edit_action['href']."&product_config_id=".$result['id']; ?>"><?php echo $edit_action['text']; ?></a> ]
+                         </td>
+                    </tr>
+                    <?php } ?>
+                    <?php } else { ?>
+                    <tr>
+                        <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
+                    </tr>
+                    <?php } ?>
+            </tbody>
+
+            </table>
             <table class="form">
               <tr>
                 <td><?php echo $entry_arcade; ?></td>
-                  <td><input type="text" name="arcade" value="<?php echo $arcade; ?>" />
-                  <input type="hidden" name="product_config_ud" value="<?php echo $product_config_ud; ?>" />
+                  <td>
+                     <select name="arcade">
+                         <?php
+                            $selected = "";
+                            foreach($arcade_options as $option){
+                                
+                                if($arcade == $option['id']){
+                                    $selected = "selected = 'selected'";
+                                }
+                                echo "<option value='".$option['id']."' ".$selected.">";
+                                echo $option['value'];
+                                echo "</option>";
+                            }
+                         ?>
+                     </select>    
+                  <input type="hidden" name="product_config_id" value="<?php echo $product_config_id; ?>" />
                 </td>
               </tr>
               <tr>
                 <td><?php echo $entry_tamanho; ?></td>
-                <td><input type="text" name="tamanho" value="<?php echo $tamanho; ?>" /></td>
+                <td>
+                    <select name="tamanho">
+                         <?php
+                            $selected = "";
+                            foreach($tamanho_options as $option){
+                                
+                                if($tamanho == $option['id']){
+                                    $selected = "selected = 'selected'";
+                                }
+                                echo "<option value='".$option['id']."' ".$selected.">";
+                                echo $option['value'];
+                                echo "</option>";
+                            }
+                         ?>
+                     </select>    
+                </td>
               </tr>
               <tr>
                 <td><?php echo $entry_cor; ?></td>
-                <td><input type="text" name="cor" value="<?php echo $cor; ?>" /></td>
+                <td>
+                    <select name="cor">
+                         <?php
+                            $selected = "";
+                            foreach($cor_options as $option){
+                                
+                                if($cor == $option['id']){
+                                    $selected = "selected = 'selected'";
+                                }
+                                echo "<option value='".$option['id']."' ".$selected.">";
+                                echo $option['value'];
+                                echo "</option>";
+                            }
+                         ?>
+                     </select>   
+                </td>
               </tr>
               
             </table>

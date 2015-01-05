@@ -91,10 +91,10 @@
                     if(!$query->num_rows){
                         $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."product_config_options (
                                 `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
-                                `product_id` int(11) unsigned NOT NULL AUTO_INCREMENT,  
-                                `arcade` int(11) DEFAULT NULL,
-                                `tamanho` int(11) DEFAULT NULL,
-                                `cor` int(11) DEFAULT NULL,
+                                `product_id` int(11) unsigned NOT NULL,  
+                                `arcade` int(11) DEFAULT 0,
+                                `tamanho` int(11) DEFAULT 0,
+                                `cor` int(11) DEFAULT 0,
                                 `date_added` datetime NOT NULL,
                                 `date_modified` datetime NOT NULL,
 
@@ -125,7 +125,7 @@
                     $this->dbProductArcade($languages);
                     $this->dbTamanho($languages);
                     $this->dbCor($languages);
-                    $this->dbProductConfigOptions()
+                    $this->dbProductConfigOptions();
                
                 ]]>
             </add>

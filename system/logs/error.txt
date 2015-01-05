@@ -43433,3 +43433,191 @@
 2015-01-04 13:17:47 - PHP Notice:  Undefined index: name_ in /var/www/html/brian/real_dental/Dental/admin/model/catalog/conf_product_arcade.php on line 8
 2015-01-04 15:11:07 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 21
 2015-01-04 15:11:14 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 21
+2015-01-05 18:51:26 - PHP Notice:  Undefined variable: entry_arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 342
+2015-01-05 18:51:26 - PHP Notice:  Undefined variable: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 343
+2015-01-05 18:51:26 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 344
+2015-01-05 18:51:26 - PHP Notice:  Undefined variable: entry_tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 348
+2015-01-05 18:51:26 - PHP Notice:  Undefined variable: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 349
+2015-01-05 18:51:26 - PHP Notice:  Undefined variable: entry_cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 352
+2015-01-05 18:51:26 - PHP Notice:  Undefined variable: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 353
+2015-01-05 18:53:12 - PHP Notice:  Undefined variable: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 343
+2015-01-05 18:53:12 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 344
+2015-01-05 18:53:12 - PHP Notice:  Undefined variable: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 349
+2015-01-05 18:53:12 - PHP Notice:  Undefined variable: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 353
+2015-01-05 18:55:07 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 344
+2015-01-05 19:08:31 - PHP Notice:  Undefined variable: column_action in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 349
+2015-01-05 19:08:31 - PHP Notice:  Undefined variable: text_no_results in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 372
+2015-01-05 19:08:31 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 381
+2015-01-05 19:08:31 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1338
+2015-01-05 19:08:31 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1338
+2015-01-05 19:08:31 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1358
+2015-01-05 19:08:54 - PHP Notice:  Undefined variable: text_no_results in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 372
+2015-01-05 19:08:54 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 381
+2015-01-05 19:08:54 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1338
+2015-01-05 19:08:54 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1338
+2015-01-05 19:08:54 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1358
+2015-01-05 19:09:07 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 19:09:07 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:09:07 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:09:07 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1335
+2015-01-05 19:09:51 - PHP Notice:  Undefined variable: text_no_results in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 372
+2015-01-05 19:09:51 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 381
+2015-01-05 19:09:51 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1338
+2015-01-05 19:09:51 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1338
+2015-01-05 19:09:51 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1358
+2015-01-05 19:09:59 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 19:09:59 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:09:59 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:09:59 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1335
+2015-01-05 19:11:28 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 19:11:28 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:11:28 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:11:28 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1335
+2015-01-05 19:11:37 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 19:11:37 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:11:37 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:11:37 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1335
+2015-01-05 19:14:32 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 19:14:32 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:14:32 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:14:32 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1335
+2015-01-05 19:15:05 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 19:15:05 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:15:05 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1315
+2015-01-05 19:15:05 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1335
+2015-01-05 19:15:31 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 346
+2015-01-05 19:15:31 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:15:31 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:15:31 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1323
+2015-01-05 19:15:33 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 346
+2015-01-05 19:15:33 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:15:33 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:15:33 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1323
+2015-01-05 19:16:06 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 346
+2015-01-05 19:16:06 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:16:06 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:16:06 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1323
+2015-01-05 19:16:12 - PHP Notice:  Undefined index: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 976
+2015-01-05 19:16:12 - PHP Notice:  Undefined index: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 983
+2015-01-05 19:16:12 - PHP Notice:  Undefined index: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 990
+2015-01-05 19:16:12 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 346
+2015-01-05 19:16:12 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:16:12 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:16:18 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 346
+2015-01-05 19:16:18 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:16:18 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:16:18 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1323
+2015-01-05 19:16:38 - PHP Notice:  Undefined variable: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 345
+2015-01-05 19:16:38 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 346
+2015-01-05 19:16:38 - PHP Notice:  Undefined variable: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 351
+2015-01-05 19:16:38 - PHP Notice:  Undefined variable: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 355
+2015-01-05 19:16:38 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:16:38 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1303
+2015-01-05 19:16:38 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1323
+2015-01-05 19:16:55 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1287
+2015-01-05 19:16:55 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1287
+2015-01-05 19:16:55 - PHP Notice:  Undefined index: product_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1307
+2015-01-05 19:17:10 - PHP Notice:  Undefined variable: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 343
+2015-01-05 19:17:10 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 344
+2015-01-05 19:17:10 - PHP Notice:  Undefined variable: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 349
+2015-01-05 19:17:10 - PHP Notice:  Undefined variable: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 353
+2015-01-05 19:19:03 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 344
+2015-01-05 19:20:27 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 357
+2015-01-05 19:20:38 - PHP Notice:  Undefined variable: column_action in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 348
+2015-01-05 19:20:38 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 357
+2015-01-05 19:21:05 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 357
+2015-01-05 19:21:49 - PHP Notice:  Undefined variable: text_no_results in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 371
+2015-01-05 19:21:49 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 381
+2015-01-05 19:22:22 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 381
+2015-01-05 19:23:15 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 381
+2015-01-05 19:24:33 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 381
+2015-01-05 19:25:40 - PHP Notice:  Undefined variable: product_config_ud in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 381
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'selected' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 355
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'id' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 361
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 362
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'selected' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 355
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'id' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 361
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 362
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'selected' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 355
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'id' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 361
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 362
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'selected' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 355
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'id' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 361
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 362
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'selected' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 355
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'id' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 361
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 362
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'selected' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 355
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'id' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 361
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 362
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'selected' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 355
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'id' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 361
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 362
+2015-01-05 20:05:03 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:03 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 364
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 357
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 357
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 357
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 357
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 357
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 357
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'arcade' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'tamanho' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 357
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'cor' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 358
+2015-01-05 20:05:38 - PHP Warning:  Illegal string offset 'action' in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:05:38 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 360
+2015-01-05 20:06:51 - PHP Notice:  Undefined index: selected in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 356
+2015-01-05 20:06:51 - PHP Notice:  Undefined index: action in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 365
+2015-01-05 20:06:51 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 365
+2015-01-05 20:09:38 - PHP Notice:  Undefined index: action in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 363
+2015-01-05 20:09:38 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 363
