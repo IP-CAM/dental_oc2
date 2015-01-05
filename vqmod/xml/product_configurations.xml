@@ -33,6 +33,7 @@
                     }
                 
                 }
+
                 protected function dbProductArcade($languages){
                     $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_arcade'");
                     if(!$query->num_rows){
@@ -102,6 +103,21 @@
                         $this->db->query($sql);
                     }
                     
+                }
+                protected function add_product_custom_columns($languages){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX."product");
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    foreach($languages as $column){
+                        if(!in_array($column,$fields)){
+                            $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) NOT NULL after value";
+                            $this->db->query($query);;
+                        }
+                    }
+                
                 }
                 public function index() {
                     $languages = $this->getLanguages();
