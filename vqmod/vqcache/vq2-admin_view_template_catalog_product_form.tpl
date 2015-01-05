@@ -385,6 +385,9 @@
                                 if($arcade == $option['id']){
                                     $selected = "selected = 'selected'";
                                 }
+                                else {
+                                    $selected = "";
+                                }
                                 echo "<option value='".$option['id']."' ".$selected.">";
                                 echo $option['value'];
                                 echo "</option>";
@@ -405,6 +408,9 @@
                                 if($tamanho == $option['id']){
                                     $selected = "selected = 'selected'";
                                 }
+                                else {
+                                    $selected = "";
+                                }
                                 echo "<option value='".$option['id']."' ".$selected.">";
                                 echo $option['value'];
                                 echo "</option>";
@@ -423,6 +429,9 @@
                                 
                                 if($cor == $option['id']){
                                     $selected = "selected = 'selected'";
+                                }
+                                else {
+                                    $selected = "";
                                 }
                                 echo "<option value='".$option['id']."' ".$selected.">";
                                 echo $option['value'];

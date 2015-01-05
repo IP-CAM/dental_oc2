@@ -43621,3 +43621,27 @@
 2015-01-05 20:06:51 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 365
 2015-01-05 20:09:38 - PHP Notice:  Undefined index: action in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 363
 2015-01-05 20:09:38 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 363
+2015-01-05 20:23:55 - PHP Notice:  Undefined index: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1000
+2015-01-05 20:23:55 - PHP Notice:  Undefined index: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1007
+2015-01-05 20:23:55 - PHP Notice:  Undefined index: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1014
+2015-01-05 20:24:26 - PHP Notice:  Undefined index: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1000
+2015-01-05 20:24:26 - PHP Notice:  Undefined index: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1007
+2015-01-05 20:24:26 - PHP Notice:  Undefined index: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1014
+2015-01-05 20:25:06 - PHP Notice:  Undefined index: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1000
+2015-01-05 20:25:06 - PHP Notice:  Undefined index: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1007
+2015-01-05 20:25:06 - PHP Notice:  Undefined index: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1014
+2015-01-05 20:25:16 - PHP Notice:  Undefined index: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1000
+2015-01-05 20:25:16 - PHP Notice:  Undefined index: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1007
+2015-01-05 20:25:16 - PHP Notice:  Undefined index: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1014
+2015-01-05 20:27:02 - PHP Notice:  Undefined index: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1000
+2015-01-05 20:27:02 - PHP Notice:  Undefined index: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1007
+2015-01-05 20:27:02 - PHP Notice:  Undefined index: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1014
+2015-01-05 20:27:47 - PHP Notice:  Undefined index: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1000
+2015-01-05 20:27:47 - PHP Notice:  Undefined index: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1007
+2015-01-05 20:27:47 - PHP Notice:  Undefined index: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1014
+2015-01-05 20:28:19 - PHP Notice:  Undefined index: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1000
+2015-01-05 20:28:19 - PHP Notice:  Undefined index: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1007
+2015-01-05 20:28:19 - PHP Notice:  Undefined index: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1014
+2015-01-05 20:28:53 - PHP Notice:  Undefined index: arcade in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1000
+2015-01-05 20:28:53 - PHP Notice:  Undefined index: tamanho in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1007
+2015-01-05 20:28:53 - PHP Notice:  Undefined index: cor in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_controller_catalog_product.php on line 1014

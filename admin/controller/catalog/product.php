@@ -864,26 +864,26 @@ class ControllerCatalogProduct extends Controller {
         }
         if (isset($this->request->post['arcade'])) {
             $this->data['arcade'] = $this->request->post['arcade'];
-        } elseif (!empty($this->data['product_config_options'])) {
+        } elseif (!empty($product_config)) {
             $this->data['arcade'] = $product_config['arcade'];
         } else {
             $this->data['arcade'] = '';
         }
         if (isset($this->request->post['tamanho'])) {
             $this->data['tamanho'] = $this->request->post['tamanho'];
-        } elseif (!empty($product_info)) {
+        } elseif (!empty($product_config)) {
             $this->data['tamanho'] = $product_config['tamanho'];
         } else {
             $this->data['tamanho'] = '';
         }
         if (isset($this->request->post['cor'])) {
             $this->data['cor'] = $this->request->post['cor'];
-        } elseif (!empty($product_info)) {
+        } elseif (!empty($product_config)) {
             $this->data['cor'] = $product_config['cor'];
         } else {
             $this->data['cor'] = '';
         }
-
+        
 
 
 
