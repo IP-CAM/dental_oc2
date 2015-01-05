@@ -331,7 +331,23 @@
           </table>
         </div>
           <div id="c-product-options">
-              ali
+            <table class="form">
+              <tr>
+                <td><?php echo $entry_arcade; ?></td>
+                  <td><input type="text" name="arcade" value="<?php echo $arcade; ?>" />
+                  <input type="hidden" name="product_config_ud" value="<?php echo $product_config_ud; ?>" />
+                </td>
+              </tr>
+              <tr>
+                <td><?php echo $entry_tamanho; ?></td>
+                <td><input type="text" name="tamanho" value="<?php echo $tamanho; ?>" /></td>
+              </tr>
+              <tr>
+                <td><?php echo $entry_cor; ?></td>
+                <td><input type="text" name="cor" value="<?php echo $cor; ?>" /></td>
+              </tr>
+              
+            </table>
           </div>  
         <div id="tab-attribute">
           <table id="attribute" class="list">
