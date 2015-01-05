@@ -337,7 +337,13 @@
           </table>
         </div>
           <div id="c-product-options">
-            <table class="list" style="width:80%;">
+            <?php
+                if(isset($edit_action['href'])){
+                    echo "<a href='".$edit_action['href']."' class='button'>Add New</a>";
+                }
+            ?>
+            
+            <table class="list" style="width:80%;margin-top:5px;">
                 <thead>
                     <tr>
                         <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
@@ -362,7 +368,8 @@
 
                         <td class="right">
                             [ <a href="<?php echo $edit_action['href']."&product_config_id=".$result['id']; ?>"><?php echo $edit_action['text']; ?></a> ]
-                         </td>
+                            [ <a  href="javascript:void(0)" onclick="<?php echo $delete_action['click']; ?>" url="<?php echo $delete_action['href']."&product_config_id=".$result['id']; ?>"><?php echo $delete_action['text']; ?></a> ] 
+                        </td>
                     </tr>
                     <?php } ?>
                     <?php } else { ?>
@@ -1495,6 +1502,12 @@ function addProfile() {
         openbayLinkStatus();
     });
 <?php } ?>
+
+        function deleteConfig(elem){
+            if(confirm("Are you sure you want to delete this item")){
+                window.location = $(elem).attr("url");
+            }
+        }
 
 //--></script>
 

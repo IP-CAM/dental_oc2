@@ -83,6 +83,7 @@ $_['entry_profile']          = 'Profile:';
 $_['entry_arcade']          = 'Arcade :';
 $_['entry_tamanho']          = 'Tamanho:';
 $_['entry_cor']          = 'Cor:';
+$_['text_remove'] = 'Remove';
 
 
 $_['text_recurring_help']    = 'Recurring amounts are calculated by the frequency and cycles. <br />For example if you use a frequency of "week" and a cycle of "2", then the user will be billed every 2 weeks. <br />The length is the number of times the user will make a payment, set this to 0 if you want payments until they are cancelled.';

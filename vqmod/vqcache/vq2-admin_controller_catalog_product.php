@@ -255,8 +255,46 @@ class ControllerCatalogProduct extends Controller {
         $this->document->setTitle($this->language->get('heading_title'));
 
         $this->load->model('catalog/product');
+        if (!empty($this->request->get['product_config_id'])) {
+            $this->model_catalog_product->deleteProductConfig($this->request->get['product_config_id']);
+            $this->session->data['success'] = $this->language->get('text_success');
 
-        if (isset($this->request->post['selected']) && $this->validateDelete()) {
+            $url = '';
+
+            if (isset($this->request->get['filter_name'])) {
+                $url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+            }
+
+            if (isset($this->request->get['filter_model'])) {
+                $url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
+            }
+
+            if (isset($this->request->get['filter_price'])) {
+                $url .= '&filter_price=' . $this->request->get['filter_price'];
+            }
+
+            if (isset($this->request->get['filter_quantity'])) {
+                $url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
+            }
+
+            if (isset($this->request->get['filter_status'])) {
+                $url .= '&filter_status=' . $this->request->get['filter_status'];
+            }
+
+            if (isset($this->request->get['sort'])) {
+                $url .= '&sort=' . $this->request->get['sort'];
+            }
+
+            if (isset($this->request->get['order'])) {
+                $url .= '&order=' . $this->request->get['order'];
+            }
+
+            if (isset($this->request->get['page'])) {
+                $url .= '&page=' . $this->request->get['page'];
+            }
+
+            $this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+        } else if (isset($this->request->post['selected']) && $this->validateDelete()) {
             foreach ($this->request->post['selected'] as $product_id) {
                 $this->model_catalog_product->deleteProduct($product_id);
                 $this->openbay->deleteProduct($product_id);
@@ -988,6 +1026,11 @@ class ControllerCatalogProduct extends Controller {
                 'text' => $this->language->get('text_edit'),
                 'href' => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL')
             );
+            $this->data['delete_action'] = array(
+                'text' => $this->language->get('text_remove'),
+                'click' => "deleteConfig(this)",
+                'href' => $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL')
+            );
         }
         $product_config = array();
         if (isset($this->request->get['product_config_id'])) {
@@ -1015,7 +1058,7 @@ class ControllerCatalogProduct extends Controller {
         } else {
             $this->data['cor'] = '';
         }
-        
+
 
 
 

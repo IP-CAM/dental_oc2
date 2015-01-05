@@ -272,14 +272,14 @@ class ModelCatalogProduct extends Model {
                 }
             }
         }
-        
+
         if (isset($data['arcade'])) {
             $columns [] = "arcade = '" . (int) $data['arcade'] . "'";
             $columns [] = "cor = '" . (int) $data['cor'] . "'";
             $columns [] = "tamanho = '" . $data['tamanho'] . "'";
             $columns [] = "product_id = '" . (int) $product_id . "'";
             if (!empty($data['product_config_id'])) {
-                $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET ".implode($columns,",")." WHERE id = '" . (int) $data['product_config_id'] . "'");
+                $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",") . " WHERE id = '" . (int) $data['product_config_id'] . "'");
             } else {
                 $this->db->query("INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ","));
             }
@@ -368,14 +368,16 @@ class ModelCatalogProduct extends Model {
      * @return typePro
      */
     public function getProductConfigOptions($product_id) {
-
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_config_options WHERE  product_id = " . (int) $product_id);
+        $join = "INNER join " . DB_PREFIX . "conf_product_arcade a ON a.id = t.arcade ";
+        $join.= "INNER join " . DB_PREFIX . "conf_product_tamanho b ON b.id = t.tamanho ";
+        $join.= "INNER join " . DB_PREFIX . "conf_product_cor c ON c.id = t.cor ";
+        $query = $this->db->query("SELECT t.id, a.value as arcade,c.value as cor,b.value as tamanho FROM " . DB_PREFIX . "product_config_options t " . $join . " WHERE  t.product_id = " . (int) $product_id);
         return $query->rows;
     }
 
     public function getProductConfigOption($product_config_id) {
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_config_options WHERE  id = " . (int) $product_config_id);
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_config_options t WHERE  t.id = " . (int) $product_config_id);
         return $query->row;
     }
 
@@ -386,6 +388,10 @@ class ModelCatalogProduct extends Model {
         $query3 = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_tamanho ");
 
         return array("arcade" => $query1->rows, "cor" => $query2->rows, "tamanho" => $query3->rows);
+    }
+
+    public function deleteProductConfig($conf_id) {
+        $this->db->query("DELETE FROM " . DB_PREFIX . "product_config_options WHERE id = '" . (int) $conf_id . "'");
     }
 
     public function getProducts($data = array()) {
