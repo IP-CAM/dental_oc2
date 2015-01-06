@@ -12,6 +12,7 @@ $_['text_price']        = 'Price:';
 $_['text_tax']          = 'Ex Tax:'; 
 $_['text_discount']     = '%s or more %s';
 $_['text_option']       = 'Available Options';
+$_['text_conf_option']       = 'Available Other Options';
 $_['text_qty']          = 'Qty:';
 $_['text_minimum']      = 'This product has a minimum quantity of %s';
 $_['text_or']           = '- OR -';

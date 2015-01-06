@@ -380,6 +380,7 @@
                   <td>
                      <select name="arcade">
                          <?php
+                            echo "<option value=''>Select</option>";
                             $selected = "";
                             foreach($arcade_options as $option){
                                 

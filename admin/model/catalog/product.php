@@ -364,9 +364,9 @@ class ModelCatalogProduct extends Model {
      * @return typePro
      */
     public function getProductConfigOptions($product_id) {
-        $join = "INNER join " . DB_PREFIX . "conf_product_arcade a ON a.id = t.arcade ";
-        $join.= "INNER join " . DB_PREFIX . "conf_product_tamanho b ON b.id = t.tamanho ";
-        $join.= "INNER join " . DB_PREFIX . "conf_product_cor c ON c.id = t.cor ";
+        $join = "LEFT join " . DB_PREFIX . "conf_product_arcade a ON a.id = t.arcade ";
+        $join.= "LEFT join " . DB_PREFIX . "conf_product_tamanho b ON b.id = t.tamanho ";
+        $join.= "LEFT join " . DB_PREFIX . "conf_product_cor c ON c.id = t.cor ";
         $query = $this->db->query("SELECT t.id, a.value as arcade,c.value as cor,b.value as tamanho FROM " . DB_PREFIX . "product_config_options t " . $join . " WHERE  t.product_id = " . (int) $product_id);
         return $query->rows;
     }

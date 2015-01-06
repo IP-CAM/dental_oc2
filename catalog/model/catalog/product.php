@@ -63,8 +63,23 @@ class ModelCatalogProduct extends Model {
         }
     }
 
+    /**
+     *  Get Product Config options
+     * @param type $product_id
+     * @return typePro
+     */
+    public function getProductConfigOptions($product_id) {
+        $join1 = "INNER join " . DB_PREFIX . "conf_product_arcade a ON a.id = t.arcade ";
+        $join2= "INNER join " . DB_PREFIX . "conf_product_tamanho b ON b.id = t.tamanho ";
+        $join3= "INNER join " . DB_PREFIX . "conf_product_cor c ON c.id = t.cor ";
+        $query1 = $this->db->query("SELECT t.id, a.value as value FROM " . DB_PREFIX . "product_config_options t " . $join1 . " WHERE  t.product_id = " . (int) $product_id);
+        $query2 = $this->db->query("SELECT t.id, b.value as value FROM " . DB_PREFIX . "product_config_options t " . $join2 . " WHERE  t.product_id = " . (int) $product_id);
+        $query3 = $this->db->query("SELECT t.id, c.value as value FROM " . DB_PREFIX . "product_config_options t " . $join3 . " WHERE  t.product_id = " . (int) $product_id);
+        return ["arcade"=>$query1->rows,"tamanho"=>$query2->rows,"cor"=>$query3->rows];
+    }
+
     public function getProducts($data = array()) {
-         
+
         if ($this->customer->isLogged()) {
             $customer_group_id = $this->customer->getCustomerGroupId();
         } else {
@@ -186,13 +201,11 @@ class ModelCatalogProduct extends Model {
             $sql .= " AND p.manufacturer_id IN (" . implode(',', $temp) . ")";
         }
         if (!empty($data['filter_video'])) {
-            if($data['filter_video']==0){
-                 $sql.= " AND (pd.youtube IS NULL OR pd.youtube='') ";
-            }
-            else {
+            if ($data['filter_video'] == 0) {
+                $sql.= " AND (pd.youtube IS NULL OR pd.youtube='') ";
+            } else {
                 $sql.= " AND pd.youtube IS NOT NULL ";
             }
-           
         }
 
         $sql .= " GROUP BY p.product_id";
@@ -597,13 +610,11 @@ class ModelCatalogProduct extends Model {
             $sql .= " AND p.manufacturer_id = '" . (int) $data['filter_manufacturer_id'] . "'";
         }
         if (!empty($data['filter_video'])) {
-            if($data['filter_video']==0){
-                 $sql.= " AND (pd.youtube IS NULL OR pd.youtube='') ";
-            }
-            else {
+            if ($data['filter_video'] == 0) {
+                $sql.= " AND (pd.youtube IS NULL OR pd.youtube='') ";
+            } else {
                 $sql.= " AND pd.youtube IS NOT NULL ";
             }
-           
         }
 
 
