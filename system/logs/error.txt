@@ -44070,3 +44070,4 @@
 2015-01-06 21:32:04 - PHP Notice:  Undefined index: product_option_id in /var/www/html/brian/real_dental/Dental/catalog/model/checkout/order.php on line 14
 2015-01-06 21:32:04 - PHP Notice:  Undefined index: product_option_value_id in /var/www/html/brian/real_dental/Dental/catalog/model/checkout/order.php on line 14
 2015-01-06 21:32:04 - PHP Notice:  Undefined index: type in /var/www/html/brian/real_dental/Dental/catalog/model/checkout/order.php on line 14
+2015-01-07 18:53:58 - PHP Notice:  Undefined index: id in /var/www/html/brian/real_dental/Dental/catalog/controller/checkout/confirm.php on line 476

@@ -99,6 +99,25 @@ class ControllerCatalogProduct extends Controller {
                     }
                     
                 }
+                protected function dbOrderProductConfigOptions(){
+                    $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."order_product_config_options'");
+                    if(!$query->num_rows){
+                        $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."order_product_config_options (
+                                `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+                                `product_id` int(11) unsigned NOT NULL,  
+                                `order_id` int(11) unsigned NOT NULL,  
+                                `arcade` int(11) DEFAULT 0,
+                                `tamanho` int(11) DEFAULT 0,
+                                `cor` int(11) DEFAULT 0,
+                                `date_added` datetime NOT NULL,
+                                `date_modified` datetime NOT NULL,
+
+                                PRIMARY KEY (`id`)
+                              ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                        $this->db->query($sql);
+                    }
+                    
+                }
                 protected function add_product_custom_columns($languages){
                     $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX."product");
                     $rows = $query->rows;
@@ -131,6 +150,7 @@ class ControllerCatalogProduct extends Controller {
                     $this->dbTamanho($languages);
                     $this->dbCor($languages);
                     $this->dbProductConfigOptions();
+                    $this->dbOrderProductConfigOptions();
                
                 
             

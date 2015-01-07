@@ -379,7 +379,9 @@ class ControllerCheckoutConfirm extends Controller {
                     );
                 }
                 if (count($option['conf_options']) > 0) {
-
+                    //this variable will be used to insert in database as order 
+                    // conf options
+                    $conf_options = [];
                     foreach ($option['conf_options'] as $key => $conf) {
 
                         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
@@ -387,8 +389,16 @@ class ControllerCheckoutConfirm extends Controller {
                             'name' => ucfirst($key),
                             'value' => $query->row['value'],
                         );
+                        $conf_options[$key] = array(
+                            'name' => ucfirst($key),
+                            'value' => $query->row['value'],
+                            'id' => $query->row['id'],
+                        );
                     }
+
+                    $this->addOrderConfiguration($product, $conf_options);
                 }
+
 
 
                 $profile_description = '';
@@ -459,6 +469,33 @@ class ControllerCheckoutConfirm extends Controller {
         }
 
         $this->response->setOutput($this->render());
+    }
+
+    public function addOrderConfiguration($product, $conf_options) {
+       
+        $query = $this->db->query("Select * FROM " . DB_PREFIX . "order_product_config_options WHERE product_id = " . (int)($product['product_id']) . " AND " . (int)$this->session->data['order_id'] . " ");
+        if (!$query->num_rows) {
+            if(isset($conf_options['arcade'])){
+                $columns [] = "arcade = '" . (int)$conf_options['arcade']['id'] . "'";
+            }
+            if(isset($conf_options['tamanho'])){
+                $columns [] = "tamanho = '" . (int)$conf_options['tamanho']['id'] . "'";
+            }
+            if(isset($conf_options['cor'])){
+                $columns [] = "cor = '" . (int)$conf_options['cor']['id'] . "'";
+            }
+            
+            
+            
+            $columns [] = "product_id = '" . (int)$product['product_id'] . "'";
+            $columns [] = "order_id = '" . (int)$this->session->data['order_id'] . "'";
+            $columns [] = "date_added = '" . date("Y-m-d h:i:s") . "'";
+            $columns [] = "date_modified = '" . date("Y-m-d h:i:s") . "'";
+            
+            $sql = "INSERT INTO ".DB_PREFIX . "order_product_config_options SET ".implode($columns,",");
+            $this->db->query($sql);
+            
+        }
     }
 
 }
