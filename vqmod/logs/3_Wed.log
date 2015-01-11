@@ -298,3 +298,18 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
+---------- Date: 2015-01-07 19:21:26 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=checkout/success
+MOD DETAILS:
+   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
+   id        : Adds Youtube videos to product pages
+   version   : 1.0]
+   vqmver    : 1.0
+   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+
+File Name    : catalog/model/catalog/product.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+
+----------------------------------------------------------------------
+
+
