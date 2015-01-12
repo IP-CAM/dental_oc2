@@ -336,6 +336,80 @@
                     echo "<a href='".$edit_action['href']."' class='button'>Add New</a>";
                 }
             ?>
+
+            <div>
+              <table class="arcade_parent list" 
+                style=";width:80%;margin-top:5px;" cellpadding="0" cellspacing="0">
+                <tr>
+                  <th>Arcade</th>
+                  <td>
+                    <select>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                      <option value="E">E</option>  
+                    </select>
+                  </td>
+                  <td>
+                    <input type="button" value="Add More" onclick="create_parent_clone(this)" />
+                    <input type="button" class="remove_parent" 
+                      value="Remove" onclick="remove_parent(this)" />
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <table class="tom_table list" style="width:80%;">
+                      <tr>
+                        <th>Tam</th>
+                        <td>
+                          <select>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>  
+                          </select>
+                        </td>
+                        <td>
+                          <input type="button" value="Add More" 
+                          onclick="create_tom_clone(this)" />
+                          <input class="remove_tom" type="button" value="Remove" 
+                          onclick="remove_tom_clone(this)" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="3">
+                          <table class="cor_table list" style="width:80%;">
+                            <tr>
+                              <th>Cor</th>
+                              <td>
+                                <select class="cors">
+                                  <option value="A">A</option>
+                                  <option value="B">B</option>
+                                  <option value="C">C</option>
+                                  <option value="D">D</option>
+                                  <option value="E">E</option>  
+                                </select>
+                                <input type="text" placeholder="SKU" />
+                                <input type="text" placeholder="Quantity" />
+                              </td>
+                              <td>
+                                <input type="button" value="Add More" 
+                                onclick="create_cor_clone(this)" />
+                                <input class="remove_cor" type="button" value="Remove" 
+                                onclick="remove_cor_clone(this)" />
+                              </td>
+                            </tr>
+                          </table>  
+                        </td> 
+                      </tr> 
+                    </table>  
+
+                  </td>
+                </tr> 
+              </table>
+            </div>
             
             <table class="list" style="width:80%;margin-top:5px;">
                 <thead>
@@ -1505,5 +1579,62 @@ function addProfile() {
         }
 
 //--></script>
+
+  <style>
+    select {
+      width:80%;
+    }
+    select.cors {
+      width:20%;
+    }
+    table {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /*table td,table th {
+      border:1px solid black;
+    }*/
+    .arcade_parent {
+      margin-top:15px;
+    }
+
+    .arcade_parent:first-child input.remove_parent {
+      display: none;
+    }
+    .arcade_parent table.tom_table:first-child input.remove_tom {
+      display: none;
+    }
+    .arcade_parent table.tom_table:first-child table.cor_table:first-child input.remove_cor{
+      display: none;
+    }
+    .arcade_parent input[type='text'] {
+      width:80px;
+    }
+
+  </style>  
+  <script type="text/javascript">
+
+    function create_parent_clone(ob){
+      clone_parent = $(".arcade_parent").clone();
+      $(ob).parent().parent().parent().parent().after(clone_parent);
+    }
+    function remove_parent(ob){
+      $(ob).parent().parent().parent().parent().remove();
+    }
+    function create_tom_clone(ob){
+      clone_parent = $(ob).parent().parent().parent().parent().clone();
+      $(ob).parent().parent().parent().parent().after(clone_parent);
+    }
+    function remove_tom_clone(ob){
+      $(ob).parent().parent().parent().parent().remove();
+    }
+    function create_cor_clone(ob){
+      clone_parent = $(ob).parent().parent().parent().parent().clone();
+      $(ob).parent().parent().parent().parent().after(clone_parent);
+    }
+    function remove_cor_clone(ob){
+      $(ob).parent().parent().parent().parent().remove();
+    }
+  </script>
 
 <?php echo $footer; ?>
