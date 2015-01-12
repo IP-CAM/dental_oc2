@@ -122,7 +122,7 @@ class ModelCatalogProduct extends Model {
             }
         }
 
-        if (isset($data['arcade'])) {
+        if (isset($data['json_content'])) {
             $columns [] = "arcade = '" . (int) $data['arcade'] . "'";
             $columns [] = "cor = '" . (int) $data['cor'] . "'";
             $columns [] = "tamanho = '" . $data['tamanho'] . "'";
@@ -269,16 +269,33 @@ class ModelCatalogProduct extends Model {
             }
         }
 
-        if (isset($data['arcade'])) {
-            $columns [] = "arcade = '" . (int) $data['arcade'] . "'";
-            $columns [] = "cor = '" . (int) $data['cor'] . "'";
-            $columns [] = "tamanho = '" . $data['tamanho'] . "'";
-            $columns [] = "product_id = '" . (int) $product_id . "'";
-            if (!empty($data['product_config_id'])) {
-                $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",") . " WHERE id = '" . (int) $data['product_config_id'] . "'");
-            } else {
+        if (isset($data['json_content'])) {
+
+            $str = html_entity_decode($data['json_content']);
+            $json_array = json_decode($str, true);
+
+            
+            $this->db->query("DELETE FROM " . DB_PREFIX . "product_config_options  WHERE product_id = '" . (int) $product_id . "'");
+            foreach ($json_array as $opt) {
+                $opt_string = json_encode($opt);
+                $columns = array();
+                $columns [] = "arcade = '" . (int) $opt['arcade'] . "'";
+                $columns [] = "json_data = '" . $opt_string . "'";
+                
+                $columns [] = "product_id = '" . (int) $product_id . "'";
                 $this->db->query("INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ","));
             }
+            
+
+//            $columns [] = "arcade = '" . (int) $data['arcade'] . "'";
+//            $columns [] = "cor = '" . (int) $data['cor'] . "'";
+//            $columns [] = "tamanho = '" . $data['tamanho'] . "'";
+//            $columns [] = "product_id = '" . (int) $product_id . "'";
+//            if (!empty($data['product_config_id'])) {
+//                $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",") . " WHERE id = '" . (int) $data['product_config_id'] . "'");
+//            } else {
+//                $this->db->query("INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ","));
+//            }
         }
 
         $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int) $product_id . "'");
@@ -370,12 +387,13 @@ class ModelCatalogProduct extends Model {
         $query = $this->db->query("SELECT t.id, a.value as arcade,c.value as cor,b.value as tamanho FROM " . DB_PREFIX . "product_config_options t " . $join . " WHERE  t.product_id = " . (int) $product_id);
         return $query->rows;
     }
-    public function getProductOrderConfigOptions($product_id,$order_id) {
+
+    public function getProductOrderConfigOptions($product_id, $order_id) {
         $join = "LEFT join " . DB_PREFIX . "conf_product_arcade a ON a.id = t.arcade ";
         $join.= "LEFT join " . DB_PREFIX . "conf_product_tamanho b ON b.id = t.tamanho ";
         $join.= "LEFT join " . DB_PREFIX . "conf_product_cor c ON c.id = t.cor ";
-        $sql = "SELECT t.id, a.value as arcade,c.value as cor,b.value as tamanho FROM " . DB_PREFIX . "order_product_config_options t " . $join . " WHERE  t.product_id = " . (int) $product_id." AND t.order_id = " . (int) $order_id;
-        
+        $sql = "SELECT t.id, a.value as arcade,c.value as cor,b.value as tamanho FROM " . DB_PREFIX . "order_product_config_options t " . $join . " WHERE  t.product_id = " . (int) $product_id . " AND t.order_id = " . (int) $order_id;
+
         $query = $this->db->query($sql);
         return $query;
     }

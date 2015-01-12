@@ -23,6 +23,7 @@
 <script type="text/javascript" src="view/javascript/jquery/tabs.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/superfish/js/superfish.js"></script>
 <script type="text/javascript" src="view/javascript/common.js"></script>
+<script type="text/javascript" src="view/javascript/underscore.js"></script>
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>

@@ -90,6 +90,9 @@ class ControllerCatalogProduct extends Controller {
                                 `arcade` int(11) DEFAULT 0,
                                 `tamanho` int(11) DEFAULT 0,
                                 `cor` int(11) DEFAULT 0,
+                                `sku` varchar(255) DEFAULT NULL,
+                                `qty` int(11) DEFAULT 0,
+                                `json_data` text DEFAULT NULL,
                                 `date_added` datetime NOT NULL,
                                 `date_modified` datetime NOT NULL,
 

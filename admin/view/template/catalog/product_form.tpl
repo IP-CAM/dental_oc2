@@ -11,7 +11,7 @@
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/product.png" alt="" /> <?php echo $heading_title; ?></h1>
-      <div class="buttons"><a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
+      <div class="buttons"><a onclick="custom_submit();" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
     </div>
     <div class="content">
       <div id="tabs" class="htabs">
@@ -341,14 +341,18 @@
               <table class="arcade_parent list" 
                 style=";width:80%;margin-top:5px;" cellpadding="0" cellspacing="0">
                 <tr>
-                  <th>Arcade</th>
+                  <th><?php echo $entry_arcade; ?></th>
                   <td>
-                    <select>
-                      <option value="A">A</option>
-                      <option value="B">B</option>
-                      <option value="C">C</option>
-                      <option value="D">D</option>
-                      <option value="E">E</option>  
+                    <select class="add_arcade">
+                     <?php
+                        foreach($arcade_options as $option){
+                                $selected = "";
+                               
+                                echo "<option value='".$option['id']."' ".$selected.">";
+                                echo $option['value'];
+                                echo "</option>";
+                            }
+                     ?>
                     </select>
                   </td>
                   <td>
@@ -361,14 +365,19 @@
                   <td colspan="3">
                     <table class="tom_table list" style="width:80%;">
                       <tr>
-                        <th>Tam</th>
+                        <th><?php echo $entry_tamanho; ?></th>
                         <td>
-                          <select>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="E">E</option>  
+                          <select class="add_tom">
+                            <?php
+                            foreach($tamanho_options as $option){
+                                $selected = "";
+                                
+                                echo "<option value='".$option['id']."' ".$selected.">";
+                                echo $option['value'];
+                                echo "</option>";
+                            }
+                            ?>
+                           
                           </select>
                         </td>
                         <td>
@@ -382,17 +391,22 @@
                         <td colspan="3">
                           <table class="cor_table list" style="width:80%;">
                             <tr>
-                              <th>Cor</th>
+                              <th><?php echo $entry_cor; ?></th>
                               <td>
-                                <select class="cors">
-                                  <option value="A">A</option>
-                                  <option value="B">B</option>
-                                  <option value="C">C</option>
-                                  <option value="D">D</option>
-                                  <option value="E">E</option>  
+                                <select class="add_cors">
+                                  <?php
+                                    $selected = "";
+                                    foreach($cor_options as $option){
+                                        $selected = "";
+                                       
+                                        echo "<option value='".$option['id']."' ".$selected.">";
+                                        echo $option['value'];
+                                        echo "</option>";
+                                    }
+                                 ?>
                                 </select>
-                                <input type="text" placeholder="SKU" />
-                                <input type="text" placeholder="Quantity" />
+                                <input class="add_sku" type="text" placeholder="SKU" />
+                                <input class="add_qty" type="text" placeholder="Quantity" />
                               </td>
                               <td>
                                 <input type="button" value="Add More" 
@@ -409,6 +423,7 @@
                   </td>
                 </tr> 
               </table>
+                <input type="hidden" id="json_content" name="json_content" />
             </div>
             
             <table class="list" style="width:80%;margin-top:5px;">
@@ -1634,6 +1649,30 @@ function addProfile() {
     }
     function remove_cor_clone(ob){
       $(ob).parent().parent().parent().parent().remove();
+    }
+    
+    function custom_submit(){
+        arcades = {};
+        $("table.arcade_parent").each(function(k,tba){
+          arcade = {'arcade':$(tba).find(".add_arcade").val(),'toms':{}};
+          $(tba).find(".tom_table").each(function(kt,ktba){
+            tom ={'tom':$(ktba).find(".add_tom").val(),'cors':{}};
+
+            $(ktba).find(".cor_table").each(function(ct,ctba){
+              qty  = $(ctba).find(".add_qty").val();
+              sku  = $(ctba).find(".add_sku").val();
+              cor = {'cor':$(ctba).find(".add_cors").val(),'sku':sku,'qty':qty};
+               tom['cors'][ct] = cor;
+            })
+            //tom = _.object(tom);
+            arcade['toms'][kt] = tom;
+          })
+          //arcade = _.object(arcade);
+          arcades[k] = arcade;
+        });
+        
+        $("#json_content").val(JSON.stringify(arcades));
+        $('#form').submit();
     }
   </script>
 

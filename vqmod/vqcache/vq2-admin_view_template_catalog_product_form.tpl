@@ -11,7 +11,7 @@
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/product.png" alt="" /> <?php echo $heading_title; ?></h1>
-      <div class="buttons"><a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
+      <div class="buttons"><a onclick="custom_submit();" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
     </div>
     <div class="content">
       <div id="tabs" class="htabs">
@@ -342,6 +342,95 @@
                     echo "<a href='".$edit_action['href']."' class='button'>Add New</a>";
                 }
             ?>
+
+            <div>
+              <table class="arcade_parent list" 
+                style=";width:80%;margin-top:5px;" cellpadding="0" cellspacing="0">
+                <tr>
+                  <th><?php echo $entry_arcade; ?></th>
+                  <td>
+                    <select class="add_arcade">
+                     <?php
+                        foreach($arcade_options as $option){
+                                $selected = "";
+                               
+                                echo "<option value='".$option['id']."' ".$selected.">";
+                                echo $option['value'];
+                                echo "</option>";
+                            }
+                     ?>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="button" value="Add More" onclick="create_parent_clone(this)" />
+                    <input type="button" class="remove_parent" 
+                      value="Remove" onclick="remove_parent(this)" />
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <table class="tom_table list" style="width:80%;">
+                      <tr>
+                        <th><?php echo $entry_tamanho; ?></th>
+                        <td>
+                          <select class="add_tom">
+                            <?php
+                            foreach($tamanho_options as $option){
+                                $selected = "";
+                                
+                                echo "<option value='".$option['id']."' ".$selected.">";
+                                echo $option['value'];
+                                echo "</option>";
+                            }
+                            ?>
+                           
+                          </select>
+                        </td>
+                        <td>
+                          <input type="button" value="Add More" 
+                          onclick="create_tom_clone(this)" />
+                          <input class="remove_tom" type="button" value="Remove" 
+                          onclick="remove_tom_clone(this)" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="3">
+                          <table class="cor_table list" style="width:80%;">
+                            <tr>
+                              <th><?php echo $entry_cor; ?></th>
+                              <td>
+                                <select class="add_cors">
+                                  <?php
+                                    $selected = "";
+                                    foreach($cor_options as $option){
+                                        $selected = "";
+                                       
+                                        echo "<option value='".$option['id']."' ".$selected.">";
+                                        echo $option['value'];
+                                        echo "</option>";
+                                    }
+                                 ?>
+                                </select>
+                                <input class="add_sku" type="text" placeholder="SKU" />
+                                <input class="add_qty" type="text" placeholder="Quantity" />
+                              </td>
+                              <td>
+                                <input type="button" value="Add More" 
+                                onclick="create_cor_clone(this)" />
+                                <input class="remove_cor" type="button" value="Remove" 
+                                onclick="remove_cor_clone(this)" />
+                              </td>
+                            </tr>
+                          </table>  
+                        </td> 
+                      </tr> 
+                    </table>  
+
+                  </td>
+                </tr> 
+              </table>
+                <input type="hidden" id="json_content" name="json_content" />
+            </div>
             
             <table class="list" style="width:80%;margin-top:5px;">
                 <thead>
@@ -1511,5 +1600,86 @@ function addProfile() {
         }
 
 //--></script>
+
+  <style>
+    select {
+      width:80%;
+    }
+    select.cors {
+      width:20%;
+    }
+    table {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /*table td,table th {
+      border:1px solid black;
+    }*/
+    .arcade_parent {
+      margin-top:15px;
+    }
+
+    .arcade_parent:first-child input.remove_parent {
+      display: none;
+    }
+    .arcade_parent table.tom_table:first-child input.remove_tom {
+      display: none;
+    }
+    .arcade_parent table.tom_table:first-child table.cor_table:first-child input.remove_cor{
+      display: none;
+    }
+    .arcade_parent input[type='text'] {
+      width:80px;
+    }
+
+  </style>  
+  <script type="text/javascript">
+
+    function create_parent_clone(ob){
+      clone_parent = $(".arcade_parent").clone();
+      $(ob).parent().parent().parent().parent().after(clone_parent);
+    }
+    function remove_parent(ob){
+      $(ob).parent().parent().parent().parent().remove();
+    }
+    function create_tom_clone(ob){
+      clone_parent = $(ob).parent().parent().parent().parent().clone();
+      $(ob).parent().parent().parent().parent().after(clone_parent);
+    }
+    function remove_tom_clone(ob){
+      $(ob).parent().parent().parent().parent().remove();
+    }
+    function create_cor_clone(ob){
+      clone_parent = $(ob).parent().parent().parent().parent().clone();
+      $(ob).parent().parent().parent().parent().after(clone_parent);
+    }
+    function remove_cor_clone(ob){
+      $(ob).parent().parent().parent().parent().remove();
+    }
+    
+    function custom_submit(){
+        arcades = {};
+        $("table.arcade_parent").each(function(k,tba){
+          arcade = {'arcade':$(tba).find(".add_arcade").val(),'toms':{}};
+          $(tba).find(".tom_table").each(function(kt,ktba){
+            tom ={'tom':$(ktba).find(".add_tom").val(),'cors':{}};
+
+            $(ktba).find(".cor_table").each(function(ct,ctba){
+              qty  = $(ctba).find(".add_qty").val();
+              sku  = $(ctba).find(".add_sku").val();
+              cor = {'cor':$(ctba).find(".add_cors").val(),'sku':sku,'qty':qty};
+               tom['cors'][ct] = cor;
+            })
+            //tom = _.object(tom);
+            arcade['toms'][kt] = tom;
+          })
+          //arcade = _.object(arcade);
+          arcades[k] = arcade;
+        });
+        
+        $("#json_content").val(JSON.stringify(arcades));
+        $('#form').submit();
+    }
+  </script>
 
 <?php echo $footer; ?>
