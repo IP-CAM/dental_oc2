@@ -886,10 +886,12 @@ class ControllerCatalogProduct extends Controller {
         $this->data['cor_options'] = $conf_options['cor'];
         $this->data['tamanho_options'] = $conf_options['tamanho'];
 
-        $this->data['product_config_options'] = array();
+        $this->data['product_config_options'] = '';
         $this->data['product_config_id'] = '';
+        $this->data['product_config_options_json'] = array();
         if (isset($this->request->get['product_id'])) {
             $this->data['product_config_options'] = $this->model_catalog_product->getProductConfigOptions($this->request->get['product_id']);
+            $this->data['product_config_options_json'] = $this->model_catalog_product->getProductConfigOptionsJson($this->request->get['product_id']);
             $this->data['edit_action'] = array(
                 'text' => $this->language->get('text_edit'),
                 'href' => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL')
@@ -900,6 +902,7 @@ class ControllerCatalogProduct extends Controller {
                 'href' => $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL')
             );
         }
+     
         $product_config = array();
         if (isset($this->request->get['product_config_id'])) {
             $this->data['product_config_id'] = $this->request->get['product_config_id'];

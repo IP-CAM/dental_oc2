@@ -338,202 +338,14 @@
             ?>
 
             <div>
-              <table class="arcade_parent list" 
-                style=";width:80%;margin-top:5px;" cellpadding="0" cellspacing="0">
-                <tr>
-                  <th><?php echo $entry_arcade; ?></th>
-                  <td>
-                    <select class="add_arcade">
-                     <?php
-                        foreach($arcade_options as $option){
-                                $selected = "";
-                               
-                                echo "<option value='".$option['id']."' ".$selected.">";
-                                echo $option['value'];
-                                echo "</option>";
-                            }
-                     ?>
-                    </select>
-                  </td>
-                  <td>
-                    <input type="button" value="Add More" onclick="create_parent_clone(this)" />
-                    <input type="button" class="remove_parent" 
-                      value="Remove" onclick="remove_parent(this)" />
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="3">
-                    <table class="tom_table list" style="width:80%;">
-                      <tr>
-                        <th><?php echo $entry_tamanho; ?></th>
-                        <td>
-                          <select class="add_tom">
-                            <?php
-                            foreach($tamanho_options as $option){
-                                $selected = "";
-                                
-                                echo "<option value='".$option['id']."' ".$selected.">";
-                                echo $option['value'];
-                                echo "</option>";
-                            }
-                            ?>
-                           
-                          </select>
-                        </td>
-                        <td>
-                          <input type="button" value="Add More" 
-                          onclick="create_tom_clone(this)" />
-                          <input class="remove_tom" type="button" value="Remove" 
-                          onclick="remove_tom_clone(this)" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td colspan="3">
-                          <table class="cor_table list" style="width:80%;">
-                            <tr>
-                              <th><?php echo $entry_cor; ?></th>
-                              <td>
-                                <select class="add_cors">
-                                  <?php
-                                    $selected = "";
-                                    foreach($cor_options as $option){
-                                        $selected = "";
-                                       
-                                        echo "<option value='".$option['id']."' ".$selected.">";
-                                        echo $option['value'];
-                                        echo "</option>";
-                                    }
-                                 ?>
-                                </select>
-                                <input class="add_sku" type="text" placeholder="SKU" />
-                                <input class="add_qty" type="text" placeholder="Quantity" />
-                              </td>
-                              <td>
-                                <input type="button" value="Add More" 
-                                onclick="create_cor_clone(this)" />
-                                <input class="remove_cor" type="button" value="Remove" 
-                                onclick="remove_cor_clone(this)" />
-                              </td>
-                            </tr>
-                          </table>  
-                        </td> 
-                      </tr> 
-                    </table>  
-
-                  </td>
-                </tr> 
-              </table>
+                <?php
+                    include_once(DIR_TEMPLATE."/catalog/_product_conf_option.php");
+                ?>
                 <input type="hidden" id="json_content" name="json_content" />
             </div>
             
-            <table class="list" style="width:80%;margin-top:5px;">
-                <thead>
-                    <tr>
-                        <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-                        <td class="left"><?php echo $entry_arcade; ?></td>
-                        <td class="left"><?php echo $entry_tamanho; ?></td>
-                        <td class="left"><?php echo $entry_cor; ?></td>
-
-                        <td class="right"><?php echo $column_action; ?></td>
-                    </tr>
-                </thead>
-                 <tbody>
-                    <?php if ($product_config_options) { ?>
-                   
-                    <?php foreach ($product_config_options as $result) { ?>
-                    <tr>
-                        <td style="text-align: center;">
-                            <input type="checkbox" name="selected[]" value="<?php echo $result['id']; ?>" />
-                        </td>
-                        <td class="left"><?php echo $result['arcade']; ?></td>
-                        <td class="left"><?php echo $result['tamanho']; ?></td>
-                        <td class="left"><?php echo $result['cor']; ?></td>
-
-                        <td class="right">
-                            [ <a href="<?php echo $edit_action['href']."&product_config_id=".$result['id']; ?>"><?php echo $edit_action['text']; ?></a> ]
-                            [ <a  href="javascript:void(0)" onclick="<?php echo $delete_action['click']; ?>" url="<?php echo $delete_action['href']."&product_config_id=".$result['id']; ?>"><?php echo $delete_action['text']; ?></a> ] 
-                        </td>
-                    </tr>
-                    <?php } ?>
-                    <?php } else { ?>
-                    <tr>
-                        <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
-                    </tr>
-                    <?php } ?>
-            </tbody>
-
-            </table>
-            <table class="form">
-              <tr>
-                <td><?php echo $entry_arcade; ?></td>
-                  <td>
-                     <select name="arcade">
-                         <?php
-                            echo "<option value=''>Select</option>";
-                            $selected = "";
-                            foreach($arcade_options as $option){
-                                
-                                if($arcade == $option['id']){
-                                    $selected = "selected = 'selected'";
-                                }
-                                else {
-                                    $selected = "";
-                                }
-                                echo "<option value='".$option['id']."' ".$selected.">";
-                                echo $option['value'];
-                                echo "</option>";
-                            }
-                         ?>
-                     </select>    
-                  <input type="hidden" name="product_config_id" value="<?php echo $product_config_id; ?>" />
-                </td>
-              </tr>
-              <tr>
-                <td><?php echo $entry_tamanho; ?></td>
-                <td>
-                    <select name="tamanho">
-                         <?php
-                            $selected = "";
-                            foreach($tamanho_options as $option){
-                                
-                                if($tamanho == $option['id']){
-                                    $selected = "selected = 'selected'";
-                                }
-                                else {
-                                    $selected = "";
-                                }
-                                echo "<option value='".$option['id']."' ".$selected.">";
-                                echo $option['value'];
-                                echo "</option>";
-                            }
-                         ?>
-                     </select>    
-                </td>
-              </tr>
-              <tr>
-                <td><?php echo $entry_cor; ?></td>
-                <td>
-                    <select name="cor">
-                         <?php
-                            $selected = "";
-                            foreach($cor_options as $option){
-                                
-                                if($cor == $option['id']){
-                                    $selected = "selected = 'selected'";
-                                }
-                                else {
-                                    $selected = "";
-                                }
-                                echo "<option value='".$option['id']."' ".$selected.">";
-                                echo $option['value'];
-                                echo "</option>";
-                            }
-                         ?>
-                     </select>   
-                </td>
-              </tr>
-              
-            </table>
+    
+            
           </div>  
         <div id="tab-attribute">
           <table id="attribute" class="list">
@@ -1630,7 +1442,8 @@ function addProfile() {
   <script type="text/javascript">
 
     function create_parent_clone(ob){
-      clone_parent = $(".arcade_parent").clone();
+      //clone_parent = $(".arcade_parent").clone();
+      clone_parent = $(ob).parent().parent().parent().parent().clone();
       $(ob).parent().parent().parent().parent().after(clone_parent);
     }
     function remove_parent(ob){

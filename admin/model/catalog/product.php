@@ -387,6 +387,16 @@ class ModelCatalogProduct extends Model {
         $query = $this->db->query("SELECT t.id, a.value as arcade,c.value as cor,b.value as tamanho FROM " . DB_PREFIX . "product_config_options t " . $join . " WHERE  t.product_id = " . (int) $product_id);
         return $query->rows;
     }
+    /**
+     *  Get Product Config options
+     * @param type $product_id
+     * @return typePro
+     */
+    public function getProductConfigOptionsJson($product_id) {
+        
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_config_options t  WHERE  t.product_id = " . (int) $product_id);
+        return $query->rows;
+    }
 
     public function getProductOrderConfigOptions($product_id, $order_id) {
         $join = "LEFT join " . DB_PREFIX . "conf_product_arcade a ON a.id = t.arcade ";
