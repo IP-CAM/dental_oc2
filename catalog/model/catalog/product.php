@@ -70,12 +70,32 @@ class ModelCatalogProduct extends Model {
      */
     public function getProductConfigOptions($product_id) {
         $join1 = "INNER join " . DB_PREFIX . "conf_product_arcade a ON a.id = t.arcade ";
-        $join2= "INNER join " . DB_PREFIX . "conf_product_tamanho b ON b.id = t.tamanho ";
-        $join3= "INNER join " . DB_PREFIX . "conf_product_cor c ON c.id = t.cor ";
-        $query1 = $this->db->query("SELECT t.id, a.value as value FROM " . DB_PREFIX . "product_config_options t " . $join1 . " WHERE  t.product_id = " . (int) $product_id);
+        $join2 = "INNER join " . DB_PREFIX . "conf_product_tamanho b ON b.id = t.tamanho ";
+        $join3 = "INNER join " . DB_PREFIX . "conf_product_cor c ON c.id = t.cor ";
+        $query1 = $this->db->query("SELECT t.id, a.value as value,t.json_data FROM " . DB_PREFIX . "product_config_options t " . $join1 . " WHERE  t.product_id = " . (int) $product_id);
         $query2 = $this->db->query("SELECT t.id, b.value as value FROM " . DB_PREFIX . "product_config_options t " . $join2 . " WHERE  t.product_id = " . (int) $product_id);
         $query3 = $this->db->query("SELECT t.id, c.value as value FROM " . DB_PREFIX . "product_config_options t " . $join3 . " WHERE  t.product_id = " . (int) $product_id);
-        return ["arcade"=>$query1->rows,"tamanho"=>$query2->rows,"cor"=>$query3->rows];
+        return ["arcade" => $query1->rows, "tamanho" => array(), "cor" => array()];
+    }
+
+    public function getAllconfigurations() {
+        $query = $this->db->query("SELECT t.id,t.value FROM " . DB_PREFIX . "conf_product_arcade t ");
+        $query1 = $this->db->query("SELECT t.id,t.value FROM " . DB_PREFIX . "conf_product_cor t ");
+        $query2 = $this->db->query("SELECT t.id,t.value FROM " . DB_PREFIX . "conf_product_tamanho t ");
+
+        $arr_arcade = array();
+        foreach ($query->rows as $data) {
+            $arr_arcade[$data['id']] = $data['value'];
+        }
+        $cor_arcade = array();
+        foreach ($query1->rows as $data) {
+            $cor_arcade[$data['id']] = $data['value'];
+        }
+        $tom_arcade = array();
+        foreach ($query2->rows as $data) {
+            $tom_arcade[$data['id']] = $data['value'];
+        }
+        return ["arcade" => $arr_arcade, "tamanho" => $cor_arcade, "cor" => $tom_arcade];
     }
 
     public function getProducts($data = array()) {

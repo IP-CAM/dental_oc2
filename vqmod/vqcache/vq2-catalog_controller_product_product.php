@@ -286,7 +286,8 @@ class ControllerProductProduct extends Controller {
             //product config options 
             
             $this->data['product_config_options'] = $this->model_catalog_product->getProductConfigOptions($this->request->get['product_id']);
-            
+            $this->data['product_config_all'] = $this->model_catalog_product->getAllconfigurations();
+     
             
             if ($product_info['quantity'] <= 0) {
                 $this->data['stock'] = $product_info['stock_status'];
