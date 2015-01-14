@@ -71,7 +71,7 @@ echo "<b>Cor</b><br /><br />";
             $.each(v['toms'], function(kt, vt) {
                 console.log(vt);
                 htm += '<span style="margin-right:10px;">' +
-                        '<input index="' + index + '" type="radio" name="option[tom]"' +
+                        '<input index="' + index + '" type="radio" name="option[tamanho]"' +
                         'value="' + vt['tom'] + '" ' +
                         'id="option-value-' + vt['tom'] + '" />' +
                         '<label for="option-value-' + vt['tom'] + '">' + all_options['tamanho'][vt['tom']] +
@@ -95,7 +95,7 @@ echo "<b>Cor</b><br /><br />";
                     $.each(vt['cors'], function(kv, vc) {
                         
                         htm += '<span style="margin-right:10px;">' +
-                                '<input  type="radio" name="option[tom]"' +
+                                '<input  type="radio" name="option[cor]"' +
                                 'value="' + vc['cor'] + '" ' +
                                 'id="option-value-' + vc['cor'] + '" />' +
                                 '<label for="option-value-' + vc['cor'] + '">' + all_options['cor'][vc['cor']] +
