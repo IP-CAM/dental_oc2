@@ -95,7 +95,7 @@ class ModelCatalogProduct extends Model {
         foreach ($query2->rows as $data) {
             $tom_arcade[$data['id']] = $data['value'];
         }
-        return ["arcade" => $arr_arcade, "tamanho" => $cor_arcade, "cor" => $tom_arcade];
+        return ["arcade" => $arr_arcade, "tamanho" => $tom_arcade, "cor" => $cor_arcade];
     }
 
     public function getProducts($data = array()) {
