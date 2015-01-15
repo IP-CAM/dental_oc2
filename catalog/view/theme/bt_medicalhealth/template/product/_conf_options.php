@@ -19,7 +19,7 @@ echo "<b>Arcade</b><br /><br />";
         echo "</script>";
         ?>
         <span style="margin-right:10px;">
-            <input primery_key="<?php echo $option_v['id']; ?>" index="<?php echo $index ?>" type="radio" name="option[arcade]" 
+            <input db_id="<?php echo $option_v['id']; ?>" index="<?php echo $index ?>" type="radio" name="option[arcade]" 
                    value="<?php echo $json_data['arcade']; ?>" 
                    id="option-value-<?php echo $json_data['arcade']; ?>" />
             <label for="option-value-<?php echo $json_data['arcade']; ?>"><?php echo $product_config_all['arcade'][$json_data['arcade']]; ?>
@@ -50,13 +50,14 @@ echo "<b>Cor</b><br /><br />";
 <input type="hidden" id="conf_option_id" name="conf_option_id" value="" />
 <script>
     $(function() {
-        $("#option-arcade input").click(function(ob) {
+        $("#option-arcade input").click(function() {
+            
             index_v = $(this).attr("index");
-            $("#conf_option_id").val($(ob).attr("primery_key"));
+            $("#conf_option_id").val($(this).attr("db_id"));
             renderToms(arcades[index_v]);
 
         })
-        $("#option-tom input").live('click', function(ob) {
+        $("#option-tom input").live('click', function() {
             tom_value = $(this).val();
             console.log(index_v);
             arcade_index = $("#option-arcade input:checked").attr("index");
