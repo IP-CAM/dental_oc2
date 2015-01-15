@@ -246,17 +246,18 @@ class ControllerCheckoutConfirm extends Controller {
                 if (count($option['conf_options']) > 0) {
 
                     foreach ($option['conf_options'] as $key => $conf) {
-
-                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
-                        $option_data[] = array(
-                            'name' => ucfirst($key),
-                            'value' => $query->row['value'],
-                            'product_option_id' => $query->row['id'],
-                            'product_option_value_id' => $query->row['id'],
-                            'option_id' => $query->row['id'],
-                            'option_value_id' => $query->row['id'],
-                            'type' => $query->row['id']
-                        );
+                        if ($key != "conf_id") {
+                            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
+                            $option_data[] = array(
+                                'name' => ucfirst($key),
+                                'value' => $query->row['value'],
+                                'product_option_id' => $query->row['id'],
+                                'product_option_value_id' => $query->row['id'],
+                                'option_id' => $query->row['id'],
+                                'option_value_id' => $query->row['id'],
+                                'type' => $query->row['id']
+                            );
+                        }
                     }
                 }
 
@@ -360,7 +361,7 @@ class ControllerCheckoutConfirm extends Controller {
             $this->data['text_payment_profile'] = $this->language->get('text_payment_profile');
 
             $this->data['products'] = array();
-
+            
             foreach ($this->cart->getProducts() as $product) {
                 $option_data = array();
 
@@ -382,21 +383,27 @@ class ControllerCheckoutConfirm extends Controller {
                     //this variable will be used to insert in database as order 
                     // conf options
                     $conf_options = [];
+                    $conf_id = 0;
                     foreach ($option['conf_options'] as $key => $conf) {
-
-                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
-                        $option_data[] = array(
-                            'name' => ucfirst($key),
-                            'value' => $query->row['value'],
-                        );
-                        $conf_options[$key] = array(
-                            'name' => ucfirst($key),
-                            'value' => $query->row['value'],
-                            'id' => $query->row['id'],
-                        );
+                        
+                        if ($key != "conf_id") {
+                            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
+                            $option_data[] = array(
+                                'name' => ucfirst($key),
+                                'value' => $query->row['value'],
+                            );
+                            $conf_options[$key] = array(
+                                'name' => ucfirst($key),
+                                'value' => $query->row['value'],
+                                'id' => $query->row['id'],
+                            );
+                        }
+                        else if ($key=="conf_id"){
+                            $conf_id = $conf;
+                        }
                     }
-
-                    $this->addOrderConfiguration($product, $conf_options);
+                 
+                    $this->addOrderConfiguration($product, $conf_options,$conf_id);
                 }
 
 
@@ -471,32 +478,38 @@ class ControllerCheckoutConfirm extends Controller {
         $this->response->setOutput($this->render());
     }
 
-    public function addOrderConfiguration($product, $conf_options) {
+    public function addOrderConfiguration($product, $conf_options,$conf_id = 0) {
+        $sql = "Select * FROM " . DB_PREFIX . "order_product_config_options WHERE product_id = " . (int) ($product['product_id']) . " AND order_id=" . (int) $this->session->data['order_id'] . " ";
+        
+        $query = $this->db->query($sql);
        
-        $query = $this->db->query("Select * FROM " . DB_PREFIX . "order_product_config_options WHERE product_id = " . (int)($product['product_id']) . " AND " . (int)$this->session->data['order_id'] . " ");
         if (!$query->num_rows) {
-            if(isset($conf_options['arcade'])){
-                $columns [] = "arcade = '" . (int)$conf_options['arcade']['id'] . "'";
+            if (isset($conf_options['arcade'])) {
+                $columns [] = "arcade = '" . (int) $conf_options['arcade']['id'] . "'";
             }
-            if(isset($conf_options['tamanho'])){
-                $columns [] = "tamanho = '" . (int)$conf_options['tamanho']['id'] . "'";
+            if (isset($conf_options['tamanho'])) {
+                $columns [] = "tamanho = '" . (int) $conf_options['tamanho']['id'] . "'";
             }
-            if(isset($conf_options['cor'])){
-                $columns [] = "cor = '" . (int)$conf_options['cor']['id'] . "'";
+            if (isset($conf_options['cor'])) {
+                $columns [] = "cor = '" . (int) $conf_options['cor']['id'] . "'";
             }
-            
-            
-            
-            $columns [] = "product_id = '" . (int)$product['product_id'] . "'";
-            $columns [] = "order_id = '" . (int)$this->session->data['order_id'] . "'";
+            if (isset($conf_id) && $conf_id!=0) {
+                $columns [] = "conf_id = '" . (int) $conf_id . "'";
+            }
+
+
+
+            $columns [] = "product_id = '" . (int) $product['product_id'] . "'";
+            $columns [] = "order_id = '" . (int) $this->session->data['order_id'] . "'";
             $columns [] = "date_added = '" . date("Y-m-d h:i:s") . "'";
             $columns [] = "date_modified = '" . date("Y-m-d h:i:s") . "'";
+
+           $sql = "INSERT INTO " . DB_PREFIX . "order_product_config_options SET " . implode($columns, ",");
             
-            $sql = "INSERT INTO ".DB_PREFIX . "order_product_config_options SET ".implode($columns,",");
-            $this->db->query($sql);
-            
+           $this->db->query($sql);
         }
     }
+    
 
 }
 

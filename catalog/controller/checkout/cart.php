@@ -237,16 +237,16 @@ class ControllerCheckoutCart extends Controller {
                     $opt_count++;
                 }
                 if (count($option['conf_options']) > 0) {
-           
-                    foreach ($option['conf_options'] as $key => $conf) {
 
-                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
-                        $option_data[] = array(
-                            'name' => ucfirst($key),
-                            'value' => $query->row['value']
-                        );
+                    foreach ($option['conf_options'] as $key => $conf) {
+                        if ($key != 'conf_id') {
+                            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
+                            $option_data[] = array(
+                                'name' => ucfirst($key),
+                                'value' => $query->row['value']
+                            );
+                        }
                     }
-            
                 }
 
                 // Display prices
@@ -287,7 +287,7 @@ class ControllerCheckoutCart extends Controller {
                         $profile_description .= sprintf($this->language->get('text_payment_until_canceled_description'), $recurring_price, $product['recurring_cycle'], $frequencies[$product['recurring_frequency']], $product['recurring_duration']);
                     }
                 }
-           
+
                 $this->data['products'][] = array(
                     'key' => $product['key'],
                     'thumb' => $image,
@@ -306,7 +306,7 @@ class ControllerCheckoutCart extends Controller {
                     'profile_description' => $profile_description,
                 );
             }
-           
+
 
 
             $this->data['products_recurring'] = array();
