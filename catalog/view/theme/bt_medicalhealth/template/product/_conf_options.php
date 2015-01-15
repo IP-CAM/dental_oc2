@@ -19,7 +19,7 @@ echo "<b>Arcade</b><br /><br />";
         echo "</script>";
         ?>
         <span style="margin-right:10px;">
-            <input index="<?php echo $index ?>" type="radio" name="option[arcade]" 
+            <input primery_key="<?php echo $option_v['id']; ?>" index="<?php echo $index ?>" type="radio" name="option[arcade]" 
                    value="<?php echo $json_data['arcade']; ?>" 
                    id="option-value-<?php echo $json_data['arcade']; ?>" />
             <label for="option-value-<?php echo $json_data['arcade']; ?>"><?php echo $product_config_all['arcade'][$json_data['arcade']]; ?>
@@ -47,12 +47,12 @@ echo "<b>Cor</b><br /><br />";
 <div id="option-cor" class="option">
 
 </div>
-
+<input type="hidden" id="conf_option_id" name="conf_option_id" value="" />
 <script>
     $(function() {
         $("#option-arcade input").click(function(ob) {
             index_v = $(this).attr("index");
-
+            $("#conf_option_id").val($(ob).attr("primery_key"));
             renderToms(arcades[index_v]);
 
         })
