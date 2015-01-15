@@ -34,6 +34,7 @@ class Cart {
                     $options = array();
                 }
                 
+            
                 /**
                  * conf options
                  */
@@ -47,6 +48,9 @@ class Cart {
                 if(!empty($options['cor'])){
                     $conf_options['cor']=$options['cor'];
                 }
+                if(!empty($options['conf_id'])){
+                    $conf_options['conf_id']=$options['conf_id'];
+                }
 
                 // Profile
 
@@ -55,9 +59,9 @@ class Cart {
                 } else {
                     $profile_id = 0;
                 }
-
+                
                 $product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int) $product_id . "' AND pd.language_id = '" . (int) $this->config->get('config_language_id') . "' AND p.date_available <= NOW() AND p.status = '1'");
-
+              
                 if ($product_query->num_rows) {
                     $option_price = 0;
                     $option_points = 0;
