@@ -44081,3 +44081,16 @@
 2015-01-13 19:14:56 - PHP Warning:  include_once(): Failed opening '/catalog/_product_conf_option.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 348
 2015-01-13 19:30:45 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1297
 2015-01-13 19:30:45 - PHP Notice:  Undefined variable: profile in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_view_template_catalog_product_form.tpl on line 1297
+2015-01-14 18:36:36 - PHP Notice:  Undefined index: tom in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 27
+2015-01-14 18:36:36 - PHP Notice:  Undefined index: tom in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 27
+2015-01-14 18:36:36 - PHP Notice:  Undefined index: tom in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 27
+2015-01-14 18:36:36 - PHP Notice:  Undefined index: tom in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 27
+2015-01-14 18:36:36 - PHP Notice:  Undefined index: tom in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 27
+2015-01-14 18:36:36 - PHP Notice:  Undefined index: tom in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 27
+2015-01-14 18:36:36 - PHP Notice:  Undefined index: tom in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 27
+2015-01-14 18:36:36 - PHP Notice:  Undefined index: tom in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 27
+2015-01-14 18:36:36 - PHP Notice:  Undefined index: tom in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 27
+2015-01-14 19:06:26 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 15
+2015-01-14 19:06:26 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 15
+2015-01-14 19:06:26 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/catalog/view/theme/bt_medicalhealth/template/product/_conf_options.php on line 15
+2015-01-15 18:58:57 - PHP Notice:  Undefined index: value in /var/www/html/brian/real_dental/Dental/catalog/controller/checkout/cart.php on line 246
