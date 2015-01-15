@@ -48,6 +48,7 @@ echo "<b>Cor</b><br /><br />";
 
 </div>
 <input type="hidden" id="conf_option_id" name="option[conf_id]" value="" />
+
 <script>
     $(function() {
         $("#option-arcade input").click(function() {
