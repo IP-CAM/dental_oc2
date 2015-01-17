@@ -224,19 +224,19 @@ class ModelSaleOrder extends Model {
                             if ($js_data_p['tom'] == $conf_option['tamanho']) {
                                 foreach ($js_data_p['cors'] as $copkey => $corop) {
                                     if ($corop['cor'] == $conf_option['cor']) {
-                                        $corop['qty'] = $corop['qty'] - 1;
+                                        $corop['qty'] = $corop['qty'] - (int) $product['quantity'];
                                         $json_data['toms'][$key]['cors'][$copkey]['qty'] = $corop['qty'];
                                     }
                                 }
                             }
                         }
-                        echo $data['order_status_name'];
+                        
                         if ($data['order_status_name'] = 'Complete') {
                             $json_data_str = json_encode($json_data, true);
                             $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET json_data = '" . $json_data_str . "' WHERE id = '" . (int) $conf_option['conf_id'] . "'");
                         }
 
-                        echo "</pre>";
+                        
                     }
                     $this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET quantity = (quantity + " . (int) $product['quantity'] . ") WHERE product_option_value_id = '" . (int) $option['product_option_value_id'] . "' AND subtract = '1'");
                 }
