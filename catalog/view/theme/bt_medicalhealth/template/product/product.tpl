@@ -109,11 +109,7 @@
                     <br />
                     <h2><?php echo $text_conf_option; ?></h2>
                     <br />
-                    <?php
-                    //including something
-                    include_once(DIR_TEMPLATE."bt_medicalhealth/template/product/_conf_options.php");
                     
-                    ?>
                     <br />
                    
                     <br />
@@ -238,6 +234,12 @@
                     <br />
                     <?php } ?>
                     <?php } ?>
+                    <?php
+                    //including something
+                    
+                    include_once(DIR_TEMPLATE."bt_medicalhealth/template/product/_conf_options.php");
+                    
+                    ?>
                 </div>
                 <?php } ?>
                 <div class="cart">

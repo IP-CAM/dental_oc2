@@ -268,38 +268,45 @@ class ModelCatalogProduct extends Model {
                 }
             }
         }
-      
+
         if (isset($data['json_content'])) {
 
             $str = html_entity_decode($data['json_content']);
             $json_array = json_decode($str, true);
 
-            if(!empty($data['delete_conf_ids'])){
-                $delete_ids = explode(",",$data['delete_conf_ids']);
+
+
+
+
+            if (!empty($data['delete_conf_ids'])) {
+                $delete_ids = explode(",", $data['delete_conf_ids']);
                 $delete_ids = array_filter($delete_ids);
-                $del_sql  =  "DELETE FROM " . DB_PREFIX . "product_config_options  WHERE id IN (" . implode(",", $delete_ids) . ")";
-            
+                $del_sql = "DELETE FROM " . DB_PREFIX . "product_config_options  WHERE id IN (" . implode(",", $delete_ids) . ")";
+
                 $this->db->query($del_sql);
             }
-            
+
             $ii = 0;
             foreach ($json_array as $opt) {
+
                 $opt_string = json_encode($opt);
+
                 $columns = array();
                 $columns [] = "arcade = '" . (int) $opt['arcade'] . "'";
                 $columns [] = "json_data = '" . $opt_string . "'";
-                
+
 
                 $columns [] = "product_id = '" . (int) $product_id . "'";
-                if(!empty($data['conf_id'][$ii])){
-                     $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",")." WHERE id = '" . (int) $data['conf_ids'][$ii] . "' ");
+                if (!empty($data['conf_id'][$ii])) {
+                    $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",") . " WHERE id = '" . (int) $data['conf_id'][$ii] . "' ");
+                } else {
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ","));
                 }
-                else {
-                     $this->db->query("INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ","));
-                }
-               
+
                 $ii++;
             }
+
+
 
 
 //            $columns [] = "arcade = '" . (int) $data['arcade'] . "'";
