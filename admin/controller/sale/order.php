@@ -1,7 +1,7 @@
 <?php
 
 class ControllerSaleOrder extends Controller {
-
+  
     private $error = array();
 
     public function index() {
@@ -1156,7 +1156,7 @@ class ControllerSaleOrder extends Controller {
         } else {
             $this->data['order_totals'] = array();
         }
-
+      
         $this->template = 'sale/order_form.tpl';
         $this->children = array(
             'common/header',

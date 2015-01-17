@@ -112,6 +112,7 @@ class ControllerCatalogProduct extends Controller {
                                 `arcade` int(11) DEFAULT 0,
                                 `tamanho` int(11) DEFAULT 0,
                                 `cor` int(11) DEFAULT 0,
+                                `conf_id` int(11) unsigned NOT NULL,
                                 `date_added` datetime NOT NULL,
                                 `date_modified` datetime NOT NULL,
 

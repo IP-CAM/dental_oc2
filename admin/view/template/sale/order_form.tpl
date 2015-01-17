@@ -11,7 +11,7 @@
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/order.png" alt="" /> <?php echo $heading_title; ?></h1>
-      <div class="buttons"><a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
+      <div class="buttons"><a onclick="custom_sumbit()" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
     </div>
     <div class="content">
       <div id="vtabs" class="vtabs"><a href="#tab-customer"><?php echo $tab_customer; ?></a><a href="#tab-payment"><?php echo $tab_payment; ?></a><a href="#tab-shipping"><?php echo $tab_shipping; ?></a><a href="#tab-product"><?php echo $tab_product; ?></a><a href="#tab-voucher"><?php echo $tab_voucher; ?></a><a href="#tab-total"><?php echo $tab_total; ?></a></div>
@@ -534,8 +534,8 @@
                 <td class="left"><input type="text" name="reward" value="" /></td>
               </tr>
               <tr>
-                <td class="left"><?php echo $entry_order_status; ?></td>
-                <td class="left"><select name="order_status_id">
+                <td class="left"><?php  echo $entry_order_status; ?></td>
+                <td class="left"><select name="order_status_id" id="order_status_id">
                     <?php foreach ($order_statuses as $order_status) { ?>
                     <?php if ($order_status['order_status_id'] == $order_status_id) { ?>
                     <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -543,7 +543,9 @@
                     <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
                     <?php } ?>
                     <?php } ?>
-                  </select></td>
+                  </select>
+                  <input type="hidden" name="order_status_name" id="order_status_name" />   
+                </td>
               </tr>
               <tr>
                 <td class="left"><?php echo $entry_comment; ?></td>
@@ -1138,9 +1140,22 @@ $('select[name=\'shipping\']').bind('change', function() {
 	
 	$('input[name=\'shipping_code\']').attr('value', this.value);
 });
+$('select[name=\'order_status_id\']').bind('change', function() {
+    status_text = $("order_status_id option:selected").text();
+    $("#order_status_name").val(status_text);
+})
+
+function custom_submit(){
+    status_text = $("order_status_id option:selected").text();
+    $("#order_status_name").val(status_text);
+    $('#form').submit();
+}
+   
 //--></script> 
 <script type="text/javascript"><!--
-$('#button-product, #button-voucher, #button-update').live('click', function() {	
+$('#button-product, #button-voucher, #button-update').live('click', function() {
+        status_text = $("order_status_id option:selected").text();
+        $("#order_status_name").val(status_text);
 	data  = '#tab-customer input[type=\'text\'], #tab-customer input[type=\'hidden\'], #tab-customer input[type=\'radio\']:checked, #tab-customer input[type=\'checkbox\']:checked, #tab-customer select, #tab-customer textarea, ';
 	data += '#tab-payment input[type=\'text\'], #tab-payment input[type=\'hidden\'], #tab-payment input[type=\'radio\']:checked, #tab-payment input[type=\'checkbox\']:checked, #tab-payment select, #tab-payment textarea, ';
 	data += '#tab-shipping input[type=\'text\'], #tab-shipping input[type=\'hidden\'], #tab-shipping input[type=\'radio\']:checked, #tab-shipping input[type=\'checkbox\']:checked, #tab-shipping select, #tab-shipping textarea, ';
