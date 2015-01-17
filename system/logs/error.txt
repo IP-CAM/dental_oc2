@@ -44102,3 +44102,6 @@
 2015-01-17 11:00:58 - PHP Notice:  Undefined index: conf_ids in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_model_catalog_product.php on line 293
 2015-01-17 11:00:58 - PHP Notice:  Undefined index: conf_ids in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_model_catalog_product.php on line 293
 2015-01-17 11:15:48 - PHP Notice:  Undefined index: conf_ids in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_model_catalog_product.php on line 299
+2015-01-17 12:26:42 - PHP Notice:  Undefined index: count in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/_product_conf_option.php on line 38
+2015-01-17 12:26:42 - PHP Notice:  Undefined index: count in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/_product_conf_option.php on line 38
+2015-01-17 12:26:42 - PHP Notice:  Undefined index: count in /var/www/html/brian/real_dental/Dental/admin/view/template/catalog/_product_conf_option.php on line 38

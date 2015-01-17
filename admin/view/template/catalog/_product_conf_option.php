@@ -3,12 +3,10 @@ if (!empty($this->data['product_config_options_json'])) {
     foreach ($this->data['product_config_options_json'] as $conf_json) {
         $json_data = $conf_json['json_data'];
         $json_data = json_decode($json_data, true);
-//        echo "<pre>";
-//        print_r($json_data);
-//        echo "</pre>";
-//        die;
+
+        $query_c = $this->db->query("SELECT count(*) as count FROM " . DB_PREFIX . "order_product_config_options t  WHERE  t.conf_id = " . (int) $conf_json['id']);
         ?>
-        
+
         <table class="arcade_parent list" 
                style=";width:80%;margin-top:5px;" cellpadding="0" cellspacing="0">
             <input type="hidden" class="conf_ids" name="conf_id[]" id="conf_id" value="<?php echo $conf_json['id']; ?>" />    
@@ -35,6 +33,14 @@ if (!empty($this->data['product_config_options_json'])) {
                     <input type="button" value="Add More" onclick="create_parent_clone(this)" />
                     <input type="button" class="remove_parent" 
                            value="Remove" onclick="remove_parent(this)" />
+
+                    <?php
+                    if ($query_c->row['count'] > 0) {
+                        echo "<b class='order_associated'>";
+                        echo $query_c->row['count']." Order Associated";
+                        echo "</b>";
+                    }
+                    ?>
                 </td>
             </tr>
             <tr>
@@ -131,7 +137,7 @@ if (!empty($this->data['product_config_options_json'])) {
     ?>
     <table class="arcade_parent list" 
            style=";width:80%;margin-top:5px;" cellpadding="0" cellspacing="0">
-         <input type="hidden" class="conf_ids" name="conf_id" id="conf_id" value="" />    
+        <input type="hidden" class="conf_ids" name="conf_id" id="conf_id" value="" />    
         <tr>
             <th><?php echo $entry_arcade; ?></th>
             <td>

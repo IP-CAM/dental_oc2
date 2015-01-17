@@ -1454,9 +1454,22 @@ function addProfile() {
       $(ob).parent().parent().parent().parent().after(clone_parent);
     }
     function remove_parent(ob){
-      delete_id =  $(ob).parent().parent().parent().parent().find("input.conf_ids").val();
+        
+      if($(ob).parent().parent().parent().parent().find("b.order_associated").length>0){
+          if(confirm("Are you sure you want to delete")){
+              remove_parent_html(ob);
+          }
+      }
+      else 
+      {
+          remove_parent_html(ob);
+      }
+      
+    }
+    function remove_parent_html(ob){
+       delete_id =  $(ob).parent().parent().parent().parent().find("input.conf_ids").val();
       delete_arr = new Array();
-      delete_arr = $("#delete_conf_ids").val().split(",");
+      delete_arr = $.trim($("#delete_conf_ids").val()).split(",");
       if(delete_id!=""){
           delete_arr.push(delete_id);
           $("#delete_conf_ids").val(delete_arr.join(","));
