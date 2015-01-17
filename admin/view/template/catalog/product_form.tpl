@@ -1490,9 +1490,7 @@ function addProfile() {
         $("table.arcade_parent").each(function(k,tba){
           arcade = {'arcade':$(tba).find(".add_arcade").val(),'toms':{}};
           $(tba).find(".tom_table").each(function(kt,ktba){
-              console.log($(ktba).find(".add_tom"));
-              console.log($(ktba).find(".add_tom").val());
-              console.log("---");
+              
             tom ={'tom':$(ktba).find(".add_tom").val(),'cors':{}};
 
             $(ktba).find(".cor_table").each(function(ct,ctba){
