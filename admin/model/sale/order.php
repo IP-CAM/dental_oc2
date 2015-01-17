@@ -149,6 +149,7 @@ class ModelSaleOrder extends Model {
     }
 
     public function editOrder($order_id, $data) {
+
         $this->load->model('localisation/country');
 
         $this->load->model('localisation/zone');
@@ -198,13 +199,50 @@ class ModelSaleOrder extends Model {
             foreach ($product_query->rows as $product) {
                 $this->db->query("UPDATE `" . DB_PREFIX . "product` SET quantity = (quantity + " . (int) $product['quantity'] . ") WHERE product_id = '" . (int) $product['product_id'] . "' AND subtract = '1'");
 
+
+
                 $option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int) $order_id . "' AND order_product_id = '" . (int) $product['order_product_id'] . "'");
 
                 foreach ($option_query->rows as $option) {
                     $this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET quantity = (quantity + " . (int) $product['quantity'] . ") WHERE product_option_value_id = '" . (int) $option['product_option_value_id'] . "' AND subtract = '1'");
                 }
+
+                $sql_conf = "SELECT * FROM " . DB_PREFIX . "order_product_config_options WHERE order_id = '" . (int) $order_id . "' AND product_id = '" . (int) $product['product_id'] . "'";
+                $conf_option_query = $this->db->query($sql_conf);
+
+                foreach ($conf_option_query->rows as $conf_option) {
+
+                    if ($conf_option != 0 && $data['order_status_name']) {
+                        $sql_conf_p = "SELECT * FROM " . DB_PREFIX . "product_config_options WHERE id = '" . (int) $conf_option['conf_id'] . "' AND product_id = '" . (int) $product['product_id'] . "'";
+                        $confProduct = $this->db->query($sql_conf_p)->row;
+
+                        $json_data = json_decode($confProduct['json_data'], true);
+
+
+                        foreach ($json_data['toms'] as $key => $js_data_p) {
+
+                            if ($js_data_p['tom'] == $conf_option['tamanho']) {
+                                foreach ($js_data_p['cors'] as $copkey => $corop) {
+                                    if ($corop['cor'] == $conf_option['cor']) {
+                                        $corop['qty'] = $corop['qty'] - 1;
+                                        $json_data['toms'][$key]['cors'][$copkey]['qty'] = $corop['qty'];
+                                    }
+                                }
+                            }
+                        }
+                        echo $data['order_status_name'];
+                        if ($data['order_status_name'] = 'Complete') {
+                            $json_data_str = json_encode($json_data, true);
+                            $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET json_data = '" . $json_data_str . "' WHERE id = '" . (int) $conf_option['conf_id'] . "'");
+                        }
+
+                        echo "</pre>";
+                    }
+                    $this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET quantity = (quantity + " . (int) $product['quantity'] . ") WHERE product_option_value_id = '" . (int) $option['product_option_value_id'] . "' AND subtract = '1'");
+                }
             }
         }
+
 
         $this->db->query("UPDATE `" . DB_PREFIX . "order` SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', payment_firstname = '" . $this->db->escape($data['payment_firstname']) . "', payment_lastname = '" . $this->db->escape($data['payment_lastname']) . "', payment_company = '" . $this->db->escape($data['payment_company']) . "', payment_company_id = '" . $this->db->escape($data['payment_company_id']) . "', payment_tax_id = '" . $this->db->escape($data['payment_tax_id']) . "', payment_address_1 = '" . $this->db->escape($data['payment_address_1']) . "', payment_address_2 = '" . $this->db->escape($data['payment_address_2']) . "', payment_city = '" . $this->db->escape($data['payment_city']) . "', payment_postcode = '" . $this->db->escape($data['payment_postcode']) . "', payment_country = '" . $this->db->escape($payment_country) . "', payment_country_id = '" . (int) $data['payment_country_id'] . "', payment_zone = '" . $this->db->escape($payment_zone) . "', payment_zone_id = '" . (int) $data['payment_zone_id'] . "', payment_address_format = '" . $this->db->escape($payment_address_format) . "', payment_method = '" . $this->db->escape($data['payment_method']) . "', payment_code = '" . $this->db->escape($data['payment_code']) . "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . "',  shipping_company = '" . $this->db->escape($data['shipping_company']) . "', shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . "', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . "', shipping_city = '" . $this->db->escape($data['shipping_city']) . "', shipping_postcode = '" . $this->db->escape($data['shipping_postcode']) . "', shipping_country = '" . $this->db->escape($shipping_country) . "', shipping_country_id = '" . (int) $data['shipping_country_id'] . "', shipping_zone = '" . $this->db->escape($shipping_zone) . "', shipping_zone_id = '" . (int) $data['shipping_zone_id'] . "', shipping_address_format = '" . $this->db->escape($shipping_address_format) . "', shipping_method = '" . $this->db->escape($data['shipping_method']) . "', shipping_code = '" . $this->db->escape($data['shipping_code']) . "', comment = '" . $this->db->escape($data['comment']) . "', order_status_id = '" . (int) $data['order_status_id'] . "', affiliate_id  = '" . (int) $data['affiliate_id'] . "', date_modified = NOW() WHERE order_id = '" . (int) $order_id . "'");
 
