@@ -95,11 +95,16 @@ echo "<b>Cor</b><br /><br />";
                 if (vt['tom'] == tom_value) {
 
                     $.each(vt['cors'], function(kv, vc) {
-                        
+                        disabled = "";
+                        title = "";
+                        if(vc['qty']=='0'){
+                            disabled = "disabled='disabled'";
+                            title = "title='Not Available'";
+                        }
                         htm += '<span style="margin-right:10px;">' +
                                 '<input  type="radio" name="option[cor]"' +
                                 'value="' + vc['cor'] + '" ' +
-                                'id="option-value-' + vc['cor'] + '" />' +
+                                'id="option-value-' + vc['cor'] + '" '+disabled+' '+title+' />' +
                                 '<label for="option-value-' + vc['cor'] + '">' + all_options['cor'][vc['cor']] +
                                 '</label>' +
                                 '</span>';
