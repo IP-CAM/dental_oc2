@@ -8,8 +8,10 @@ if (!empty($this->data['product_config_options_json'])) {
 //        echo "</pre>";
 //        die;
         ?>
+        
         <table class="arcade_parent list" 
                style=";width:80%;margin-top:5px;" cellpadding="0" cellspacing="0">
+            <input type="hidden" class="conf_ids" name="conf_id[]" id="conf_id" value="<?php echo $conf_json['id']; ?>" />    
             <tr>
                 <th><?php echo $entry_arcade; ?></th>
                 <td>
@@ -129,6 +131,7 @@ if (!empty($this->data['product_config_options_json'])) {
     ?>
     <table class="arcade_parent list" 
            style=";width:80%;margin-top:5px;" cellpadding="0" cellspacing="0">
+         <input type="hidden" class="conf_ids" name="conf_id" id="conf_id" value="" />    
         <tr>
             <th><?php echo $entry_arcade; ?></th>
             <td>
@@ -215,3 +218,4 @@ if (!empty($this->data['product_config_options_json'])) {
     <?php
 }
 ?>
+<input type="hidden" name="delete_conf_ids" id="delete_conf_ids" value="" />

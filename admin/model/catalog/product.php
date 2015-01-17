@@ -268,24 +268,39 @@ class ModelCatalogProduct extends Model {
                 }
             }
         }
-
+      
         if (isset($data['json_content'])) {
 
             $str = html_entity_decode($data['json_content']);
             $json_array = json_decode($str, true);
 
+            if(!empty($data['delete_conf_ids'])){
+                $delete_ids = explode(",",$data['delete_conf_ids']);
+                $delete_ids = array_filter($delete_ids);
+                $del_sql  =  "DELETE FROM " . DB_PREFIX . "product_config_options  WHERE id IN (" . implode(",", $delete_ids) . ")";
             
-            $this->db->query("DELETE FROM " . DB_PREFIX . "product_config_options  WHERE product_id = '" . (int) $product_id . "'");
+                $this->db->query($del_sql);
+            }
+            
+            $ii = 0;
             foreach ($json_array as $opt) {
                 $opt_string = json_encode($opt);
                 $columns = array();
                 $columns [] = "arcade = '" . (int) $opt['arcade'] . "'";
                 $columns [] = "json_data = '" . $opt_string . "'";
                 
+
                 $columns [] = "product_id = '" . (int) $product_id . "'";
-                $this->db->query("INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ","));
+                if(!empty($data['conf_id'][$ii])){
+                     $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",")." WHERE id = '" . (int) $data['conf_ids'][$ii] . "' ");
+                }
+                else {
+                     $this->db->query("INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ","));
+                }
+               
+                $ii++;
             }
-            
+
 
 //            $columns [] = "arcade = '" . (int) $data['arcade'] . "'";
 //            $columns [] = "cor = '" . (int) $data['cor'] . "'";
@@ -387,13 +402,14 @@ class ModelCatalogProduct extends Model {
         $query = $this->db->query("SELECT t.id, a.value as arcade,c.value as cor,b.value as tamanho FROM " . DB_PREFIX . "product_config_options t " . $join . " WHERE  t.product_id = " . (int) $product_id);
         return $query->rows;
     }
+
     /**
      *  Get Product Config options
      * @param type $product_id
      * @return typePro
      */
     public function getProductConfigOptionsJson($product_id) {
-        
+
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_config_options t  WHERE  t.product_id = " . (int) $product_id);
         return $query->rows;
     }

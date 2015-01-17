@@ -1447,12 +1447,20 @@ function addProfile() {
   </style>  
   <script type="text/javascript">
 
-    function create_parent_clone(ob){
+     function create_parent_clone(ob){
       //clone_parent = $(".arcade_parent").clone();
       clone_parent = $(ob).parent().parent().parent().parent().clone();
+      $(clone_parent).find("input.conf_ids").val("");
       $(ob).parent().parent().parent().parent().after(clone_parent);
     }
     function remove_parent(ob){
+      delete_id =  $(ob).parent().parent().parent().parent().find("input.conf_ids").val();
+      delete_arr = new Array();
+      delete_arr = $("#delete_conf_ids").val().split(",");
+      if(delete_id!=""){
+          delete_arr.push(delete_id);
+          $("#delete_conf_ids").val(delete_arr.join(","));
+      }
       $(ob).parent().parent().parent().parent().remove();
     }
     function create_tom_clone(ob){

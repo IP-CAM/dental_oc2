@@ -11,7 +11,7 @@
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/order.png" alt="" /> <?php echo $heading_title; ?></h1>
-      <div class="buttons"><a onclick="custom_sumbit()" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
+      <div class="buttons"><a onclick="custom_sumbit();" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
     </div>
     <div class="content">
       <div id="vtabs" class="vtabs"><a href="#tab-customer"><?php echo $tab_customer; ?></a><a href="#tab-payment"><?php echo $tab_payment; ?></a><a href="#tab-shipping"><?php echo $tab_shipping; ?></a><a href="#tab-product"><?php echo $tab_product; ?></a><a href="#tab-voucher"><?php echo $tab_voucher; ?></a><a href="#tab-total"><?php echo $tab_total; ?></a></div>
@@ -1141,12 +1141,13 @@ $('select[name=\'shipping\']').bind('change', function() {
 	$('input[name=\'shipping_code\']').attr('value', this.value);
 });
 $('select[name=\'order_status_id\']').bind('change', function() {
-    status_text = $("order_status_id option:selected").text();
+    status_text = $("#order_status_id option:selected").text();
+    
     $("#order_status_name").val(status_text);
 })
 
-function custom_submit(){
-    status_text = $("order_status_id option:selected").text();
+function custom_sumbit(){
+    status_text = $("#order_status_id option:selected").text();
     $("#order_status_name").val(status_text);
     $('#form').submit();
 }
@@ -1154,7 +1155,7 @@ function custom_submit(){
 //--></script> 
 <script type="text/javascript"><!--
 $('#button-product, #button-voucher, #button-update').live('click', function() {
-        status_text = $("order_status_id option:selected").text();
+        status_text = $("#order_status_id option:selected").text();
         $("#order_status_name").val(status_text);
 	data  = '#tab-customer input[type=\'text\'], #tab-customer input[type=\'hidden\'], #tab-customer input[type=\'radio\']:checked, #tab-customer input[type=\'checkbox\']:checked, #tab-customer select, #tab-customer textarea, ';
 	data += '#tab-payment input[type=\'text\'], #tab-payment input[type=\'hidden\'], #tab-payment input[type=\'radio\']:checked, #tab-payment input[type=\'checkbox\']:checked, #tab-payment select, #tab-payment textarea, ';
