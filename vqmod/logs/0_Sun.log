@@ -1,4 +1,4 @@
----------- Date: 2015-01-04 15:20:36 ~ IP : 127.0.0.1 ----------
+---------- Date: 2015-01-18 13:17:02 ~ IP : 127.0.0.1 ----------
 REQUEST URI : /brian/real_dental/Dental/
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
@@ -13,142 +13,7 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:20:44 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;product_id=42
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:21:25 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;product_id=42
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:21:55 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=account/login
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:22:14 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=account/login
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:22:23 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=account/register
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:23:15 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=account/success
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:23:20 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=account/account
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:23:25 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=account/account
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:23:27 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=account/account
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:23:29 ~ IP : 127.0.0.1 ----------
+---------- Date: 2015-01-18 13:17:16 ~ IP : 127.0.0.1 ----------
 REQUEST URI : /brian/real_dental/Dental/index.php?route=product/category&amp;path=18
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
@@ -163,8 +28,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:23:34 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=bossthemes/compare/add
+---------- Date: 2015-01-18 13:17:37 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=product/search&amp;search=aa
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -178,7 +43,97 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:23:35 ~ IP : 127.0.0.1 ----------
+---------- Date: 2015-01-18 13:18:06 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=42
+MOD DETAILS:
+   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
+   id        : Adds Youtube videos to product pages
+   version   : 1.0]
+   vqmver    : 1.0
+   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+
+File Name    : catalog/model/catalog/product.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-01-18 13:23:30 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=account/login
+MOD DETAILS:
+   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
+   id        : Adds Youtube videos to product pages
+   version   : 1.0]
+   vqmver    : 1.0
+   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+
+File Name    : catalog/model/catalog/product.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-01-18 13:23:35 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=account/account
+MOD DETAILS:
+   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
+   id        : Adds Youtube videos to product pages
+   version   : 1.0]
+   vqmver    : 1.0
+   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+
+File Name    : catalog/model/catalog/product.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-01-18 13:23:39 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=product/category&amp;path=18
+MOD DETAILS:
+   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
+   id        : Adds Youtube videos to product pages
+   version   : 1.0]
+   vqmver    : 1.0
+   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+
+File Name    : catalog/model/catalog/product.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-01-18 13:23:48 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=47
+MOD DETAILS:
+   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
+   id        : Adds Youtube videos to product pages
+   version   : 1.0]
+   vqmver    : 1.0
+   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+
+File Name    : catalog/model/catalog/product.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-01-18 13:23:58 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product/getRecurringDescription
+MOD DETAILS:
+   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
+   id        : Adds Youtube videos to product pages
+   version   : 1.0]
+   vqmver    : 1.0
+   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+
+File Name    : catalog/model/catalog/product.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-01-18 13:23:58 ~ IP : 127.0.0.1 ----------
 REQUEST URI : /brian/real_dental/Dental/index.php?route=bossthemes/cart/add
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
@@ -193,22 +148,7 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:23:35 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;product_id=47
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:23:39 ~ IP : 127.0.0.1 ----------
+---------- Date: 2015-01-18 13:23:58 ~ IP : 127.0.0.1 ----------
 REQUEST URI : /brian/real_dental/Dental/index.php?route=bossthemes/cart/add
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
@@ -223,7 +163,37 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:23:48 ~ IP : 127.0.0.1 ----------
+---------- Date: 2015-01-18 13:23:58 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=bossthemes/cart/add
+MOD DETAILS:
+   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
+   id        : Adds Youtube videos to product pages
+   version   : 1.0]
+   vqmver    : 1.0
+   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+
+File Name    : catalog/model/catalog/product.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-01-18 13:24:14 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=bossthemes/cart/add
+MOD DETAILS:
+   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
+   id        : Adds Youtube videos to product pages
+   version   : 1.0]
+   vqmver    : 1.0
+   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+
+File Name    : catalog/model/catalog/product.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-01-18 13:24:23 ~ IP : 127.0.0.1 ----------
 REQUEST URI : /brian/real_dental/Dental/index.php?route=checkout/cart
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
@@ -238,8 +208,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:23:57 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=common/home
+---------- Date: 2015-01-18 13:24:27 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=47
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -253,8 +223,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:24:02 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=checkout/checkout
+---------- Date: 2015-01-18 13:24:34 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product/getRecurringDescription
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -268,8 +238,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:24:27 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=checkout/success
+---------- Date: 2015-01-18 13:24:35 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=bossthemes/cart/add
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -283,8 +253,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:24:28 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=common/home
+---------- Date: 2015-01-18 13:24:46 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=account/account
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -298,8 +268,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:29:34 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;product_id=49
+---------- Date: 2015-01-18 13:24:49 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=checkout/cart
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -313,67 +283,7 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:29:40 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=common/home
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:29:43 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;product_id=28
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:29:47 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=common/home
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:29:51 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;product_id=43
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:30:07 ~ IP : 127.0.0.1 ----------
+---------- Date: 2015-01-18 13:24:57 ~ IP : 127.0.0.1 ----------
 REQUEST URI : /brian/real_dental/Dental/index.php?route=product/category&amp;path=18
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
@@ -388,8 +298,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:30:10 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=45
+---------- Date: 2015-01-18 13:25:03 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=47
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -403,8 +313,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:30:25 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/category&amp;path=38
+---------- Date: 2015-01-18 13:25:16 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=bossthemes/cart/add
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -418,23 +328,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-01-04 15:30:28 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/category&amp;path=57
-MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
-
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-01-04 15:30:30 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=57&amp;product_id=49
+---------- Date: 2015-01-18 13:25:24 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/index.php?route=checkout/checkout
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages

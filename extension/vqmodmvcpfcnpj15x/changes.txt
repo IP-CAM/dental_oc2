@@ -1,0 +1,53 @@
+1.0.7
+
+- Caso este módulo seja instalado depois da loja pronta com clientes já cadastrados
+o CPF vai estar vazio. Se o cliente se logar, não atualizar o cadastro e tentar finalizar
+um pedido ele da erro e não orienta o cliente onde ele deve inserir o CPF. 
+
+Sendo assim criei um link direto na mensagem de erro.(Créditos ao webesistemas que percebeu a necessidade)
+
+1.0.6
+
+- Adicionado as validações do módulo para compra como visitante.(Créditos ao webesistemas que percebeu a necessidade)
+
+1.0.5
+
+- Correção de Bugs.
+
+1.0.4
+
+- Adicionado Máscara aos campos telefone, fax, CPF/CNPJ e CEP.
+
+1.0.3
+
+- Correção de Bugs.
+
+1.0.2
+
+- Adicionado validação de existência de CPF/CNPJ ou IE/RG já cadastrados, conforme ocorre
+com o campo e-mail que já vem com esta validação por padrão. (Créditos ao FilipeNT que deu a ideia)
+
+- Ajustado cadastro de novos endereços para gravar o mesmo CPF/CNPJ do endereço padrão pois antes
+ele não fazia isso automaticamente e quando você cadastrava outro endereço e o setava como padrão
+ele não trazia mais o CPF/CNPJ cadastrado. (Créditos ao FilipeNT que percebeu a necessidade)
+
+- Ajustado validação de campos que estava incompleta.
+
+1.0.1
+
+- Substituído ereg por preg_match
+- Ajustado validação no cadastro ao finalizar a compra que não estava funcionando corretamente. 
+
+----------------------------
+Dúvidas, sugestões e avisos sobre bugs acessem o tópico do módulo no fórum do OpenCart Brasil:
+http://www.opencartbrasil.com.br/forum/viewtopic.php?f=40&t=9068
+
+----------------------------
+Agradecimentos: 
+- A Jeová Deus.
+- Ao Manoel Vidal por criar a comunidade e dar a oportunidade de colaborarmos uns com os outros.
+- A todos da comunidade opencartbrasil que me ajudaram com ajustes e ideias para melhorar o script.
+
+Mantenedor:
+Ibrahim Brumate
+

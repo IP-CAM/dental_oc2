@@ -1,0 +1,1578 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP</id>
+	<version>1.0.7</version>
+	<vqmver>2.3.2</vqmver>
+	<author>Ibrahim Brumate</author>
+	
+	<!-- Acrescentar JS da Máscara -->
+	<file name="catalog/view/theme/*/template/common/header.tpl">
+		<operation>
+			<search position="after">
+				<![CDATA[
+					<script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui.mask.js"></script>
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<!-- inicio modificação posição cpf e cnpj -->
+	<file name="catalog/view/theme/*/template/account/register.tpl">
+		<operation>
+			<search position="before">
+				<![CDATA[
+					<tr id="company-id-display">
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<!-- 
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before" offset="1">
+				<![CDATA[
+					<td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					//--> 
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before" offset="1">
+				<![CDATA[
+					<td><?php echo $entry_fax; ?></td>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<tr id="company-id-display">
+					  <td><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?></td>
+					  <td><input type="text" name="company_id" value="<?php echo $company_id; ?>" />
+						<?php if ($error_company_id) { ?>
+						<span class="error"><?php echo $error_company_id; ?></span>
+						<?php } ?></td>
+					</tr>
+					<tr id="tax-id-display">
+					  <td><span id="tax-id-required" class="required">*</span> <?php echo $entry_tax_id; ?></td>
+					  <td><input type="text" name="tax_id" id="cpf_cnpj" value="<?php echo $tax_id; ?>" />
+						<?php if ($error_tax_id) { ?>
+						<span class="error"><?php echo $error_tax_id; ?></span>
+						<?php } ?></td>
+					</tr>
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<td><input type="text" name="telephone" id="tel" value="<?php echo $telephone; ?>" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<td><input type="text" name="fax" id="fax" value="<?php echo $fax; ?>" /></td>
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<td><input type="text" name="postcode" id="cep" value="<?php echo $postcode; ?>" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before" offset="2">
+				<![CDATA[
+					<?php echo $footer; ?>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$("#tel").mask({mask: "(##)########?#"});
+					$("#fax").mask({mask: "(##)########"});
+					$("#cep").mask({mask: "#####-###"});
+					
+					$('#cpf_cnpj').focus(function() {
+						$("#cpf_cnpj").mask('destroy');
+						$("#cpf_cnpj").val($("#cpf_cnpj").val().replace(/[^\d]/g,''));
+					});
+					$('#cpf_cnpj').blur(function() {
+						if ($.isNumeric($("#cpf_cnpj").val())==true) {
+							if($("#cpf_cnpj").val().length==11) {
+								$("#cpf_cnpj").mask({mask: "###.###.###-##"});
+							} else if($("#cpf_cnpj").val().length==14) {
+								$("#cpf_cnpj").mask({mask: "##.###.###/####-##"}); 
+							}
+						} else if ($.isNumeric($("#cpf_cnpj").val().replace(/[^\d]/g,''))==false) {
+							$("#cpf_cnpj").mask('destroy');
+							$("#cpf_cnpj").val('');
+						}
+					});
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/edit.tpl">
+		<operation>
+			<search position="before" offset="1">
+				<![CDATA[
+					<td><?php echo $entry_fax; ?></td>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<?php if ($company_id_display) { ?>
+					<tr id="company-id-display">
+					  <td><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?></td>
+					  <td><input type="text" name="company_id" value="<?php echo $company_id; ?>" />
+						<?php if ($error_company_id) { ?>
+						<span class="error"><?php echo $error_company_id; ?></span>
+						<?php } ?></td>
+					</tr>
+					<?php } ?>
+					<?php if ($tax_id_display) { ?>
+					<tr id="tax-id-display">
+					  <td><span id="tax-id-required" class="required">*</span> <?php echo $entry_tax_id; ?></td>
+					  <td><input type="text" name="tax_id" id="cpf_cnpj" value="<?php echo $tax_id; ?>" />
+						<?php if ($error_tax_id) { ?>
+						<span class="error"><?php echo $error_tax_id; ?></span>
+						<?php } ?></td>
+					</tr>
+					<?php } ?>
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<td><input type="text" name="telephone" id="tel" value="<?php echo $telephone; ?>" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<td><input type="text" name="fax" id="fax" value="<?php echo $fax; ?>" /></td>
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					<?php echo $footer; ?>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<script type="text/javascript"><!--
+						$(document).ready(function() {
+							$("#tel").mask({mask: "(##)########?#"});
+							$("#fax").mask({mask: "(##)########"});
+							
+							$('#cpf_cnpj').focus(function() {
+								$("#cpf_cnpj").mask('destroy');
+								$("#cpf_cnpj").val($("#cpf_cnpj").val().replace(/[^\d]/g,''));
+							});
+							$('#cpf_cnpj').blur(function() {
+								if ($.isNumeric($("#cpf_cnpj").val())==true) {
+									if($("#cpf_cnpj").val().length==11) {
+										$("#cpf_cnpj").mask({mask: "###.###.###-##"});
+									} else if($("#cpf_cnpj").val().length==14) {
+										$("#cpf_cnpj").mask({mask: "##.###.###/####-##"}); 
+									}
+								} else if ($.isNumeric($("#cpf_cnpj").val().replace(/[^\d]/g,''))==false) {
+									$("#cpf_cnpj").mask('destroy');
+									$("#cpf_cnpj").val('');
+								}
+							});
+						});
+					//--></script>
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/address_form.tpl">
+		<operation>
+			<search position="after">
+				<![CDATA[
+					<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<input type="hidden" name="company_id" value="<?php echo $company_id; ?>" />
+					<input type="hidden" name="tax_id" value="<?php echo $tax_id; ?>" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					<?php if ($company_id_display) { ?>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<!-- 
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before" offset="1">
+				<![CDATA[
+					<td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					//--> 
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<td><input type="text" name="postcode" id="cep" value="<?php echo $postcode; ?>" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after">
+				<![CDATA[
+					$('select[name=\'country_id\']').trigger('change');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$("#cep").mask({mask: "#####-###"});
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/checkout/register.tpl">
+		<operation>
+			<search position="before">
+				<![CDATA[
+					<div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<!-- 
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					<span class="required">*</span> <?php echo $entry_address_1; ?><br />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					//--> 
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					<?php echo $entry_fax; ?><br />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+					  <input type="text" name="company_id" value="" class="large-field" />
+					  <br />
+					  <br />
+					</div>
+					<div id="tax-id-display"><span id="tax-id-required" class="required">*</span> <?php echo $entry_tax_id; ?><br />
+					  <input type="text" name="tax_id" id="cpf_cnpj" value="" class="large-field" />
+					  <br />
+					  <br />
+					</div>
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<input type="text" name="telephone" value="" class="large-field" />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<input type="text" name="telephone" id="tel" value="" class="large-field" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<input type="text" name="fax" value="" class="large-field" />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<input type="text" name="fax" id="fax" value="" class="large-field" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<input type="text" name="postcode" value="<?php echo $postcode; ?>" class="large-field" />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<input type="text" name="postcode" id="cep" value="<?php echo $postcode; ?>" class="large-field" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" offset="3">
+				<![CDATA[
+					$('.colorbox').colorbox({
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$(document).ready(function() {
+						$("#tel").mask({mask: "(##)########?#"});
+						$("#fax").mask({mask: "(##)########"});
+						$("#cep").mask({mask: "#####-###"});
+						
+						$('#cpf_cnpj').focus(function() {
+							$("#cpf_cnpj").mask('destroy');
+							$("#cpf_cnpj").val($("#cpf_cnpj").val().replace(/[^\d]/g,''));
+						});
+						$('#cpf_cnpj').blur(function() {
+							if ($.isNumeric($("#cpf_cnpj").val())==true) {
+								if($("#cpf_cnpj").val().length==11) {
+									$("#cpf_cnpj").mask({mask: "###.###.###-##"});
+								} else if($("#cpf_cnpj").val().length==14) {
+									$("#cpf_cnpj").mask({mask: "##.###.###/####-##"}); 
+								}
+							} else if ($.isNumeric($("#cpf_cnpj").val().replace(/[^\d]/g,''))==false) {
+								$("#cpf_cnpj").mask('destroy');
+								$("#cpf_cnpj").val('');
+							}
+						});
+					});
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/checkout/guest.tpl">
+		<operation>
+			<search position="before">
+				<![CDATA[
+					<div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<!-- 
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					<span class="required">*</span> <?php echo $entry_address_1; ?><br />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					//--> 
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					<?php echo $entry_fax; ?><br />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+					  <input type="text" name="company_id" value="" class="large-field" />
+					  <br />
+					  <br />
+					</div>
+					<div id="tax-id-display"><span id="tax-id-required" class="required">*</span> <?php echo $entry_tax_id; ?><br />
+					  <input type="text" name="tax_id" id="cpf_cnpj" value="" class="large-field" />
+					  <br />
+					  <br />
+					</div>
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<input type="text" name="telephone" value="<?php echo $telephone; ?>" class="large-field" />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<input type="text" name="telephone" id="tel" value="<?php echo $telephone; ?>" class="large-field" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<input type="text" name="fax" value="<?php echo $fax; ?>" class="large-field" />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<input type="text" name="fax" id="fax" value="<?php echo $fax; ?>" class="large-field" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<input type="text" name="postcode" value="<?php echo $postcode; ?>" class="large-field" />
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<input type="text" name="postcode" id="cep" value="<?php echo $postcode; ?>" class="large-field" />
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after">
+				<![CDATA[
+					$('#payment-address select[name=\'country_id\']').trigger('change');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$(document).ready(function() {
+						$("#tel").mask({mask: "(##)########?#"});
+						$("#fax").mask({mask: "(##)########"});
+						$("#cep").mask({mask: "#####-###"});
+						
+						$('#cpf_cnpj').focus(function() {
+							$("#cpf_cnpj").mask('destroy');
+							$("#cpf_cnpj").val($("#cpf_cnpj").val().replace(/[^\d]/g,''));
+						});
+						$('#cpf_cnpj').blur(function() {
+							if ($.isNumeric($("#cpf_cnpj").val())==true) {
+								if($("#cpf_cnpj").val().length==11) {
+									$("#cpf_cnpj").mask({mask: "###.###.###-##"});
+								} else if($("#cpf_cnpj").val().length==14) {
+									$("#cpf_cnpj").mask({mask: "##.###.###/####-##"}); 
+								}
+							} else if ($.isNumeric($("#cpf_cnpj").val().replace(/[^\d]/g,''))==false) {
+								$("#cpf_cnpj").mask('destroy');
+								$("#cpf_cnpj").val('');
+							}
+						});
+					});
+				]]>
+			</add>
+		</operation>
+	</file>
+	<!-- fim modificação posição cpf e cnpj -->
+	
+	<!-- inicio modificação do controller, model e language para nova posição cpf e cnpj -->
+	<file name="catalog/controller/account/edit.php">
+		<operation>
+			<search position="before">
+				<![CDATA[
+					protected function validate() {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					
+					private function validaCNPJ($cnpj) {
+						$cnpj = str_pad(preg_replace('/[^0-9]/', '', $cnpj), 14, '0', STR_PAD_LEFT);
+						if (strlen($cnpj) != 14)
+						{
+						return false;
+						}
+						else
+						{
+							$j = 5;
+							$k = 6;
+							$soma1 = '';
+							$soma2 = '';
+
+							for ($i = 0; $i < 13; $i++)
+							{
+								$j = $j == 1 ? 9 : $j;
+								$k = $k == 1 ? 9 : $k;
+								$soma2 += ($cnpj{$i} * $k);
+
+								if ($i < 12) $soma1 += ($cnpj{$i} * $j);
+								
+								$k--;
+								$j--;
+							}
+
+							$digito1 = ($soma1 % 11 < 2) ? 0 : (11 - ($soma1 % 11));
+							$digito2 = ($soma2 % 11 < 2) ? 0 : (11 - ($soma2 % 11));
+							return (($cnpj{12} == $digito1) && ($cnpj{13} == $digito2));
+						}
+					}
+					
+					private function validaCPF($cpf) {	
+						// Verifiva se o número digitado contém todos os digitos
+						$cpf = str_pad(preg_replace('/[^0-9]/', '', $cpf), 11, '0', STR_PAD_LEFT);
+						
+						// Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
+						if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999' || $cpf == '12345678909')
+						{
+						return false;
+						}
+						else
+						{   // Calcula os números para verificar se o CPF é verdadeiro
+							for ($t = 9; $t < 11; $t++) {
+								for ($d = 0, $c = 0; $c < $t; $c++) {
+									$d += $cpf{$c} * (($t + 1) - $c);
+								}
+
+								$d = ((10 * $d) % 11) % 10;
+
+								if ($cpf{$c} != $d) {
+									return false;
+								}
+							}
+
+							return true;
+						}
+					}
+					
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after">
+				<![CDATA[
+					$this->data['entry_telephone'] = $this->language->get('entry_telephone');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$this->data['entry_company_id'] = $this->language->get('entry_company_id');
+					$this->data['entry_tax_id'] = $this->language->get('entry_tax_id');		
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					$this->data['action'] = $this->url->link('account/edit', '', 'SSL');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if (isset($this->error['company_id'])) {
+						$this->data['error_company_id'] = $this->error['company_id'];
+					} else {
+						$this->data['error_company_id'] = '';
+					}
+					
+					if (isset($this->error['tax_id'])) {
+						$this->data['error_tax_id'] = $this->error['tax_id'];
+					} else {
+						$this->data['error_tax_id'] = '';
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after">
+				<![CDATA[
+					$this->model_account_customer->editCustomer($this->request->post);
+					
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$this->load->model('account/address');
+					$customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
+					$this->model_account_address->editCpfRg($customer_info['address_id'], $this->request->post);
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					if (isset($this->request->post['fax'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$this->load->model('account/address');
+					if (isset($customer_info['address_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+						$address_info = $this->model_account_address->getAddress($customer_info['address_id']);
+					}
+					if (isset($this->request->post['company_id'])) {
+						$this->data['company_id'] = $this->request->post['company_id'];
+					} elseif (!empty($address_info)) {
+						$this->data['company_id'] = $address_info['company_id'];			
+					} else {
+						$this->data['company_id'] = '';
+					}
+					
+					if (isset($this->request->post['tax_id'])) {
+						$this->data['tax_id'] = $this->request->post['tax_id'];
+					} elseif (!empty($address_info)) {
+						$this->data['tax_id'] = $address_info['tax_id'];			
+					} else {
+						$this->data['tax_id'] = '';
+					}
+					
+					$this->load->model('account/customer_group');
+		
+					$customer_group_info = $this->model_account_customer_group->getCustomerGroup($this->customer->getCustomerGroupId());
+					
+					if ($customer_group_info) {
+						$this->data['company_id_display'] = $customer_group_info['company_id_display'];
+					} else {
+						$this->data['company_id_display'] = '';
+					}
+					
+					if ($customer_group_info) {
+						$this->data['tax_id_display'] = $customer_group_info['tax_id_display'];
+					} else {
+						$this->data['tax_id_display'] = '';
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					if (!$this->error) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					
+					// Customer Group
+					$this->load->model('account/customer_group');
+					
+					if (isset($this->request->post['customer_group_id']) && is_array($this->config->get('config_customer_group_display')) && in_array($this->request->post['customer_group_id'], $this->config->get('config_customer_group_display'))) {
+						$customer_group_id = $this->request->post['customer_group_id'];
+					} else {
+						$customer_group_id = $this->config->get('config_customer_group_id');
+					}
+
+					$customer_group = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
+						
+					if ($customer_group) {
+						$this->load->model('account/address');
+						$getAddr = $this->model_account_address->getAddress($this->customer->getAddressId());
+						
+						// Company ID
+						if ($customer_group['company_id_display'] && $customer_group['company_id_required'] && empty($this->request->post['company_id'])) {
+							$this->error['company_id'] = $this->language->get('error_company_id');
+						}
+						
+						if (isset($this->request->post['company_id']) && ($getAddr['company_id'] != $this->request->post['company_id']) && !empty($this->request->post['company_id']) && $this->model_account_customer->getTotalCustomersByCompanyId($this->request->post['company_id'])) {
+							$this->error['warning'] = $this->language->get('error_exists3');
+						}
+						
+						// Tax ID 
+						if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && ((utf8_strlen($this->request->post['tax_id']) < 14) || (utf8_strlen($this->request->post['tax_id']) > 18) || ((utf8_strlen($this->request->post['tax_id']) > 14) && (utf8_strlen($this->request->post['tax_id']) < 18)) || (utf8_strlen($this->request->post['tax_id'])== 14 && $this->validaCPF($this->request->post['tax_id']) == false) || (utf8_strlen($this->request->post['tax_id'])== 18 && $this->validaCNPJ($this->request->post['tax_id']) == false))) {
+							$this->error['tax_id'] = $this->language->get('error_tax_id');
+						}	
+						
+						if (isset($this->request->post['tax_id']) && ($getAddr['tax_id'] != $this->request->post['tax_id']) && !empty($this->request->post['tax_id']) && $this->model_account_customer->getTotalCustomersByTaxId($this->request->post['tax_id'])) {
+							$this->error['warning'] = $this->language->get('error_exists2');
+						}
+					}
+					
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/model/account/address.php">
+		<operation>
+			<search position="before">
+				<![CDATA[
+					public function deleteAddress($address_id) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					public function editCpfRg($address_id, $data) {
+						$this->db->query("UPDATE " . DB_PREFIX . "address SET company_id = '" . $this->db->escape(isset($data['company_id']) ? $data['company_id'] : '') . "', tax_id = '" . $this->db->escape(isset($data['tax_id']) ? $data['tax_id'] : '') . "' WHERE address_id  = '" . (int)$address_id . "' AND customer_id = '" . (int)$this->customer->getId() . "'");
+					
+						if (!empty($data['default'])) {
+							$this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int)$address_id . "' WHERE customer_id = '" . (int)$this->customer->getId() . "'");
+						}
+					}
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/model/account/customer.php">
+		<operation>
+			<search position="before">
+				<![CDATA[
+					public function getTotalCustomersByEmail($email) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					public function getTotalCustomersByCompanyId($company_id) {
+						$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer c INNER JOIN " . DB_PREFIX . "address a ON(c.address_id=a.address_id) WHERE a.company_id = '" . $this->db->escape($company_id) . "'");
+						
+						return $query->row['total'];
+					}
+					
+					public function getTotalCustomersByTaxId($tax_id) {
+						$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer c INNER JOIN " . DB_PREFIX . "address a ON(c.address_id=a.address_id) WHERE a.tax_id = '" . $this->db->escape($tax_id) . "'");
+						
+						return $query->row['total'];
+					}
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/language/portuguese-br/account/edit.php">
+		<operation>
+			<search position="after">
+				<![CDATA[
+					$_['entry_telephone']   = 'Telefone:';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$_['entry_company_id']  = 'IE ou RG:';
+					$_['entry_tax_id']      = 'CNPJ ou CPF:';
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after">
+				<![CDATA[
+					$_['error_exists']      = 'Atenção: Este e-mail já está cadastrado!';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$_['error_exists2']      = 'Atenção: Este CPF ou CNPJ já está cadastrado!';
+					$_['error_exists3']      = 'Atenção: IE ou RG já está cadastrado!';
+				]]>
+			</add>
+		</operation>
+	</file>
+	<!-- fim modificação do controller, model e language para nova posição cpf e cnpj -->
+	
+	<!-- inicio validação e ajustes manter campos cpf e rg -->
+	<file name="catalog/controller/account/address.php">
+		<operation>
+			<search position="before">
+				<![CDATA[
+					protected function validateForm() {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					
+					private function validaCNPJ($cnpj) {
+						$cnpj = str_pad(preg_replace('/[^0-9]/', '', $cnpj), 14, '0', STR_PAD_LEFT);
+						if (strlen($cnpj) != 14)
+						{
+						return false;
+						}
+						else
+						{
+							$j = 5;
+							$k = 6;
+							$soma1 = '';
+							$soma2 = '';
+
+							for ($i = 0; $i < 13; $i++)
+							{
+								$j = $j == 1 ? 9 : $j;
+								$k = $k == 1 ? 9 : $k;
+								$soma2 += ($cnpj{$i} * $k);
+
+								if ($i < 12) $soma1 += ($cnpj{$i} * $j);
+								
+								$k--;
+								$j--;
+							}
+
+							$digito1 = ($soma1 % 11 < 2) ? 0 : (11 - ($soma1 % 11));
+							$digito2 = ($soma2 % 11 < 2) ? 0 : (11 - ($soma2 % 11));
+							return (($cnpj{12} == $digito1) && ($cnpj{13} == $digito2));
+						}
+					}
+					
+					private function validaCPF($cpf) {	
+						// Verifiva se o número digitado contém todos os digitos
+						$cpf = str_pad(preg_replace('/[^0-9]/', '', $cpf), 11, '0', STR_PAD_LEFT);
+						
+						// Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
+						if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999' || $cpf == '12345678909')
+						{
+						return false;
+						}
+						else
+						{   // Calcula os números para verificar se o CPF é verdadeiro
+							for ($t = 9; $t < 11; $t++) {
+								for ($d = 0, $c = 0; $c < $t; $c++) {
+									$d += $cpf{$c} * (($t + 1) - $c);
+								}
+
+								$d = ((10 * $d) % 11) % 10;
+
+								if ($cpf{$c} != $d) {
+									return false;
+								}
+							}
+
+							return true;
+						}
+					}
+					
+					private function validaCep($cep) {
+						// retira espacos em branco
+						$cep = trim($cep);
+						// expressao regular para avaliar o cep
+						$avaliaCep = preg_match('/^[0-9]{5}-[0-9]{3}$/', $cep, $matches);
+						
+						// verifica o resultado
+						if(!$avaliaCep) {            
+							return false;
+						}
+						else
+						{
+							return true;
+						}
+					}
+					
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					
+					// Customer Group
+					$this->load->model('account/customer_group');
+					
+					if (isset($this->request->post['customer_group_id']) && is_array($this->config->get('config_customer_group_display')) && in_array($this->request->post['customer_group_id'], $this->config->get('config_customer_group_display'))) {
+						$customer_group_id = $this->request->post['customer_group_id'];
+					} else {
+						$customer_group_id = $this->config->get('config_customer_group_id');
+					}
+
+					$customer_group = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
+						
+					if ($customer_group) {	
+						// Company ID
+						if ($customer_group['company_id_display'] && $customer_group['company_id_required'] && empty($this->request->post['company_id'])) {
+							$this->error['company_id'] = $this->language->get('error_company_id');
+						}
+						
+						// Tax ID 
+						if (isset($this->request->post['tax_id']) && $customer_group['tax_id_display'] && $customer_group['tax_id_required'] && ((utf8_strlen($this->request->post['tax_id']) < 14) || (utf8_strlen($this->request->post['tax_id']) > 18) || ((utf8_strlen($this->request->post['tax_id']) > 14) && (utf8_strlen($this->request->post['tax_id']) < 18)) || (utf8_strlen($this->request->post['tax_id'])== 14 && $this->validaCPF($this->request->post['tax_id']) == false) || (utf8_strlen($this->request->post['tax_id'])== 18 && $this->validaCNPJ($this->request->post['tax_id']) == false))) {
+							$this->error['tax_id'] = $this->language->get('error_tax_id');
+						}						
+					}
+					
+				]]>
+			</add>
+		</operation>
+		
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					if ($country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if ($country_info['postcode_required'] && ((utf8_strlen($this->request->post['postcode']) < 8) || (utf8_strlen($this->request->post['postcode']) > 9) || $this->validaCep($this->request->post['postcode']) == false)) {
+				]]>
+			</add>
+		</operation>
+		
+		<operation>
+			<search position="replace" offset="1">
+				<![CDATA[
+					$this->data['action'] = $this->url->link('account/address/insert', '', 'SSL');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$this->data['action'] = $this->url->link('account/address/insert', '', 'SSL');
+					$c = 1; } else { $c = 0;
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					if (isset($this->request->post['firstname'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if ($c==1) {
+						$this->load->model('account/customer');
+						$customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
+						$address_info2 = $this->model_account_address->getAddress($customer_info['address_id']);
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" offset="3">
+				<![CDATA[
+					if (isset($this->request->post['company_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					} elseif (!empty($address_info2)) {
+						$this->data['company_id'] = $address_info2['company_id'];
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" offset="3">
+				<![CDATA[
+					if (isset($this->request->post['tax_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					} elseif (!empty($address_info2)) {
+						$this->data['tax_id'] = $address_info2['tax_id'];			
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/account/register.php">
+		<operation>
+			<search position="before">
+				<![CDATA[
+					protected function validate() {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					
+					private function validaCNPJ($cnpj) {
+						$cnpj = str_pad(preg_replace('/[^0-9]/', '', $cnpj), 14, '0', STR_PAD_LEFT);
+						if (strlen($cnpj) != 14)
+						{
+						return false;
+						}
+						else
+						{
+							$j = 5;
+							$k = 6;
+							$soma1 = '';
+							$soma2 = '';
+
+							for ($i = 0; $i < 13; $i++)
+							{
+								$j = $j == 1 ? 9 : $j;
+								$k = $k == 1 ? 9 : $k;
+								$soma2 += ($cnpj{$i} * $k);
+
+								if ($i < 12) $soma1 += ($cnpj{$i} * $j);
+								
+								$k--;
+								$j--;
+							}
+
+							$digito1 = ($soma1 % 11 < 2) ? 0 : (11 - ($soma1 % 11));
+							$digito2 = ($soma2 % 11 < 2) ? 0 : (11 - ($soma2 % 11));
+							return (($cnpj{12} == $digito1) && ($cnpj{13} == $digito2));
+						}
+					}
+					
+					private function validaCPF($cpf) {	
+						// Verifiva se o número digitado contém todos os digitos
+						$cpf = str_pad(preg_replace('/[^0-9]/', '', $cpf), 11, '0', STR_PAD_LEFT);
+						
+						// Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
+						if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999' || $cpf == '12345678909')
+						{
+						return false;
+						}
+						else
+						{   // Calcula os números para verificar se o CPF é verdadeiro
+							for ($t = 9; $t < 11; $t++) {
+								for ($d = 0, $c = 0; $c < $t; $c++) {
+									$d += $cpf{$c} * (($t + 1) - $c);
+								}
+
+								$d = ((10 * $d) % 11) % 10;
+
+								if ($cpf{$c} != $d) {
+									return false;
+								}
+							}
+
+							return true;
+						}
+					}
+					
+					private function validaCep($cep) {
+						// retira espacos em branco
+						$cep = trim($cep);
+						// expressao regular para avaliar o cep
+						$avaliaCep = preg_match('/^[0-9]{5}-[0-9]{3}$/', $cep, $matches);
+						
+						// verifica o resultado
+						if(!$avaliaCep) {            
+							return false;
+						}
+						else
+						{
+							return true;
+						}
+					}
+					
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" offset="2">
+				<![CDATA[
+					if ($customer_group['company_id_display'] && $customer_group['company_id_required'] && empty($this->request->post['company_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if (!empty($this->request->post['company_id']) && $this->model_account_customer->getTotalCustomersByCompanyId($this->request->post['company_id'])) {
+						$this->error['warning'] = $this->language->get('error_exists3');
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" offset="2">
+				<![CDATA[
+					if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && empty($this->request->post['tax_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if (!empty($this->request->post['tax_id']) && $this->model_account_customer->getTotalCustomersByTaxId($this->request->post['tax_id'])) {
+						$this->error['warning'] = $this->language->get('error_exists2');
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && empty($this->request->post['tax_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && ((utf8_strlen($this->request->post['tax_id']) < 14) || (utf8_strlen($this->request->post['tax_id']) > 18) || ((utf8_strlen($this->request->post['tax_id']) > 14) && (utf8_strlen($this->request->post['tax_id']) < 18)) || (utf8_strlen($this->request->post['tax_id'])== 14 && $this->validaCPF($this->request->post['tax_id']) == false) || (utf8_strlen($this->request->post['tax_id'])== 18 && $this->validaCNPJ($this->request->post['tax_id']) == false))) {
+				]]>
+			</add>
+		</operation>
+		
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					if ($country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if ($country_info['postcode_required'] && ((utf8_strlen($this->request->post['postcode']) < 8) || (utf8_strlen($this->request->post['postcode']) > 9) || $this->validaCep($this->request->post['postcode']) == false)) {
+				]]>
+			</add>
+		</operation>		
+	</file>
+	
+	<file name="catalog/controller/checkout/payment_address.php">
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					$json['error']['warning'] = $this->language->get('error_tax_id');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$json['error']['warning'] = sprintf($this->language->get('error_tax_id'), $this->url->link('account/edit', '', 'SSL'));
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/checkout/register.php">
+		<operation>
+			<search position="before">
+				<![CDATA[
+					public function validate() {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					
+					private function validaCNPJ($cnpj) {
+						$cnpj = str_pad(preg_replace('/[^0-9]/', '', $cnpj), 14, '0', STR_PAD_LEFT);
+						if (strlen($cnpj) != 14)
+						{
+						return false;
+						}
+						else
+						{
+							$j = 5;
+							$k = 6;
+							$soma1 = '';
+							$soma2 = '';
+
+							for ($i = 0; $i < 13; $i++)
+							{
+								$j = $j == 1 ? 9 : $j;
+								$k = $k == 1 ? 9 : $k;
+								$soma2 += ($cnpj{$i} * $k);
+
+								if ($i < 12) $soma1 += ($cnpj{$i} * $j);
+								
+								$k--;
+								$j--;
+							}
+
+							$digito1 = ($soma1 % 11 < 2) ? 0 : (11 - ($soma1 % 11));
+							$digito2 = ($soma2 % 11 < 2) ? 0 : (11 - ($soma2 % 11));
+							return (($cnpj{12} == $digito1) && ($cnpj{13} == $digito2));
+						}
+					}
+					
+					private function validaCPF($cpf) {	
+						// Verifiva se o número digitado contém todos os digitos
+						$cpf = str_pad(preg_replace('/[^0-9]/', '', $cpf), 11, '0', STR_PAD_LEFT);
+						
+						// Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
+						if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999' || $cpf == '12345678909')
+						{
+						return false;
+						}
+						else
+						{   // Calcula os números para verificar se o CPF é verdadeiro
+							for ($t = 9; $t < 11; $t++) {
+								for ($d = 0, $c = 0; $c < $t; $c++) {
+									$d += $cpf{$c} * (($t + 1) - $c);
+								}
+
+								$d = ((10 * $d) % 11) % 10;
+
+								if ($cpf{$c} != $d) {
+									return false;
+								}
+							}
+
+							return true;
+						}
+					}
+					
+					private function validaCep($cep) {
+						// retira espacos em branco
+						$cep = trim($cep);
+						// expressao regular para avaliar o cep
+						$avaliaCep = preg_match('/^[0-9]{5}-[0-9]{3}$/', $cep, $matches);
+						
+						// verifica o resultado
+						if(!$avaliaCep) {            
+							return false;
+						}
+						else
+						{
+							return true;
+						}
+					}
+					
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" offset="2">
+				<![CDATA[
+					if ($customer_group['company_id_display'] && $customer_group['company_id_required'] && empty($this->request->post['company_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if (!empty($this->request->post['company_id']) && $this->model_account_customer->getTotalCustomersByCompanyId($this->request->post['company_id'])) {
+						$json['error']['warning'] = $this->language->get('error_exists3');
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" offset="2">
+				<![CDATA[
+					if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && empty($this->request->post['tax_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if (!empty($this->request->post['tax_id']) && $this->model_account_customer->getTotalCustomersByTaxId($this->request->post['tax_id'])) {
+						$json['error']['warning'] = $this->language->get('error_exists2');
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && empty($this->request->post['tax_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && ((utf8_strlen($this->request->post['tax_id']) < 14) || (utf8_strlen($this->request->post['tax_id']) > 18) || ((utf8_strlen($this->request->post['tax_id']) > 14) && (utf8_strlen($this->request->post['tax_id']) < 18)) || (utf8_strlen($this->request->post['tax_id'])== 14 && $this->validaCPF($this->request->post['tax_id']) == false) || (utf8_strlen($this->request->post['tax_id'])== 18 && $this->validaCNPJ($this->request->post['tax_id']) == false))) {
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					if ($country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if ($country_info['postcode_required'] && ((utf8_strlen($this->request->post['postcode']) < 8) || (utf8_strlen($this->request->post['postcode']) > 9) || $this->validaCep($this->request->post['postcode']) == false)) {
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/checkout/guest.php">
+		<operation>
+			<search position="after">
+				<![CDATA[
+					public function validate() {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$this->load->model('account/customer');
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before">
+				<![CDATA[
+					public function validate() {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					
+					private function validaCNPJ($cnpj) {
+						$cnpj = str_pad(preg_replace('/[^0-9]/', '', $cnpj), 14, '0', STR_PAD_LEFT);
+						if (strlen($cnpj) != 14)
+						{
+						return false;
+						}
+						else
+						{
+							$j = 5;
+							$k = 6;
+							$soma1 = '';
+							$soma2 = '';
+
+							for ($i = 0; $i < 13; $i++)
+							{
+								$j = $j == 1 ? 9 : $j;
+								$k = $k == 1 ? 9 : $k;
+								$soma2 += ($cnpj{$i} * $k);
+
+								if ($i < 12) $soma1 += ($cnpj{$i} * $j);
+								
+								$k--;
+								$j--;
+							}
+
+							$digito1 = ($soma1 % 11 < 2) ? 0 : (11 - ($soma1 % 11));
+							$digito2 = ($soma2 % 11 < 2) ? 0 : (11 - ($soma2 % 11));
+							return (($cnpj{12} == $digito1) && ($cnpj{13} == $digito2));
+						}
+					}
+					
+					private function validaCPF($cpf) {	
+						// Verifiva se o número digitado contém todos os digitos
+						$cpf = str_pad(preg_replace('/[^0-9]/', '', $cpf), 11, '0', STR_PAD_LEFT);
+						
+						// Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
+						if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999' || $cpf == '12345678909')
+						{
+						return false;
+						}
+						else
+						{   // Calcula os números para verificar se o CPF é verdadeiro
+							for ($t = 9; $t < 11; $t++) {
+								for ($d = 0, $c = 0; $c < $t; $c++) {
+									$d += $cpf{$c} * (($t + 1) - $c);
+								}
+
+								$d = ((10 * $d) % 11) % 10;
+
+								if ($cpf{$c} != $d) {
+									return false;
+								}
+							}
+
+							return true;
+						}
+					}
+					
+					private function validaCep($cep) {
+						// retira espacos em branco
+						$cep = trim($cep);
+						// expressao regular para avaliar o cep
+						$avaliaCep = preg_match('/^[0-9]{5}-[0-9]{3}$/', $cep, $matches);
+						
+						// verifica o resultado
+						if(!$avaliaCep) {            
+							return false;
+						}
+						else
+						{
+							return true;
+						}
+					}
+					
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" offset="2">
+				<![CDATA[
+					if ($customer_group['company_id_display'] && $customer_group['company_id_required'] && empty($this->request->post['company_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if (!empty($this->request->post['company_id']) && $this->model_account_customer->getTotalCustomersByCompanyId($this->request->post['company_id'])) {
+						$json['error']['warning'] = $this->language->get('error_exists3');
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" offset="2">
+				<![CDATA[
+					if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && empty($this->request->post['tax_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if (!empty($this->request->post['tax_id']) && $this->model_account_customer->getTotalCustomersByTaxId($this->request->post['tax_id'])) {
+						$json['error']['warning'] = $this->language->get('error_exists2');
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && empty($this->request->post['tax_id'])) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if ($customer_group['tax_id_display'] && $customer_group['tax_id_required'] && ((utf8_strlen($this->request->post['tax_id']) < 14) || (utf8_strlen($this->request->post['tax_id']) > 18) || ((utf8_strlen($this->request->post['tax_id']) > 14) && (utf8_strlen($this->request->post['tax_id']) < 18)) || (utf8_strlen($this->request->post['tax_id'])== 14 && $this->validaCPF($this->request->post['tax_id']) == false) || (utf8_strlen($this->request->post['tax_id'])== 18 && $this->validaCNPJ($this->request->post['tax_id']) == false))) {
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					if ($country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if ($country_info['postcode_required'] && ((utf8_strlen($this->request->post['postcode']) < 8) || (utf8_strlen($this->request->post['postcode']) > 9) || $this->validaCep($this->request->post['postcode']) == false)) {
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/language/portuguese-br/account/address.php">
+		<operation>
+			<search position="before">
+				<![CDATA[
+					$_['error_address_1']   = 'O endereço e o número devem ter entre 3 e 128 caracteres!';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$_['error_tax_id']   = 'O CNPJ ou CPF é obrigatório, com pontos e hífens e tem de ser válido!';
+					$_['error_company_id']   = 'A IE ou RG é obrigatório!';
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					$_['error_postcode']    = 'O CEP deve ter 8 caracteres!';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$_['error_postcode']    = 'CEP inválido! Deve ser numérico e com traço';
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/language/portuguese-br/account/register.php">
+		<operation>
+			<search position="after">
+				<![CDATA[
+					$_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$_['error_exists2']        = 'Atenção: Este CPF ou CNPJ já está cadastrado!';
+					$_['error_exists3']        = 'Atenção: IE ou RG já está cadastrado!';
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					$_['error_tax_id']         = 'Atenção: O CNPJ ou CPF é obrigatório!';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$_['error_tax_id']         = 'Atenção: O CNPJ ou CPF é obrigatório, com pontos e hífens e tem de ser válido!';
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					$_['error_postcode']       = 'Atenção: O CEP deve ter no mínimo 8 caracteres!';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$_['error_postcode']       = 'Atenção: CEP inválido! Deve ser numérico e com traço';
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="catalog/language/portuguese-br/checkout/checkout.php">
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					$_['error_tax_id']                   = 'Atenção: O CNPJ ou CPF é obrigatório!';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$_['error_tax_id']                   = 'Atenção: O CNPJ ou CPF é obrigatório! Acesse suas <a href="%s">Informações Pessoais</a>, preencha o campo e depois finalize o pedido novamente!';
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					$_['error_postcode']                 = 'Atenção: O CEP deve ter no mínimo 8 caracteres!';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$_['error_postcode']                 = 'Atenção: CEP inválido! Deve ser numérico e ter 9 caracteres';
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after">
+				<![CDATA[
+					$_['error_exists']                   = 'Atenção: Este e-mail já está cadastrado em nossa loja!';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$_['error_exists2']                  = 'Atenção: Este CPF ou CNPJ já está cadastrado em nossa loja!';
+					$_['error_exists3']                  = 'Atenção: IE ou RG já está cadastrado em nossa loja!';
+				]]>
+			</add>
+		</operation>
+	</file>
+	<!-- fim validação e ajustes manter campos cpf e rg -->
+</modification>
