@@ -1,21 +1,21 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://localhost/brian/real_dental/Dental/');
+define('HTTP_SERVER', 'http://localhost/opensource/dental_oc2/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/brian/real_dental/Dental/');
+define('HTTPS_SERVER', 'http://localhost/opensource/dental_oc2/');
 
 // DIR
-define('DIR_APPLICATION', '/var/www/html/brian/real_dental/Dental/catalog/');
-define('DIR_SYSTEM', '/var/www/html/brian/real_dental/Dental/system/');
-define('DIR_DATABASE', '/var/www/html/brian/real_dental/Dental/system/database/');
-define('DIR_LANGUAGE', '/var/www/html/brian/real_dental/Dental/catalog/language/');
-define('DIR_TEMPLATE', '/var/www/html/brian/real_dental/Dental/catalog/view/theme/');
-define('DIR_CONFIG', '/var/www/html/brian/real_dental/Dental/system/config/');
-define('DIR_IMAGE', '/var/www/html/brian/real_dental/Dental/image/');
-define('DIR_CACHE', '/var/www/html/brian/real_dental/Dental/system/cache/');
-define('DIR_DOWNLOAD', '/var/www/html/brian/real_dental/Dental/download/');
-define('DIR_LOGS', '/var/www/html/brian/real_dental/Dental/system/logs/');
+define('DIR_APPLICATION', '/var/www/html/opensource/dental_oc2/catalog/');
+define('DIR_SYSTEM', '/var/www/html/opensource/dental_oc2/system/');
+define('DIR_DATABASE', '/var/www/html/opensource/dental_oc2/system/database/');
+define('DIR_LANGUAGE', '/var/www/html/opensource/dental_oc2/catalog/language/');
+define('DIR_TEMPLATE', '/var/www/html/opensource/dental_oc2/catalog/view/theme/');
+define('DIR_CONFIG', '/var/www/html/opensource/dental_oc2/system/config/');
+define('DIR_IMAGE', '/var/www/html/opensource/dental_oc2/image/');
+define('DIR_CACHE', '/var/www/html/opensource/dental_oc2/system/cache/');
+define('DIR_DOWNLOAD', '/var/www/html/opensource/dental_oc2/download/');
+define('DIR_LOGS', '/var/www/html/opensource/dental_oc2/system/logs/');
 
 // DB
 define('DB_DRIVER', 'mysqli');
