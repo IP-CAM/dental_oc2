@@ -83,6 +83,34 @@
       <td><select name="zone_id" class="large-field">
         </select></td>
     </tr>
+    <tr>
+      <td colspan="2">Extra Customer Information</td>
+      
+    </tr>
+    <tr>
+        <td colspan="2">
+            <table>
+                <tr>
+                   
+                    <td colspan="4">
+                        <input type="radio" name="cusomer_type" value="Pessoa Física" /> 
+                        <label>Pessoa Física</label>
+                        <input type="radio" name="cusomer_type" value="Pessoa Jurídica" /> 
+                        <label>Pessoa Jurídica</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        
+                        <?php
+                            include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");
+                        ?>
+                    </td>
+                </tr>
+            </table>
+        </td>
+      
+    </tr>
   </table>
 </div>
 <br />
