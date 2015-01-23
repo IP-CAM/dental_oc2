@@ -89,25 +89,10 @@
     </tr>
     <tr>
         <td colspan="2">
-            <table>
-                <tr>
-                   
-                    <td colspan="4">
-                        <input type="radio" name="cusomer_type" value="Pessoa Física" /> 
-                        <label>Pessoa Física</label>
-                        <input type="radio" name="cusomer_type" value="Pessoa Jurídica" /> 
-                        <label>Pessoa Jurídica</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4">
-                        
-                        <?php
-                            include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");
-                        ?>
-                    </td>
-                </tr>
-            </table>
+            <?php
+                include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");
+            ?>
+     
         </td>
       
     </tr>
