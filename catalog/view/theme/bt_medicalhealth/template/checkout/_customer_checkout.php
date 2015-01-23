@@ -6,20 +6,29 @@
             $customer_types = array(
                 "Pessoa Física", "Pessoa Jurídica"
             );
+            $i = 0;
+            $checkd = '';
             foreach ($customer_types as $type) {
+                if ($i == 0) {
+                    $checkd = 'checked="checked"';
+                } else {
+                    $checkd = '';
+                }
                 ?>
-                <input type="radio"  name="cusomer_type" value="<?php echo $type ?>" /> 
+                <input type="radio" class="cusomer_type"  name="cusomer_type" value="<?php echo $type ?>" <?php echo $checkd; ?> /> 
                 <label><?php echo $type ?></label>
 
                 <?php
+                $i++;
             }
+            $checkd = '';
             ?>
         </td>
     </tr>
     <tr>
         <td colspan="4">
 
-            <table class="customer_type" >
+            <table class="customer" style="display:none" >
                 <tr>
                     <td>
                         <h2>Dados Pessoais</h2>
@@ -93,7 +102,7 @@
                 </tr>
             </table>
 
-            <table class="account">
+            <table class="account" style="display:none">
                 <tr>
                     <td>
                         <h2>Dados da Empresa</h2>
@@ -177,18 +186,26 @@
                             "Odontologista", "Protético",
                             "Acadêmico",
                         );
+                        $i = 0;
                         foreach ($profession_types as $type) {
+                            if ($i == 0) {
+                                $checkd = 'checked="checked"';
+                            } else {
+                                $checkd = '';
+                            }
                             ?>
-                            <input type="radio"  name="payment_profession_type" value="<?php echo $type ?>" /> 
+                            <input type="radio"  name="payment_profession_type" 
+                                   value="<?php echo $type ?>" <?php echo $checkd; ?> /> 
                             <label><?php echo $type ?></label>
 
                             <?php
+                            $i++;
                         }
                         ?>
 
                     </td>
                 </tr>
-                <tr>
+                <tr class="od" style="display: none">
 
                     <td>
                         CRO
@@ -198,7 +215,7 @@
                     </td>
 
                 </tr>
-                <tr>
+                <tr class="pr" style="display: none">
 
                     <td>
                         TDP
@@ -208,7 +225,7 @@
                     </td>
 
                 </tr>
-                <tr>
+                <tr class="ac" style="display: none">
                     <td>
                         Número da Matrícula
                     </td>
@@ -217,7 +234,7 @@
                     </td>
 
                 </tr>
-                <tr>
+                <tr class="ac" style="display: none">
                     <td>
                         Instituição de Ensino
                     <td colspan="3">
@@ -230,13 +247,7 @@
                         Graduação
                     </td>
                     <td>
-                        <input type="text" id="payment_profession_graduacao" name="payment_profession_graduacao" />
-                    </td>
-                    <td>
-                        Instituição de Ensino
-                    </td>
-                    <td>
-                        <?php
+                         <?php
                         $prof_inst = array(
                             'Selecione',
                             'Superior Completo',
@@ -244,17 +255,29 @@
                             'Mestrado',
                             'Doutorado',
                         );
+                        $i = 0;
                         ?>
-                        <select id="payment_profession_instituica" name="payment_profession_instituica">
+                        <select id="payment_profession_graduacao" name="payment_profession_graduacao">
                             <?php
                             foreach ($prof_inst as $val) {
+
                                 echo "<option value='" . $val . "'>" . $val . "</option>";
+
+                                $i++;
                             }
+                            $checkd = '';
                             ?>
                         </select>
+                        
+                    </td>
+                    <td>
+                        Instituição de Ensino
+                    </td>
+                    <td>
+                       <input type="text" id="payment_profession_instituica" name="payment_profession_instituica" />
                     </td>
                 </tr>
-                <tr>
+                <tr class="area">
 
                     <td>
                         Área de Atuação
@@ -283,3 +306,42 @@
         </td>
     </tr>
 </table>
+
+<script>
+    $(function() {
+        $(".cusomer_type").click(function() {
+            if ($(this).is(':checked')) {
+                if ($(this).val() == 'Pessoa Física') {
+                    $(".customer").show();
+                    $(".account").hide();
+                }
+                else if ($(this).val() == 'Pessoa Jurídica') {
+                    $(".account").show();
+                    $(".customer").hide();
+                }
+            }
+        })
+        $("input.cusomer_type[checked='checked']").trigger("click");
+
+        $("input[name='payment_profession_type'] ").click(function() {
+            $(".od").hide();
+            $(".pr").hide();
+            $(".ac").hide();
+            $(".area").show();
+            if ($(this).is(':checked')) {
+                if ($(this).val() == 'Odontologista') {
+                   $(".od").show();
+                }
+                else if ($(this).val() == 'Protético') {
+                    $(".pr").show();
+                }
+                else if ($(this).val() == 'Acadêmico') {
+                    $(".ac").show();
+                    $(".area").hide();
+                }
+            }
+            console.log($(this));
+        })
+        $("input[name='payment_profession_type'][checked='checked'] ").trigger("click");
+    })
+</script>    
