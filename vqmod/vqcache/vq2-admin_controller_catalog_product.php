@@ -5,6 +5,56 @@ class ControllerCatalogProduct extends Controller {
     private $error = array();
 
     
+                protected function addCheckoutColumns($table = "order"){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    $columns = array(
+                        "payment_customer_type"=>"varchar",
+                        "payment_cad_name"=>"varchar",
+                        "payment_cad_dob"=>"date",
+                        "payment_cad_cpf"=>"varchar",
+                        "payment_cad_rg"=>"varchar",
+                        "payment_cad_telefone"=>"varchar",
+                        "payment_cad_celular"=>"varchar",
+                        "payment_cad_gender"=>"varchar",
+                        "payment_corop_name"=>"varchar",
+                        "payment_corop_trade_name"=>"varchar",
+                        "payment_corop_responsible_name"=>"varchar",
+                        "payment_corop_cnpg"=>"varchar",
+                        "payment_corop_telefone"=>"varchar",
+                        "payment_corop_responsible_cell"=>"varchar",
+                        "payment_corop_state_registration"=>"varchar",
+                        "payment_corop_isento"=>"boolean",
+                        "payment_profession_type"=>"varchar",
+                        "payment_profession_cro"=>"varchar",
+                        "payment_profession_tdp"=>"varchar",
+                        "payment_profession_graduacao"=>"varchar",
+                        "payment_profession_instituica"=>"varchar",
+                        "payment_profession_matricula"=>"varchar",
+                        "payment_profession_ensino"=>"varchar",
+                        "payment_profession_atuacao"=>"varchar",
+                    );
+                    foreach($columns as $column=>$type){
+                        if(!in_array($column,$fields)){
+                            if($type=="varchar"){
+                              $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) DEFAULT NULL";  
+                            }
+                            else if($type=="date"){
+                                $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." date DEFAULT NULL";  
+                            }
+                            else if($type=="boolean"){
+                                $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." tinyint(1) DEFAULT 0";  
+                            }
+
+                            $this->db->query($query);;
+                        }
+                    }
+                   
+                }
                 protected function getLanguages(){
                   $res = $this->db->query("Select * FROM ".DB_PREFIX."language WHERE code <>'en'");
                   $array = array();  
@@ -155,6 +205,8 @@ class ControllerCatalogProduct extends Controller {
                     $this->dbCor($languages);
                     $this->dbProductConfigOptions();
                     $this->dbOrderProductConfigOptions();
+                    $this->addCheckoutColumns("order");
+                    $this->addCheckoutColumns("address");
                
                 
             

@@ -15,7 +15,7 @@
                     $checkd = '';
                 }
                 ?>
-                <input type="radio" class="cusomer_type"  name="cusomer_type" value="<?php echo $type ?>" <?php echo $checkd; ?> /> 
+                <input type="radio" class="cusomer_type"  name="payment_customer_type" value="<?php echo $type ?>" <?php echo $checkd; ?> /> 
                 <label><?php echo $type ?></label>
 
                 <?php
@@ -247,7 +247,7 @@
                         Graduação
                     </td>
                     <td>
-                         <?php
+                        <?php
                         $prof_inst = array(
                             'Selecione',
                             'Superior Completo',
@@ -268,13 +268,13 @@
                             $checkd = '';
                             ?>
                         </select>
-                        
+
                     </td>
                     <td>
                         Instituição de Ensino
                     </td>
                     <td>
-                       <input type="text" id="payment_profession_instituica" name="payment_profession_instituica" />
+                        <input type="text" id="payment_profession_instituica" name="payment_profession_instituica" />
                     </td>
                 </tr>
                 <tr class="area">
@@ -293,7 +293,7 @@
                         foreach ($options_atuaca as $opt) {
                             ?>
                             <label><?php echo $opt; ?></label>    
-                            <input type="checkbox" name="payment_profession_atuacao" value="<?php echo $opt; ?>" />
+                            <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" />
                             <?php
                         }
                         ?>
@@ -330,7 +330,7 @@
             $(".area").show();
             if ($(this).is(':checked')) {
                 if ($(this).val() == 'Odontologista') {
-                   $(".od").show();
+                    $(".od").show();
                 }
                 else if ($(this).val() == 'Protético') {
                     $(".pr").show();
@@ -343,5 +343,44 @@
             console.log($(this));
         })
         $("input[name='payment_profession_type'][checked='checked'] ").trigger("click");
+
+        //MANAGING MASKS
+        $("#payment_cad_telefone").mask({mask: "(##)########?#"});
+        $("#payment_corop_telefone").mask({mask: "(##)########?#"});
+        
+      
+
+        $('#cpf_cnpj').focus(function() {
+            $("#cpf_cnpj").mask('destroy');
+            $("#cpf_cnpj").val($("#cpf_cnpj").val().replace(/[^\d]/g, ''));
+        });
+        $('#payment_corop_cnpg').blur(function() {
+            if ($.isNumeric($("#payment_corop_cnpg").val()) == true) {
+                if ($("#payment_corop_cnpg").val().length == 11) {
+                    $("#payment_corop_cnpg").mask({mask: "###.###.###-##"});
+                } else if ($("#payment_corop_cnpg").val().length == 14) {
+                    $("#payment_corop_cnpg").mask({mask: "##.###.###/####-##"});
+                }
+            } else if ($.isNumeric($("#payment_corop_cnpg").val().replace(/[^\d]/g, '')) == false) {
+                $("#payment_corop_cnpg").mask('destroy');
+                $("#payment_corop_cnpg").val('');
+            }
+        });
     })
+
+    function manage_custom_field_errors(json_error) {
+        var error_fields = ['payment_cad_cpf', 'payment_cad_name',
+            'payment_cad_dob', 'payment_cad_rg', 'payment_corop_cnpg',
+            'payment_corop_name', 'payment_corop_trade_name', 'payment_corop_cnpg',
+            'payment_corop_responsible_name'
+        ];
+        console.log(json_error);
+        $.each(error_fields, function(k, v) {
+            console.log(v);
+            if (typeof (json_error[v]) != "undefined") {
+                $('#' + v).after('<span class="error">' + json_error[v] + '</span>');
+            }
+        })
+
+    }
 </script>    

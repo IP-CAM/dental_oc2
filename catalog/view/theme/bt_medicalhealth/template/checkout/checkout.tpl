@@ -238,7 +238,9 @@ $('#button-register').live('click', function() {
 				
 				if (json['error']['confirm']) {
 					$('#payment-address input[name=\'confirm\'] + br').after('<span class="error">' + json['error']['confirm'] + '</span>');
-				}																																	
+				}
+                                
+                                
 			} else {
 				<?php if ($shipping_required) { ?>				
 				var shipping_address = $('#payment-address input[name=\'shipping_address\']:checked').attr('value');
@@ -411,6 +413,9 @@ $('#button-payment-address').live('click', function() {
 				if (json['error']['zone']) {
 					$('#payment-address select[name=\'zone_id\']').after('<span class="error">' + json['error']['zone'] + '</span>');
 				}
+                                if (typeof manage_custom_field_errors == 'function') { 
+                                    manage_custom_field_errors(json['error']); 
+                                }
 			} else {
 				<?php if ($shipping_required) { ?>
 				$.ajax({

@@ -10,14 +10,15 @@
                 public function index() {
                 ]]></search>
             <add><![CDATA[
-                protected function addCheckoutColumns(){
-                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX."order");
+                protected function addCheckoutColumns($table = "order"){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
                     $rows = $query->rows;
                     $fields = array();
                     foreach($rows as $field){
                         $fields[] = $field['Field'];
                     }
                     $columns = array(
+                        "payment_customer_type"=>"varchar",
                         "payment_cad_name"=>"varchar",
                         "payment_cad_dob"=>"date",
                         "payment_cad_cpf"=>"varchar",
@@ -45,13 +46,13 @@
                     foreach($columns as $column=>$type){
                         if(!in_array($column,$fields)){
                             if($type=="varchar"){
-                              $query = "ALTER TABLE ".DB_PREFIX."order"." ADD COLUMN ".$column." varchar(150) DEFAULT NULL";  
+                              $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) DEFAULT NULL";  
                             }
                             else if($type=="date"){
-                                $query = "ALTER TABLE ".DB_PREFIX."order"." ADD COLUMN ".$column." date DEFAULT NULL";  
+                                $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." date DEFAULT NULL";  
                             }
                             else if($type=="boolean"){
-                                $query = "ALTER TABLE ".DB_PREFIX."order"." ADD COLUMN ".$column." tinyint(1) DEFAULT 0";  
+                                $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." tinyint(1) DEFAULT 0";  
                             }
 
                             $this->db->query($query);;
@@ -199,7 +200,8 @@
                     $this->dbCor($languages);
                     $this->dbProductConfigOptions();
                     $this->dbOrderProductConfigOptions();
-                    $this->addCheckoutColumns();
+                    $this->addCheckoutColumns("order");
+                    $this->addCheckoutColumns("address");
                
                 ]]>
             </add>

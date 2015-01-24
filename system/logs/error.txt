@@ -44119,3 +44119,9 @@
 2015-01-17 18:58:03 - PHP Notice:  Undefined index: conf_ids in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_model_catalog_product.php on line 299
 2015-01-17 19:03:16 - PHP Notice:  Undefined index: conf_ids in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_model_catalog_product.php on line 308
 2015-01-17 19:03:16 - PHP Notice:  Undefined index: conf_ids in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-admin_model_catalog_product.php on line 308
+2015-01-24 12:51:22 - PHP Notice:  Undefined index: firstname in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_checkout_payment_address.php on line 174
+2015-01-24 12:51:22 - PHP Notice:  Undefined index: lastname in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_checkout_payment_address.php on line 178
+2015-01-24 12:51:22 - PHP Notice:  Undefined index: address_1 in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_checkout_payment_address.php on line 199
+2015-01-24 12:51:22 - PHP Notice:  Undefined index: city in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_checkout_payment_address.php on line 203
+2015-01-24 12:51:22 - PHP Notice:  Undefined index: country_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_checkout_payment_address.php on line 209
+2015-01-24 12:51:22 - PHP Notice:  Undefined index: country_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_checkout_payment_address.php on line 224
