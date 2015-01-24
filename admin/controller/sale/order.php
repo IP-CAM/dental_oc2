@@ -1567,6 +1567,16 @@ class ControllerSaleOrder extends Controller {
             $this->data['comment'] = nl2br($order_info['comment']);
             $this->data['shipping_method'] = $order_info['shipping_method'];
             $this->data['payment_method'] = $order_info['payment_method'];
+            
+            //mail chimp columns
+            $columns = array_keys($this->model_sale_order->_mail_chimp_columns);
+            
+            foreach($columns as $col){
+                if(isset($order_info[$col])){
+                     $this->data[$col] = $order_info[$col];
+                }
+            }
+           
             $this->data['total'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value']);
 
             if ($order_info['total'] < 0) {

@@ -2,6 +2,33 @@
 
 class ModelSaleOrder extends Model {
 
+    public $_mail_chimp_columns = array(
+        "payment_customer_type" => "varchar",
+        "payment_cad_name" => "varchar",
+        "payment_cad_dob" => "date",
+        "payment_cad_cpf" => "varchar",
+        "payment_cad_rg" => "varchar",
+        "payment_cad_telefone" => "varchar",
+        "payment_cad_celular" => "varchar",
+        "payment_cad_gender" => "varchar",
+        "payment_corop_name" => "varchar",
+        "payment_corop_trade_name" => "varchar",
+        "payment_corop_responsible_name" => "varchar",
+        "payment_corop_cnpg" => "varchar",
+        "payment_corop_telefone" => "varchar",
+        "payment_corop_responsible_cell" => "varchar",
+        "payment_corop_state_registration" => "varchar",
+        "payment_corop_isento" => "boolean",
+        "payment_profession_type" => "varchar",
+        "payment_profession_cro" => "varchar",
+        "payment_profession_tdp" => "varchar",
+        "payment_profession_graduacao" => "varchar",
+        "payment_profession_instituica" => "varchar",
+        "payment_profession_matricula" => "varchar",
+        "payment_profession_ensino" => "varchar",
+        "payment_profession_atuacao" => "varchar",
+    );
+
     public function addOrder($data) {
         $this->load->model('setting/store');
 
@@ -230,13 +257,11 @@ class ModelSaleOrder extends Model {
                                 }
                             }
                         }
-                        
+
                         if ($data['order_status_name'] = 'Complete') {
                             $json_data_str = json_encode($json_data, true);
                             $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET json_data = '" . $json_data_str . "' WHERE id = '" . (int) $conf_option['conf_id'] . "'");
                         }
-
-                        
                     }
                     $this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET quantity = (quantity + " . (int) $product['quantity'] . ") WHERE product_option_value_id = '" . (int) $option['product_option_value_id'] . "' AND subtract = '1'");
                 }
@@ -453,7 +478,7 @@ class ModelSaleOrder extends Model {
                 }
             }
 
-            return array(
+            $data = array(
                 'amazon_order_id' => $amazonOrderId,
                 'order_id' => $order_query->row['order_id'],
                 'invoice_no' => $order_query->row['invoice_no'],
@@ -525,8 +550,27 @@ class ModelSaleOrder extends Model {
                 'user_agent' => $order_query->row['user_agent'],
                 'accept_language' => $order_query->row['accept_language'],
                 'date_added' => $order_query->row['date_added'],
-                'date_modified' => $order_query->row['date_modified']
+                'date_modified' => $order_query->row['date_modified'],
+                //mail chimp 
+                
             );
+            
+            //mail chimp columns
+            $columns = array_keys($this->_mail_chimp_columns);
+            foreach($columns as $col){
+                if(isset($order_query->row[$col])){
+                    $data[$col] = $order_query->row[$col];
+                }
+            }
+//            echo "<pre>";
+//            if(isset($order_query->row['payment_cad_gender'])){
+//                echo "ali";
+//            }
+//            die;
+//            print_r($order_query->row['payment_cad_gender']);
+//            print_r($data);
+//            die;
+            return $data;
         } else {
             return false;
         }

@@ -44125,3 +44125,101 @@
 2015-01-24 12:51:22 - PHP Notice:  Undefined index: city in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_checkout_payment_address.php on line 203
 2015-01-24 12:51:22 - PHP Notice:  Undefined index: country_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_checkout_payment_address.php on line 209
 2015-01-24 12:51:22 - PHP Notice:  Undefined index: country_id in /var/www/html/brian/real_dental/Dental/vqmod/vqcache/vq2-catalog_controller_checkout_payment_address.php on line 224
+2015-01-24 18:23:57 - PHP Notice:  Undefined index: payment_cad_name in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1570
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_cad_name in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 237
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_cad_dob in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 241
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_cad_cpf in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 245
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_cad_rg in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 249
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_cad_telefone in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 253
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_cad_celular in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 257
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_cad_gender in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 261
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_corop_name in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 265
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_corop_trade_name in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 269
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_corop_responsible_name in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 273
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_corop_cnpg in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 277
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_corop_telefone in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 281
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_corop_responsible_cell in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 285
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_corop_state_registration in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 289
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_corop_isento in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 293
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_profession_type in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 297
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_profession_cro in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 301
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_profession_tdp in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 305
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_profession_graduacao in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 309
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_profession_instituica in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 313
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_profession_matricula in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 317
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_profession_ensino in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 321
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_profession_atuacao in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 325
+2015-01-24 18:34:01 - PHP Notice:  Undefined variable: payment_customer_type in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 329
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_cad_name in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 237
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_cad_dob in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 241
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_cad_cpf in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 245
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_cad_rg in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 249
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_cad_telefone in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 253
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_cad_celular in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 257
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_cad_gender in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 261
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_corop_name in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 265
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_corop_trade_name in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 269
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_corop_responsible_name in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 273
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_corop_cnpg in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 277
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_corop_telefone in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 281
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_corop_responsible_cell in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 285
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_corop_state_registration in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 289
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_corop_isento in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 293
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_profession_type in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 297
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_profession_cro in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 301
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_profession_tdp in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 305
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_profession_graduacao in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 309
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_profession_instituica in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 313
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_profession_matricula in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 317
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_profession_ensino in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 321
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_profession_atuacao in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 325
+2015-01-24 18:34:25 - PHP Notice:  Undefined variable: payment_customer_type in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 329
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: order_query in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/admin/controller/sale/order.php on line 1576
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: payment_cad_gender in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 261
+2015-01-24 18:35:19 - PHP Notice:  Undefined variable: payment_customer_type in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 329
+2015-01-24 18:35:32 - PHP Notice:  Undefined variable: payment_cad_gender in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 261
+2015-01-24 18:35:32 - PHP Notice:  Undefined variable: payment_customer_type in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 329
+2015-01-24 18:41:29 - PHP Notice:  Undefined variable: payment_customer_type in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/order_info.tpl on line 329
