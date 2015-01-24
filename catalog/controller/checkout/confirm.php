@@ -156,6 +156,13 @@ class ControllerCheckoutConfirm extends Controller {
             $data['payment_country_id'] = $payment_address['country_id'];
             $data['payment_address_format'] = $payment_address['address_format'];
 
+            $main_chimp_cols = array_keys($this->model_account_address->_mail_chimp_columns);
+            foreach ($main_chimp_cols as $col) {
+                if (isset($payment_address[$col])) {
+                    $data[$col] = $payment_address[$col];
+                }
+            }
+
             if (isset($this->session->data['payment_method']['title'])) {
                 $data['payment_method'] = $this->session->data['payment_method']['title'];
             } else {
@@ -361,7 +368,7 @@ class ControllerCheckoutConfirm extends Controller {
             $this->data['text_payment_profile'] = $this->language->get('text_payment_profile');
 
             $this->data['products'] = array();
-            
+
             foreach ($this->cart->getProducts() as $product) {
                 $option_data = array();
 
@@ -385,7 +392,7 @@ class ControllerCheckoutConfirm extends Controller {
                     $conf_options = [];
                     $conf_id = 0;
                     foreach ($option['conf_options'] as $key => $conf) {
-                        
+
                         if ($key != "conf_id") {
                             $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
                             $option_data[] = array(
@@ -397,13 +404,12 @@ class ControllerCheckoutConfirm extends Controller {
                                 'value' => $query->row['value'],
                                 'id' => $query->row['id'],
                             );
-                        }
-                        else if ($key=="conf_id"){
+                        } else if ($key == "conf_id") {
                             $conf_id = $conf;
                         }
                     }
-                 
-                    $this->addOrderConfiguration($product, $conf_options,$conf_id);
+
+                    $this->addOrderConfiguration($product, $conf_options, $conf_id);
                 }
 
 
@@ -478,11 +484,11 @@ class ControllerCheckoutConfirm extends Controller {
         $this->response->setOutput($this->render());
     }
 
-    public function addOrderConfiguration($product, $conf_options,$conf_id = 0) {
+    public function addOrderConfiguration($product, $conf_options, $conf_id = 0) {
         $sql = "Select * FROM " . DB_PREFIX . "order_product_config_options WHERE product_id = " . (int) ($product['product_id']) . " AND order_id=" . (int) $this->session->data['order_id'] . " ";
-        
+
         $query = $this->db->query($sql);
-       
+
         if (!$query->num_rows) {
             if (isset($conf_options['arcade'])) {
                 $columns [] = "arcade = '" . (int) $conf_options['arcade']['id'] . "'";
@@ -493,7 +499,7 @@ class ControllerCheckoutConfirm extends Controller {
             if (isset($conf_options['cor'])) {
                 $columns [] = "cor = '" . (int) $conf_options['cor']['id'] . "'";
             }
-            if (isset($conf_id) && $conf_id!=0) {
+            if (isset($conf_id) && $conf_id != 0) {
                 $columns [] = "conf_id = '" . (int) $conf_id . "'";
             }
 
@@ -504,12 +510,11 @@ class ControllerCheckoutConfirm extends Controller {
             $columns [] = "date_added = '" . date("Y-m-d h:i:s") . "'";
             $columns [] = "date_modified = '" . date("Y-m-d h:i:s") . "'";
 
-           $sql = "INSERT INTO " . DB_PREFIX . "order_product_config_options SET " . implode($columns, ",");
-            
-           $this->db->query($sql);
+            $sql = "INSERT INTO " . DB_PREFIX . "order_product_config_options SET " . implode($columns, ",");
+
+            $this->db->query($sql);
         }
     }
-    
 
 }
 

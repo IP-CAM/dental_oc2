@@ -161,6 +161,13 @@ class ModelAccountAddress extends Model {
                 'iso_code_3' => $iso_code_3,
                 'address_format' => $address_format
             );
+            
+            $columns = array_keys($this->_mail_chimp_columns);
+            foreach($columns as $col){
+                if(isset($address_query->row[$col])){
+                    $address_data[$col] = $address_query->row[$col];
+                }
+            }
 
             return $address_data;
         } else {

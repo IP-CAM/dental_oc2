@@ -50,7 +50,7 @@
     <tfoot>
       <?php foreach ($totals as $total) { ?>
       <tr>
-		<td class="model"></td>
+	<td class="model"></td>
         <td colspan="3" class="price<?php echo ($total==end($totals) ? ' last' : ''); ?>"><b><?php echo $total['title']; ?>:</b></td>
         <td class="total<?php echo ($total==end($totals) ? ' last' : ''); ?>"><?php echo $total['text']; ?></td>
       </tr>
