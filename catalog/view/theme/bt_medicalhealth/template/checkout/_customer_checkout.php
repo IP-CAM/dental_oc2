@@ -31,7 +31,7 @@
             <table class="customer" style="display:none" >
                 <tr>
                     <td>
-                        <h2>Dados Pessoais</h2>
+                        <h2><?php  echo $txt_payment_heading_customer;?></h2>
 
                     </td>
 
@@ -39,13 +39,13 @@
                 <tr>
 
                     <td>
-                        Nome Completo
+                       <?php echo $txt_payment_cad_name;?>
                     </td>
                     <td>
                         <input type="text" name="payment_cad_name" id="payment_cad_name" />
                     </td>
                     <td>
-                        Data de Nascimento
+                       <?php echo $txt_payment_cad_dob;?>
                     </td>
                     <td>
                         <input type="text" name="payment_cad_dob" id="payment_cad_dob" />
@@ -54,13 +54,13 @@
                 <tr>
 
                     <td>
-                        CPF
+                         <?php echo $txt_payment_cad_cpf;?>
                     </td>
                     <td>
                         <input type="text" name="payment_cad_cpf" id="payment_cad_cpf" />
                     </td>
                     <td>
-                        RG
+                       <?php echo $txt_payment_cad_rg;?>
                     </td>
                     <td>
                         <input type="text" name="payment_cad_rg" id="payment_cad_rg" />
@@ -69,13 +69,13 @@
                 <tr>
 
                     <td>
-                        Telefone
+                         <?php echo $txt_payment_cad_telefone;?>
                     </td>
                     <td>
                         <input type="text" name="payment_cad_telefone" id="payment_cad_telefone" />
                     </td>
                     <td>
-                        Celular
+                        <?php echo $txt_payment_cad_celular;?>
                     </td>
                     <td>
                         <input type="text" name="payment_cad_celular" id="payment_cad_celular" />
@@ -105,7 +105,7 @@
             <table class="account" style="display:none">
                 <tr>
                     <td>
-                        <h2>Dados da Empresa</h2>
+                        <h2><?php echo $txt_payment_heading_account;?></h2>
 
                     </td>
 
@@ -113,13 +113,13 @@
                 <tr>
 
                     <td>
-                        Razão Social
+                      <?php echo $txt_payment_corop_name;?>
                     </td>
                     <td>
                         <input type="text" name="payment_corop_name" id="payment_corop_name" />
                     </td>
                     <td>
-                        Nome Fantasia
+                       <?php echo $txt_payment_corop_trade_name;?>
                     </td>
                     <td>
                         <input type="text" name="payment_corop_trade_name" id="payment_corop_trade_name" />
@@ -128,13 +128,13 @@
                 <tr>
 
                     <td>
-                        CNPJ
+                        <?php echo $txt_payment_corop_cnpg;?>
                     </td>
                     <td>
                         <input type="text" name="payment_corop_cnpg" id="payment_corop_cnpg"/>
                     </td>
-                    <td>
-                        Nome do Responsável
+                    <td> 
+                        <?php echo $txt_payment_corop_responsible_name;?>
                     </td>
                     <td>
                         <input type="text" id="payment_corop_responsible_name" name="payment_corop_responsible_name" />
@@ -143,13 +143,13 @@
                 <tr>
 
                     <td>
-                        Telefone
+                      <?php echo $txt_payment_corop_telefone;?>
                     </td>
                     <td>
                         <input type="text" name="payment_corop_telefone" id="payment_corop_telefone"/>
                     </td>
                     <td>
-                        Celular do Responsável
+                       <?php echo $txt_payment_corop_responsible_cell;?>
                     </td>
                     <td>
                         <input type="text" name="payment_corop_responsible_cell" id="payment_corop_responsible_cell" />
@@ -158,13 +158,13 @@
                 <tr>
 
                     <td>
-                        Inscrição Estadual
+                        <?php echo $txt_payment_corop_state_registration;?>
                     </td>
                     <td>
                         <input type="text" name="payment_corop_state_registration" id="payment_corop_state_registration" />
                     </td>
                     <td>
-                        Isento
+                      <?php echo $txt_payment_corop_isento;?>
                     </td>
                     <td>
                         <input type="checkbox" name="payment_corop_isento" id="payment_corop_isento" />
@@ -176,7 +176,7 @@
             <table>
                 <tr>
 
-                    <th colspan="4">Dados Profissionais</th>
+                    <th colspan="4"><?php echo $txt_payment_heading_profession;?></th>
                 </tr>
                 <tr>
 
@@ -208,7 +208,7 @@
                 <tr class="od" style="display: none">
 
                     <td>
-                        CRO
+                        <?php echo $txt_payment_profession_cro;?>
                     </td>
                     <td colspan="3"> 
                         <input type="text" id="payment_profession_cro" name="payment_profession_cro" />
@@ -218,7 +218,7 @@
                 <tr class="pr" style="display: none">
 
                     <td>
-                        TDP
+                        <?php echo $txt_payment_profession_tdp;?>
                     </td>
                     <td colspan="3"> 
                         <input type="text" id="payment_profession_tdp" name="payment_profession_tdp" />
@@ -227,7 +227,7 @@
                 </tr>
                 <tr class="ac" style="display: none">
                     <td>
-                        Número da Matrícula
+                        <?php echo $txt_payment_profession_matricula;?>
                     </td>
                     <td colspan="3">
                         <input type="text" id="payment_profession_matricula" name="payment_profession_matricula" />
@@ -236,7 +236,7 @@
                 </tr>
                 <tr class="ac" style="display: none">
                     <td>
-                        Instituição de Ensino
+                        <?php echo $txt_payment_profession_ensino;?>
                     <td colspan="3">
                         <input type="text" id="payment_profession_ensino" name="payment_profession_ensino" />
                     </td>
@@ -244,7 +244,7 @@
                 <tr>
 
                     <td>
-                        Graduação
+                     <?php echo $txt_payment_profession_graduacao;?>
                     </td>
                     <td>
                         <?php
@@ -271,7 +271,7 @@
 
                     </td>
                     <td>
-                        Instituição de Ensino
+                       <?php echo $txt_payment_profession_instituica;?>
                     </td>
                     <td>
                         <input type="text" id="payment_profession_instituica" name="payment_profession_instituica" />
@@ -280,7 +280,7 @@
                 <tr class="area">
 
                     <td>
-                        Área de Atuação
+                     <?php echo $txt_payment_profession_atuacao;?>
                     </td>
                     <td colspan="3">
                         <?php

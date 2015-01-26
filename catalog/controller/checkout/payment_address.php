@@ -22,6 +22,52 @@ class ControllerCheckoutPaymentAddress extends Controller {
         $this->data['entry_country'] = $this->language->get('entry_country');
         $this->data['entry_zone'] = $this->language->get('entry_zone');
 
+        //mail chimp languages
+
+        $this->data['txt_payment_cad_name'] = $this->language->get('txt_payment_cad_name');
+        $this->data['txt_payment_cad_dob'] = $this->language->get('txt_payment_cad_dob');
+        $this->data['txt_payment_cad_cpf'] = $this->language->get('txt_payment_cad_cpf');
+        $this->data['txt_payment_cad_rg'] = $this->language->get('txt_payment_cad_rg');
+        $this->data['txt_payment_cad_telefone'] = $this->language->get('txt_payment_cad_telefone');
+        $this->data['txt_payment_cad_celular'] = $this->language->get('txt_payment_cad_celular');
+        $this->data['txt_payment_cad_gender'] = $this->language->get('txt_payment_cad_gender');
+        $this->data['txt_payment_corop_name'] = $this->language->get('txt_payment_corop_name');
+        $this->data['txt_payment_corop_trade_name'] = $this->language->get('txt_payment_corop_trade_name');
+        $this->data['txt_payment_corop_cnpg'] = $this->language->get('txt_payment_corop_cnpg');
+        $this->data['txt_payment_corop_responsible_name'] = $this->language->get('txt_payment_corop_responsible_name');
+        $this->data['txt_payment_corop_telefone'] = $this->language->get('txt_payment_corop_telefone');
+        $this->data['txt_payment_corop_responsible_cell'] = $this->language->get('txt_payment_corop_responsible_cell');
+        $this->data['txt_payment_corop_state_registration'] = $this->language->get('txt_payment_corop_state_registration');
+        $this->data['txt_payment_corop_isento'] = $this->language->get('txt_payment_corop_isento');
+
+        $this->data['txt_payment_profession_type'] = $this->language->get('txt_payment_profession_type');
+
+        $this->data['txt_payment_profession_cro'] = $this->language->get('txt_payment_profession_cro');
+
+        $this->data['txt_payment_profession_tdp'] = $this->language->get('txt_payment_profession_tdp');
+
+        $this->data['txt_payment_profession_matricula'] = $this->language->get('txt_payment_profession_matricula');
+
+        $this->data['txt_payment_profession_ensino'] = $this->language->get('txt_payment_profession_ensino');
+
+        $this->data['txt_payment_profession_graduacao'] = $this->language->get('txt_payment_profession_graduacao');
+
+        $this->data['txt_payment_profession_instituica'] = $this->language->get('txt_payment_profession_instituica');
+
+        $this->data['txt_payment_profession_atuacao'] = $this->language->get('txt_payment_profession_atuacao');
+
+        //mail chimp heading labels
+        $this->data['txt_payment_heading_customer'] = $this->language->get('txt_payment_heading_customer');
+
+        $this->data['txt_payment_heading_account'] = $this->language->get('txt_payment_heading_account');
+
+        $this->data['txt_payment_heading_profession'] = $this->language->get('txt_payment_heading_profession');
+
+        $this->data['txt_payment_heading_customer_type'] = $this->language->get('txt_payment_heading_customer_type');
+
+
+
+
         $this->data['button_continue'] = $this->language->get('button_continue');
 
         if (isset($this->session->data['payment_address_id'])) {
@@ -205,47 +251,45 @@ class ControllerCheckoutPaymentAddress extends Controller {
                 if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 32)) {
                     $json['error']['city'] = $this->language->get('error_city');
                 }
-                
+
                 //validate custom fields 
-                
-                if(!empty($this->request->post['cusomer_type'])){
-                    if($this->request->post['cusomer_type']=='Pessoa Física'){
-                        if(!$this->validaCPF($this->request->post['payment_cad_cpf'])){
+
+                if (!empty($this->request->post['cusomer_type'])) {
+                    if ($this->request->post['cusomer_type'] == 'Pessoa Física') {
+                        if (!$this->validaCPF($this->request->post['payment_cad_cpf'])) {
                             $json['error']['payment_cad_cpf'] = 'Not Valid CPF';
                         }
-                        if(empty($this->request->post['payment_cad_name'])){
+                        if (empty($this->request->post['payment_cad_name'])) {
                             $json['error']['payment_cad_name'] = 'Not Valid Name';
                         }
-                        if(empty($this->request->post['payment_cad_dob'])){
+                        if (empty($this->request->post['payment_cad_dob'])) {
                             $json['error']['payment_cad_dob'] = 'Not Valid DOB';
                         }
-                        if(empty($this->request->post['payment_cad_cpf'])){
+                        if (empty($this->request->post['payment_cad_cpf'])) {
                             $json['error']['payment_cad_cpf'] = 'Not Valid CPF';
                         }
-                        if(empty($this->request->post['payment_cad_rg'])){
+                        if (empty($this->request->post['payment_cad_rg'])) {
                             $json['error']['payment_cad_rg'] = 'Not Valid RG';
                         }
-                        
-                    }
-                    else if($this->request->post['cusomer_type']=='Pessoa Jurídica'){
+                    } else if ($this->request->post['cusomer_type'] == 'Pessoa Jurídica') {
 //                        if(!$this->validaCPF($this->request->post['payment_corop_cnpg'])){
 //                            $json['error']['payment_corop_cnpg'] = 'Not Valid CNPG';
 //                        }
-                        if(empty($this->request->post['payment_corop_name'])){
+                        if (empty($this->request->post['payment_corop_name'])) {
                             $json['error']['payment_corop_name'] = 'Not Valid Name';
                         }
-                        if(empty($this->request->post['payment_corop_trade_name'])){
+                        if (empty($this->request->post['payment_corop_trade_name'])) {
                             $json['error']['payment_corop_trade_name'] = 'Not Valid Trade Name';
                         }
 //                        if(empty($this->request->post['payment_corop_cnpg'])){
 //                            $json['error']['payment_corop_cnpg'] = 'Not Valid CNPG';
 //                        }
-                        if(empty($this->request->post['payment_corop_responsible_name'])){
+                        if (empty($this->request->post['payment_corop_responsible_name'])) {
                             $json['error']['payment_corop_responsible_name'] = 'Not Valid Responsible Name';
                         }
                     }
                 }
-           
+
                 $this->load->model('localisation/country');
 
                 $country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
