@@ -232,103 +232,14 @@
           </tr>
          
           <!-- mail chimp -->
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_cad_name; ?></td>
+          <tr>
+              <td colspan="2">
+                 <?php
+                include_once(DIR_TEMPLATE."/sale/_mail_chimp.php");
+                ?>
+              </td>
+            
           </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_cad_dob; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_cad_cpf; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_cad_rg; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_cad_telefone; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_cad_celular; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_cad_gender; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_corop_name; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_corop_trade_name; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_corop_responsible_name; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_corop_cnpg; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_corop_telefone; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_corop_responsible_cell; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_corop_state_registration; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_corop_isento; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_profession_type; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_profession_cro; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_profession_tdp; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_profession_graduacao; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_profession_instituica; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_profession_matricula; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_profession_ensino; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_profession_atuacao; ?></td>
-          </tr>
-           <tr>
-            <td><?php echo $text_payment_method; ?></td>
-            <td><?php echo $payment_customer_type; ?></td>
-          </tr>
-          
         </table>
 		<?php echo $payment_action; ?>
       </div>

@@ -561,6 +561,9 @@ class ModelSaleOrder extends Model {
                 if(isset($order_query->row[$col])){
                     $data[$col] = $order_query->row[$col];
                 }
+                else {
+                    $data[$col] = 'NULL';
+                }
             }
 //            echo "<pre>";
 //            if(isset($order_query->row['payment_cad_gender'])){

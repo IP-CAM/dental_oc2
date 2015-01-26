@@ -1,7 +1,7 @@
 <?php
 
 class ControllerSaleOrder extends Controller {
-  
+
     private $error = array();
 
     public function index() {
@@ -1156,7 +1156,7 @@ class ControllerSaleOrder extends Controller {
         } else {
             $this->data['order_totals'] = array();
         }
-      
+
         $this->template = 'sale/order_form.tpl';
         $this->children = array(
             'common/header',
@@ -1474,6 +1474,52 @@ class ControllerSaleOrder extends Controller {
             $this->data['tab_history'] = $this->language->get('tab_history');
             $this->data['tab_fraud'] = $this->language->get('tab_fraud');
 
+            //mail chimp languages
+
+            $this->data['txt_payment_cad_name'] = $this->language->get('txt_payment_cad_name');
+            $this->data['txt_payment_cad_dob'] = $this->language->get('txt_payment_cad_dob');
+            $this->data['txt_payment_cad_cpf'] = $this->language->get('txt_payment_cad_cpf');
+            $this->data['txt_payment_cad_rg'] = $this->language->get('txt_payment_cad_rg');
+            $this->data['txt_payment_cad_telefone'] = $this->language->get('txt_payment_cad_telefone');
+            $this->data['txt_payment_cad_celular'] = $this->language->get('txt_payment_cad_celular');
+            $this->data['txt_payment_cad_gender'] = $this->language->get('txt_payment_cad_gender');
+            $this->data['txt_payment_corop_name'] = $this->language->get('txt_payment_corop_name');
+            $this->data['txt_payment_corop_trade_name'] = $this->language->get('txt_payment_corop_trade_name');
+            $this->data['txt_payment_corop_cnpg'] = $this->language->get('txt_payment_corop_cnpg');
+            $this->data['txt_payment_corop_responsible_name'] = $this->language->get('txt_payment_corop_responsible_name');
+            $this->data['txt_payment_corop_telefone'] = $this->language->get('txt_payment_corop_telefone');
+            $this->data['txt_payment_corop_responsible_cell'] = $this->language->get('txt_payment_corop_responsible_cell');
+            $this->data['txt_payment_corop_state_registration'] = $this->language->get('txt_payment_corop_state_registration');
+            $this->data['txt_payment_corop_isento'] = $this->language->get('txt_payment_corop_isento');
+
+            $this->data['txt_payment_profession_type'] = $this->language->get('txt_payment_profession_type');
+
+            $this->data['txt_payment_profession_cro'] = $this->language->get('txt_payment_profession_cro');
+
+            $this->data['txt_payment_profession_tdp'] = $this->language->get('txt_payment_profession_tdp');
+
+            $this->data['txt_payment_profession_matricula'] = $this->language->get('txt_payment_profession_matricula');
+
+            $this->data['txt_payment_profession_ensino'] = $this->language->get('txt_payment_profession_ensino');
+
+            $this->data['txt_payment_profession_graduacao'] = $this->language->get('txt_payment_profession_graduacao');
+
+            $this->data['txt_payment_profession_instituica'] = $this->language->get('txt_payment_profession_instituica');
+
+            $this->data['txt_payment_profession_atuacao'] = $this->language->get('txt_payment_profession_atuacao');
+
+            //mail chimp heading labels
+            $this->data['txt_payment_heading_customer'] = $this->language->get('txt_payment_heading_customer');
+
+            $this->data['txt_payment_heading_account'] = $this->language->get('txt_payment_heading_account');
+
+            $this->data['txt_payment_heading_profession'] = $this->language->get('txt_payment_heading_profession');
+
+            $this->data['txt_payment_heading_customer_type'] = $this->language->get('txt_payment_heading_customer_type');
+
+
+
+
             $this->data['token'] = $this->session->data['token'];
 
             $url = '';
@@ -1567,16 +1613,16 @@ class ControllerSaleOrder extends Controller {
             $this->data['comment'] = nl2br($order_info['comment']);
             $this->data['shipping_method'] = $order_info['shipping_method'];
             $this->data['payment_method'] = $order_info['payment_method'];
-            
+
             //mail chimp columns
             $columns = array_keys($this->model_sale_order->_mail_chimp_columns);
-            
-            foreach($columns as $col){
-                if(isset($order_info[$col])){
-                     $this->data[$col] = $order_info[$col];
+
+            foreach ($columns as $col) {
+                if (isset($order_info[$col])) {
+                    $this->data[$col] = $order_info[$col];
                 }
             }
-           
+
             $this->data['total'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value']);
 
             if ($order_info['total'] < 0) {
@@ -1677,7 +1723,7 @@ class ControllerSaleOrder extends Controller {
                 //$query = $this->db->query("Select * FROM " . DB_PREFIX . "order_product_config_options WHERE product_id = " . (int) ($product['product_id']) . " AND " . (int) $this->request->get['order_id'] . " ");
                 $query = $this->model_catalog_product->getProductOrderConfigOptions($product['product_id'], $this->request->get['order_id']);
                 if ($query->num_rows > 0) {
-                   
+
                     $option_data[] = array(
                         'name' => 'Arcade',
                         'value' => $query->row['arcade'],
