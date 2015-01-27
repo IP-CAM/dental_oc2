@@ -84,4 +84,35 @@ $_['error_shipping']                 = 'Atenção: Escolha uma forma de entrega!
 $_['error_no_shipping']              = 'Atenção: Não há opções de entrega disponíveis. Por favor, <a href="%s">contate-nos</a> para assistência.';
 $_['error_payment']                  = 'Atenção: Escolha uma forma de pagamento!';
 $_['error_no_payment']               = 'Atenção: Não há opções de pagamento disponíveis. Por favor, <a href="%s">contate-nos</a> para assistência.';
+
+//mail_chimp_labels
+
+$_['txt_payment_cad_name'] = 'Nome Completo';
+$_['txt_payment_cad_dob'] = 'Data de Nascimento';
+$_['txt_payment_cad_cpf'] = 'CPF';
+$_['txt_payment_cad_rg'] = 'RG';
+$_['txt_payment_cad_telefone'] = 'Telefone';
+$_['txt_payment_cad_celular'] = 'Celular';
+$_['txt_payment_cad_gender'] = 'gênero';
+$_['txt_payment_corop_name'] = ' Razão Social';
+$_['txt_payment_corop_trade_name'] = 'Nome Fantasia';
+$_['txt_payment_corop_cnpg'] = 'CNPJ';
+$_['txt_payment_corop_responsible_name'] = 'Nome do Responsável';
+$_['txt_payment_corop_telefone'] = 'Telefone';
+$_['txt_payment_corop_responsible_cell'] = 'Celular do Responsável';
+$_['txt_payment_corop_state_registration'] = 'Inscrição Estadual';
+$_['txt_payment_corop_isento'] = 'Isento';
+$_['txt_payment_profession_type'] = 'Tipo de profissão';
+$_['txt_payment_profession_cro'] = 'CRO';
+$_['txt_payment_profession_tdp'] = 'TDP';
+$_['txt_payment_profession_matricula'] = 'Número da Matrícula';
+$_['txt_payment_profession_ensino'] = 'Instituição de Ensino';
+$_['txt_payment_profession_graduacao'] = 'Graduação';
+$_['txt_payment_profession_instituica'] = 'Instituição de Ensino';
+$_['txt_payment_profession_atuacao'] = 'Área de Atuação';
+//mail chimp heading labels
+$_['txt_payment_heading_customer'] = 'Dados Pessoais';
+$_['txt_payment_heading_account'] = 'Dados da Empresa';
+$_['txt_payment_heading_profession'] = 'Dados Profissionais';
+$_['txt_payment_heading_customer_type'] = 'Tipo de cliente';
 ?>
