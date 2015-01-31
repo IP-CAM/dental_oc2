@@ -44234,3 +44234,19 @@
 2015-01-26 15:42:58 - PHP Notice:  Undefined variable: payment_customer_type in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/_mail_chimp.php on line 111
 2015-01-26 15:45:44 - PHP Notice:  Undefined variable: txt_txt_payment_cad_name in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/_mail_chimp.php on line 12
 2015-01-26 15:48:49 - PHP Notice:  Undefined variable: txt_payment_profession_typ in /var/www/html/brian/real_dental/Dental/admin/view/template/sale/_mail_chimp.php on line 78
+2015-01-31 11:50:06 - PHP Warning:  require_once(SubScriptMailChimp.php): failed to open stream: No such file or directory in /var/www/html/brian/real_dental/Dental/catalog/model/checkout/order.php on line 28
+2015-01-31 11:50:52 - PHP Warning:  require_once(../../system/library/MailChimp/SubScriptMailChimp.php): failed to open stream: No such file or directory in /var/www/html/brian/real_dental/Dental/catalog/model/checkout/order.php on line 28
+2015-01-31 11:51:01 - PHP Warning:  require_once(../../../system/library/MailChimp/SubScriptMailChimp.php): failed to open stream: No such file or directory in /var/www/html/brian/real_dental/Dental/catalog/model/checkout/order.php on line 28
+2015-01-31 11:51:35 - PHP Notice:  Array to string conversion in /var/www/html/brian/real_dental/Dental/catalog/model/checkout/order.php on line 28
+2015-01-31 11:53:16 - PHP Warning:  require_once(/var/www/html/brian/real_dental/Dentalsystem/library/MailChimp/SubScriptMailChimp.php): failed to open stream: No such file or directory in /var/www/html/brian/real_dental/Dental/catalog/model/checkout/order.php on line 28
+2015-01-31 11:53:29 - PHP Warning:  require_once(Mailchimp/Mailchimp.php): failed to open stream: No such file or directory in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 8
+2015-01-31 12:02:25 - PHP Unknown:  Accessing static property SubScriptMailChimp::$mc as non static in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 35
+2015-01-31 12:02:25 - PHP Notice:  Undefined property: SubScriptMailChimp::$mc in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 35
+2015-01-31 12:02:25 - PHP Notice:  Trying to get property of non-object in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 35
+2015-01-31 12:08:29 - PHP Warning:  explode() expects at least 2 parameters, 1 given in /var/www/html/brian/real_dental/Dental/catalog/model/checkout/order.php on line 32
+2015-01-31 12:10:14 - PHP Warning:  Illegal string offset 'name' in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 87
+2015-01-31 12:10:14 - PHP Warning:  Illegal string offset 'name' in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 89
+2015-01-31 12:10:14 - PHP Warning:  Illegal string offset 'children' in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 89
+2015-01-31 12:10:15 - PHP Notice:  Undefined variable: e in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 106
+2015-01-31 12:47:19 - PHP Notice:  Undefined variable: e in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 106
+2015-01-31 12:47:51 - PHP Notice:  Undefined variable: e in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 106
