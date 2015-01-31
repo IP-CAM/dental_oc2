@@ -39,7 +39,7 @@
                 <tr>
 
                     <td>
-                       <?php echo $txt_payment_cad_name;?>
+                       p<?php echo $txt_payment_cad_name;?>
                     </td>
                     <td>
                         <input type="text" name="payment_cad_name" id="payment_cad_name" />
