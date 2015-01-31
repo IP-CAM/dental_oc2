@@ -1504,6 +1504,7 @@ class ControllerSaleOrder extends Controller {
 
             $this->data['txt_payment_profession_graduacao'] = $this->language->get('txt_payment_profession_graduacao');
 
+            $this->data['txt_payment_new_letter'] = $this->language->get('txt_payment_new_letter');
             $this->data['txt_payment_profession_instituica'] = $this->language->get('txt_payment_profession_instituica');
 
             $this->data['txt_payment_profession_atuacao'] = $this->language->get('txt_payment_profession_atuacao');

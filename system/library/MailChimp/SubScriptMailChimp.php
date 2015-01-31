@@ -107,6 +107,13 @@ class SubScriptMailChimp {
         }
     }
 
+    /**
+     * 
+     * @param type $list_id
+     * @param type $group
+     * @param type $by_name
+     * @return type
+     */
     public function find_group_by_($list_id, $group, $by_name = true) {
         $groups = $this->getListGroups($list_id);
 
@@ -123,6 +130,37 @@ class SubScriptMailChimp {
             }
         }
         return array();
+    }
+
+    /*
+     * 
+     */
+
+    public function add_batch_subscribers($list_id, $email, $group, $sub_groups) {
+        try {
+            $batch[] = array('email' => array('email' => $email));
+             $this->lists->batchSubscribe($list_id, $batch);
+
+            $emails = array('email' => $email);
+            $merge_vars = array(
+                'GROUPINGS' => array(
+                    array(
+                        'id' => (int) $group[0]['id'],
+                        'groups' => $sub_groups
+                    )
+                )
+            );
+            $mc->lists->subscribe($list_id, $emails, $merge_vars, 'html', true, true);
+        
+            $res['code'] = '200';
+            $res['msg'] = 'success';
+        } catch (Exception $ex) {
+            $res['code'] = '500';
+            $res['errors'] = array($e->getMessage());
+            $res['type'] = 'exception';
+            return $res;
+            
+        }
     }
 
 }

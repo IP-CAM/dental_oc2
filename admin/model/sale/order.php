@@ -27,6 +27,7 @@ class ModelSaleOrder extends Model {
         "payment_profession_matricula" => "varchar",
         "payment_profession_ensino" => "varchar",
         "payment_profession_atuacao" => "varchar",
+        "payment_news_letter" => "boolean",
     );
 
     public function addOrder($data) {

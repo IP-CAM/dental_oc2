@@ -55,6 +55,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
         $this->data['txt_payment_profession_instituica'] = $this->language->get('txt_payment_profession_instituica');
 
         $this->data['txt_payment_profession_atuacao'] = $this->language->get('txt_payment_profession_atuacao');
+        $this->data['txt_payment_news_letter'] = $this->language->get('txt_payment_news_letter');
 
         //mail chimp heading labels
         $this->data['txt_payment_heading_customer'] = $this->language->get('txt_payment_heading_customer');

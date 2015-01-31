@@ -27,6 +27,7 @@ class ModelAccountAddress extends Model {
         "payment_profession_matricula" => "varchar",
         "payment_profession_ensino" => "varchar",
         "payment_profession_atuacao" => "varchar",
+        "payment_news_letter" => "boolean",
     );
 
     public function addAddress($data) {
@@ -105,6 +106,11 @@ class ModelAccountAddress extends Model {
             $new_data['payment_corop_isento'] = 1;
         } else {
             $new_data['payment_corop_isento'] = 0;
+        }
+        if (!empty($new_data['payment_news_letter']) && $new_data['payment_news_letter'] == "on") {
+            $new_data['payment_news_letter'] = 1;
+        } else {
+            $new_data['payment_news_letter'] = 0;
         }
 
         return $new_data;

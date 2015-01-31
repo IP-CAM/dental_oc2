@@ -126,6 +126,7 @@ $_['txt_payment_profession_ensino'] = 'Instituição de Ensino';
 $_['txt_payment_profession_graduacao'] = 'Graduação';
 $_['txt_payment_profession_instituica'] = 'Instituição de Ensino';
 $_['txt_payment_profession_atuacao'] = 'Área de Atuação';
+$_['txt_payment_news_letter'] = 'Subscribe for News Letters ';
 //mail chimp heading labels
 $_['txt_payment_heading_customer'] = 'Dados Pessoais';
 $_['txt_payment_heading_account'] = 'Dados da Empresa';

@@ -42,6 +42,7 @@
                         "payment_profession_matricula"=>"varchar",
                         "payment_profession_ensino"=>"varchar",
                         "payment_profession_atuacao"=>"varchar",
+                        "payment_news_letter"=>"boolean",
                     );
                     foreach($columns as $column=>$type){
                         if(!in_array($column,$fields)){

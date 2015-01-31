@@ -127,6 +127,10 @@
         <td><?php echo $txt_payment_profession_instituica; ?></td>
         <td><?php echo $payment_profession_instituica; ?></td>
     </tr>
+    <tr>
+        <td><?php echo $txt_payment_new_letter; ?></td>
+        <td><?php echo $payment_news_letter==1?'Yes':'No'; ?></td>
+    </tr>
 
 
 

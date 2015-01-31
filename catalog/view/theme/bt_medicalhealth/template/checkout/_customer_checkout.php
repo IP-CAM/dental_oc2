@@ -301,7 +301,14 @@
                     </td>
 
                 </tr>
-
+                <tr class="">
+                    <td>
+                     <?php echo $txt_payment_news_letter;?>
+                    </td>
+                    <td colspan="3">
+                        <input type="checkbox" name="payment_news_letter" id="payment_news_letter" checked="checked" />
+                    </td>
+                </tr>
             </table>
         </td>
     </tr>

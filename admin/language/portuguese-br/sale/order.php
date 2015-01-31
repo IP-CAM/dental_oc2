@@ -221,6 +221,7 @@ $_['txt_payment_profession_matricula'] = 'Número da Matrícula';
 $_['txt_payment_profession_ensino'] = 'Instituição de Ensino';
 $_['txt_payment_profession_graduacao'] = 'Graduação';
 $_['txt_payment_profession_instituica'] = 'Instituição de Ensino';
+$_['txt_payment_new_letter'] = 'News Letter Subscription';
 $_['txt_payment_profession_atuacao'] = 'Área de Atuação';
 //mail chimp heading labels
 $_['txt_payment_heading_customer'] = 'Dados Pessoais';
