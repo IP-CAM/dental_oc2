@@ -44250,3 +44250,6 @@
 2015-01-31 12:10:15 - PHP Notice:  Undefined variable: e in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 106
 2015-01-31 12:47:19 - PHP Notice:  Undefined variable: e in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 106
 2015-01-31 12:47:51 - PHP Notice:  Undefined variable: e in /var/www/html/brian/real_dental/Dental/system/library/MailChimp/SubScriptMailChimp.php on line 106
+2015-01-31 14:54:05 - PHP Notice:  Undefined variable: config_mail_chimp_class in /var/www/html/brian/real_dental/Dental/admin/view/template/setting/setting.tpl on line 202
+2015-01-31 14:54:13 - PHP Notice:  Undefined variable: config_mail_chimp_class in /var/www/html/brian/real_dental/Dental/admin/view/template/setting/setting.tpl on line 202
+2015-01-31 16:08:26 - PHP Notice:  Undefined variable: config_mail_chimp_key in /var/www/html/brian/real_dental/Dental/admin/view/template/setting/setting.tpl on line 204

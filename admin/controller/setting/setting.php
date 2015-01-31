@@ -64,6 +64,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_currency_auto'] = $this->language->get('entry_currency_auto');
 		$this->data['entry_length_class'] = $this->language->get('entry_length_class');
 		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
+		$this->data['config_mail_chimp_key_class'] = $this->language->get('config_mail_chimp_key_class');
+		$this->data['config_mail_chimp_class'] = $this->language->get('config_mail_chimp_class');
 		$this->data['entry_catalog_limit'] = $this->language->get('entry_catalog_limit');
 		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
 		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
@@ -478,6 +480,16 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_weight_class_id'] = $this->request->post['config_weight_class_id'];
 		} else {
 			$this->data['config_weight_class_id'] = $this->config->get('config_weight_class_id');
+		}
+		if (isset($this->request->post['config_mail_chimp'])) {
+			$this->data['config_mail_chimp'] = $this->request->post['config_mail_chimp'];
+		} else {
+			$this->data['config_mail_chimp'] = $this->config->get('config_mail_chimp');
+		}
+		if (isset($this->request->post['config_mail_chimp_key'])) {
+			$this->data['config_mail_chimp_key'] = $this->request->post['config_mail_chimp_key'];
+		} else {
+			$this->data['config_mail_chimp_key'] = $this->config->get('config_mail_chimp_key');
 		}
 
 		$this->load->model('localisation/weight_class');

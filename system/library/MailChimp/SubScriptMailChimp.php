@@ -159,8 +159,10 @@ class SubScriptMailChimp {
                     )
                 )
             );
-            self::$mc->lists->subscribe($list_id, $emails, $merge_vars, 'html', true, true);
-
+        
+            $result = self::$mc->lists->subscribe($list_id, $emails, $merge_vars, 'html', true, true);
+         
+            
             $res['code'] = '200';
             $res['msg'] = 'success';
         } catch (Exception $ex) {

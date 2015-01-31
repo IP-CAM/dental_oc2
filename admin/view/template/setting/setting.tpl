@@ -198,6 +198,18 @@
                   <?php } ?>
                 </select></td>
             </tr>
+            <tr>
+              <td><?php echo $config_mail_chimp_key_class; ?></td>
+              <td>
+                  <input type="text" value="<?php echo $config_mail_chimp_key; ?>" name="config_mail_chimp_key" />
+              </td>
+            </tr>
+            <tr>
+              <td><?php echo $config_mail_chimp_class; ?></td>
+              <td>
+                  <input type="text" value="<?php echo $config_mail_chimp; ?>" name="config_mail_chimp" />
+              </td>
+            </tr>
           </table>
         </div>
         <div id="tab-option">
