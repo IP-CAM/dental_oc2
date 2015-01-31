@@ -16,9 +16,9 @@ class SubScriptMailChimp {
         
     }
 
-    public static function getInstance() {
+    public static function getInstance($key = '8a5ff2864ed57767856a4b4579a7424a-us10') {
         if (empty(self::$constr)) {
-            self::$mc = new Mailchimp("8a5ff2864ed57767856a4b4579a7424a-us10");
+            self::$mc = new Mailchimp($key);
             self::$constr = new SubScriptMailChimp();
         }
 

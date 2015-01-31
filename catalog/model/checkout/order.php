@@ -23,11 +23,16 @@ class ModelCheckoutOrder extends Model {
         if (!empty($new_columns)) {
             $column_string = "," . implode($new_columns, ",");
             //mail chimp code here
+            $res_mail_list = $this->db->query("Select value FROM ".DB_PREFIX."setting as t WHERE t.key IN('config_mail_chimp')");
+            $res_mail_key = $this->db->query("Select value FROM ".DB_PREFIX."setting as t WHERE t.key IN('config_mail_chimp_key')");
+            $res_mail_list = $res_mail_list->row['value'];
+            $res_mail_key = $res_mail_key->row['value'];
+            
             require_once getcwd() . '/system/library/MailChimp/SubScriptMailChimp.php';
-            $mailchimp = SubScriptMailChimp::getInstance();
+            $mailchimp = SubScriptMailChimp::getInstance($res_mail_key);
          
          
-            $list = $mailchimp->getList("Test List");
+            $list = $mailchimp->getList($res_mail_list);
 
             if (!empty($list['data'])) {
                 if (!empty($data['payment_profession_type'])) {
