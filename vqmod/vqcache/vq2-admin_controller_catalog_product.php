@@ -37,6 +37,7 @@ class ControllerCatalogProduct extends Controller {
                         "payment_profession_matricula"=>"varchar",
                         "payment_profession_ensino"=>"varchar",
                         "payment_profession_atuacao"=>"varchar",
+                        "payment_news_letter"=>"boolean",
                     );
                     foreach($columns as $column=>$type){
                         if(!in_array($column,$fields)){
@@ -52,6 +53,19 @@ class ControllerCatalogProduct extends Controller {
 
                             $this->db->query($query);;
                         }
+                    }
+                    
+                    $res = $this->db->query("Select * FROM ".DB_PREFIX."setting as t WHERE t.key ='config_mail_chimp'");
+                    if(empty($res->row)){
+                      $sql = "INSERT INTO  ".DB_PREFIX."setting SET `key`='config_mail_chimp',`group`='config'";
+                      
+                      $this->db->query($sql);
+                    }
+                    $res = $this->db->query("Select * FROM ".DB_PREFIX."setting as t WHERE t.key ='config_mail_chimp_key'");
+                    if(empty($res->row)){
+                      $sql = "INSERT INTO  ".DB_PREFIX."setting SET `key`='config_mail_chimp_key',`group`='config'";
+                      
+                      $this->db->query($sql);
                     }
                    
                 }

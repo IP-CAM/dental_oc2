@@ -44253,3 +44253,7 @@
 2015-01-31 14:54:05 - PHP Notice:  Undefined variable: config_mail_chimp_class in /var/www/html/brian/real_dental/Dental/admin/view/template/setting/setting.tpl on line 202
 2015-01-31 14:54:13 - PHP Notice:  Undefined variable: config_mail_chimp_class in /var/www/html/brian/real_dental/Dental/admin/view/template/setting/setting.tpl on line 202
 2015-01-31 16:08:26 - PHP Notice:  Undefined variable: config_mail_chimp_key in /var/www/html/brian/real_dental/Dental/admin/view/template/setting/setting.tpl on line 204
+2015-02-15 10:09:42 - SEDEX: CEP de destino invalido.
+2015-02-15 10:09:42 - SEDEX a Cobrar: CEP de destino invalido.
+2015-02-15 10:09:45 - SEDEX: CEP de destino invalido.
+2015-02-15 10:09:45 - SEDEX a Cobrar: CEP de destino invalido.
