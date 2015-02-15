@@ -257,6 +257,10 @@
                     <?php if ($minimum > 1) { ?>
                     <?php } ?>
                 </div>
+                <?php
+                    //calculate shipping
+                    include_once(DIR_TEMPLATE."bt_medicalhealth/template/product/_calculate_shipping.php");
+                ?>
                 <?php if ($review_status) { ?>
                 <div class="review">
                     <div><img src="catalog/view/theme/bt_medicalhealth/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click'); goToByScroll('tab-review');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click'); goToByScroll('review-title');"><?php echo $text_write; ?></a></div>

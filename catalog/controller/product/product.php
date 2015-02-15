@@ -262,6 +262,12 @@ class ControllerProductProduct extends Controller {
             $this->data['entry_good'] = $this->language->get('entry_good');
             $this->data['entry_bad'] = $this->language->get('entry_bad');
             $this->data['entry_captcha'] = $this->language->get('entry_captcha');
+            
+            //shipping calcualation
+            $this->data['text_postal_code'] = $this->language->get('text_postal_code');
+            $this->data['button_postal_code'] = $this->language->get('button_postal_code');
+            $this->data['postal_error_empty'] = $this->language->get('postal_error_empty');
+
 
             $this->data['button_cart'] = $this->language->get('button_cart');
             $this->data['button_wishlist'] = $this->language->get('button_wishlist');
