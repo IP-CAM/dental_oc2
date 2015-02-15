@@ -66,9 +66,8 @@
         <?php echo $google_analytics; ?>
     </head>
     <body>
-        <div class="frame_container">
-            <div id="container" class="container">
-                <div id="header" class="sixteen columns alpha omega">
+                <div class="container" id="tobpar">
+                 <div id="header" class="sixteen columns alpha omega">
                     <div class="boss_header_top">
                         <?php if ($logo) { ?>
                             <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
@@ -95,6 +94,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        <div class="frame_container">
+    
+            <div id="container" class="container">
+               
                 <?php echo $boss_megamenu; ?>
                 <?php echo $header_bottom; ?>
                 <?php if ($error) { ?>

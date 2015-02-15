@@ -48,9 +48,11 @@
                             $("#result_box ul").html("");
                             for(ob in msg['correios']['quote']){
                                 qut = msg['correios']['quote'];
-                                li_ht = "<li><span>"+qut[ob]['code']+"</span>";
+                                li_ht = "<li><span>"+qut[ob]['title']+"</span>";
+                                li_ht+='<div></div>';
+                                li_ht+= "<label>"+qut[ob]['code']+"</label>";
                                 li_ht+= "<label>"+qut[ob]['text']+"</label>";
-                                li_ht+= "<div></div></li>";
+                                li_ht+= "</li>";
                                 $("#result_box ul").append(li_ht); 
                             }
                             $("#result_box").show();
@@ -73,13 +75,19 @@
     #result_box ul li {
         margin-bottom: 10px;
         display: block;
+        color:black;    
         border-top: 1px solid #f2f2f2;
+        padding-left:2px;
     }
     
     #result_box ul li>span {
         font-size: 14px;
+        font-weight: bold;
     }
     #result_box ul li>label {
         font-size: 12px;
+        margin-top: 10px;
+        margin-left: 10px;
+        clear:both;
     }
 </style>    

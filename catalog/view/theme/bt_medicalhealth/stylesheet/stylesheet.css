@@ -137,9 +137,19 @@ p {
     margin-right: 20px;
     margin-left: 20px;
 }
+#tobpar {
+    position: fixed; 
+    top:0;
+    z-index: 1000;
+    background: white;
+    height: 115px;
+}
+#container {
+    margin-top:115px;
+}
 #header {
     height: 115px;
-    position: relative;
+    /*    position: fixed;*/
     z-index: 99;
 }
 #header #logo {
@@ -3081,7 +3091,7 @@ div.tags {
     cursor: pointer;;
 }
 #review-title {
-     cursor: pointer;;
+    cursor: pointer;;
 }
 #review-form {
     display:none;
