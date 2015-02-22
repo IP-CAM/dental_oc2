@@ -10,7 +10,7 @@
 
 include_once('chaveiro.php');
 
-$reg300    = array();
+$reg300 = array();
 $reg308cod = array();
 $reg308sal = array();
 $reg310cod = array();
@@ -29,38 +29,35 @@ if ($filename == "") {
     /* Busca pelo arquivo mais recente sem LOG */
     $pasta = './ecommerce/';
 
-    if(is_dir($pasta))
-    {
+    if (is_dir($pasta)) {
         $diretorio = dir($pasta);
 
-        while($arquivo = $diretorio->read()) {
-            if($arquivo != '..' && $arquivo != '.') {
+        while ($arquivo = $diretorio->read()) {
+            if ($arquivo != '..' && $arquivo != '.') {
                 #Cria um Arrquivo com todos os Arquivos encontrados
-                $arrayArquivos[date("Y/m/d H:i:s", filemtime($pasta.$arquivo))] = $pasta.$arquivo;
+                $arrayArquivos[date("Y/m/d H:i:s", filemtime($pasta . $arquivo))] = $pasta . $arquivo;
+            }
         }
-    }
         $diretorio->close();
     }
 
     #Classificar os arquivos para a Ordem Decrescente
     krsort($arrayArquivos, SORT_STRING);
-    
+
     #Checa qual mais recente não tem LOG
-    foreach($arrayArquivos as $valorArquivos)
-    {
+    foreach ($arrayArquivos as $valorArquivos) {
         //echo '<a href='.$pasta.$valorArquivos.'>'.$valorArquivos.'</a><br />';
         /* procura arquivo de log */
         $logfilename = basename($valorArquivos, ".txt");
-        $logfilename = "ecommerce/log/".$logfilename.".log";
+        $logfilename = "ecommerce/log/" . $logfilename . ".log";
 
-        if (Is_Dir($valorArquivos) == FALSE ) {
+        if (Is_Dir($valorArquivos) == FALSE) {
             if (file_exists($logfilename) == FALSE) {
                 $filename = $valorArquivos;
                 break;
             }
         }
     }
-    
 } else {
     $filename = 'ecommerce/' . $filename;
 }
@@ -73,7 +70,7 @@ if (!isset($_GET["showlog"])) {
 $showlog = $_GET["showlog"];
 
 $logfilename = basename($filename, ".txt");
-$logfilename = "ecommerce/log/".$logfilename.".log";
+$logfilename = "ecommerce/log/" . $logfilename . ".log";
 
 $logfile = fopen($logfilename, 'a');
 
@@ -127,30 +124,34 @@ for ($i = 0; $i < $count; $i++) {
     $linha = "";
     $campos = explode(";", $reg300[$i]);
     $prodcod = $campos[2];
-    if ($campos[8] = 'A') { $prodsit = '1'; }
-    if ($campos[8] = 'I') { $prodsit = '0'; }
+    if ($campos[8] = 'A') {
+        $prodsit = '1';
+    }
+    if ($campos[8] = 'I') {
+        $prodsit = '0';
+    }
     //$prodsit = $campos[8];
-    $proddes = $campos[9];  /* ida_product_description */
-    $prodpbr = $campos[17]; 
+    $proddes = mysql_escape_string($campos[9]);  /* ida_product_description */
+    $prodpbr = $campos[17];
     $prodpli = $campos[18]; /* weight_net */
-    $prodlar = $campos[28]; 
+    $prodlar = $campos[28];
     $prodcom = $campos[29];
     $prodalt = $campos[30];
     $prodcub = $campos[31]; /* cubage */
     $prodare = $campos[32]; /* square_meters */
-    $prodgen = $campos[33]; /* ida_product_description */
-    
+    $prodgen = mysql_escape_string($campos[33]); /* ida_product_description */
+
     /* outros campos advindos necessários */
     $prodstk = 7;
-    
+
     /* Busca Por Estoque do Produto e Soma */
     $keyvet = array_keys($reg308cod, $prodcod);
     $count2 = count($keyvet);
-    for ($j=0; $j < $count2; $j++) {
+    for ($j = 0; $j < $count2; $j++) {
         $prodsal += $reg308sal[$keyvet[$j]];
     }
     /* Fim Busca Estoque */
-    
+
     /* Busca Por Preço do Produto */
     $key = array_search($prodcod, $reg310cod);
     if ($key != FALSE) {
@@ -158,33 +159,74 @@ for ($i = 0; $i < $count; $i++) {
         $prodpcd = $reg310pcd[$key];
     }
     /* Fim Busca Preço */
-        
+
     /* Procura por Produto */
-    $sql = "SELECT * FROM  eworxes_product where product_id = $prodcod";
+    $sql = "SELECT * FROM  " . $db_prefix . "product where product_id = $prodcod";
     $sql = mysqli_query($conexao, $sql);
     if (mysqli_num_rows($sql) > 0) {
         /* Realiza Update no Banco de Dados E-Commerce */
-        $sql = "UPDATE eworxes_product SET status = $prodsit, quantity = $prodsal, price = $prodpsd, date_modified = Now()"
-                . " WHERE product_id = $prodcod";
-        $sql = mysqli_query($conexao, $sql);
-        
+        echo $sql = "UPDATE " . $db_prefix . "product SET status = $prodsit, quantity = $prodsal, price = $prodpsd, date_modified = Now()"
+        . " WHERE product_id = $prodcod";
+        if ($sql = mysqli_query($conexao, $sql)) {
+            echo "<br/>";
+            echo "-------success----------";
+            echo "<br/>";
+        } else {
+            echo "<br/>";
+            echo "-------faeilure----------";
+            echo "<br/>";
+        }
+
         $atualizados++;
     } else {
-        /* Realiza Inserção no Banco de Dados */
-        $sql = "INSERT INTO eworxes_product (product_id, status, weight, weight_net, width, length, height, cubage, square_meters, quantity, price, date_added, stock_status_id, date_available)"
-                . " VALUES($prodcod, $prodsit, $prodpbr, $prodpli, $prodlar, $prodcom, $prodalt, $prodcub, $prodare, $prodsal, $prodpsd, Now(), $prodstk, date(Now()))";
-        $sql = mysqli_query($conexao, $sql);
+        //get maximum id
         
+        echo $sql_max = "SELECT MAX(product_id) as max_id FROM " . $db_prefix . "product";
+        $res_max = mysqli_query($conexao,$sql_max);
+        $_max = mysqli_fetch_array($res_max,MYSQLI_NUM);
+        
+        $product_cus_id = $_max[0]+1;
+        /* Realiza Inserção no Banco de Dados */
+        echo $sql = "INSERT INTO " . $db_prefix . "product (product_id, status, weight, weight_net, width, length, height, cubage, square_meters, quantity, price, date_added, stock_status_id, date_available)"
+        . " VALUES($product_cus_id, $prodsit, $prodpbr, $prodpli, $prodlar, $prodcom, $prodalt, $prodcub, $prodare, $prodsal, $prodpsd, Now(), $prodstk, date(Now()))";
+
+        if ($res = mysqli_query($conexao, $sql)) {
+            echo "<br/>";
+            echo "-------success----------";
+            echo "<br/>";
+        } else {
+            echo "<br/>";
+            echo "-------faeilure----------";
+            echo "<br/>";
+        }
+
         if (mysqli_affected_rows($conexao) > 0) {
             /* Insere o detalhamento */
-            $sql = "INSERT INTO eworxes_product_description (product_id, language_id, name, description, meta_description, meta_keyword, tag)"
-                    . " VALUES ($prodcod, 2, '$proddes', '$prodgen', '', '', '')";
-            $sql = mysqli_query($conexao, $sql);
-            
+   
+
+            echo $sql = "INSERT INTO " . $db_prefix . "product_description (product_id, language_id, name, description, meta_description, meta_keyword, tag)"
+            . " VALUES ($product_cus_id, 2, '$proddes', '$prodgen', '', '', '')";
+            if ($sql = mysqli_query($conexao, $sql)) {
+
+                echo "<br/>";
+                echo "-------success----------";
+                echo "<br/>";
+            } else {
+                echo "<br/>";
+                echo "-------faeilure----------";
+                echo "<br/>";
+            }
             /* Insere no store */
-            $sql = "INSERT INTO eworxes_product_to_store (product_id, store_id) VALUES ($prodcod ,0)";
-            $sql = mysqli_query($conexao, $sql);
-            
+            echo $sql = "INSERT INTO " . $db_prefix . "product_to_store (product_id, store_id) VALUES ($product_cus_id ,0)";
+            if ($sql = mysqli_query($conexao, $sql)) {
+                echo "<br/>";
+                echo "-------success----------";
+                echo "<br/>";
+            } else {
+                echo "<br/>";
+                echo "-------faeilure----------";
+                echo "<br/>";
+            }
             $inseridos++;
         } else {
             $linha = "300E;" . $prodcod . ";" . $quebralinha;
@@ -194,9 +236,9 @@ for ($i = 0; $i < $count; $i++) {
 }
 
 /* Finaliza Dados */
-$linha = "999I".$inseridos.";" . $quebralinha;
+$linha = "999I" . $inseridos . ";" . $quebralinha;
 fwrite($logfile, $linha);
-$linha = "999U".$atualizados.";" . $quebralinha;
+$linha = "999U" . $atualizados . ";" . $quebralinha;
 fwrite($logfile, $linha);
 
 /* Finaliza Arquivo */
@@ -211,5 +253,4 @@ if ($showlog == "1") {
         echo "<br>";
     }
 }
-
 ?>

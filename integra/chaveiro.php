@@ -8,10 +8,11 @@
  * Conexão com Banco de Dados do E-commerce
  */
 
-$bdservidor = "mysql05-farm51.kinghost.net"; 
-$bancodedados = "eunicesolucoes";
-$bdusuario = "eunicesolucoes";
-$bdsenha = "BVjh76G712"; 
+$bdservidor = "localhost"; 
+$bancodedados = "dental";
+$bdusuario = "root";
+$bdsenha = "admin"; 
+$db_prefix = 'oc_';
 
 $conexao = mysqli_connect($bdservidor, $bdusuario, $bdsenha, $bancodedados) or die("Não foi possível se conectar ao Servidor!");
 

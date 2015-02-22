@@ -38,8 +38,8 @@ $result .= $quebralinha;
 //Select do Pedido no Banco de Dados do e-commerce
 $sql = "select order_id, customer_id, shipping_code, total, comment, date_added, shipping_address_1, shipping_address_2
         shipping_city, shipping_postcode, shipping_country_id, iso_code_3 
-        from eworxes_order 
-        left join eworxes_country on (eworxes_order.shipping_country_id = eworxes_country.country_id) 
+        from ".$db_prefix."order 
+        left join ".$db_prefix."country on (".$db_prefix."order.shipping_country_id = ".$db_prefix."country.country_id) 
         where (date_added > '$lastexport')  or (date_modified > '$lastexport')";
 $sql = mysqli_query($conexao, $sql);
 
@@ -116,11 +116,11 @@ if ($num_rows > 0 ) {
        }
        
        //REGISTRO 151 : PRODUTOS DO PEDIDO
-       $sql2 = "select eworxes_order_product.order_id, eworxes_order_product.product_id, quantity, eworxes_product.price as p1,
-                eworxes_order_product.price as p2, total
-                from eworxes_order_product
-                left join eworxes_product on (eworxes_product.product_id = eworxes_order_product.product_id) 
-                where eworxes_order_product.order_id = $numpedecom";
+       $sql2 = "select ".$db_prefix."order_product.order_id, ".$db_prefix."order_product.product_id, quantity, ".$db_prefix."product.price as p1,
+                ".$db_prefix."order_product.price as p2, total
+                from ".$db_prefix."order_product
+                left join ".$db_prefix."product on (".$db_prefix."product.product_id = ".$db_prefix."order_product.product_id) 
+                where ".$db_prefix."order_product.order_id = $numpedecom";
        $sql2 = mysqli_query($conexao, $sql2);
        
        $num_rows2 = mysqli_num_rows($sql2); /* Número de Pedidos Encontrados */
@@ -157,11 +157,11 @@ if ($num_rows > 0 ) {
     /* BUSCAR DADOS DE CLIENTES DOS PEDIDOS ADICIONADOS/MODIFICADOS */
     $count = count($reg160);
     for($i=0;$i<$count;$i++) {
-        $sql3 = "SELECT eworxes_customer.customer_id, eworxes_customer.firstname, eworxes_customer.lastname, eworxes_address.address_1,
-                 eworxes_address.address_2, eworxes_address.city, eworxes_address.postcode, telephone, email, eworxes_country.iso_code_3 
-                 FROM eworxes_customer, eworxes_address
-                 LEFT JOIN eworxes_country on (eworxes_country.country_id = eworxes_address.country_id) 
-                 WHERE (eworxes_customer.customer_id = $reg160[$i]) and (eworxes_address.address_id = eworxes_customer.address_id)";
+        $sql3 = "SELECT ".$db_prefix."customer.customer_id, ".$db_prefix."customer.firstname, ".$db_prefix."customer.lastname, ".$db_prefix."address.address_1,
+                 ".$db_prefix."address.address_2, ".$db_prefix."address.city, ".$db_prefix."address.postcode, telephone, email, ".$db_prefix."country.iso_code_3 
+                 FROM ".$db_prefix."customer, ".$db_prefix."address
+                 LEFT JOIN ".$db_prefix."country on (".$db_prefix."country.country_id = ".$db_prefix."address.country_id) 
+                 WHERE (".$db_prefix."customer.customer_id = $reg160[$i]) and (".$db_prefix."address.address_id = ".$db_prefix."customer.address_id)";
         $sql3 = mysqli_query($conexao, $sql3);
         if ($sql3) {
             while ($dados3 = mysql_fetch_array($sql3)) {
