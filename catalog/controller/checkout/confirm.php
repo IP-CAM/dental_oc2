@@ -155,7 +155,8 @@ class ControllerCheckoutConfirm extends Controller {
             $data['payment_country'] = $payment_address['country'];
             $data['payment_country_id'] = $payment_address['country_id'];
             $data['payment_address_format'] = $payment_address['address_format'];
-
+            
+            //mail chimp code will help order to integrate with address
             $main_chimp_cols = array_keys($this->model_account_address->_mail_chimp_columns);
             foreach ($main_chimp_cols as $col) {
                 if (isset($payment_address[$col])) {

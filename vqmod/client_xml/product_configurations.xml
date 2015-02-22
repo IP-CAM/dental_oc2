@@ -1,0 +1,234 @@
+<modification>
+    <id>Adds Product Configuration Database Tables</id>
+    <version>1.0]</version>
+    <vqmver>1.0</vqmver>
+    <author>itsgeniusstar@gmail.com</author>
+
+    <file name="admin/controller/catalog/product.php">
+        <operation>
+            <search position="replace"><![CDATA[
+                public function index() {
+                ]]></search>
+            <add><![CDATA[
+                protected function addCheckoutColumns($table = "order"){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    $columns = array(
+                        "payment_customer_type"=>"varchar",
+                        "payment_cad_name"=>"varchar",
+                        "payment_cad_dob"=>"date",
+                        "payment_cad_cpf"=>"varchar",
+                        "payment_cad_rg"=>"varchar",
+                        "payment_cad_telefone"=>"varchar",
+                        "payment_cad_celular"=>"varchar",
+                        "payment_cad_gender"=>"varchar",
+                        "payment_corop_name"=>"varchar",
+                        "payment_corop_trade_name"=>"varchar",
+                        "payment_corop_responsible_name"=>"varchar",
+                        "payment_corop_cnpg"=>"varchar",
+                        "payment_corop_telefone"=>"varchar",
+                        "payment_corop_responsible_cell"=>"varchar",
+                        "payment_corop_state_registration"=>"varchar",
+                        "payment_corop_isento"=>"boolean",
+                        "payment_profession_type"=>"varchar",
+                        "payment_profession_cro"=>"varchar",
+                        "payment_profession_tdp"=>"varchar",
+                        "payment_profession_graduacao"=>"varchar",
+                        "payment_profession_instituica"=>"varchar",
+                        "payment_profession_matricula"=>"varchar",
+                        "payment_profession_ensino"=>"varchar",
+                        "payment_profession_atuacao"=>"varchar",
+                        "payment_news_letter"=>"boolean",
+                    );
+                    foreach($columns as $column=>$type){
+                        if(!in_array($column,$fields)){
+                            if($type=="varchar"){
+                              $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) DEFAULT NULL";  
+                            }
+                            else if($type=="date"){
+                                $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." date DEFAULT NULL";  
+                            }
+                            else if($type=="boolean"){
+                                $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." tinyint(1) DEFAULT 0";  
+                            }
+
+                            $this->db->query($query);;
+                        }
+                    }
+                    
+                    $res = $this->db->query("Select * FROM ".DB_PREFIX."setting as t WHERE t.key ='config_mail_chimp'");
+                    if(empty($res->row)){
+                      $sql = "INSERT INTO  ".DB_PREFIX."setting SET `key`='config_mail_chimp',`group`='config'";
+                      
+                      $this->db->query($sql);
+                    }
+                    $res = $this->db->query("Select * FROM ".DB_PREFIX."setting as t WHERE t.key ='config_mail_chimp_key'");
+                    if(empty($res->row)){
+                      $sql = "INSERT INTO  ".DB_PREFIX."setting SET `key`='config_mail_chimp_key',`group`='config'";
+                      
+                      $this->db->query($sql);
+                    }
+                   
+                }
+                protected function getLanguages(){
+                  $res = $this->db->query("Select * FROM ".DB_PREFIX."language WHERE code <>'en'");
+                  $array = array();  
+                  foreach($res->rows as $row){
+                    $array[] = "value_".$row['code'];
+                  }
+                  return $array;
+                }
+                protected function add_column_custom($table,$languages){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    foreach($languages as $column){
+                        if(!in_array($column,$fields)){
+                            $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) NOT NULL after value";
+                            $this->db->query($query);;
+                        }
+                    }
+                
+                }
+
+                protected function dbProductArcade($languages){
+                    $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_arcade'");
+                    if(!$query->num_rows){
+                        $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_arcade (
+                               `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+                               `value` varchar(150) NOT NULL,
+                               `date_added` datetime NOT NULL,
+                               `date_modified` datetime NOT NULL,
+
+                               PRIMARY KEY (`id`)
+                             ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                           
+                        $this->db->query($sql);
+                    }
+                
+                    $this->add_column_custom("conf_product_arcade",$languages);
+                    
+                    
+                }
+                protected function dbTamanho($languages){
+                    $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_tamanho'");
+                    if(!$query->num_rows){
+                     $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_tamanho (
+                            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+
+                            `value` varchar(150) NOT NULL,
+                            `date_added` datetime NOT NULL,
+                            `date_modified` datetime NOT NULL,
+
+                            PRIMARY KEY (`id`)
+                          ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                  
+                    $this->db->query($sql);
+                    }
+                    $this->add_column_custom("conf_product_tamanho",$languages);
+                }
+                protected function dbCor($languages){
+                    $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_cor'");
+                    if(!$query->num_rows){
+                     $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_cor (
+                            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+
+                            `value` varchar(150) NOT NULL,
+                            `date_added` datetime NOT NULL,
+                            `date_modified` datetime NOT NULL,
+
+                            PRIMARY KEY (`id`)
+                          ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                    $this->db->query($sql);
+                    }
+                    $this->add_column_custom("conf_product_cor",$languages);
+                }
+                protected function dbProductConfigOptions(){
+                    $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."product_config_options'");
+                    if(!$query->num_rows){
+                        $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."product_config_options (
+                                `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+                                `product_id` int(11) unsigned NOT NULL,  
+                                `arcade` int(11) DEFAULT 0,
+                                `tamanho` int(11) DEFAULT 0,
+                                `cor` int(11) DEFAULT 0,
+                                `sku` varchar(255) DEFAULT NULL,
+                                `qty` int(11) DEFAULT 0,
+                                `json_data` text DEFAULT NULL,
+                                `date_added` datetime NOT NULL,
+                                `date_modified` datetime NOT NULL,
+
+                                PRIMARY KEY (`id`)
+                              ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                        $this->db->query($sql);
+                    }
+                    
+                }
+                protected function dbOrderProductConfigOptions(){
+                    $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."order_product_config_options'");
+                    if(!$query->num_rows){
+                        $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."order_product_config_options (
+                                `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+                                `product_id` int(11) unsigned NOT NULL,  
+                                `order_id` int(11) unsigned NOT NULL,  
+                                `arcade` int(11) DEFAULT 0,
+                                `tamanho` int(11) DEFAULT 0,
+                                `cor` int(11) DEFAULT 0,
+                                `conf_id` int(11) unsigned NOT NULL,
+                                `date_added` datetime NOT NULL,
+                                `date_modified` datetime NOT NULL,
+
+                                PRIMARY KEY (`id`)
+                              ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                        $this->db->query($sql);
+                    }
+                    
+                }
+                protected function add_product_custom_columns($languages){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX."product");
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    foreach($languages as $column){
+                        if(!in_array($column,$fields)){
+                            $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) NOT NULL after value";
+                            $this->db->query($query);;
+                        }
+                    }
+                
+                }
+                public function index() {
+                    $languages = $this->getLanguages();
+                   
+                    $this->dbProductArcade($languages);
+                    $this->dbTamanho($languages);
+                    $this->dbCor($languages);
+                    $this->dbProductConfigOptions();
+                    $this->dbOrderProductConfigOptions();
+                    $this->addCheckoutColumns("order");
+                    $this->addCheckoutColumns("address");
+               
+                ]]>
+            </add>
+        </operation>
+  ]
+    </file>	
+
+
+
+</modification>
+
+
+
+
+
+

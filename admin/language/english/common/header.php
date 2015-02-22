@@ -96,6 +96,9 @@ $_['text_openbay_order_import']        = 'Order import';
 $_['text_paypal_manage']               = 'PayPal';
 $_['text_paypal_search']               = 'Search';
 $_['text_recurring_profile']           = 'Recurring Profiles';
+
+
+//related to product options
 $_['conf_product']           = 'Products Configurations';
 $_['conf_product_arcade']           = 'Arcades';
 $_['conf_product_cor']           = 'Cors';

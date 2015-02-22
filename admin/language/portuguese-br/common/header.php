@@ -84,4 +84,10 @@ $_['text_length_class']                = 'Unidades de Medidas';
 $_['text_zone']                        = 'Estados';
 $_['text_recurring_profile']           = 'Perfis Recorrentes';
 $_['text_profile']                     = 'Perfis';
+
+//related to product options
+$_['conf_product']           = 'Products Configurations';
+$_['conf_product_arcade']           = 'Arcades';
+$_['conf_product_cor']           = 'Cors';
+$_['conf_product_tamanho']           = 'Tamanhos';
 ?>

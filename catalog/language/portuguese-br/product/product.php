@@ -13,9 +13,11 @@ $_['text_tax']          = 'Sem Impostos:';
 $_['text_discount']     = '%s ou mais %s';
 $_['text_option']       = 'Opções Disponíveis';
 $_['text_qty']          = 'Qtd:';
+//shipping calculator
 $_['text_postal_code']          = 'código postal';
 $_['button_postal_code']          = 'Cálculo envio';
 $_['postal_error_empty']          = 'Nenhum código postal fornecida';
+
 $_['text_minimum']      = 'Este produto tem uma quantidade mínima de %s para venda';
 $_['text_or']           = '- OU -';
 $_['text_reviews']      = '%s comentários'; 

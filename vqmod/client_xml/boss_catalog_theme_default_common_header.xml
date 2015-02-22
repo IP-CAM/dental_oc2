@@ -1,0 +1,16 @@
+<modification>
+	<id>Bossthemes - catalog - view - theme - default - template - common - header</id>
+	<version>1.5.4.1</version>
+	<vqmver>2.1.7</vqmver>
+	<author>bossthemes</author>
+	<file name="catalog/view/theme/default/template/common/header.tpl">
+		<operation>
+			<search position="replace"  offset="23"><![CDATA[
+				<?php if ($categories) { ?>
+			]]></search>
+			<add><![CDATA[ 
+				<?php echo $boss_megamenu; ?>
+			]]></add>
+		</operation>
+	</file>
+</modification>

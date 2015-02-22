@@ -75,7 +75,7 @@ class ModelCatalogProduct extends Model {
         $query1 = $this->db->query("SELECT t.id, a.value as value,t.json_data FROM " . DB_PREFIX . "product_config_options t " . $join1 . " WHERE  t.product_id = " . (int) $product_id);
         $query2 = $this->db->query("SELECT t.id, b.value as value FROM " . DB_PREFIX . "product_config_options t " . $join2 . " WHERE  t.product_id = " . (int) $product_id);
         $query3 = $this->db->query("SELECT t.id, c.value as value FROM " . DB_PREFIX . "product_config_options t " . $join3 . " WHERE  t.product_id = " . (int) $product_id);
-        return ["arcade" => $query1->rows, "tamanho" => array(), "cor" => array()];
+        return array("arcade" => $query1->rows, "tamanho" => array(), "cor" => array());
     }
 
     public function getAllconfigurations() {
@@ -95,7 +95,7 @@ class ModelCatalogProduct extends Model {
         foreach ($query2->rows as $data) {
             $tom_arcade[$data['id']] = $data['value'];
         }
-        return ["arcade" => $arr_arcade, "tamanho" => $tom_arcade, "cor" => $cor_arcade];
+        return array("arcade" => $arr_arcade, "tamanho" => $tom_arcade, "cor" => $cor_arcade);
     }
 
     public function getProducts($data = array()) {

@@ -19,6 +19,9 @@ $_['text_option_value']      = 'Valor da Opção';
 $_['text_percent']           = 'Porcentagem';
 $_['text_amount']            = 'Valor Fixo';
 
+//special tabs
+$_['custom_product_options']            = 'Opções do produto';
+
 // Column
 $_['column_name']            = 'Produto';
 $_['column_model']           = 'Modelo';
@@ -27,6 +30,13 @@ $_['column_price']           = 'Preço';
 $_['column_quantity']        = 'Quantidade';
 $_['column_status']          = 'Situação';
 $_['column_action']          = 'Ação';
+
+
+//for product config options
+$_['entry_arcade']          = 'Arcade :';
+$_['entry_tamanho']          = 'Tamanho:';
+$_['entry_cor']          = 'Cor:';
+$_['text_remove'] = 'Remove';
 
 // Entry
 $_['entry_name']             = 'Produto:<br/><span class="help">Nome do Produto.</span>';
