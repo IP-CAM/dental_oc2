@@ -229,9 +229,9 @@ class ControllerCommonHeader extends Controller {
             $this->data['recurring_profile'] = $this->url->link('sale/recurring', 'token=' . $this->session->data['token'], 'SSL');
 
 
-            $this->data['conf_arcade_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'].'&model=arcade', 'SSL');
-            $this->data['conf_cor_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'].'&model=cor', 'SSL');
-            $this->data['conf_tamanho_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'].'&model=tamanho', 'SSL');
+            $this->data['conf_arcade_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=arcade', 'SSL');
+            $this->data['conf_cor_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=cor', 'SSL');
+            $this->data['conf_tamanho_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=tamanho', 'SSL');
 
 
             $this->data['stores'] = array();
@@ -251,6 +251,104 @@ class ControllerCommonHeader extends Controller {
         $this->template = 'common/header.tpl';
 
         $this->render();
+    }
+
+    protected function getForm2() {
+        $this->load->model('user/user');
+        $this->language->load('user/user');
+        $this->data['heading_title'] = $this->language->get('heading_title');
+        $this->data['text_enabled'] = $this->language->get('text_enabled');
+        $this->data['text_disabled'] = $this->language->get('text_disabled');
+        $this->data['entry_username'] = $this->language->get('entry_username');
+        $this->data['entry_password'] = $this->language->get('entry_password');
+        $this->data['entry_confirm'] = $this->language->get('entry_confirm');
+        $this->data['entry_firstname'] = $this->language->get('entry_firstname');
+        $this->data['entry_lastname'] = $this->language->get('entry_lastname');
+        $this->data['entry_email'] = $this->language->get('entry_email');
+        $this->data['entry_user_group'] = $this->language->get('entry_user_group');
+        $this->data['entry_status'] = $this->language->get('entry_status');
+        $this->data['entry_captcha'] = $this->language->get('entry_captcha');
+        $this->data['button_save'] = $this->language->get('button_save');
+        $this->data['button_cancel'] = $this->language->get('button_cancel');
+        if (isset($this->error['warning'])) {
+            $this->data['error_warning'] = $this->error['warning'];
+        } else {
+            $this->data['error_warning'] = '';
+        }
+        if (isset($this->error['username'])) {
+            $this->data['error_username'] = $this->error['username'];
+        } else {
+            $this->data['error_username'] = '';
+        }
+        if (isset($this->error['password'])) {
+            $this->data['error_password'] = $this->error['password'];
+        } else {
+            $this->data['error_password'] = '';
+        }
+        if (isset($this->error['confirm'])) {
+            $this->data['error_confirm'] = $this->error['confirm'];
+        } else {
+            $this->data['error_confirm'] = '';
+        }
+        if (isset($this->error['firstname'])) {
+            $this->data['error_firstname'] = $this->error['firstname'];
+        } else {
+            $this->data['error_firstname'] = '';
+        }
+        if (isset($this->error['lastname'])) {
+            $this->data['error_lastname'] = $this->error['lastname'];
+        } else {
+            $this->data['error_lastname'] = '';
+        }
+        $url = '';
+        if (!isset($this->request->get['user_id'])) {
+            $this->data['action_SA'] = $this->url->link('user/user/insertSuper', 'token=' . $this->session->data['token'] . $url, 'SSL');
+        } else {
+            $this->data['action_SA'] = $this->url->link('user/user/update', 'token=' . $this->session->data['token'] . '&user_id=' . $this->request->get['user_id'] . $url, 'SSL');
+        }
+        if (isset($this->request->get['user_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+            $user_info = $this->model_user_user->getUser($this->request->get['user_id']);
+        }
+        if (isset($this->request->post['username'])) {
+            $this->data['username'] = $this->request->post['username'];
+        } elseif (!empty($user_info)) {
+            $this->data['username'] = $user_info['username'];
+        } else {
+            $this->data['username'] = '';
+        }
+        if (isset($this->request->post['password'])) {
+            $this->data['password'] = $this->request->post['password'];
+        } else {
+            $this->data['password'] = '';
+        }
+        if (isset($this->request->post['confirm'])) {
+            $this->data['confirm'] = $this->request->post['confirm'];
+        } else {
+            $this->data['confirm'] = '';
+        }
+        if (isset($this->request->post['firstname'])) {
+            $this->data['firstname'] = $this->request->post['firstname'];
+        } elseif (!empty($user_info)) {
+            $this->data['firstname'] = $user_info['firstname'];
+        } else {
+            $this->data['firstname'] = '';
+        }
+        if (isset($this->request->post['lastname'])) {
+            $this->data['lastname'] = $this->request->post['lastname'];
+        } elseif (!empty($user_info)) {
+            $this->data['lastname'] = $user_info['lastname'];
+        } else {
+            $this->data['lastname'] = '';
+        }
+        if (isset($this->request->post['email'])) {
+            $this->data['email'] = $this->request->post['email'];
+        } elseif (!empty($user_info)) {
+            $this->data['email'] = $user_info['email'];
+        } else {
+            $this->data['email'] = '';
+        }
+        $this->template = 'common/header.tpl';
+        $this->response->setOutput($this->render());
     }
 
 }

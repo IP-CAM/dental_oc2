@@ -14,5 +14,5 @@ $_['text_account']      = 'Minha Conta';
 $_['text_order']        = 'Histórico de Pedidos';
 $_['text_wishlist']     = 'Lista de Desejos';
 $_['text_newsletter']   = 'Meu Informativo';
-$_['text_powered']      = '<a href="http://www.sidicom.com.br" target="_blank">Sidicom</a>';
+$_['text_powered']      = '<a href="http://www.eworx.com.br" target="_blank">Eworx E-Commerce Solucoes</a>';
 ?>

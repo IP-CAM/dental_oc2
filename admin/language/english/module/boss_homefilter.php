@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']       = 'Boss - Home Filter Products';
+$_['heading_title']       = 'Eunice Solucoes - Home Filter Products';
 
 // Text
 $_['text_module']         = 'Modules';
@@ -28,7 +28,7 @@ $_['tab_latest_products']	= 'Latest Products';
 $_['tab_choose_a_category']	= 'Choose a category';
 
 // Error 
-$_['error_permission']    = 'Warning: You do not have permission to modify module Boss - Home Filter Products!';
+$_['error_permission']    = 'Warning: You do not have permission to modify module Eunice Solucoes - Home Filter Products!';
 $_['error_image']         = 'Image width &amp; height dimensions required!';
 $_['error_category']         = 'Category required!';
 $_['error_numproduct']         = 'Number of products required!';

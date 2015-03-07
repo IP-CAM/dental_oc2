@@ -1,6 +1,6 @@
 <?php
 // Heading  
-$_['heading_title']          = 'Bossthemes Compare';
+$_['heading_title']          = 'EStheme Compare';
 
 // Text
 $_['text_title']             = 'Product added to compare';

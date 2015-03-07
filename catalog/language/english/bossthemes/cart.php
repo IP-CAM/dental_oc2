@@ -1,6 +1,6 @@
 <?php
 // Heading  
-$_['heading_title']          = 'Bossthemes Cart';
+$_['heading_title']          = 'EStheme Cart';
 
 // Text
 $_['text_title']             = 'Product added to Cart';

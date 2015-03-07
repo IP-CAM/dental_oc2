@@ -1,10 +1,10 @@
 <?php
 // Heading
-$_['heading_title']       = 'Boss - Static Block';
+$_['heading_title']       = 'Eunice Solucoes - Static Block';
 
 // Text
 $_['text_module']         = 'Modules';
-$_['text_success']        = 'Success: You have modified module Boss - Static Block!';
+$_['text_success']        = 'Success: You have modified module Eunice Solucoes - Static Block!';
 $_['text_header_top']     = 'Header Top';
 $_['text_header_bottom']  = 'Header Bottom';
 $_['text_content_top']    = 'Content Top';
@@ -29,5 +29,5 @@ $_['entry_status']        = 'Status:';
 $_['entry_sort_order']    = 'Sort Order:';
 
 // Error
-$_['error_permission']    = 'Warning: You do not have permission to modify module Boss - Static Block!';
+$_['error_permission']    = 'Warning: You do not have permission to modify module Eunice Solucoes - Static Block!';
 ?>

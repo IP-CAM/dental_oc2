@@ -40,8 +40,6 @@ $_['entry_currency']               = 'Moeda Padrão:<br /><span class="help">Lim
 $_['entry_currency_auto']          = 'Atualizar Moeda Automaticamente:<br /><span class="help">Configurar sua loja para atualizar os valores das moedas diariamente?</span>';
 $_['entry_length_class']           = 'Unidade de Medida Padrão:<br /><span class="help">Unidade de medida padrão que aparecerá no cadastro de um novo produto.</span>';
 $_['entry_weight_class']           = 'Unidade de Peso Padrão:<br /><span class="help">Unidade de peso padrão que aparecerá no cadastro de um novo produto.</span>';
-$_['config_mail_chimp_key_class']           = 'Mail Chimp Api key:';
-$_['config_mail_chimp_class']           = 'Mail Chimp List:';
 $_['entry_catalog_limit'] 	       = 'Itens por Página (Loja):<br /><span class="help">Quantidade de itens que serão exibidos por página na loja (produtos, categorias, etc).</span>';
 $_['entry_admin_limit']   	       = 'Itens por Página (Administração):<br /><span class="help">Quantidade de itens que serão exibidos por página na administração (vendas, clientes, etc).</span>';
 $_['entry_product_count']          = 'Qtd de Produtos no Departamento:<br /><span class="help">Exibir o número de produtos nos departamentos e subdepartamentos ? Ao desativar esta opção você pode melhorar o desempenho de sua loja.</span>';
@@ -147,4 +145,8 @@ $_['error_ftp_username']           = 'Usuário FTP requerido!';
 $_['error_ftp_password']           = 'Senha FTP requerida!';
 $_['error_error_filename']         = 'Atenção: O campo <b>Nome do Arquivo de Log</b> tem seu preenchimento obrigatório!';
 $_['error_encryption']             = 'Criptografia precisa ter entre 3 e 32 caracteres!';
+
+//mail chimp
+$_['config_mail_chimp_key_class']           = 'Mail Chimp Api key:';
+$_['config_mail_chimp_class']           = 'Mail Chimp List:';
 ?>

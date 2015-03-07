@@ -1,11 +1,11 @@
 <?php
 // Heading
-$_['heading_title']       = 'Boss - Populars';
+$_['heading_title']       = 'Eunice Solucoes - Populars';
 
 // Text
 $_['entry_title']         = 'Title';
 $_['text_module']         = 'Modules';
-$_['text_success']        = 'Success: You have modified module boss populars!';
+$_['text_success']        = 'Success: You have modified module Eunice Solucoes - Populars!';
 $_['text_content_top']    = 'Content Top';
 $_['text_content_bottom'] = 'Content Bottom';
 $_['text_column_left']    = 'Column Left';
@@ -20,6 +20,6 @@ $_['entry_status']        = 'Status:';
 $_['entry_sort_order']    = 'Sort Order:';
 
 // Error
-$_['error_permission']    = 'Warning: You do not have permission to modify module boss populars!';
+$_['error_permission']    = 'Warning: You do not have permission to modify module Eunice Solucoes - Populars!';
 $_['error_image']         = 'Image width &amp; height dimensions required!';
 ?>

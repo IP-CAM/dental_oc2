@@ -1,4 +1,4 @@
----------- Date: 2015-02-21 19:12:50 ~ IP : 127.0.0.1 ----------
+---------- Date: 2015-03-07 12:51:52 ~ IP : 127.0.0.1 ----------
 REQUEST URI : /brian/real_dental/Dental/
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
@@ -13,8 +13,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-02-21 19:14:16 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=account/account
+---------- Date: 2015-03-07 12:51:55 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -28,8 +28,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-02-21 19:14:33 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/category&amp;path=45
+---------- Date: 2015-03-07 12:56:59 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -43,8 +43,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-02-21 19:14:35 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=checkout/cart
+---------- Date: 2015-03-07 13:01:27 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages
@@ -58,8 +58,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-02-21 19:14:41 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=checkout/checkout
+---------- Date: 2015-03-07 13:01:27 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /brian/real_dental/Dental/
 MOD DETAILS:
    modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
    id        : Adds Youtube videos to product pages

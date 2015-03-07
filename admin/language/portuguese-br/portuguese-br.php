@@ -93,7 +93,6 @@ $_['tab_store']                     = 'Loja';
 $_['tab_special']                   = 'Promoções';
 $_['tab_local']                     = 'Localização';
 $_['tab_mail']                      = 'E-mail';
-$_['tab_marketplace_links']         = 'Ligações de mercado';
 $_['tab_module']                    = 'Módulo';
 $_['tab_order']                     = 'Detalhes do Pedido';
 $_['tab_payment']                   = 'Detalhes do Pagamento';

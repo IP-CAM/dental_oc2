@@ -13,11 +13,6 @@ $_['text_tax']          = 'Sem Impostos:';
 $_['text_discount']     = '%s ou mais %s';
 $_['text_option']       = 'Opções Disponíveis';
 $_['text_qty']          = 'Qtd:';
-//shipping calculator
-$_['text_postal_code']          = 'código postal';
-$_['button_postal_code']          = 'Cálculo envio';
-$_['postal_error_empty']          = 'Nenhum código postal fornecida';
-
 $_['text_minimum']      = 'Este produto tem uma quantidade mínima de %s para venda';
 $_['text_or']           = '- OU -';
 $_['text_reviews']      = '%s comentários'; 
@@ -54,4 +49,9 @@ $_['error_captcha']     = 'Atenção: O código digitado não é o mesmo da imag
 $_['error_upload']      = 'Atenção: É necessário enviar um arquivo!';
 $_['error_filename']    = 'Atenção: O nome do arquivo deve ter entre 3 e 64 caracteres!';
 $_['error_filetype']    = 'Atenção: O tipo de arquivo é inválido!';
+
+//product configuration options
+$_['text_postal_code']          = 'código postal';
+$_['button_postal_code']          = 'Cálculo envio';
+$_['postal_error_empty']          = 'Nenhum código postal fornecida';
 ?>

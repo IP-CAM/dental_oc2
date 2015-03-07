@@ -1,10 +1,10 @@
 <?php
 // Heading
-$_['heading_title']       = 'Boss - Home Featured Categories';
+$_['heading_title']       = 'Eunice Solucoes - Home Featured Categories';
 
 // Text
 $_['text_module']         = 'Modules';
-$_['text_success']        = 'Success: You have modified module Boss - Home Featured Categories!';
+$_['text_success']        = 'Success: You have modified module Eunice Solucoes - Home Featured Categories!';
 $_['text_content_top']    = 'Content Top';
 $_['text_content_bottom'] = 'Content Bottom';
 $_['text_home'] 		  = 'Home';
@@ -22,8 +22,8 @@ $_['entry_sort_order']    = 'Sort Order:';
 
 
 // Error
-$_['error_permission']   = 'Warning: You do not have permission to modify module Boss - Home Featured Categories!';
+$_['error_permission']   = 'Warning: You do not have permission to modify module Eunice Solucoes - Home Featured Categories!';
 $_['error_image']        = 'Image width &amp; height dimensions required!';
-$_['error_limit']        = 'Limit dimensions required! ';
+$_['error_limit']        = 'Limit dimensions required!';
 
 ?>

@@ -1,2 +1,2 @@
 <?php
-$_['text_shop'] = '';
+$_['text_shop'] = 'Compre agora';

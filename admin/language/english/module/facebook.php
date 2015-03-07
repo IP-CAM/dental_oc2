@@ -14,7 +14,7 @@ $_['text_footer_bottom']   = 'Footer Bottom';
 $_['text_all']    		  = 'All Layout';
 
 // Entry
-$_['entry_code']          = 'Code facebook:<br /><span class="help">go to <a onclick="window.open(\'http://developers.facebook.com/docs/reference/plugins/like-box/\');"><u>Create your like bottom</u></a> and copy the IFRAME code here</span>';
+$_['entry_code']          = 'Code facebook:<br /><span class="help">go to <a onclick="window.open(\'http://developers.facebook.com/docs/reference/plugins/like-box/\');"><u>Create your like button</u></a> and copy the IFRAME code here</span>';
 $_['entry_layout']        = 'Layout:';
 $_['entry_position']      = 'Position:';
 $_['entry_status']        = 'Status:';

@@ -1,3 +1,3 @@
 <?php
-$_['heading_title'] = '';
-$_['text_notags'] = '';
+$_['heading_title'] = 'Tag Cloud';
+$_['text_notags'] = 'Nenhuma tag dispon’veis';

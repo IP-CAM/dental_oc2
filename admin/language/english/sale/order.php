@@ -231,5 +231,4 @@ $_['txt_payment_heading_customer'] = 'Dados Pessoais';
 $_['txt_payment_heading_account'] = 'Dados da Empresa';
 $_['txt_payment_heading_profession'] = 'Dados Profissionais';
 $_['txt_payment_heading_customer_type'] = 'Tipo de cliente';
-
 ?>

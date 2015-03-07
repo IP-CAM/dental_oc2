@@ -40,8 +40,6 @@ $_['entry_currency']               = 'Currency:<br /><span class="help">Change t
 $_['entry_currency_auto']          = 'Auto Update Currency:<br /><span class="help">Set your store to automatically update currencies daily.</span>';
 $_['entry_length_class']           = 'Length Class:';
 $_['entry_weight_class']           = 'Weight Class:';
-$_['config_mail_chimp_key_class']           = 'Mail Chimp Api key:';
-$_['config_mail_chimp_class']           = 'Mail Chimp List:';
 $_['entry_catalog_limit'] 	       = 'Default Items Per Page (Catalog):<br /><span class="help">Determines how many catalog items are shown per page (products, categories, etc)</span>';
 $_['entry_admin_limit']   	       = 'Default Items Per Page (Admin):<br /><span class="help">Determines how many admin items are shown per page (orders, customers, etc)</span>';
 $_['entry_product_count']          = 'Category Product Count:<br /><span class="help">Show the number of products inside the subcategories in the storefront header category menu. Be warned, this will cause an extreme performance hit for stores with a lot of subcategories!</span>';
@@ -147,4 +145,8 @@ $_['error_ftp_username']           = 'FTP Username required!';
 $_['error_ftp_password']           = 'FTP Password required!';
 $_['error_error_filename']         = 'Error Log Filename required!';
 $_['error_encryption']             = 'Encryption must be between 3 and 32 characters!';
+
+//mail chimp
+$_['config_mail_chimp_key_class']           = 'Mail Chimp Api key:';
+$_['config_mail_chimp_class']           = 'Mail Chimp List:';
 ?>

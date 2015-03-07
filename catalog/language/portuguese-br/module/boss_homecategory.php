@@ -1,2 +1,2 @@
 <?php
-$_['heading_title'] = '';
+$_['heading_title'] = 'Produto Apresentado';

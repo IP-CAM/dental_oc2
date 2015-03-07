@@ -1,4 +1,6 @@
 <?php
+$this->language->load('product/search');
+
 $this->load->model('catalog/category');
 $categories = $this->model_catalog_category->get_RecursiveCategory();
 $categories = $categories['categories'];

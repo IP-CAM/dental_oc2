@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']       = 'Boss - Mega Menu'; 
+$_['heading_title']       = 'Eunice Solucoes - Mega Menu'; 
 
 // menu
 $_['menu_title']			= 'Title';
@@ -19,7 +19,7 @@ $_['option_information']	= 'Information';
 
 // text
 $_['text_module']         = 'Modules';
-$_['text_success']        = 'Success: You have modified module Boss Mega Menu!';
+$_['text_success']        = 'Success: You have modified module Eunice Solucoes - Mega Menu!';
 $_['text_option']					= 'Option';
 $_['text_options']					= 'Option(s)';
 $_['text_fill_the_column']			= 'Fill The Column:';
@@ -47,5 +47,5 @@ $_['button_add_option']		= 'Add Option';
 $_['button_remove_option']	= 'Remove Option';
 
 // Error
-$_['error_permission']    = 'Warning: You do not have permission to modify module Boss - Mega Menu!';
+$_['error_permission']    = 'Warning: You do not have permission to modify module Eunice Solucoes - Mega Menu!';
 ?>

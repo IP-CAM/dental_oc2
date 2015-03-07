@@ -1,6 +1,6 @@
 <?php
 // Heading  
-$_['heading_title']          = 'Bossthemes Wish List';
+$_['heading_title']          = 'EStheme Wish List';
 
 // Text
 $_['text_account']  = 'Account';

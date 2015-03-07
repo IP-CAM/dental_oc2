@@ -3,19 +3,19 @@
 $_['heading_title']       = 'Filter'; 
 
 // Text
-$_['text_module']         = 'Modules';
-$_['text_success']        = 'Success: You have modified module filter!';
-$_['text_content_top']    = 'Content Top';
-$_['text_content_bottom'] = 'Content Bottom';
-$_['text_column_left']    = 'Column Left';
-$_['text_column_right']   = 'Column Right';
+$_['text_module']         = 'M&oacute;dulos';
+$_['text_success']        = 'M&oacute;dulo Filtro modificado com sucesso!';
+$_['text_content_top']    = 'Topo do Conte&uacute;do';
+$_['text_content_bottom'] = 'Rodap&eacute; do Conte&uacute;do';
+$_['text_column_left']    = 'Coluna Esquerda';
+$_['text_column_right']   = 'Coluna Direita';
 
 // Entry
 $_['entry_layout']        = 'Layout:';
-$_['entry_position']      = 'Position:';
-$_['entry_status']        = 'Status:';
-$_['entry_sort_order']    = 'Sort Order:';
+$_['entry_position']      = 'Posi&ccedil;&atilde;o:';
+$_['entry_status']        = 'Situa&ccedil;&atilde;o:';
+$_['entry_sort_order']    = 'Ordem:';
 
 // Error
-$_['error_permission']    = 'Warning: You do not have permission to modify module filter!';
+$_['error_permission']    = 'Aten&ccedil;&atilde;o: Voc&ecirc; n&atilde;o possui permiss&atilde;o para modificar o m&oacute;dulo Filtro!';
 ?>
