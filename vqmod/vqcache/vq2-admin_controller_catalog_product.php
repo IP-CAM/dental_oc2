@@ -5,6 +5,22 @@ class ControllerCatalogProduct extends Controller {
     private $error = array();
 
     
+                protected function add_column_table($table,$column){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    
+                    if(!in_array($column,$fields)){
+                        $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) NOT NULL";
+                        $this->db->query($query);;
+                    }
+                    
+                
+                }
+                
                 protected function addCheckoutColumns($table = "order"){
                     $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
                     $rows = $query->rows;
@@ -129,6 +145,24 @@ class ControllerCatalogProduct extends Controller {
                     }
                     $this->add_column_custom("conf_product_tamanho",$languages);
                 }
+                protected function dbQuantity($languages){
+                    $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_quantity'");
+                    if(!$query->num_rows){
+                     $sql = "CREATE TABLE IF NOT EXISTS  ".DB_PREFIX."conf_product_quantity (
+                            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,                  
+
+                            `value` varchar(150) DEFAULT NULL,
+                            `date_added` datetime NOT NULL,
+                            `date_modified` datetime NOT NULL,
+
+                            PRIMARY KEY (`id`)
+                          ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                  
+                    $this->db->query($sql);
+                    
+                    }
+                    $this->add_column_custom("conf_product_quantity",$languages);
+                }
                 protected function dbCor($languages){
                     $query = $this->db->query("SHOW Tables FROM ".DB_DATABASE." LIKE  '".DB_PREFIX."conf_product_cor'");
                     if(!$query->num_rows){
@@ -201,6 +235,25 @@ class ControllerCatalogProduct extends Controller {
                     }
                 
                 }
+                protected function add_custom_columns($column,$table,$type=""){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    if(!in_array($column,$fields)){
+                        if($type==""){
+                            $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) DEFAULT NULL";
+                        }
+                        else {
+                            $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." ".$type." DEFAULT NULL";
+                        }
+                        $this->db->query($query);
+                    }
+                    
+                
+                }
                 
 			protected function dbCheck(){
 				$query = $this->db->query("SHOW COLUMNS FROM `".DB_PREFIX."product_description` LIKE 'youtube'");
@@ -216,11 +269,20 @@ class ControllerCatalogProduct extends Controller {
                    
                     $this->dbProductArcade($languages);
                     $this->dbTamanho($languages);
+                    $this->dbQuantity($languages);
                     $this->dbCor($languages);
                     $this->dbProductConfigOptions();
                     $this->dbOrderProductConfigOptions();
                     $this->addCheckoutColumns("order");
                     $this->addCheckoutColumns("address");
+                    $this->add_custom_columns("quantitdy","product_config_options","int(11)");
+                    $this->add_custom_columns("referenc_id","product","int(11)");
+               
+                
+            
+                     $this->add_column_table("product","weight_net");
+                     $this->add_column_table("product","cubage");
+                     $this->add_column_table("product","square_meters");
                
                 
             
@@ -293,7 +355,7 @@ class ControllerCatalogProduct extends Controller {
         $this->load->model('catalog/product');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-            $this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
+            $return_product_id = $this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
 
             $this->openbay->productUpdateListen($this->request->get['product_id'], $this->request->post);
 
@@ -332,8 +394,15 @@ class ControllerCatalogProduct extends Controller {
             if (isset($this->request->get['page'])) {
                 $url .= '&page=' . $this->request->get['page'];
             }
-
-            $this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            
+            if(!empty($return_product_id)){
+                $url .= '&product_id=' . $return_product_id;
+                $this->redirect($this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            else {
+              $this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));  
+            }
+            
         }
 
         $this->getForm();
@@ -901,6 +970,7 @@ class ControllerCatalogProduct extends Controller {
         //product options
         $this->data['entry_arcade'] = $this->language->get('entry_arcade');
         $this->data['entry_tamanho'] = $this->language->get('entry_tamanho');
+        $this->data['entry_quantity'] = $this->language->get('entry_quantity');
         $this->data['entry_cor'] = $this->language->get('entry_cor');
         $this->data['column_action'] = $this->language->get('column_action');
         $this->data['text_no_results'] = $this->language->get('text_no_results');
@@ -940,6 +1010,14 @@ class ControllerCatalogProduct extends Controller {
             $this->data['error_date_available'] = $this->error['date_available'];
         } else {
             $this->data['error_date_available'] = '';
+        }
+        
+        if (isset($this->session->data['success'])) {
+            $this->data['success'] = $this->session->data['success'];
+
+            unset($this->session->data['success']);
+        } else {
+            $this->data['success'] = '';
         }
 
         $url = '';
@@ -1107,6 +1185,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['arcade_options'] = $conf_options['arcade'];
         $this->data['cor_options'] = $conf_options['cor'];
         $this->data['tamanho_options'] = $conf_options['tamanho'];
+        $this->data['quantitdy_options'] = $conf_options['quantitdy'];
 
         $this->data['product_config_options'] = '';
         $this->data['product_config_id'] = '';
@@ -1124,7 +1203,11 @@ class ControllerCatalogProduct extends Controller {
                 'href' => $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL')
             );
         }
-     
+        
+        $this->data['referenc_products'] = $this->model_catalog_product->get_reference_products($this->request->get['product_id']);
+        $this->data['column_name'] = $this->language->get('column_name');
+        $this->data['column_model'] = $this->language->get('column_model');
+        
         $product_config = array();
         if (isset($this->request->get['product_config_id'])) {
             $this->data['product_config_id'] = $this->request->get['product_config_id'];
@@ -1763,6 +1846,9 @@ class ControllerCatalogProduct extends Controller {
 
         $this->response->setOutput(json_encode($json));
     }
+    
+    
+   
 
 }
 

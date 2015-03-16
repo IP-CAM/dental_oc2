@@ -8,6 +8,9 @@
   <?php if ($error_warning) { ?>
   <div class="warning"><?php echo $error_warning; ?></div>
   <?php } ?>
+  <?php if ($success) { ?>
+  <div class="success"><?php echo $success; ?></div>
+  <?php } ?>
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/product.png" alt="" /> <?php echo $heading_title; ?></h1>
@@ -333,7 +336,7 @@
           <div id="c-product-options">
             <?php
                 if(isset($edit_action['href'])){
-                    echo "<a href='".$edit_action['href']."' class='button'>Add New</a>";
+                    //echo "<a href='".$edit_action['href']."' class='button'>Add New</a>";
                 }
             ?>
 

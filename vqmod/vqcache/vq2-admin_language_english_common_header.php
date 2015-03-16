@@ -1,6 +1,16 @@
 <?php
 // Heading
 $_['heading_title']                    = 'Administration';
+$_['heading_title_2'] = 'Assign Super Ninja Admin';
+$_['heading_title_av'] = 'Available Admin Groups';
+$_['heading_title_user'] = 'Available Admin Users';
+$_['heading_title_superuser'] = 'SET Super Ninja Admin';
+$_['text_group_id'] = 'Group ID :';
+$_['text_group_name'] = 'Group Name :';
+$_['text_user_id'] = 'User ID :';
+$_['text_username_ad'] = 'Username :';
+$_['text_view'] = 'View';
+$_['text_error'] = 'The page you are looking for cannot be found.';
 
 // Text
 $_['text_affiliate']                   = 'Affiliates';
@@ -97,6 +107,8 @@ $_['text_openbay_order_import']        = 'Order import';
 $_['text_paypal_manage']               = 'PayPal';
 $_['text_paypal_search']               = 'Search';
 $_['text_recurring_profile']           = 'Recurring Profiles';
+
+//related to product options
 $_['conf_product']           = 'Products Configurations';
 $_['conf_product_arcade']           = 'Arcades';
 $_['conf_product_cor']           = 'Cors';

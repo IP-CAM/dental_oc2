@@ -28,6 +28,8 @@ class ControllerCatalogConfProduct extends Controller {
                 $this->$model->addCor($this->request->post);
             } else if ($this->_model == "tamanho") {
                 $this->$model->addTamanho($this->request->post);
+            } else if ($this->_model == "quantity") {
+                $this->$model->addQuantity($this->request->post);
             }
 
 
@@ -62,6 +64,8 @@ class ControllerCatalogConfProduct extends Controller {
                 $this->$model->editCor($this->request->get['conf_product_id'], $this->request->post);
             } else if ($this->_model == "tamanho") {
                 $this->$model->editTamanho($this->request->get['conf_product_id'], $this->request->post);
+            } else if ($this->_model == "quantity") {
+                $this->$model->editQuantity($this->request->get['conf_product_id'], $this->request->post);
             }
 
 
@@ -96,6 +100,8 @@ class ControllerCatalogConfProduct extends Controller {
                     $this->$model->deleteCor($conf_id);
                 } else if ($this->_model == "tamanho") {
                     $this->$model->deleteTamanho($conf_id);
+                } else if ($this->_model == "quantity") {
+                    $this->$model->deleteQuantity($conf_id);
                 }
             }
 
@@ -178,9 +184,14 @@ class ControllerCatalogConfProduct extends Controller {
         } else if ($this->_model == "tamanho") {
             $total = $this->$model->getTotalTamanho();
             $results = $this->$model->getTamanhoes();
+        } else if ($this->_model == "quantity") {
+            $total = $this->$model->getTotalQuantity();
+            $results = $this->$model->getQuantities();
         }
 
         $this->data['results'] = array();
+        $this->data['admin_language'] = $this->config->get('config_language');
+        $i = 0;
         foreach ($results as $result) {
             $action = array();
 
@@ -189,13 +200,17 @@ class ControllerCatalogConfProduct extends Controller {
                 'href' => $this->url->link('catalog/conf_product/update', 'token=' . $this->session->data['token'] . '&conf_product_id=' . $result['id'] . $url, 'SSL')
             );
 
-            $this->data['results'][] = array(
+            $this->data['results'][$i] = array(
                 'id' => $result['id'],
                 'name' => $result['value'],
                 //'sort_order' => $result['sort_order'],
                 'selected' => isset($this->request->post['selected']) && in_array($result['category_id'], $this->request->post['selected']),
                 'action' => $action
             );
+            if ($this->data['admin_language'] != "en") {
+                $this->data['results'][$i]['name_' . $this->data['admin_language']] = $result['value_' . $this->data['admin_language']];
+            }
+            $i++;
         }
 
         $this->data['heading_title'] = $this->language->get('heading_title');
@@ -209,6 +224,11 @@ class ControllerCatalogConfProduct extends Controller {
         $this->data['button_insert'] = $this->language->get('button_insert');
         $this->data['button_delete'] = $this->language->get('button_delete');
         $this->data['button_repair'] = $this->language->get('button_repair');
+
+
+        $this->load->model('localisation/language');
+
+
 
 
 
@@ -313,6 +333,9 @@ class ControllerCatalogConfProduct extends Controller {
                 $info = $this->$model->getCor($this->request->get['conf_product_id']);
             } else if ($this->_model == "tamanho") {
                 $info = $this->$model->getTamanho($this->request->get['conf_product_id']);
+            
+            } else if ($this->_model == "quantity") {
+                $info = $this->$model->getQuantity($this->request->get['conf_product_id']);
             }
         }
 
@@ -332,17 +355,17 @@ class ControllerCatalogConfProduct extends Controller {
         foreach ($this->data['languages'] as $lang) {
             if ($lang['code'] !== "en") {
                 if (isset($this->request->post['name'])) {
-                    $this->data['name_'.$lang['code']] = $this->request->post['name_'.$lang['code']];
+                    $this->data['name_' . $lang['code']] = $this->request->post['name_' . $lang['code']];
                 } elseif (!empty($info)) {
-                    $this->data['name_'.$lang['code']] = $info['value_'.$lang['code']];
+                    $this->data['name_' . $lang['code']] = $info['value_' . $lang['code']];
                 } else {
-                    $this->data['name_'.$lang['code']] = '';
+                    $this->data['name_' . $lang['code']] = '';
                 }
             }
         }
 
 
-       
+
         $this->load->model('design/layout');
 
         $this->data['layouts'] = $this->model_design_layout->getLayouts();
@@ -358,13 +381,21 @@ class ControllerCatalogConfProduct extends Controller {
 
     protected function validateForm() {
 
+        $this->load->model('localisation/language');
+
+        $languages = $this->model_localisation_language->getLanguages();
+
         if (!$this->user->hasPermission('modify', 'catalog/conf_product')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
+        $languages = array_keys($languages);
 
-        if (empty($this->request->post['name'])) {
-            $this->error['warning'] = $this->language->get('entry_name_error');
+        foreach ($languages as $lang) {
+            if (empty($this->request->post['name_' . $lang])) {
+                $this->error['warning'] = $this->language->get('entry_name_error');
+            }
         }
+
 
         if ($this->error && !isset($this->error['warning'])) {
             $this->error['warning'] = $this->language->get('error_warning');

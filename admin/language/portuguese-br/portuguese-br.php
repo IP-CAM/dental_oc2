@@ -94,6 +94,7 @@ $_['tab_special']                   = 'Promoções';
 $_['tab_local']                     = 'Localização';
 $_['tab_mail']                      = 'E-mail';
 $_['tab_module']                    = 'Módulo';
+$_['tab_marketplace_links']         = 'Market';
 $_['tab_order']                     = 'Detalhes do Pedido';
 $_['tab_payment']                   = 'Detalhes do Pagamento';
 $_['tab_product']                   = 'Detalhes dos Produtos';

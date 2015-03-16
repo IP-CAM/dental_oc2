@@ -81,6 +81,7 @@ $(document).ready(function(){
               <li><a href="<?php echo $conf_arcade_link; ?>"><?php echo $conf_product_arcade; ?></a></li>
               <li><a href="<?php echo $conf_cor_link; ?>"><?php echo $conf_product_cor; ?></a></li>
               <li><a href="<?php echo $conf_tamanho_link; ?>"><?php echo $conf_product_tamanho; ?></a></li>
+              <li><a href="<?php echo $conf_quantitdy_link; ?>"><?php echo $conf_product_quantitdy; ?></a></li>
             </ul>
           </li>
           <li><a href="<?php echo $option; ?>"><?php echo $text_option; ?></a></li>

@@ -348,7 +348,7 @@
 	#header #logo img{margin-top: 21px
 	}
 	#header #cart{float:none; margin-top:27px; margin-left:0}
-	#header #cart .heading a span{background:none; font-size:16px; color:#fff; line-height:35px}
+	#header #cart .heading a span{background:none; font-size:16px; /*color:#fff;*/ line-height:35px}
 	.boss_header_buttom{background:none;
 	}
 	#header #welcome{color:#828282; font-size:12px; padding:6px 0}
@@ -516,7 +516,7 @@
 	}
 	#header #cart{float:none; margin-top:27px; margin-left:0}
 	#header #cart .content{right:0}
-	#header #cart .heading a span{background:none; font-size:16px; color:#fff; line-height:35px}
+	#header #cart .heading a span{background:none; font-size:16px; /* color:#fff; */ line-height:35px}
 	.boss_header_buttom{background:none}
 	#header #welcome{color:#828282; font-size:12px; padding:6px 0}
 	#header #welcome a{color:#414040; font-size:12px}
@@ -627,3 +627,62 @@ h2.ta-header.active{border-bottom:none; color:#08BCD2}
 h2.ta-header span{padding: 0 15px 6px 0;display:block}
 h2.ta-header span:hover{color:#08BCD2}
 .manufacturer-content  ul li a{white-space:nowrap}
+
+/* Tahir CSS Start */
+
+@media screen and (min-width:1204px) and (max-width: 1254px) {
+	
+	#custom_search_bar { margin-left:50px; }
+	
+}
+
+@media screen and (max-width:1204px) {
+	
+	#custom_search_bar { margin-left:50px; }
+	
+	#tobpar { min-height: 115px; height:auto; }
+	
+	#header { min-height: 115px; height:auto; }
+	
+	#container { margin-top: 162px; }
+	
+}
+
+@media screen and (max-width:1085px) {
+	
+	#header #cart { padding-bottom:20px; }
+	
+	#custom_search_bar { float:right; }
+	
+}
+
+@media screen and (max-width:901px) {
+	
+	#header #logo { width:100% !important; text-align:center; }
+
+}
+
+@media screen and (max-width:767px) {
+	
+	#tobpar { width:100% !important; }
+	
+	#header #cart { width:100%; text-align:center; float:left; }
+	
+	#custom_search_bar { margin-left:0px; width:100%; float:left; height:auto; }
+
+}
+
+@media screen and (max-width:668px) {
+	
+	#custom_search_bar > div { width:100%; padding-top:10px; margin-right:0; }
+	
+	#custom_search_bar > div input, #custom_search_bar > div select { width:100%; padding-right:0; padding-left:0; margin-right:0; }
+	
+	#custom_search_bar > div.buttons { margin-bottom:10px; width:100%; }
+	
+	#custom_search_bar > div.buttons .left { float:none; text-align:center; }
+	
+	#custom_search_bar > div span.orange_button input.button { padding-right:10px; padding-left:10px; }
+}
+
+/* Tahir CSS End */

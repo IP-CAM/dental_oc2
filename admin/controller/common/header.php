@@ -31,6 +31,7 @@ class ControllerCommonHeader extends Controller {
         $this->data['conf_product_arcade'] = $this->language->get('conf_product_arcade');
         $this->data['conf_product_cor'] = $this->language->get('conf_product_cor');
         $this->data['conf_product_tamanho'] = $this->language->get('conf_product_tamanho');
+        $this->data['conf_product_quantitdy'] = $this->language->get('conf_product_quantitdy');
 
 
         $this->data['text_backup'] = $this->language->get('text_backup');
@@ -232,6 +233,7 @@ class ControllerCommonHeader extends Controller {
             $this->data['conf_arcade_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=arcade', 'SSL');
             $this->data['conf_cor_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=cor', 'SSL');
             $this->data['conf_tamanho_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=tamanho', 'SSL');
+            $this->data['conf_quantitdy_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=quantity', 'SSL');
 
 
             $this->data['stores'] = array();

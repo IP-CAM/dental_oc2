@@ -104,6 +104,7 @@ $_['error_model']            = 'Product Model must be greater than 3 and less th
 
 //for product config options
 $_['entry_arcade']          = 'Arcade :';
+$_['entry_quantity']          = 'Quantitdy :';
 $_['entry_tamanho']          = 'Tamanho:';
 $_['entry_cor']          = 'Cor:';
 $_['text_remove'] = 'Remove';

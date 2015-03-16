@@ -36,7 +36,17 @@
                                 <?php } else { ?>
                                 <input type="checkbox" name="selected[]" value="<?php echo $result['id']; ?>" />
                                 <?php } ?></td>
-                            <td class="left"><?php echo $result['name']; ?></td>
+                            <td class="left">
+                                <?php
+                                    if($this->data['admin_language']!="en"){
+                                       echo $result['name_'.$this->data['admin_language']];
+                                    }
+                                    else {
+                                         echo $result['name'];
+                                    }
+                                   
+                                ?>
+                            </td>
                            
                             <td class="right"><?php foreach ($result['action'] as $action) { ?>
                                 [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]

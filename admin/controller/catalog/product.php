@@ -74,7 +74,7 @@ class ControllerCatalogProduct extends Controller {
         $this->load->model('catalog/product');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-            $this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
+            $return_product_id = $this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
 
             $this->openbay->productUpdateListen($this->request->get['product_id'], $this->request->post);
 
@@ -113,8 +113,15 @@ class ControllerCatalogProduct extends Controller {
             if (isset($this->request->get['page'])) {
                 $url .= '&page=' . $this->request->get['page'];
             }
-
-            $this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            
+            if(!empty($return_product_id)){
+                $url .= '&product_id=' . $return_product_id;
+                $this->redirect($this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            else {
+              $this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));  
+            }
+            
         }
 
         $this->getForm();
@@ -679,6 +686,7 @@ class ControllerCatalogProduct extends Controller {
         //product options
         $this->data['entry_arcade'] = $this->language->get('entry_arcade');
         $this->data['entry_tamanho'] = $this->language->get('entry_tamanho');
+        $this->data['entry_quantity'] = $this->language->get('entry_quantity');
         $this->data['entry_cor'] = $this->language->get('entry_cor');
         $this->data['column_action'] = $this->language->get('column_action');
         $this->data['text_no_results'] = $this->language->get('text_no_results');
@@ -718,6 +726,14 @@ class ControllerCatalogProduct extends Controller {
             $this->data['error_date_available'] = $this->error['date_available'];
         } else {
             $this->data['error_date_available'] = '';
+        }
+        
+        if (isset($this->session->data['success'])) {
+            $this->data['success'] = $this->session->data['success'];
+
+            unset($this->session->data['success']);
+        } else {
+            $this->data['success'] = '';
         }
 
         $url = '';
@@ -885,6 +901,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['arcade_options'] = $conf_options['arcade'];
         $this->data['cor_options'] = $conf_options['cor'];
         $this->data['tamanho_options'] = $conf_options['tamanho'];
+        $this->data['quantitdy_options'] = $conf_options['quantitdy'];
 
         $this->data['product_config_options'] = '';
         $this->data['product_config_id'] = '';
@@ -902,7 +919,11 @@ class ControllerCatalogProduct extends Controller {
                 'href' => $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL')
             );
         }
-     
+        
+        $this->data['referenc_products'] = $this->model_catalog_product->get_reference_products($this->request->get['product_id']);
+        $this->data['column_name'] = $this->language->get('column_name');
+        $this->data['column_model'] = $this->language->get('column_model');
+        
         $product_config = array();
         if (isset($this->request->get['product_config_id'])) {
             $this->data['product_config_id'] = $this->request->get['product_config_id'];
@@ -1541,6 +1562,9 @@ class ControllerCatalogProduct extends Controller {
 
         $this->response->setOutput(json_encode($json));
     }
+    
+    
+   
 
 }
 
