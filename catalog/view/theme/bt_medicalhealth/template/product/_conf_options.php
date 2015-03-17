@@ -1,28 +1,27 @@
 
 <script>
-    var arcades = [];
-    var all_options = <?php echo json_encode($product_config_all);?>;
+var arcades = [];
+var all_options = <?php echo json_encode($product_config_all);
+?>;
 </script>
 <?php
-$product_config_options_arc = $product_config_options['arcade'];
+$this->load->model('catalog/product_options');
+$options_arcade = $this->model_catalog_product_options->gerProductOptions($product_id);
+
+
 
 echo "<b>Arcade</b><br /><br />";
 ?>
 <div id="option-arcade" class="option">
     <?php
     $index = 0;
-    foreach ($product_config_options_arc as $option_v) {
-        $json_data = $option_v['json_data'];
-        $json_data = json_decode($json_data, true);
-        echo "<script>";
-        echo "arcades.push({" . $json_data['arcade'] . ":" . $option_v['json_data'] . "})";
-        echo "</script>";
+    foreach ($options_arcade as $option_v) {
         ?>
         <span style="margin-right:10px;">
-            <input db_id="<?php echo $option_v['id']; ?>" index="<?php echo $index ?>" type="radio" name="option[arcade]" 
-                   value="<?php echo $json_data['arcade']; ?>" 
-                   id="option-value-<?php echo $json_data['arcade']; ?>" />
-            <label for="option-value-<?php echo $json_data['arcade']; ?>"><?php echo $product_config_all['arcade'][$json_data['arcade']]; ?>
+            <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[arcade]" 
+                   value="<?php echo $option_v['option_id']; ?>" 
+                   id="option-value-<?php echo $option_v['option_id']; ?>" />
+            <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
             </label>
         </span>
@@ -52,17 +51,25 @@ echo "<b>Cor</b><br /><br />";
 <script>
     $(function() {
         $("#option-arcade input").click(function() {
-            
-            index_v = $(this).attr("index");
-            $("#conf_option_id").val($(this).attr("db_id"));
-            renderToms(arcades[index_v]);
+            url = "?route=product/conf_product/options&product_id=<?php echo $product_id; ?>";
+            url += "&option_key=tamanho&option[arcade]=" + $(this).val();
+            $.getJSON(url, function(data) {
+                renderToms(data)
+            });
+            //renderToms(arcades[index_v]);
 
         })
         $("#option-tom input").live('click', function() {
-            tom_value = $(this).val();
-            console.log(index_v);
-            arcade_index = $("#option-arcade input:checked").attr("index");
-            renderCor(arcades[arcade_index], tom_value);
+            
+            
+            url = "?route=product/conf_product/options&product_id=<?php echo $product_id; ?>";
+            url += "&option_key=cor&option[tamanho]=" + $(this).val();
+            $.getJSON(url, function(data) {
+                console.log(data);
+                renderCor(data);
+            });
+
+//            
         })
     })
 
@@ -70,17 +77,15 @@ echo "<b>Cor</b><br /><br />";
         htm = "";
         $.each(toms, function(k, v) {
             index = 0;
-            $.each(v['toms'], function(kt, vt) {
-                console.log(vt);
-                htm += '<span style="margin-right:10px;">' +
-                        '<input index="' + index + '" type="radio" name="option[tamanho]"' +
-                        'value="' + vt['tom'] + '" ' +
-                        'id="option-value-' + vt['tom'] + '" />' +
-                        '<label for="option-value-' + vt['tom'] + '">' + all_options['tamanho'][vt['tom']] +
-                        '</label>' +
-                        '</span>';
-                index++;
-            })
+            console.log(v);
+            htm += '<span style="margin-right:10px;">' +
+                    '<input index="' + index + '" type="radio" name="option[tamanho]"' +
+                    'value="' + v['option_id'] + '" ' +
+                    'id="option-value-' + v['option_id'] + '" />' +
+                    '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
+                    '</label>' +
+                    '</span>';
+            index++;
         })
 
         $("#option-tom").html(htm);
@@ -89,32 +94,19 @@ echo "<b>Cor</b><br /><br />";
     function renderCor(cors, tom_value) {
 
         htm = "";
+        disabled ='';
+
         $.each(cors, function(k, v) {
-            $.each(v['toms'], function(kt, vt) {
-
-                if (vt['tom'] == tom_value) {
-
-                    $.each(vt['cors'], function(kv, vc) {
-                        disabled = "";
-                        title = "";
-                        if(vc['qty']=='0'){
-                            disabled = "disabled='disabled'";
-                            title = "title='Not Available'";
-                        }
-                        htm += '<span style="margin-right:10px;">' +
-                                '<input  type="radio" name="option[cor]"' +
-                                'value="' + vc['cor'] + '" ' +
-                                'id="option-value-' + vc['cor'] + '" '+disabled+' '+title+' />' +
-                                '<label for="option-value-' + vc['cor'] + '">' + all_options['cor'][vc['cor']] +
-                                '</label>' +
-                                '</span>';
-                    })
-
-                }
-            })
+            htm += '<span style="margin-right:10px;">' +
+                    '<input  type="radio" name="option[cor]"' +
+                    'value="' + v['option_id'] + '" ' +
+                    'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
+                    '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
+                    '</label>' +
+                    '</span>';
         })
-        
-         $("#option-cor").html(htm);
+
+        $("#option-cor").html(htm);
 
     }
 </script>

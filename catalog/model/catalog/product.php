@@ -678,6 +678,8 @@ class ModelCatalogProduct extends Model {
             return 0;
         }
     }
+    
+    
 
 }
 

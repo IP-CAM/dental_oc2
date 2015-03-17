@@ -235,13 +235,17 @@
                     <?php } ?>
                     <?php } ?>
                     <?php
-                    //including something
                     
-                    include_once(DIR_TEMPLATE."bt_medicalhealth/template/product/_conf_options.php");
                     
                     ?>
                 </div>
                 <?php } ?>
+                <div class="options">
+                    <?php
+                    //including something
+                     include_once(DIR_TEMPLATE."bt_medicalhealth/template/product/_conf_options.php");
+                    ?>
+                </div>
                 <div class="cart">
                     <div><span class="qty"><?php echo $text_qty; ?></span>
                         <input type="text" name="quantity" size="2" value="<?php echo $minimum; ?>" />
