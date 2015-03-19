@@ -12,8 +12,15 @@ $arcade_count = $this->model_catalog_product_options->getOptionCount($product_id
 $tamanho_count = $this->model_catalog_product_options->getOptionCount($product_id, 'tamanho');
 $quantitdy_count = $this->model_catalog_product_options->getOptionCount($product_id, 'quantitdy');
 $cor_count = $this->model_catalog_product_options->getOptionCount($product_id, 'cor');
+?>
+<script type="text/javascript">
+    var arcade_count = <?php echo $arcade_count; ?>;
+    var tamanho_count = <?php echo $tamanho_count; ?>;
+    var quantitdy_count = <?php echo $quantitdy_count; ?>;
+    var cor_count = <?php echo $cor_count; ?>;
+</script>
 
-
+<?php
 $level_tree = array();
 if (!empty($options_arcade)) {
     $level_tree[] = 'arcade';
@@ -152,8 +159,13 @@ if ($cor_count > 0) {
 <script>
     $(function() {
         $("#option-arcade input").click(function() {
+            un_prop_all();
+            reset_tam();
+            reset_quantitdy();
+            reset_cor();
             url = "?route=product/conf_product/options&product_id=<?php echo $product_id; ?>";
             url += "&option_key=tamanho&option[arcade]=" + $(this).val();
+
             $.getJSON(url, function(data) {
                 renderToms(data)
             });
@@ -162,23 +174,35 @@ if ($cor_count > 0) {
         })
         $("#option-tom input").live('click', function() {
 
-
+            un_prop_all();
+            reset_quantitdy();
+            reset_cor();
             url = "?route=product/conf_product/options&product_id=<?php echo $product_id; ?>";
             url += "&option_key=quantitdy&option[tamanho]=" + $(this).val();
+            if (arcade_count != 0) {
+                url += "&option[arcade]=" + $("#option-arcade input:checked").val();
+            }
             $.getJSON(url, function(data) {
                 renderQuantity(data);
             });
-    
+
         })
         $("#option-quantitdy input").live('click', function() {
 
-
+            un_prop_all();
+            reset_cor();
             url = "?route=product/conf_product/options&product_id=<?php echo $product_id; ?>";
             url += "&option_key=cor&option[quantitdy]=" + $(this).val();
+            if (arcade_count != 0) {
+                url += "&option[arcade]=" + $("#option-arcade input:checked").val();
+            }
+            if (tamanho_count != 0) {
+                url += "&option[tamanho]=" + $("#option-tom input:checked").val();
+            }
             $.getJSON(url, function(data) {
                 renderCor(data);
             });
-    
+
         })
 
     })
@@ -236,5 +260,27 @@ if ($cor_count > 0) {
 
         $("#option-cor").html(htm);
 
+    }
+
+    function un_prop_all() {
+        $('input[type="checkbox"]').prop('checked', false);
+
+
+    }
+
+    function reset_tam() {
+        if (tamanho_count != 0) {
+            $("#option-tom").html('');
+        }
+    }
+    function reset_quantitdy() {
+        if (quantitdy_count != 0) {
+            $("#option-quantitdy").html('');
+        }
+    }
+    function reset_cor() {
+        if (cor_count != 0) {
+            $("#option-cor").html('');
+        }
     }
 </script>
