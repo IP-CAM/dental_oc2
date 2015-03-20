@@ -24,6 +24,7 @@
         <?php } ?>
         <link rel="stylesheet" type="text/css" href="catalog/view/theme/bt_medicalhealth/stylesheet/skeleton.css" />
         <link rel="stylesheet" type="text/css" href="catalog/view/theme/bt_medicalhealth/stylesheet/responsive.css" />
+        <link rel="stylesheet" type="text/css" href="catalog/view/loader/jquery.loading-indicator.css" />
         <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
         <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" />
@@ -34,7 +35,14 @@
         <?php foreach ($scripts as $script) { ?>
             <script type="text/javascript" src="<?php echo $script; ?>"></script>
         <?php } ?>
-
+        
+        <script type="text/javascript" src="catalog/view/loader/jquery.loading-indicator.min.js"></script>
+        <script>
+            var loader_box;
+            $(function(){
+                loader_box = $('#loader_box').loadingIndicator();
+            })
+        </script>    
         <!--[if IE 8]>
         <link rel="stylesheet" type="text/css" href="catalog/view/theme/bt_medicalhealth/stylesheet/ie8.css" />
         <![endif]-->
@@ -66,6 +74,7 @@
         <?php echo $google_analytics; ?>
     </head>
     <body>
+                <div id="loader_box"></div>
                 <div class="container" id="tobpar">
                  <div id="header" class="sixteen columns alpha omega">
                     <div class="boss_header_top">
@@ -156,3 +165,9 @@
                                 }
                                 }
                         //--></script>
+                    
+<script>
+    $( window ).load(function() {
+        loader_box.hide();
+     });
+</script>    

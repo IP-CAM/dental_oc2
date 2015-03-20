@@ -159,6 +159,7 @@ if ($cor_count > 0) {
 <script>
     $(function() {
         $("#option-arcade input").click(function() {
+            loader_box.show();
             un_prop_all();
             reset_tam();
             reset_quantitdy();
@@ -167,13 +168,14 @@ if ($cor_count > 0) {
             url += "&option_key=tamanho&option[arcade]=" + $(this).val();
 
             $.getJSON(url, function(data) {
-                renderToms(data)
+                renderToms(data);
+                loader_box.hide();
             });
             //renderToms(arcades[index_v]);
 
         })
         $("#option-tom input").live('click', function() {
-
+            loader_box.show();
             un_prop_all();
             reset_quantitdy();
             reset_cor();
@@ -184,11 +186,12 @@ if ($cor_count > 0) {
             }
             $.getJSON(url, function(data) {
                 renderQuantity(data);
+                loader_box.hide();
             });
 
         })
         $("#option-quantitdy input").live('click', function() {
-
+            loader_box.show();
             un_prop_all();
             reset_cor();
             url = "?route=product/conf_product/options&product_id=<?php echo $product_id; ?>";
@@ -201,6 +204,7 @@ if ($cor_count > 0) {
             }
             $.getJSON(url, function(data) {
                 renderCor(data);
+                loader_box.hide();
             });
 
         })
