@@ -34,7 +34,6 @@ class Cart {
                     $options = array();
                 }
                 
-            
                 /**
                  * conf options
                  */
@@ -47,6 +46,9 @@ class Cart {
                 }
                 if(!empty($options['cor'])){
                     $conf_options['cor']=$options['cor'];
+                }
+                if(!empty($options['quantitdy'])){
+                    $conf_options['quantitdy']=$options['quantitdy'];
                 }
                 if(!empty($options['conf_id'])){
                     $conf_options['conf_id']=$options['conf_id'];
@@ -318,6 +320,7 @@ class Cart {
                         'recurring_trial_price' => $recurring_trial_price,
                         'recurring_trial_cycle' => $recurring_trial_cycle,
                         'recurring_trial_duration' => $recurring_trial_duration,
+                        'conf_options' => $conf_options,
                     );
                 } else {
                     $this->remove($key);

@@ -35,7 +35,9 @@ if ($arcade_count > 0) {
         foreach ($options_arcade as $option_v) {
             ?>
             <span style="margin-right:10px;">
-                <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[arcade]" 
+                <input db_id="<?php echo $option_v['option_id']; ?>" 
+                       index="<?php echo $index ?>" type="radio" name="option[arcade]" 
+                       product_id="<?php echo $option_v['product_id']; ?>" 
                        value="<?php echo $option_v['option_id']; ?>" 
                        id="option-value-<?php echo $option_v['option_id']; ?>" />
                 <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
@@ -69,6 +71,7 @@ if ($tamanho_count > 0) {
                     <span style="margin-right:10px;">
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[tamanho]" 
                                value="<?php echo $option_v['option_id']; ?>" 
+                               product_id="<?php echo $option_v['product_id']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -104,6 +107,7 @@ if ($quantitdy_count > 0) {
                     <span style="margin-right:10px;">
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[quantitdy]" 
                                value="<?php echo $option_v['option_id']; ?>" 
+                               product_id="<?php echo $option_v['product_id']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -139,6 +143,7 @@ if ($cor_count > 0) {
                     <span style="margin-right:10px;">
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[cor]" 
                                value="<?php echo $option_v['option_id']; ?>" 
+                               product_id="<?php echo $option_v['product_id']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -168,7 +173,12 @@ if ($cor_count > 0) {
             url += "&option_key=tamanho&option[arcade]=" + $(this).val();
 
             $.getJSON(url, function(data) {
-                renderToms(data);
+                if (data.length > 0) {
+                    renderToms(data);
+                }
+                else {
+                   $('input[type=hidden][name=product_id]').val($(this).attr('product_id')); 
+                }
                 loader_box.hide();
             });
             //renderToms(arcades[index_v]);
@@ -185,7 +195,13 @@ if ($cor_count > 0) {
                 url += "&option[arcade]=" + $("#option-arcade input:checked").val();
             }
             $.getJSON(url, function(data) {
-                renderQuantity(data);
+                if (data.length > 0) {
+                   renderQuantity(data);
+                }
+                else {
+                   $('input[type=hidden][name=product_id]').val($(this).attr('product_id')); 
+                }
+                
                 loader_box.hide();
             });
 
@@ -203,10 +219,20 @@ if ($cor_count > 0) {
                 url += "&option[tamanho]=" + $("#option-tom input:checked").val();
             }
             $.getJSON(url, function(data) {
-                renderCor(data);
+                if (data.length > 0) {
+                    renderCor(data);
+                }
+                else {
+                   $('input[type=hidden][name=product_id]').val($(this).attr('product_id')); 
+                }
+                
                 loader_box.hide();
             });
 
+        })
+
+        $("#option-cor input").live('click', function() {
+            $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
         })
 
     })
@@ -219,6 +245,7 @@ if ($cor_count > 0) {
             htm += '<span style="margin-right:10px;">' +
                     '<input index="' + index + '" type="radio" name="option[tamanho]"' +
                     'value="' + v['option_id'] + '" ' +
+                    'product_id="' + v['product_id'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +
@@ -238,6 +265,7 @@ if ($cor_count > 0) {
             htm += '<span style="margin-right:10px;">' +
                     '<input  type="radio" name="option[quantitdy]"' +
                     'value="' + v['option_id'] + '" ' +
+                    'product_id="' + v['product_id'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +
@@ -256,6 +284,7 @@ if ($cor_count > 0) {
             htm += '<span style="margin-right:10px;">' +
                     '<input  type="radio" name="option[cor]"' +
                     'value="' + v['option_id'] + '" ' +
+                    'product_id="' + v['product_id'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +

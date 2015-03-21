@@ -251,11 +251,16 @@ class ControllerCheckoutConfirm extends Controller {
                         'type' => $option['type']
                     );
                 }
-                if (count($option['conf_options']) > 0) {
+                if (count($product['conf_options']) > 0) {
 
-                    foreach ($option['conf_options'] as $key => $conf) {
-                        if ($key != "conf_id") {
-                            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
+                    foreach ($product['conf_options'] as $key => $conf) {
+                            $table = $key;
+                            if($key == 'quantitdy'){
+                                $table = 'quantity';
+                               
+                            }
+     
+                            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $table . " WHERE id = " . (int) $conf);
                             $option_data[] = array(
                                 'name' => ucfirst($key),
                                 'value' => $query->row['value'],
@@ -265,7 +270,7 @@ class ControllerCheckoutConfirm extends Controller {
                                 'option_value_id' => $query->row['id'],
                                 'type' => $query->row['id']
                             );
-                        }
+                        
                     }
                 }
 
@@ -284,7 +289,10 @@ class ControllerCheckoutConfirm extends Controller {
                     'tax' => $this->tax->getTax($product['price'], $product['tax_class_id']),
                     'reward' => $product['reward']
                 );
+                
+                
             }
+            
 
             // Gift Voucher
             $voucher_data = array();
@@ -387,27 +395,28 @@ class ControllerCheckoutConfirm extends Controller {
                         'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
                     );
                 }
+               
                 if (count($option['conf_options']) > 0) {
                     //this variable will be used to insert in database as order 
                     // conf options
                     $conf_options = [];
                     $conf_id = 0;
-                    foreach ($option['conf_options'] as $key => $conf) {
-
-                        if ($key != "conf_id") {
-                            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
-                            $option_data[] = array(
-                                'name' => ucfirst($key),
-                                'value' => $query->row['value'],
-                            );
-                            $conf_options[$key] = array(
-                                'name' => ucfirst($key),
-                                'value' => $query->row['value'],
-                                'id' => $query->row['id'],
-                            );
-                        } else if ($key == "conf_id") {
-                            $conf_id = $conf;
+                    foreach ($product['conf_options'] as $key => $conf) {
+                        $table = $key;
+                        
+                        if ($key == 'quantitdy') {
+                            $table = 'quantity';
                         }
+                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $key . " WHERE id = " . (int) $conf);
+                        $option_data[] = array(
+                            'name' => ucfirst($key),
+                            'value' => $query->row['value'],
+                        );
+                        $conf_options[$key] = array(
+                            'name' => ucfirst($key),
+                            'value' => $query->row['value'],
+                            'id' => $query->row['id'],
+                        );
                     }
 
                     $this->addOrderConfiguration($product, $conf_options, $conf_id);
@@ -489,7 +498,7 @@ class ControllerCheckoutConfirm extends Controller {
         $sql = "Select * FROM " . DB_PREFIX . "order_product_config_options WHERE product_id = " . (int) ($product['product_id']) . " AND order_id=" . (int) $this->session->data['order_id'] . " ";
 
         $query = $this->db->query($sql);
-
+        
         if (!$query->num_rows) {
             if (isset($conf_options['arcade'])) {
                 $columns [] = "arcade = '" . (int) $conf_options['arcade']['id'] . "'";
@@ -499,6 +508,9 @@ class ControllerCheckoutConfirm extends Controller {
             }
             if (isset($conf_options['cor'])) {
                 $columns [] = "cor = '" . (int) $conf_options['cor']['id'] . "'";
+            }
+            if (isset($conf_options['quantitdy'])) {
+                $columns [] = "quantitdy = '" . (int) $conf_options['quantitdy']['id'] . "'";
             }
             if (isset($conf_id) && $conf_id != 0) {
                 $columns [] = "conf_id = '" . (int) $conf_id . "'";

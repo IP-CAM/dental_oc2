@@ -18,7 +18,7 @@ class ModelCatalogProductOptions extends Model {
         if ($this->config->get('config_language') != "en") {
             $column = "value_" . $this->config->get('config_language');
         }
-        $sql = "Select DISTINCT($option_type) as option_id,$column as value FROM " . DB_PREFIX . "product_config_options t INNER JOIN " .
+        $sql = "Select DISTINCT($option_type) as option_id,$column as value,product_id FROM " . DB_PREFIX . "product_config_options t INNER JOIN " .
                 " " . DB_PREFIX . "conf_product_" . $options_types[$option_type] . " op ON op.id = t." . $option_type . " WHERE t.product_id IN($sub_query) ";
         $sql.= ' ';
 
@@ -33,7 +33,7 @@ class ModelCatalogProductOptions extends Model {
                 $where = "AND " . implode(" AND ", $where);
             }
         }
-        $sql.= $where;
+        $sql.= $where.' group by   '.$option_type;
 //        echo $sql;
 //        die;
         $query = $this->db->query($sql);

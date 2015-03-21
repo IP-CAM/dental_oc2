@@ -32,6 +32,7 @@ class ControllerBossthemesCart extends Controller {
             } else {
                 $option = array();
             }
+
             
             if (isset($this->request->post['profile_id'])) {
                 $profile_id = $this->request->post['profile_id'];
@@ -115,7 +116,7 @@ class ControllerBossthemesCart extends Controller {
                 $json['redirect'] = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']));
             }
         }
-
+        
         $this->response->setOutput(json_encode($json));
     }
 
