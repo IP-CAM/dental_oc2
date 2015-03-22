@@ -3,22 +3,26 @@
 class ModelCatalogConfProductArcade extends Model {
 
     public function addArcade($data) {
-        $columns [] = "value = '" . $data['name'] . "'";
-        foreach($this->getLanguages() as $key=>$column){
-            $columns [] = $column." = '" . $data['name_'.$key]. "'";
+        if (isset($data['name'])) {
+            $columns [] = "value = '" . $data['name'] . "'";
         }
-        
-        $this->db->query("INSERT INTO " . DB_PREFIX . "conf_product_arcade SET ".implode($columns,","));
+        foreach ($this->getLanguages() as $key => $column) {
+            $columns [] = $column . " = '" . $data['name_' . $key] . "'";
+        }
+
+        $this->db->query("INSERT INTO " . DB_PREFIX . "conf_product_arcade SET " . implode($columns, ","));
 
         $conf_arcade = $this->db->getLastId();
     }
 
     public function editArcade($conf_arcade_id, $data) {
-        $columns [] = "value = '" . $data['name'] . "'";
-        foreach($this->getLanguages() as $key=>$column){
-            $columns [] = $column." = '" . $data['name_'.$key]. "'";
+        if (isset($data['name'])) {
+            $columns [] = "value = '" . $data['name'] . "'";
         }
-        $this->db->query("UPDATE " . DB_PREFIX . "conf_product_arcade SET ".implode($columns,",")." WHERE id = '" . (int) $conf_arcade_id . "'");
+        foreach ($this->getLanguages() as $key => $column) {
+            $columns [] = $column . " = '" . $data['name_' . $key] . "'";
+        }
+        $this->db->query("UPDATE " . DB_PREFIX . "conf_product_arcade SET " . implode($columns, ",") . " WHERE id = '" . (int) $conf_arcade_id . "'");
     }
 
     public function deleteArcade($conf_arcade_id) {

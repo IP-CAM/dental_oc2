@@ -3,7 +3,9 @@
 class ModelCatalogConfProductTamanho extends Model {
 
     public function addTamanho($data) {
-        $columns [] = "value = '" . $data['name'] . "'";
+        if(isset($data['name'])){
+            $columns [] = "value = '" . $data['name'] . "'";
+        }
         foreach ($this->getLanguages() as $key => $column) {
             $columns [] = $column . " = '" . $data['name_' . $key] . "'";
         }
@@ -13,7 +15,9 @@ class ModelCatalogConfProductTamanho extends Model {
     }
 
     public function editTamanho($conf_arcade_id, $data) {
-        $columns [] = "value = '" . $data['name'] . "'";
+        if(isset($data['name'])){
+            $columns [] = "value = '" . $data['name'] . "'";
+        }
         foreach ($this->getLanguages() as $key => $column) {
             $columns [] = $column . " = '" . $data['name_' . $key] . "'";
         }

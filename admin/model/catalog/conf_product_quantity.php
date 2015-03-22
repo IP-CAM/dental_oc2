@@ -3,7 +3,10 @@
 class ModelCatalogConfProductQuantity extends Model {
 
     public function addQuantity($data) {
-        $columns [] = "value = '" . $data['name'] . "'";
+        if(isset($data['name'])){
+            $columns [] = "value = '" . $data['name'] . "'";
+        }
+        
         foreach ($this->getLanguages() as $key => $column) {
             $columns [] = $column . " = '" . $data['name_' . $key] . "'";
         }
@@ -13,7 +16,9 @@ class ModelCatalogConfProductQuantity extends Model {
     }
 
     public function editQuantity($conf_arcade_id, $data) {
-        $columns [] = "value = '" . $data['name'] . "'";
+        if(isset($data['name'])){
+            $columns [] = "value = '" . $data['name'] . "'";
+        }
         foreach ($this->getLanguages() as $key => $column) {
             $columns [] = $column . " = '" . $data['name_' . $key] . "'";
         }
