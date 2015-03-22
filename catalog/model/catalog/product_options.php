@@ -18,8 +18,11 @@ class ModelCatalogProductOptions extends Model {
         if ($this->config->get('config_language') != "en") {
             $column = "value_" . $this->config->get('config_language');
         }
-        $sql = "Select DISTINCT($option_type) as option_id,$column as value,product_id FROM " . DB_PREFIX . "product_config_options t INNER JOIN " .
-                " " . DB_PREFIX . "conf_product_" . $options_types[$option_type] . " op ON op.id = t." . $option_type . " WHERE t.product_id IN($sub_query) ";
+        $sql = "Select DISTINCT($option_type) as option_id,$column as value,t.product_id,prod.price,prod.quantity,prod.tax_class_id,prod_sp.price as special FROM " . DB_PREFIX . "product_config_options t INNER JOIN " .
+                " " . DB_PREFIX . "conf_product_" . $options_types[$option_type] . " op ON op.id = t." . $option_type .
+                " INNER JOIN " . DB_PREFIX . "product  as prod ON prod.product_id = t.product_id " .
+                " LEFT JOIN " . DB_PREFIX . "product_special as prod_sp ON t.product_id = prod_sp.product_id " .
+                "  WHERE t.product_id IN($sub_query) ";
         $sql.= ' ';
 
 
@@ -33,11 +36,33 @@ class ModelCatalogProductOptions extends Model {
                 $where = "AND " . implode(" AND ", $where);
             }
         }
-        $sql.= $where.' group by   '.$option_type;
+        $sql.= $where . ' group by   ' . $option_type;
 //        echo $sql;
 //        die;
         $query = $this->db->query($sql);
-        return $query->rows;
+        $options_return = array();
+        foreach ($query->rows as $key => $option) {
+            if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+                $option['price'] = $this->currency->format($this->tax->calculate($option['price'], $option['tax_class_id'], $this->config->get('config_tax')));
+            } else {
+                $option['price'] = false;
+            }
+
+            if ($this->config->get('config_tax')) {
+                $option['tax'] = $this->currency->format((float) $option['special'] ? $option['special'] : $option['price']);
+            } else {
+                $option['tax'] = false;
+            }
+
+            if ((float) $option['special']) {
+                $option['special'] = $this->currency->format($this->tax->calculate($option['special'], $option['tax_class_id'], $this->config->get('config_tax')));
+            } else {
+                $option['special'] = false;
+            }
+
+            $options_return[$key] = $option;
+        }
+        return $options_return;
     }
 
     public function getOptionCount($product_id, $column) {

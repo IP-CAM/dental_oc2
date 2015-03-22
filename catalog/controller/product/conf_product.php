@@ -7,17 +7,17 @@ class ControllerProductConfProduct extends Controller {
         $product_id = $this->request->get['product_id'];
         $options = array();
         $option_key = 'arcade';
-        if(!empty($this->request->get['option'])){
-           $options =  $this->request->get['option'];
+        if (!empty($this->request->get['option'])) {
+            $options = $this->request->get['option'];
         }
-        if(!empty($this->request->get['option_key'])){
+        if (!empty($this->request->get['option_key'])) {
             $option_key = $this->request->get['option_key'];
         }
-       
+
         $model = $this->model_catalog_product_options;
-        $options_arcade = $model->gerProductOptions($product_id,$option_key,$options);
+        $options_arcade = $model->gerProductOptions($product_id, $option_key, $options);
+
         echo json_encode($options_arcade);
-        
     }
 
 }

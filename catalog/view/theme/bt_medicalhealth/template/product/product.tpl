@@ -47,12 +47,16 @@
                 <?php if ($price) { ?>
                 <div class="price">
                     <?php if (!$special) { ?>
-                    <?php echo $price; ?>
+                    <span class="price-text">
+                        <?php echo $price; ?>
+                    </span>
+                    
+                    
                     <?php } else { ?>
                     <span class="price-old"><?php echo $price; ?></span> <span class="price-new"><?php echo $special; ?></span>
                     <?php } ?>
                     <?php if ($tax) { ?>
-                    <span class="price-tax"><?php echo $text_tax; ?> <?php echo $tax; ?></span>
+                    <span class="price-tax"><?php echo $text_tax; ?> <span class="product_tax"><?php echo $tax; ?></span></span>
                     <?php } ?>
                     <?php if ($points) { ?>
                     <span class="reward"><small><?php echo $text_points; ?> <?php echo $points; ?></small></span>

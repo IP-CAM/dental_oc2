@@ -8,7 +8,9 @@
 $this->load->model('catalog/product_options');
 $options_arcade = $this->model_catalog_product_options->gerProductOptions($product_id);
 
+
 $arcade_count = $this->model_catalog_product_options->getOptionCount($product_id, 'arcade');
+
 $tamanho_count = $this->model_catalog_product_options->getOptionCount($product_id, 'tamanho');
 $quantitdy_count = $this->model_catalog_product_options->getOptionCount($product_id, 'quantitdy');
 $cor_count = $this->model_catalog_product_options->getOptionCount($product_id, 'cor');
@@ -39,6 +41,10 @@ if ($arcade_count > 0) {
                        index="<?php echo $index ?>" type="radio" name="option[arcade]" 
                        product_id="<?php echo $option_v['product_id']; ?>" 
                        value="<?php echo $option_v['option_id']; ?>" 
+                       price="<?php echo $option_v['price']; ?>"
+                       tax="<?php echo $option_v['tax']; ?>"
+                       special="<?php echo $option_v['special']; ?>"
+                       quantity="<?php echo $option_v['quantity']; ?>"
                        id="option-value-<?php echo $option_v['option_id']; ?>" />
                 <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -72,6 +78,10 @@ if ($tamanho_count > 0) {
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[tamanho]" 
                                value="<?php echo $option_v['option_id']; ?>" 
                                product_id="<?php echo $option_v['product_id']; ?>"
+                               price="<?php echo $option_v['price']; ?>"
+                               tax="<?php echo $option_v['tax']; ?>"
+                               special="<?php echo $option_v['special']; ?>"
+                               quantity="<?php echo $option_v['quantity']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -108,6 +118,10 @@ if ($quantitdy_count > 0) {
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[quantitdy]" 
                                value="<?php echo $option_v['option_id']; ?>" 
                                product_id="<?php echo $option_v['product_id']; ?>"
+                               price="<?php echo $option_v['price']; ?>"
+                               tax="<?php echo $option_v['tax']; ?>"
+                               special="<?php echo $option_v['special']; ?>"
+                               quantity="<?php echo $option_v['quantity']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -144,6 +158,10 @@ if ($cor_count > 0) {
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[cor]" 
                                value="<?php echo $option_v['option_id']; ?>" 
                                product_id="<?php echo $option_v['product_id']; ?>"
+                               price="<?php echo $option_v['price']; ?>"
+                               tax="<?php echo $option_v['tax']; ?>"
+                               special="<?php echo $option_v['special']; ?>"
+                               quantity="<?php echo $option_v['quantity']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -177,7 +195,9 @@ if ($cor_count > 0) {
                     renderToms(data);
                 }
                 else {
-                   $('input[type=hidden][name=product_id]').val($(this).attr('product_id')); 
+                    $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
+                    $("span.price-text").html($(this).attr("price"));
+                    $("span.product_tax").html($(this).attr("tax"));
                 }
                 loader_box.hide();
             });
@@ -196,12 +216,14 @@ if ($cor_count > 0) {
             }
             $.getJSON(url, function(data) {
                 if (data.length > 0) {
-                   renderQuantity(data);
+                    renderQuantity(data);
                 }
                 else {
-                   $('input[type=hidden][name=product_id]').val($(this).attr('product_id')); 
+                    $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
+                    $("span.price-text").html($(this).attr("price"));
+                    $("span.product_tax").html($(this).attr("tax"));
                 }
-                
+
                 loader_box.hide();
             });
 
@@ -223,9 +245,11 @@ if ($cor_count > 0) {
                     renderCor(data);
                 }
                 else {
-                   $('input[type=hidden][name=product_id]').val($(this).attr('product_id')); 
+                    $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
+                    $("span.price-text").html($(this).attr("price"));
+                    $("span.product_tax").html($(this).attr("tax"));
                 }
-                
+
                 loader_box.hide();
             });
 
@@ -233,6 +257,8 @@ if ($cor_count > 0) {
 
         $("#option-cor input").live('click', function() {
             $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
+            $("span.price-text").html($(this).attr("price"));
+            $("span.product_tax").html($(this).attr("tax"));
         })
 
     })
@@ -246,6 +272,10 @@ if ($cor_count > 0) {
                     '<input index="' + index + '" type="radio" name="option[tamanho]"' +
                     'value="' + v['option_id'] + '" ' +
                     'product_id="' + v['product_id'] + '" ' +
+                    'price="' + v['price'] + '" ' +
+                    'tax="' + v['tax'] + '" ' +
+                    'special="' + v['special'] + '" ' +
+                    'quantity="' + v['quantity'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +
@@ -266,6 +296,10 @@ if ($cor_count > 0) {
                     '<input  type="radio" name="option[quantitdy]"' +
                     'value="' + v['option_id'] + '" ' +
                     'product_id="' + v['product_id'] + '" ' +
+                    'price="' + v['price'] + '" ' +
+                    'tax="' + v['tax'] + '" ' +
+                    'special="' + v['special'] + '" ' +
+                    'quantity="' + v['quantity'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +
@@ -285,6 +319,10 @@ if ($cor_count > 0) {
                     '<input  type="radio" name="option[cor]"' +
                     'value="' + v['option_id'] + '" ' +
                     'product_id="' + v['product_id'] + '" ' +
+                    'price="' + v['price'] + '" ' +
+                    'tax="' + v['tax'] + '" ' +
+                    'special="' + v['special'] + '" ' +
+                    'quantity="' + v['quantity'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +
