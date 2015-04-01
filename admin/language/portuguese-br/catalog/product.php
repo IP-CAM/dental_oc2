@@ -37,6 +37,8 @@ $_['entry_arcade']          = 'Arcade :';
 $_['entry_quantity']          = 'Quantitdy :';
 $_['entry_tamanho']          = 'Tamanho:';
 $_['entry_cor']          = 'Cor:';
+$_['similar_product']          = 'Produto similar:';
+$_['entry_youtube']          = 'link do Youtube:';
 $_['text_remove'] = 'Remove';
 
 // Entry

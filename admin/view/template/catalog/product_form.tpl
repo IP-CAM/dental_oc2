@@ -64,6 +64,10 @@
                 <td><?php echo $entry_tag; ?></td>
                 <td><input type="text" name="product_description[<?php echo $language['language_id']; ?>][tag]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['tag'] : ''; ?>" size="80" /></td>
               </tr>
+              <tr>
+                <td><?php echo $entry_youtube; ?></td>
+                <td><input type="text" name="product[youtube]" value="<?php echo isset($product['youtube']) ? $product['youtube'] : ''; ?>" size="80" /></td>
+              </tr>
             </table>
           </div>
           <?php } ?>

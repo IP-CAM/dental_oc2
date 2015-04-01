@@ -254,17 +254,7 @@ class ControllerCatalogProduct extends Controller {
                     
                 
                 }
-                
-			protected function dbCheck(){
-				$query = $this->db->query("SHOW COLUMNS FROM `".DB_PREFIX."product_description` LIKE 'youtube'");
-				if(!$query->num_rows){
-					$this->db->query("ALTER TABLE `".DB_PREFIX."product_description` ADD `youtube` TEXT NOT NULL");
-				}
-			}
-			public function index() {
-			$this->dbCheck();
-			
-			
+                public function index() {
                     $languages = $this->getLanguages();
                    
                     $this->dbProductArcade($languages);
@@ -283,6 +273,7 @@ class ControllerCatalogProduct extends Controller {
                      $this->add_column_table("product","weight_net");
                      $this->add_column_table("product","cubage");
                      $this->add_column_table("product","square_meters");
+                     $this->add_column_table("product","youtube");
                
                 
             
@@ -869,10 +860,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['text_percent'] = $this->language->get('text_percent');
         $this->data['text_amount'] = $this->language->get('text_amount');
 
-        				
-				$this->data['entry_name'] = $this->language->get('entry_name');
-				$this->data['entry_youtube'] = $this->language->get('entry_youtube');
-            
+        $this->data['entry_name'] = $this->language->get('entry_name');
         $this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
         $this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
         $this->data['entry_description'] = $this->language->get('entry_description');
@@ -900,6 +888,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
         $this->data['entry_weight'] = $this->language->get('entry_weight');
         $this->data['entry_dimension'] = $this->language->get('entry_dimension');
+        $this->data['entry_youtube'] = $this->language->get('entry_youtube');
         $this->data['entry_length'] = $this->language->get('entry_length');
         $this->data['entry_image'] = $this->language->get('entry_image');
         $this->data['entry_download'] = $this->language->get('entry_download');
@@ -972,6 +961,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['entry_tamanho'] = $this->language->get('entry_tamanho');
         $this->data['entry_quantity'] = $this->language->get('entry_quantity');
         $this->data['entry_cor'] = $this->language->get('entry_cor');
+        $this->data['similar_product'] = $this->language->get('similar_product');
         $this->data['column_action'] = $this->language->get('column_action');
         $this->data['text_no_results'] = $this->language->get('text_no_results');
 
@@ -1177,6 +1167,7 @@ class ControllerCatalogProduct extends Controller {
         } else {
             $this->data['keyword'] = '';
         }
+        $similar_products = $this->model_catalog_product->getSimilarProducts($product_info);
 
 
 
@@ -1186,6 +1177,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['cor_options'] = $conf_options['cor'];
         $this->data['tamanho_options'] = $conf_options['tamanho'];
         $this->data['quantitdy_options'] = $conf_options['quantitdy'];
+        $this->data['similar_products'] = $similar_products;
 
         $this->data['product_config_options'] = '';
         $this->data['product_config_id'] = '';

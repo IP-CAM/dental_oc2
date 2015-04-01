@@ -43,7 +43,8 @@
                     <?php if ($reward) { ?>
                     <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
                     <?php } ?>
-                    <span><?php echo $text_stock; ?></span><b><?php echo $stock; ?></b></div>
+                    <span><?php echo $text_stock; ?></span><b><?php echo $stock; ?></b><br />
+                    <span><?php echo $text_youtube; ?></span><b><?php echo $youtube; ?></b></div>
                 <?php if ($price) { ?>
                 <div class="price">
                     <?php if (!$special) { ?>

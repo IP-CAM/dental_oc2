@@ -262,6 +262,7 @@ class ControllerProductProduct extends Controller {
             $this->data['entry_good'] = $this->language->get('entry_good');
             $this->data['entry_bad'] = $this->language->get('entry_bad');
             $this->data['entry_captcha'] = $this->language->get('entry_captcha');
+            $this->data['text_youtube'] = $this->language->get('text_youtube');
             
             //shipping calcualation
             $this->data['text_postal_code'] = $this->language->get('text_postal_code');
@@ -345,6 +346,8 @@ class ControllerProductProduct extends Controller {
             } else {
                 $this->data['tax'] = false;
             }
+            
+            $this->data['youtube'] = $product_info['youtube'];
 
             $discounts = $this->model_catalog_product->getProductDiscounts($this->request->get['product_id']);
 

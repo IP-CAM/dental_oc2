@@ -34,6 +34,7 @@ $_['entry_rating']      = 'Avaliação:';
 $_['entry_good']        = 'Bom';
 $_['entry_bad']         = 'Ruim';
 $_['entry_captcha']     = 'Digite o código da imagem:';
+$_['text_youtube'] = 'link do Youtube:';
 
 // Tabs
 $_['tab_description']   = 'Descrição';

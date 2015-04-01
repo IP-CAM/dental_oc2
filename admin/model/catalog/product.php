@@ -1,17 +1,19 @@
 <?php
 
 class ModelCatalogProduct extends Model {
+
     public function getSimilarProducts($product_info) {
-        $join = " INNER JOIN ".DB_PREFIX."product p ON p.product_id = pd.product_id ";
+        $join = " INNER JOIN " . DB_PREFIX . "product p ON p.product_id = pd.product_id ";
         // $join = " ";
-        $sql = "SELECT * FROM " . DB_PREFIX . "product_description pd ".$join." WHERE pd.name = '" .$product_info['name']."' and pd.product_id <> ".(int)$product_info['product_id'];
-        
+        $sql = "SELECT * FROM " . DB_PREFIX . "product_description pd " . $join . " WHERE pd.name = '" . $product_info['name'] . "' and pd.product_id <> " . (int) $product_info['product_id'];
+
         $query = $this->db->query($sql);
-       
+
         return $query->rows;
     }
+
     public function addProduct($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int) $data['quantity'] . "', minimum = '" . (int) $data['minimum'] . "', subtract = '" . (int) $data['subtract'] . "', stock_status_id = '" . (int) $data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', manufacturer_id = '" . (int) $data['manufacturer_id'] . "', shipping = '" . (int) $data['shipping'] . "', price = '" . (float) $data['price'] . "', points = '" . (int) $data['points'] . "', weight = '" . (float) $data['weight'] . "', weight_class_id = '" . (int) $data['weight_class_id'] . "', length = '" . (float) $data['length'] . "', width = '" . (float) $data['width'] . "', height = '" . (float) $data['height'] . "', length_class_id = '" . (int) $data['length_class_id'] . "', status = '" . (int) $data['status'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', sort_order = '" . (int) $data['sort_order'] . "', date_added = NOW()");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int) $data['quantity'] . "', minimum = '" . (int) $data['minimum'] . "', subtract = '" . (int) $data['subtract'] . "', stock_status_id = '" . (int) $data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', manufacturer_id = '" . (int) $data['manufacturer_id'] . "', shipping = '" . (int) $data['shipping'] . "', price = '" . (float) $data['price'] . "', points = '" . (int) $data['points'] . "', weight = '" . (float) $data['weight'] . "',youtube = '" . $data['youtube'] . "', weight_class_id = '" . (int) $data['weight_class_id'] . "', length = '" . (float) $data['length'] . "', width = '" . (float) $data['width'] . "', height = '" . (float) $data['height'] . "', length_class_id = '" . (int) $data['length_class_id'] . "', status = '" . (int) $data['status'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', sort_order = '" . (int) $data['sort_order'] . "', date_added = NOW()");
 
         $product_id = $this->db->getLastId();
 
@@ -160,20 +162,30 @@ class ModelCatalogProduct extends Model {
 //                       
 //                    }
                 } else {
-                    $sql_max = "Select Max(product_id) as max_product_id FROM " . DB_PREFIX . "product";
-                    $product_columns = array();
-                    $new_product = (int) ($this->db->query($sql_max)->row['max_product_id'] + 1);
+                    $sql_max1 = "Select Max(p.product_id) as max_product_id FROM " . DB_PREFIX . "product p ";
+                    $sql_max2 = "Select Max(pd.product_id) as max_product_id FROM " . DB_PREFIX . "product_description pd";
+                    $new_product = array((int) ($this->db->query($sql_max1)->row['max_product_id']), (int) ($this->db->query($sql_max2)->row['max_product_id']));
+                    $new_product = max($new_product) + 1;
+                    if (empty($data['similar'])) {
+                        $product_columns = array();
 
-                    $product_columns['product_id'] = "product_id" . " = '" . $new_product . "'";
-                    $product_columns['sku'] = "sku" . " = '" . $this->generateRandomString(5) . "'";
-                    $product_columns['model'] = "model" . " = '" . $this->generateRandomString(5) . "'";
-                    $product_columns['referenc_id'] = "referenc_id" . " = '" . $product_id. "'";
 
-                    $sql1 = "INSERT INTO " . DB_PREFIX . "product SET " . implode(',', $product_columns);
-                    $this->db->query($sql1);
+                        $product_columns['product_id'] = "product_id" . " = '" . $new_product . "'";
+                        $product_columns['sku'] = "sku" . " = '" . $this->generateRandomString(5) . "'";
+                        $product_columns['model'] = "model" . " = '" . $this->generateRandomString(5) . "'";
+                        $product_columns['referenc_id'] = "referenc_id" . " = '" . $product_id . "'";
 
-                    foreach ($data['product_description'] as $language_id => $value) {
-                        $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int) $new_product . "', language_id = '" . (int) $language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "'");
+                        $sql1 = "INSERT INTO " . DB_PREFIX . "product SET " . implode(',', $product_columns);
+                        $this->db->query($sql1);
+
+                        foreach ($data['product_description'] as $language_id => $value) {
+                            $pd_sql = "INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int) $new_product . "', language_id = '" . (int) $language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "'";
+
+                            $this->db->query($pd_sql);
+                        }
+                    }
+                    else {
+                        $new_product = $data['similar'];
                     }
 
                     $columns ['product_id'] = "product_id = '" . (int) $new_product . "'";
@@ -194,7 +206,7 @@ class ModelCatalogProduct extends Model {
     }
 
     public function editProduct($product_id, $data) {
-        $this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int) $data['quantity'] . "', minimum = '" . (int) $data['minimum'] . "', subtract = '" . (int) $data['subtract'] . "', stock_status_id = '" . (int) $data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', manufacturer_id = '" . (int) $data['manufacturer_id'] . "', shipping = '" . (int) $data['shipping'] . "', price = '" . (float) $data['price'] . "', points = '" . (int) $data['points'] . "', weight = '" . (float) $data['weight'] . "', weight_class_id = '" . (int) $data['weight_class_id'] . "', length = '" . (float) $data['length'] . "', width = '" . (float) $data['width'] . "', height = '" . (float) $data['height'] . "', length_class_id = '" . (int) $data['length_class_id'] . "', status = '" . (int) $data['status'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', sort_order = '" . (int) $data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int) $product_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "',youtube = '" . $this->db->escape($data['youtube']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int) $data['quantity'] . "', minimum = '" . (int) $data['minimum'] . "', subtract = '" . (int) $data['subtract'] . "', stock_status_id = '" . (int) $data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', manufacturer_id = '" . (int) $data['manufacturer_id'] . "', shipping = '" . (int) $data['shipping'] . "', price = '" . (float) $data['price'] . "', points = '" . (int) $data['points'] . "', weight = '" . (float) $data['weight'] . "', weight_class_id = '" . (int) $data['weight_class_id'] . "', length = '" . (float) $data['length'] . "', width = '" . (float) $data['width'] . "', height = '" . (float) $data['height'] . "', length_class_id = '" . (int) $data['length_class_id'] . "', status = '" . (int) $data['status'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', sort_order = '" . (int) $data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int) $product_id . "'");
 
         if (isset($data['image'])) {
             $this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int) $product_id . "'");
@@ -358,20 +370,31 @@ class ModelCatalogProduct extends Model {
 //                       
 //                    }
                 } else {
-                    $sql_max = "Select Max(product_id) as max_product_id FROM " . DB_PREFIX . "product";
-                    $product_columns = array();
-                    $new_product = (int) ($this->db->query($sql_max)->row['max_product_id'] + 1);
+                    if (empty($data['similar'])) {
+                        $sql_max1 = "Select Max(p.product_id) as max_product_id FROM " . DB_PREFIX . "product p ";
+                        $sql_max2 = "Select Max(pd.product_id) as max_product_id FROM " . DB_PREFIX . "product_description pd";
+                        $new_product = array((int) ($this->db->query($sql_max1)->row['max_product_id']), (int) ($this->db->query($sql_max2)->row['max_product_id']));
+                        $new_product = max($new_product) + 1;
 
-                    $product_columns['product_id'] = "product_id" . " = '" . $new_product . "'";
-                    $product_columns['sku'] = "sku" . " = '" . $this->generateRandomString(5) . "'";
-                    $product_columns['model'] = "model" . " = '" . $this->generateRandomString(5) . "'";
-                    $product_columns['referenc_id'] = "referenc_id" . " = '" . $product_id. "'";
-                    
-                    $sql1 = "INSERT INTO " . DB_PREFIX . "product SET " . implode(',', $product_columns);
-                    $this->db->query($sql1);
+                        $product_columns = array();
 
-                    foreach ($data['product_description'] as $language_id => $value) {
-                        $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int) $new_product . "', language_id = '" . (int) $language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "'");
+
+                        $product_columns['product_id'] = "product_id" . " = '" . $new_product . "'";
+                        $product_columns['sku'] = "sku" . " = '" . $this->generateRandomString(5) . "'";
+                        $product_columns['model'] = "model" . " = '" . $this->generateRandomString(5) . "'";
+                        $product_columns['referenc_id'] = "referenc_id" . " = '" . $product_id . "'";
+
+                        $sql1 = "INSERT INTO " . DB_PREFIX . "product SET " . implode(',', $product_columns);
+                        $this->db->query($sql1);
+
+
+                        foreach ($data['product_description'] as $language_id => $value) {
+                            $pd_sql = "INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int) $new_product . "', language_id = '" . (int) $language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "'";
+
+                            $this->db->query($pd_sql);
+                        }
+                    } else {
+                        $new_product = $data['similar'];
                     }
 
                     $columns ['product_id'] = "product_id = '" . (int) $new_product . "'";
@@ -462,7 +485,7 @@ class ModelCatalogProduct extends Model {
 
     public function getProduct($product_id) {
         $query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int) $product_id . "') AS keyword FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int) $product_id . "' AND pd.language_id = '" . (int) $this->config->get('config_language_id') . "'");
-
+        
         return $query->row;
     }
 
@@ -876,14 +899,14 @@ class ModelCatalogProduct extends Model {
     public function generateRandomString($length = 10) {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
-    
+
     /**
      * get Reference Products
      */
-    public function get_reference_products($id){
-       $data = array();
-       $sql = "SELECT t.product_id,model,t.sku,arcade,tamanho,cor,quantitdy FROM ".DB_PREFIX."product t  INNER JOIN ".DB_PREFIX."product_config_options as op ON t.product_id = op.product_id WHERE referenc_id = ".(int)$id;
-       return  $this->db->query($sql)->rows;
+    public function get_reference_products($id) {
+        $data = array();
+        $sql = "SELECT t.product_id,model,t.sku,arcade,tamanho,cor,quantitdy FROM " . DB_PREFIX . "product t  INNER JOIN " . DB_PREFIX . "product_config_options as op ON t.product_id = op.product_id WHERE referenc_id = " . (int) $id;
+        return $this->db->query($sql)->rows;
     }
 
 }

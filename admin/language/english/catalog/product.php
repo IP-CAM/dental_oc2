@@ -107,6 +107,8 @@ $_['entry_arcade']          = 'Arcade :';
 $_['entry_quantity']          = 'Quantitdy :';
 $_['entry_tamanho']          = 'Tamanho:';
 $_['entry_cor']          = 'Cor:';
+$_['similar_product']          = 'Similar Product:';
+$_['entry_youtube']          = 'Youtube link:';
 $_['text_remove'] = 'Remove';
 
 

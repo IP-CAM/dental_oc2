@@ -29,6 +29,7 @@
                      $this->add_column_table("product","weight_net");
                      $this->add_column_table("product","cubage");
                      $this->add_column_table("product","square_meters");
+                     $this->add_column_table("product","youtube");
                
                 ]]>
             </add>

@@ -138,7 +138,7 @@ if (!empty($this->data['product_config_options_json'])) {
 
         </tr>
          <tr>
-            <th>Similar Products</th>
+            <th><?php echo $similar_product; ?></th>
             <td>
                 <select class="add_similar" name="similar">
                     <option value="">Select</option>
@@ -285,7 +285,7 @@ if (!empty($this->data['product_config_options_json'])) {
 
         </tr>
         <tr>
-            <th>Similar Products</th>
+            <th><?php echo $similar_product; ?></th>
             <td>
                 <select class="add_similar" name="similar">
                     <option value="">Select</option>
