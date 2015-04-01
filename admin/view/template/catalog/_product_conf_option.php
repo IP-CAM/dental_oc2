@@ -137,6 +137,25 @@ if (!empty($this->data['product_config_options_json'])) {
             </td>
 
         </tr>
+         <tr>
+            <th>Similar Products</th>
+            <td>
+                <select class="add_similar" name="similar">
+                    <option value="">Select</option>
+                    <?php
+                    $selected = "";
+                    foreach ($similar_products as $product) {
+                       
+                        echo "<option value='" . $product['product_id']."'>";
+                        echo $product['name']."-".$product['model'];
+                        echo "</option>";
+                    }
+                    ?>
+                </select>
+
+            </td>
+
+        </tr>
     </table>
 
     <?php
@@ -257,6 +276,25 @@ if (!empty($this->data['product_config_options_json'])) {
                         } else {
                             echo $option['value'];
                         }
+                        echo "</option>";
+                    }
+                    ?>
+                </select>
+
+            </td>
+
+        </tr>
+        <tr>
+            <th>Similar Products</th>
+            <td>
+                <select class="add_similar" name="similar">
+                    <option value="">Select</option>
+                    <?php
+                    $selected = "";
+                    foreach ($similar_products as $product) {
+                       
+                        echo "<option value='" . $product['product_id']."'>";
+                        echo $product['name']."-".$product['model'];
                         echo "</option>";
                     }
                     ?>

@@ -893,6 +893,7 @@ class ControllerCatalogProduct extends Controller {
         } else {
             $this->data['keyword'] = '';
         }
+        $similar_products = $this->model_catalog_product->getSimilarProducts($product_info);
 
 
 
@@ -902,6 +903,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['cor_options'] = $conf_options['cor'];
         $this->data['tamanho_options'] = $conf_options['tamanho'];
         $this->data['quantitdy_options'] = $conf_options['quantitdy'];
+        $this->data['similar_products'] = $similar_products;
 
         $this->data['product_config_options'] = '';
         $this->data['product_config_id'] = '';
