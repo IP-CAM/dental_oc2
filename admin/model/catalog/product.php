@@ -172,6 +172,10 @@ class ModelCatalogProduct extends Model {
                     $sql1 = "INSERT INTO " . DB_PREFIX . "product SET " . implode(',', $product_columns);
                     $this->db->query($sql1);
 
+                    foreach ($data['product_description'] as $language_id => $value) {
+                        $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int) $new_product . "', language_id = '" . (int) $language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "'");
+                    }
+
                     $columns ['product_id'] = "product_id = '" . (int) $new_product . "'";
                     $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
                     $this->db->query($sql2);
@@ -365,6 +369,10 @@ class ModelCatalogProduct extends Model {
                     
                     $sql1 = "INSERT INTO " . DB_PREFIX . "product SET " . implode(',', $product_columns);
                     $this->db->query($sql1);
+
+                    foreach ($data['product_description'] as $language_id => $value) {
+                        $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int) $new_product . "', language_id = '" . (int) $language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "'");
+                    }
 
                     $columns ['product_id'] = "product_id = '" . (int) $new_product . "'";
                     $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
