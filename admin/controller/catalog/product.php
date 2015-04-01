@@ -875,6 +875,13 @@ class ControllerCatalogProduct extends Controller {
         } else {
             $this->data['location'] = '';
         }
+        if (isset($this->request->post['product']['youtube'])) {
+            $this->data['youtube'] = $this->request->post['location'];
+        } elseif (!empty($product_info)) {
+            $this->data['youtube'] = $product_info['youtube'];
+        } else {
+            $this->data['youtube'] = '';
+        }
 
         $this->load->model('setting/store');
 

@@ -25,11 +25,27 @@
                     
                 
                 }
+                protected function remove_column_table($table,$column){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    
+                    if(in_array($column,$fields)){
+                        $query = "ALTER TABLE ".DB_PREFIX.$table." DROP COLUMN ".$column;
+                        $this->db->query($query);;
+                    }
+                    
+                
+                }
                 public function index() {
                      $this->add_column_table("product","weight_net");
                      $this->add_column_table("product","cubage");
                      $this->add_column_table("product","square_meters");
                      $this->add_column_table("product","youtube");
+                     $this->remove_column_table("product_description","youtube");
                
                 ]]>
             </add>

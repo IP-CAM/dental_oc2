@@ -66,7 +66,7 @@
               </tr>
               <tr>
                 <td><?php echo $entry_youtube; ?></td>
-                <td><input type="text" name="product[youtube]" value="<?php echo isset($product['youtube']) ? $product['youtube'] : ''; ?>" size="80" /></td>
+                <td><input type="text" name="product[youtube]" value="<?php echo isset($youtube) ? $youtube : ''; ?>" size="80" /></td>
               </tr>
             </table>
           </div>
