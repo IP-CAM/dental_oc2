@@ -20,6 +20,21 @@ class ControllerCatalogProduct extends Controller {
                     
                 
                 }
+                protected function remove_column_table($table,$column){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    
+                    if(in_array($column,$fields)){
+                        $query = "ALTER TABLE ".DB_PREFIX.$table." DROP COLUMN ".$column;
+                        $this->db->query($query);;
+                    }
+                    
+                
+                }
                 
                 protected function addCheckoutColumns($table = "order"){
                     $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
@@ -274,6 +289,7 @@ class ControllerCatalogProduct extends Controller {
                      $this->add_column_table("product","cubage");
                      $this->add_column_table("product","square_meters");
                      $this->add_column_table("product","youtube");
+                     $this->remove_column_table("product_description","youtube");
                
                 
             
@@ -1146,6 +1162,13 @@ class ControllerCatalogProduct extends Controller {
             $this->data['location'] = $product_info['location'];
         } else {
             $this->data['location'] = '';
+        }
+        if (isset($this->request->post['product']['youtube'])) {
+            $this->data['youtube'] = $this->request->post['location'];
+        } elseif (!empty($product_info)) {
+            $this->data['youtube'] = $product_info['youtube'];
+        } else {
+            $this->data['youtube'] = '';
         }
 
         $this->load->model('setting/store');
