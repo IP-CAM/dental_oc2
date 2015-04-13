@@ -24,6 +24,7 @@ if (!isset($_GET["filename"])) {
 };
 
 $filename = $_GET["filename"];
+$sidicom_file = $filename;
 
 if ($filename == "") {
     /* Busca pelo arquivo mais recente sem LOG */
@@ -77,6 +78,10 @@ $logfile = fopen($logfilename, 'a');
 $linha = "0000;" . date('Y-m-d H:i:s') . ";" . basename($filename) . ";" . $quebralinha;
 fwrite($logfile, $linha);
 
+
+
+
+
 if (file_exists($filename)) {
     $lines = file($filename);
     foreach ($lines as $line_num => $line) {
@@ -120,10 +125,14 @@ fwrite($logfile, $linha);
 $atualizados = 0;
 $inseridos = 0;
 
+$test = array();
+
 for ($i = 0; $i < $count; $i++) {
     $linha = "";
     $campos = explode(";", $reg300[$i]);
+   
     $prodcod = $campos[2];
+   
     if ($campos[8] = 'A') {
         $prodsit = '1';
     }
@@ -131,7 +140,7 @@ for ($i = 0; $i < $count; $i++) {
         $prodsit = '0';
     }
     //$prodsit = $campos[8];
-    $proddes = mysql_escape_string($campos[9]);  /* ida_product_description */
+    $proddes = mysql_escape_string(utf8_encode($campos[9]));  /* ida_product_description */
     $prodpbr = $campos[17];
     $prodpli = $campos[18]; /* weight_net */
     $prodlar = $campos[28];
@@ -140,13 +149,25 @@ for ($i = 0; $i < $count; $i++) {
     $prodcub = $campos[31]; /* cubage */
     $prodare = $campos[32]; /* square_meters */
     $prodgen = mysql_escape_string($campos[33]); /* ida_product_description */
+    
+    $product_model = '';
+    if(isset($campos[9])){
+       $product_model = mysql_escape_string($campos[9]); 
+       $product_model = explode(")",$product_model);
+       $product_model = substr($product_model[0],1,strlen($product_model[0]));
+    }
 
+    
+    $test[$proddes] = $proddes;;
+    
+    
     /* outros campos advindos necessários */
     $prodstk = 7;
 
     /* Busca Por Estoque do Produto e Soma */
     $keyvet = array_keys($reg308cod, $prodcod);
     $count2 = count($keyvet);
+    $prodsal = 0;
     for ($j = 0; $j < $count2; $j++) {
         $prodsal += $reg308sal[$keyvet[$j]];
     }
@@ -161,12 +182,18 @@ for ($i = 0; $i < $count; $i++) {
     /* Fim Busca Preço */
 
     /* Procura por Produto */
-    $sql = "SELECT * FROM  " . $db_prefix . "product where product_id = $prodcod";
-    $sql = mysqli_query($conexao, $sql);
-    if (mysqli_num_rows($sql) > 0) {
+    echo "<br/>";
+    $sql = "SELECT * FROM  " . $db_prefix . "product_description where name = '$proddes'";
+    echo $sql;
+    echo "<br/>";
+    $sql_res = mysqli_query($conexao, $sql);
+    
+    if (mysqli_num_rows($sql_res) > 0) {
+        $row = mysqli_fetch_assoc($sql_res);
+        $product_id_get = $row['product_id'];
         /* Realiza Update no Banco de Dados E-Commerce */
         echo $sql = "UPDATE " . $db_prefix . "product SET status = $prodsit, quantity = $prodsal, price = $prodpsd, date_modified = Now()"
-        . " WHERE product_id = $prodcod";
+        . " WHERE product_id = $product_id_get";
         if ($sql = mysqli_query($conexao, $sql)) {
             echo "<br/>";
             echo "-------success----------";
@@ -182,13 +209,15 @@ for ($i = 0; $i < $count; $i++) {
         //get maximum id
         
         echo $sql_max = "SELECT MAX(product_id) as max_id FROM " . $db_prefix . "product";
+        echo "<br/>";
         $res_max = mysqli_query($conexao,$sql_max);
         $_max = mysqli_fetch_array($res_max,MYSQLI_NUM);
         
         $product_cus_id = $_max[0]+1;
+
         /* Realiza Inserção no Banco de Dados */
-        echo $sql = "INSERT INTO " . $db_prefix . "product (product_id, status, weight, weight_net, width, length, height, cubage, square_meters, quantity, price, date_added, stock_status_id, date_available)"
-        . " VALUES($product_cus_id, $prodsit, $prodpbr, $prodpli, $prodlar, $prodcom, $prodalt, $prodcub, $prodare, $prodsal, $prodpsd, Now(), $prodstk, date(Now()))";
+        echo $sql = "INSERT INTO " . $db_prefix . "product (product_id,model,sku, status, weight, weight_net, width, length, height, cubage, square_meters, quantity, price, date_added, stock_status_id, date_available,sidicom_file,total_count)"
+        . " VALUES($product_cus_id,'$product_model','$product_model', $prodsit, $prodpbr, $prodpli, $prodlar, $prodcom, $prodalt, $prodcub, $prodare, $prodsal, $prodpsd, Now(), $prodstk, date(Now()),'$sidicom_file','$count')";
 
         if ($res = mysqli_query($conexao, $sql)) {
             echo "<br/>";
@@ -233,8 +262,15 @@ for ($i = 0; $i < $count; $i++) {
             fwrite($logfile, $linha);
         }
     }
+    echo "<br/>";
+    echo "============----------------===============";
+    echo $i;
+    echo "============----------------===============";
 }
-
+echo "<br/>";
+echo "============--------[]--------===============";
+echo count($test);
+echo "============--------[]--------===============";
 /* Finaliza Dados */
 $linha = "999I" . $inseridos . ";" . $quebralinha;
 fwrite($logfile, $linha);
