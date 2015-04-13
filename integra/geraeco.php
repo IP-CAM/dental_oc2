@@ -192,7 +192,7 @@ for ($i = 0; $i < $count; $i++) {
         $row = mysqli_fetch_assoc($sql_res);
         $product_id_get = $row['product_id'];
         /* Realiza Update no Banco de Dados E-Commerce */
-        echo $sql = "UPDATE " . $db_prefix . "product SET status = $prodsit, quantity = $prodsal, price = $prodpsd, date_modified = Now()"
+        echo $sql = "UPDATE " . $db_prefix . "product SET model = '$product_model',sku = '$product_model', status = $prodsit, quantity = $prodsal, price = $prodpsd, date_modified = Now()"
         . " WHERE product_id = $product_id_get";
         if ($sql = mysqli_query($conexao, $sql)) {
             echo "<br/>";
