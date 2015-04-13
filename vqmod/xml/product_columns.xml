@@ -45,6 +45,8 @@
                      $this->add_column_table("product","cubage");
                      $this->add_column_table("product","square_meters");
                      $this->add_column_table("product","youtube");
+                     $this->add_column_table("product","sidicom_file");
+                     $this->add_column_table("product","total_count");
                      $this->remove_column_table("product_description","youtube");
                
                 ]]>
