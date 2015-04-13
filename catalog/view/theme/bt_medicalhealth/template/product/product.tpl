@@ -44,7 +44,27 @@
                     <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
                     <?php } ?>
                     <span><?php echo $text_stock; ?></span><b><?php echo $stock; ?></b><br />
-                    <span><?php echo $text_youtube; ?></span><b><?php echo $youtube; ?></b></div>
+                    <?php
+                       if(!empty($youtube)){
+                    ?>
+                        <span><?php echo $text_youtube; ?></span>
+                        <?php
+                            if(strstr($youtube,'http') && strstr($youtube,'youtube')){
+                                echo '<object width="420" height="315"
+                                data="'.$youtube.'">
+                                </object>';
+                            }
+                            else {
+                                ?>
+                            <b><?php echo $youtube; ?></b>    
+                            <?php    
+                            }
+                        ?>
+                        
+                    <?php
+                    }
+                    ?>
+                </div>
                 <?php if ($price) { ?>
                 <div class="price">
                     <?php if (!$special) { ?>
