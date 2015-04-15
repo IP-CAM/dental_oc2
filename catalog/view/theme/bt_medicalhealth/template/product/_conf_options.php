@@ -29,7 +29,7 @@ if (!empty($options_arcade)) {
 }
 
 if ($arcade_count > 0) {
-    echo "<b>Arcade</b><br /><br />";
+    echo "<b class='label_arcade label_option'>Arcade</b><br /><br />";
     ?>
     <div id="option-arcade" class="option">
         <?php
@@ -61,7 +61,7 @@ if ($arcade_count > 0) {
 ?>
 <?php
 if ($tamanho_count > 0) {
-    echo "<b>Tamanho</b><br /><br />";
+    echo "<b class='label_tamanho label_option'>Tamanho</b><br /><br />";
     ?>
     <div id="option-tom" class="option">
         <?php
@@ -100,7 +100,7 @@ if ($tamanho_count > 0) {
 <br/>
 <?php
 if ($quantitdy_count > 0) {
-    echo "<b>Quantitdy</b><br /><br />";
+    echo "<b class='label_quantitdy label_option'>Quantitdy</b><br /><br />";
     ?>
 
     <div id="option-quantitdy" class="option">
@@ -140,7 +140,7 @@ if ($quantitdy_count > 0) {
 <br/>
 <?php
 if ($cor_count > 0) {
-    echo "<b>Cor</b><br /><br />";
+    echo "<b class='label_cor label_option'>Cor</b><br /><br />";
     ?>
 
     <div id="option-cor" class="option">
@@ -191,8 +191,22 @@ if ($cor_count > 0) {
             url += "&option_key=tamanho&option[arcade]=" + $(this).val();
 
             $.getJSON(url, function(data) {
-                if (data.length > 0) {
-                    renderToms(data);
+                if (data['data'].length > 0) {
+                    $(".label_option").show();
+                    if (data['option_name'] == 'tamanho') {
+
+                        renderToms(data);
+                    }
+                    else if (data['option_name'] == 'quantitdy') {
+                        $(".label_tamanho").hide();
+                        renderQuantity(data);
+                    }
+                    else if (data['option_name'] == 'cor') {
+                        $(".label_tamanho").hide();
+                        $(".label_quantitdy").hide();
+                        renderCor(data);
+                    }
+
                 }
                 else {
                     $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
@@ -215,8 +229,16 @@ if ($cor_count > 0) {
                 url += "&option[arcade]=" + $("#option-arcade input:checked").val();
             }
             $.getJSON(url, function(data) {
-                if (data.length > 0) {
-                    renderQuantity(data);
+                if (data['data'].length > 0) {
+                    $(".label_option").show();
+                    if (data['option_name'] == 'quantitdy') {
+                       
+                        renderQuantity(data);
+                    }
+                    else if (data['option_name'] == 'cor') {
+                       
+                        renderCor(data);
+                    }
                 }
                 else {
                     $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
@@ -241,7 +263,7 @@ if ($cor_count > 0) {
                 url += "&option[tamanho]=" + $("#option-tom input:checked").val();
             }
             $.getJSON(url, function(data) {
-                if (data.length > 0) {
+                if (data['data'].length > 0) {
                     renderCor(data);
                 }
                 else {
@@ -265,7 +287,8 @@ if ($cor_count > 0) {
 
     function renderToms(toms) {
         htm = "";
-        $.each(toms, function(k, v) {
+        console.log(toms);
+        $.each(toms['data'], function(k, v) {
             index = 0;
             console.log(v);
             htm += '<span style="margin-right:10px;">' +
@@ -291,7 +314,7 @@ if ($cor_count > 0) {
         htm = "";
         disabled = '';
 
-        $.each(quantaties, function(k, v) {
+        $.each(quantaties['data'], function(k, v) {
             htm += '<span style="margin-right:10px;">' +
                     '<input  type="radio" name="option[quantitdy]"' +
                     'value="' + v['option_id'] + '" ' +
@@ -314,7 +337,7 @@ if ($cor_count > 0) {
         htm = "";
         disabled = '';
 
-        $.each(cors, function(k, v) {
+        $.each(cors['data'], function(k, v) {
             htm += '<span style="margin-right:10px;">' +
                     '<input  type="radio" name="option[cor]"' +
                     'value="' + v['option_id'] + '" ' +

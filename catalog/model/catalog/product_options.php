@@ -30,7 +30,10 @@ class ModelCatalogProductOptions extends Model {
         if (!empty($options_arr)) {
             $where = array();
             foreach ($options_arr as $key => $option) {
-                $where[] = "t." . $key . ' = ' . $option;
+                if($option!="undefined"){
+                  $where[] = "t." . $key . ' = ' . $option;  
+                }
+                
             }
             if (!empty($where)) {
                 $where = "AND " . implode(" AND ", $where);
