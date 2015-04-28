@@ -47,6 +47,7 @@
                      $this->add_column_table("product","youtube");
                      $this->add_column_table("product","sidicom_file");
                      $this->add_column_table("product","total_count");
+                     $this->add_column_table("product","unique_name");
                      $this->remove_column_table("product_description","youtube");
                
                 ]]>

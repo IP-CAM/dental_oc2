@@ -7,6 +7,16 @@
  * 
  * Importa os dados do Arquivo SIDICOM no ECOMMERCE 
  */
+$test_s = "CER S-BASE SBA1 (10G)";
+
+function str_replace_first($search, $replace, $subject) {
+    $pos = strpos($subject, $search);
+    if ($pos !== false) {
+        $subject = substr_replace($subject, $replace, $pos, strlen($search));
+    }
+    return $subject;
+}
+$testk = '(01010034) CZR DENTINA A4B (10G)';
 
 include_once('chaveiro.php');
 
@@ -130,9 +140,9 @@ $test = array();
 for ($i = 0; $i < $count; $i++) {
     $linha = "";
     $campos = explode(";", $reg300[$i]);
-   
+
     $prodcod = $campos[2];
-   
+
     if ($campos[8] = 'A') {
         $prodsit = '1';
     }
@@ -141,6 +151,51 @@ for ($i = 0; $i < $count; $i++) {
     }
     //$prodsit = $campos[8];
     $proddes = mysql_escape_string(utf8_encode($campos[9]));  /* ida_product_description */
+    $unique_name = $proddes;
+
+    $product_name = $proddes;
+    echo $proddes;
+    echo "<br/>";
+    echo substr($proddes, strlen($proddes) - 1, strlen($proddes));
+    echo "<br/>";
+
+    preg_match_all('/\(([A-Za-z0-9 ]+?)\)/', $proddes, $out);
+    echo "<pre>";
+    print_r($out[0]);
+    echo "</pre>";
+    echo "<br/>";
+    if(!empty($out) && $out[0]){
+       $product_name = str_replace_first($out[0][0],"",$proddes); 
+       if(!empty($out[0][1])){
+           $product_name = str_replace_first($out[0][1],"",$product_name); 
+           $product_arr = explode(' ',$product_name);
+//           $product_arr = array_filter($product_arr);
+           unset($product_arr[count($product_arr)-1]);
+           $product_name = implode(" ",$product_arr);
+       }
+    }
+    //implementing new algo
+//    if (substr($proddes, strlen($proddes) - 1, 1) == ")") {
+//        $product_arr = explode(" ", $proddes);
+//        $product_arr = array_filter($product_arr);
+//        echo "<pre>";
+//        print_r($product_arr);
+//        echo "</pre>";
+//        unset($product_arr[count($product_arr) - 1]);
+//        unset($product_arr[count($product_arr) - 1]);
+//        unset($product_arr[0]);
+//        $product_name = implode(" ", $product_arr);
+//    } else if (substr($proddes, 0, 1) == '(') {
+//        $product_arr = explode(" ", $proddes);
+//        $product_arr = array_filter($product_arr);
+//        echo "<pre>";
+//        print_r($product_arr);
+//        echo "</pre>";
+//        unset($product_arr[0]);
+//        $product_name = implode(" ", $product_arr);
+//    }
+    echo "---------product-----------";
+    echo "<br/>";
     $prodpbr = $campos[17];
     $prodpli = $campos[18]; /* weight_net */
     $prodlar = $campos[28];
@@ -149,18 +204,19 @@ for ($i = 0; $i < $count; $i++) {
     $prodcub = $campos[31]; /* cubage */
     $prodare = $campos[32]; /* square_meters */
     $prodgen = mysql_escape_string($campos[33]); /* ida_product_description */
-    
+
     $product_model = '';
-    if(isset($campos[9])){
-       $product_model = mysql_escape_string($campos[9]); 
-       $product_model = explode(")",$product_model);
-       $product_model = substr($product_model[0],1,strlen($product_model[0]));
+    if (isset($campos[9])) {
+        $product_model = mysql_escape_string($campos[9]);
+        $product_model = explode(")", $product_model);
+        $product_model = substr($product_model[0], 1, strlen($product_model[0]));
     }
 
-    
-    $test[$proddes] = $proddes;;
-    
-    
+
+    $test[$proddes] = $proddes;
+    ;
+
+
     /* outros campos advindos necessários */
     $prodstk = 7;
 
@@ -183,11 +239,11 @@ for ($i = 0; $i < $count; $i++) {
 
     /* Procura por Produto */
     echo "<br/>";
-    $sql = "SELECT * FROM  " . $db_prefix . "product_description where name = '$proddes'";
+    $sql = "SELECT * FROM  " . $db_prefix . "product where unique_name = '$proddes'";
     echo $sql;
     echo "<br/>";
     $sql_res = mysqli_query($conexao, $sql);
-    
+
     if (mysqli_num_rows($sql_res) > 0) {
         $row = mysqli_fetch_assoc($sql_res);
         $product_id_get = $row['product_id'];
@@ -207,22 +263,41 @@ for ($i = 0; $i < $count; $i++) {
         $atualizados++;
     } else {
         //get maximum id
-        
+
         echo $sql_max = "SELECT MAX(product_id) as max_id FROM " . $db_prefix . "product";
         echo "<br/>";
-        $res_max = mysqli_query($conexao,$sql_max);
-        $_max = mysqli_fetch_array($res_max,MYSQLI_NUM);
-        
-        $product_cus_id = $_max[0]+1;
+        $res_max = mysqli_query($conexao, $sql_max);
+        $_max = mysqli_fetch_array($res_max, MYSQLI_NUM);
+
+        $product_cus_id = $_max[0] + 1;
+
+        //find reference_id 
+
+        echo $ref_sql = "SELECT product_id FROM " . $db_prefix . "product_description WHERE name = '$product_name' AND product_id <> $product_cus_id order by product_id ASC limit 1";
+        echo "<br/>";
+        $ref_data = mysqli_query($conexao, $ref_sql);
+        $_ref_data = mysqli_fetch_array($ref_data, MYSQLI_NUM);
+        $reference_id = NULL;
+        echo "<pre>";
+        print_r($_ref_data);
+        echo "</pre>";
+
 
         /* Realiza Inserção no Banco de Dados */
-        echo $sql = "INSERT INTO " . $db_prefix . "product (product_id,model,sku, status, weight, weight_net, width, length, height, cubage, square_meters, quantity, price, date_added, stock_status_id, date_available,sidicom_file,total_count)"
-        . " VALUES($product_cus_id,'$product_model','$product_model', $prodsit, $prodpbr, $prodpli, $prodlar, $prodcom, $prodalt, $prodcub, $prodare, $prodsal, $prodpsd, Now(), $prodstk, date(Now()),'$sidicom_file','$count')";
+        echo $sql = "INSERT INTO " . $db_prefix . "product (product_id,unique_name,model,sku, status, weight, weight_net, width, length, height, cubage, square_meters, quantity, price, date_added, stock_status_id, date_available,sidicom_file,total_count)"
+        . " VALUES($product_cus_id,'$unique_name','$product_model','$product_model', $prodsit, $prodpbr, $prodpli, $prodlar, $prodcom, $prodalt, $prodcub, $prodare, $prodsal, $prodpsd, Now(), $prodstk, date(Now()),'$sidicom_file','$count')";
 
         if ($res = mysqli_query($conexao, $sql)) {
             echo "<br/>";
             echo "-------success----------";
             echo "<br/>";
+            if (!empty($_ref_data)) {
+                $reference_id = $_ref_data[0];
+                echo "<br/>";
+                echo $updat_ref_sql = "UPDATE " . $db_prefix . "product SET reference_id = $reference_id";
+                echo "<br/>";
+                mysqli_query($conexao, $updat_ref_sql);
+            }
         } else {
             echo "<br/>";
             echo "-------faeilure----------";
@@ -231,10 +306,10 @@ for ($i = 0; $i < $count; $i++) {
 
         if (mysqli_affected_rows($conexao) > 0) {
             /* Insere o detalhamento */
-   
+
 
             echo $sql = "INSERT INTO " . $db_prefix . "product_description (product_id, language_id, name, description, meta_description, meta_keyword, tag)"
-            . " VALUES ($product_cus_id, 2, '$proddes', '$prodgen', '', '', '')";
+            . " VALUES ($product_cus_id, 2, '$product_name', '$prodgen', '', '', '')";
             if ($sql = mysqli_query($conexao, $sql)) {
 
                 echo "<br/>";
