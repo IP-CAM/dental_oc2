@@ -42,16 +42,18 @@
           <div id="language<?php echo $language['language_id']; ?>">
             <table class="form">
               <tr>
+                <td><span class="required">*</span> <?php echo $entry_unique_name; ?></td>
+                <td><input disabled="disabled" type="text" name="product[unique_name]" size="100" value="<?php echo $unique_name; ?>" />
+                  </td>
+              </tr>
+              <tr>
                 <td><span class="required">*</span> <?php echo $entry_name; ?></td>
                 <td><input type="text" name="product_description[<?php echo $language['language_id']; ?>][name]" size="100" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['name'] : ''; ?>" />
                   <?php if (isset($error_name[$language['language_id']])) { ?>
                   <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
                   <?php } ?></td>
               </tr>
-              <tr>
-                <td><?php echo $entry_meta_description; ?></td>
-                <td><textarea name="product_description[<?php echo $language['language_id']; ?>][meta_description]" cols="40" rows="5"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['meta_description'] : ''; ?></textarea></td>
-              </tr>
+      
               <tr>
                 <td><?php echo $entry_meta_keyword; ?></td>
                 <td><textarea name="product_description[<?php echo $language['language_id']; ?>][meta_keyword]" cols="40" rows="5"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['meta_keyword'] : ''; ?></textarea></td>

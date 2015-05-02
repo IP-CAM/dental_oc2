@@ -154,6 +154,7 @@ for ($i = 0; $i < $count; $i++) {
     $unique_name = $proddes;
 
     $product_name = $proddes;
+    $group_name = $proddes;
     echo $proddes;
     echo "<br/>";
     echo substr($proddes, strlen($proddes) - 1, strlen($proddes));
@@ -164,6 +165,7 @@ for ($i = 0; $i < $count; $i++) {
     print_r($out[0]);
     echo "</pre>";
     echo "<br/>";
+    
     if(!empty($out) && $out[0]){
        $product_name = str_replace_first($out[0][0],"",$proddes); 
        if(!empty($out[0][1])){
@@ -172,6 +174,7 @@ for ($i = 0; $i < $count; $i++) {
 //           $product_arr = array_filter($product_arr);
            unset($product_arr[count($product_arr)-1]);
            $product_name = implode(" ",$product_arr);
+           $group_name = substr($product_name,0,strlen($product_name)-1);
        }
     }
     //implementing new algo
@@ -284,8 +287,8 @@ for ($i = 0; $i < $count; $i++) {
 
 
         /* Realiza Inserção no Banco de Dados */
-        echo $sql = "INSERT INTO " . $db_prefix . "product (product_id,unique_name,model,sku, status, weight, weight_net, width, length, height, cubage, square_meters, quantity, price, date_added, stock_status_id, date_available,sidicom_file,total_count)"
-        . " VALUES($product_cus_id,'$unique_name','$product_model','$product_model', $prodsit, $prodpbr, $prodpli, $prodlar, $prodcom, $prodalt, $prodcub, $prodare, $prodsal, $prodpsd, Now(), $prodstk, date(Now()),'$sidicom_file','$count')";
+        echo $sql = "INSERT INTO " . $db_prefix . "product (product_id,unique_name,group_name,model,sku, status, weight, weight_net, width, length, height, cubage, square_meters, quantity, price, date_added, stock_status_id, date_available,sidicom_file,total_count)"
+        . " VALUES($product_cus_id,'$unique_name','$group_name','$product_model','$product_model', $prodsit, $prodpbr, $prodpli, $prodlar, $prodcom, $prodalt, $prodcub, $prodare, $prodsal, $prodpsd, Now(), $prodstk, date(Now()),'$sidicom_file','$count')";
 
         if ($res = mysqli_query($conexao, $sql)) {
             echo "<br/>";

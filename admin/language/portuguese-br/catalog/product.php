@@ -24,6 +24,7 @@ $_['custom_product_options']            = 'Opções do produto';
 
 // Column
 $_['column_name']            = 'Produto';
+$_['column_unique_name']            = 'Imported Produto';
 $_['column_model']           = 'Modelo';
 $_['column_image']           = 'Imagem';
 $_['column_price']           = 'Preço';
@@ -42,6 +43,7 @@ $_['entry_youtube']          = 'link do Youtube:';
 $_['text_remove'] = 'Remove';
 
 // Entry
+$_['entry_unique_name']             = 'Produto:<br/><span class="help">Nome do  Importa Produto.</span>';
 $_['entry_name']             = 'Produto:<br/><span class="help">Nome do Produto.</span>';
 $_['entry_meta_keyword'] 	 = 'Meta Palavras-Chave:<br/><span class="help">São palavras que serão colocadas automaticamente no HTML da página do produto com o fim de melhorar os resultados em buscadores.</span>';
 $_['entry_meta_description'] = 'Meta Descrição:<span class="help">É uma descrição que será colocada automaticamente no HTML da página do produto com o fim de fornecer um resumo da página em buscadores.</span>';

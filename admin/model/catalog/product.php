@@ -5,7 +5,7 @@ class ModelCatalogProduct extends Model {
     public function getSimilarProducts($product_info) {
         $join = " INNER JOIN " . DB_PREFIX . "product p ON p.product_id = pd.product_id ";
         // $join = " ";
-        $sql = "SELECT Distinct(p.product_id),pd.name,p.model FROM " . DB_PREFIX . "product_description pd " . $join . " WHERE pd.name = '" . $product_info['name'] . "' and pd.product_id <> " . (int) $product_info['product_id'];
+        $sql = "SELECT Distinct(p.product_id),pd.name,p.model FROM " . DB_PREFIX . "product_description pd " . $join . " WHERE p.group_name = '" . $product_info['group_name'] . "' and pd.product_id <> " . (int) $product_info['product_id'];
 
         $query = $this->db->query($sql);
 
@@ -155,48 +155,42 @@ class ModelCatalogProduct extends Model {
                 if ($option_count > 0) {
 
 
-//                    if (!empty($data['conf_id'])) {
-//                        $sql = "UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",") . " WHERE id = '" . (int) $data['conf_id'] . "' ";
-//                        $this->db->query($sql);
-//                    } else {
-//                       
-//                    }
                 } else {
-                    $sql_max1 = "Select Max(p.product_id) as max_product_id FROM " . DB_PREFIX . "product p ";
-                    $sql_max2 = "Select Max(pd.product_id) as max_product_id FROM " . DB_PREFIX . "product_description pd";
-                    $new_product = array((int) ($this->db->query($sql_max1)->row['max_product_id']), (int) ($this->db->query($sql_max2)->row['max_product_id']));
-                    $new_product = max($new_product) + 1;
-                    if (empty($data['similar'])) {
-                        $product_columns = array();
-
-
-                        $product_columns['product_id'] = "product_id" . " = '" . $new_product . "'";
-                        $product_columns['sku'] = "sku" . " = '" . $this->generateRandomString(5) . "'";
-                        $product_columns['model'] = "model" . " = '" . $this->generateRandomString(5) . "'";
-                        $product_columns['referenc_id'] = "referenc_id" . " = '" . $product_id . "'";
-
-                        $sql1 = "INSERT INTO " . DB_PREFIX . "product SET " . implode(',', $product_columns);
-                        $this->db->query($sql1);
-
-                        foreach ($data['product_description'] as $language_id => $value) {
-                            $pd_sql = "INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int) $new_product . "', language_id = '" . (int) $language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "'";
-
-                            $this->db->query($pd_sql);
-                        }
-                    } else {
-                        $new_product = $data['similar'];
-                    }
-
-                    $columns ['product_id'] = "product_id = '" . (int) $new_product . "'";
-                    $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
-                    $this->db->query($sql2);
-
-                    $sql_count = 'Select count(*) as option_count_product  FROM ' . DB_PREFIX . "product_config_options WHERE  product_id =" . (int) $product_id;
-                    if ($this->db->query($sql_count)->row['option_count_product'] == 0) {
-                        $columns ['product_id'] = "product_id = '" . (int) $product_id . "'";
-                        $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
-                        $this->db->query($sql2);
-                    }
+//                    $sql_max1 = "Select Max(p.product_id) as max_product_id FROM " . DB_PREFIX . "product p ";
+//                    $sql_max2 = "Select Max(pd.product_id) as max_product_id FROM " . DB_PREFIX . "product_description pd";
+//                    $new_product = array((int) ($this->db->query($sql_max1)->row['max_product_id']), (int) ($this->db->query($sql_max2)->row['max_product_id']));
+//                    $new_product = max($new_product) + 1;
+//                    if (empty($data['similar'])) {
+//                        $product_columns = array();
+//
+//
+//                        $product_columns['product_id'] = "product_id" . " = '" . $new_product . "'";
+//                        $product_columns['sku'] = "sku" . " = '" . $this->generateRandomString(5) . "'";
+//                        $product_columns['model'] = "model" . " = '" . $this->generateRandomString(5) . "'";
+//                        $product_columns['referenc_id'] = "referenc_id" . " = '" . $product_id . "'";
+//
+//                        $sql1 = "INSERT INTO " . DB_PREFIX . "product SET " . implode(',', $product_columns);
+//                        $this->db->query($sql1);
+//
+//                        foreach ($data['product_description'] as $language_id => $value) {
+//                            $pd_sql = "INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int) $new_product . "', language_id = '" . (int) $language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "'";
+//
+//                            $this->db->query($pd_sql);
+//                        }
+//                    } else {
+//                        $new_product = $data['similar'];
+//                    }
+//
+//                    $columns ['product_id'] = "product_id = '" . (int) $new_product . "'";
+//                    $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
+//                    $this->db->query($sql2);
+//
+//                    $sql_count = 'Select count(*) as option_count_product  FROM ' . DB_PREFIX . "product_config_options WHERE  product_id =" . (int) $product_id;
+//                    if ($this->db->query($sql_count)->row['option_count_product'] == 0) {
+//                        $columns ['product_id'] = "product_id = '" . (int) $product_id . "'";
+//                        $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
+//                        $this->db->query($sql2);
+//                    }
                 }
             }
         }
@@ -356,70 +350,27 @@ class ModelCatalogProduct extends Model {
                     $columns [] = $opt . " = '" . (int) $data[$opt] . "'";
                 }
             }
+            if (!empty($data['similar'])) {
+                $columns [] = "product_id = '" . (int) $data['similar'] . "'";
+            } else {
+                $columns [] = "product_id = '" . (int) $product_id . "'";
+            }
+
             if (count($columns) > 0) {
                 $where = implode(" AND ", $columns);
 
                 $sql_count = 'Select count(*) as option_count  FROM ' . DB_PREFIX . "product_config_options WHERE " . $where;
+                
                 $option_count = $this->db->query($sql_count)->row['option_count'];
 
                 if ($option_count > 0) {
 
 
-//                    if (!empty($data['conf_id'])) {
-//                        $sql = "UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",") . " WHERE id = '" . (int) $data['conf_id'] . "' ";
-//                        $this->db->query($sql);
-//                    } else {
-//                       
-//                    }
                 } else {
-                    if (empty($data['similar'])) {
-                        $sql_max1 = "Select Max(p.product_id) as max_product_id FROM " . DB_PREFIX . "product p ";
-                        $sql_max2 = "Select Max(pd.product_id) as max_product_id FROM " . DB_PREFIX . "product_description pd";
-                        $new_product = array((int) ($this->db->query($sql_max1)->row['max_product_id']), (int) ($this->db->query($sql_max2)->row['max_product_id']));
-                        $new_product = max($new_product) + 1;
+        
+                    $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
 
-                        $product_columns = array();
-
-
-                        $product_columns['product_id'] = "product_id" . " = '" . $new_product . "'";
-                        $product_columns['sku'] = "sku" . " = '" . $this->generateRandomString(5) . "'";
-                        $product_columns['model'] = "model" . " = '" . $this->generateRandomString(5) . "'";
-                        $product_columns['referenc_id'] = "referenc_id" . " = '" . $product_id . "'";
-
-                        $sql1 = "INSERT INTO " . DB_PREFIX . "product SET " . implode(',', $product_columns);
-                        $this->db->query($sql1);
-
-
-                        foreach ($data['product_description'] as $language_id => $value) {
-                            $pd_sql = "INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int) $new_product . "', language_id = '" . (int) $language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "'";
-
-                            $this->db->query($pd_sql);
-                        }
-                    } else {
-                        $new_product = $data['similar'];
-                    }
-                    
-                    if (!empty($data['similar'])) {
-                       $columns ['product_id'] = "product_id = '" . (int) $new_product . "'";
-                       $sql2 = "UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",")." WHERE product_id =".(int)$new_product;;
-                      
-                       $this->db->query($sql2); 
-                       $new_product = '';
-                    } else {
-                        $columns ['product_id'] = "product_id = '" . (int) $new_product . "'";
-                        $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
-                      
-                        $this->db->query($sql2);
-                    }
-
-
-                    $sql_count = 'Select count(*) as option_count_product  FROM ' . DB_PREFIX . "product_config_options WHERE  product_id =" . (int) $product_id;
-                    if ($this->db->query($sql_count)->row['option_count_product'] == 0) {
-                        $columns ['product_id'] = "product_id = '" . (int) $product_id . "'";
-                        $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
-                        $this->db->query($sql2);
-                    }
-                    
+                    $this->db->query($sql2);
                 }
             }
         }
@@ -436,7 +387,7 @@ class ModelCatalogProduct extends Model {
                 $this->db->query("INSERT INTO `" . DB_PREFIX . "product_profile` SET `product_id` = " . (int) $product_id . ", customer_group_id = " . (int) $profile['customer_group_id'] . ", `profile_id` = " . (int) $profile['profile_id']);
             }
         } $this->cache->delete('product');
-        return $new_product;
+        return '';
     }
 
     public function copyProduct($product_id) {
@@ -571,15 +522,18 @@ class ModelCatalogProduct extends Model {
         $sql .= " WHERE pd.language_id = '" . (int) $this->config->get('config_language_id') . "'";
 
         if (!empty($data['filter_name'])) {
-            $sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+            $sql .= " AND pd.name LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+        }
+        if (!empty($data['filter_unique_name'])) {
+            $sql .= " AND p.unique_name LIKE '%" . $this->db->escape($data['filter_unique_name']) . "%'";
         }
 
         if (!empty($data['filter_model'])) {
-            $sql .= " AND p.model LIKE '" . $this->db->escape($data['filter_model']) . "%'";
+            $sql .= " AND p.model LIKE '%" . $this->db->escape($data['filter_model']) . "%'";
         }
 
         if (!empty($data['filter_price'])) {
-            $sql .= " AND p.price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
+            $sql .= " AND p.price LIKE '%" . $this->db->escape($data['filter_price']) . "%'";
         }
 
         if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {

@@ -280,6 +280,13 @@ class ControllerCatalogProduct extends Controller {
         } else {
             $filter_name = null;
         }
+        if (isset($this->request->get['filter_unique_name'])) {
+            $filter_unique_name = $this->request->get['filter_unique_name'];
+        } else {
+            $filter_unique_name = null;
+        }
+        
+       
 
         if (isset($this->request->get['filter_model'])) {
             $filter_model = $this->request->get['filter_model'];
@@ -327,6 +334,9 @@ class ControllerCatalogProduct extends Controller {
 
         if (isset($this->request->get['filter_name'])) {
             $url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+        }
+        if (isset($this->request->get['filter_unqiue_name'])) {
+            $url .= '&filter_unqiue_name=' . urlencode(html_entity_decode($this->request->get['filter_unqiue_name'], ENT_QUOTES, 'UTF-8'));
         }
 
         if (isset($this->request->get['filter_model'])) {
@@ -379,6 +389,7 @@ class ControllerCatalogProduct extends Controller {
 
         $data = array(
             'filter_name' => $filter_name,
+            'filter_unique_name' => $filter_unique_name,
             'filter_model' => $filter_model,
             'filter_price' => $filter_price,
             'filter_quantity' => $filter_quantity,
@@ -424,6 +435,7 @@ class ControllerCatalogProduct extends Controller {
             $this->data['products'][] = array(
                 'product_id' => $result['product_id'],
                 'name' => $result['name'],
+                'unique_name' => $result['unique_name'],
                 'model' => $result['model'],
                 'price' => $result['price'],
                 'special' => $special,
@@ -444,6 +456,7 @@ class ControllerCatalogProduct extends Controller {
 
         $this->data['column_image'] = $this->language->get('column_image');
         $this->data['column_name'] = $this->language->get('column_name');
+        $this->data['column_unique_name'] = $this->language->get('column_unique_name');
         $this->data['column_model'] = $this->language->get('column_model');
         $this->data['column_price'] = $this->language->get('column_price');
         $this->data['column_quantity'] = $this->language->get('column_quantity');
@@ -476,6 +489,10 @@ class ControllerCatalogProduct extends Controller {
         if (isset($this->request->get['filter_name'])) {
             $url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
         }
+        if (isset($this->request->get['filter_unique_name'])) {
+            $url .= '&filter_unique_name=' . urlencode(html_entity_decode($this->request->get['filter_unique_name'], ENT_QUOTES, 'UTF-8'));
+        }
+       
 
         if (isset($this->request->get['filter_model'])) {
             $url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -504,6 +521,7 @@ class ControllerCatalogProduct extends Controller {
         }
 
         $this->data['sort_name'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=pd.name' . $url, 'SSL');
+        $this->data['sort_unique_name'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.sort_unique_name' . $url, 'SSL');
         $this->data['sort_model'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.model' . $url, 'SSL');
         $this->data['sort_price'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.price' . $url, 'SSL');
         $this->data['sort_quantity'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.quantity' . $url, 'SSL');
@@ -550,6 +568,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['pagination'] = $pagination->render();
 
         $this->data['filter_name'] = $filter_name;
+        $this->data['filter_unique_name'] = $filter_unique_name;
         $this->data['filter_model'] = $filter_model;
         $this->data['filter_price'] = $filter_price;
         $this->data['filter_quantity'] = $filter_quantity;
@@ -588,6 +607,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['text_percent'] = $this->language->get('text_percent');
         $this->data['text_amount'] = $this->language->get('text_amount');
 
+        $this->data['entry_unique_name'] = $this->language->get('entry_unique_name');
         $this->data['entry_name'] = $this->language->get('entry_name');
         $this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
         $this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
@@ -881,6 +901,13 @@ class ControllerCatalogProduct extends Controller {
             $this->data['youtube'] = $product_info['youtube'];
         } else {
             $this->data['youtube'] = '';
+        }
+        if (isset($this->request->post['product']['unique_name'])) {
+            $this->data['unique_name'] = $this->request->post['unique_name'];
+        } elseif (!empty($product_info)) {
+            $this->data['unique_name'] = $product_info['unique_name'];
+        } else {
+            $this->data['unique_name'] = '';
         }
 
         $this->load->model('setting/store');
