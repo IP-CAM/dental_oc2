@@ -5,7 +5,7 @@ class ModelCatalogProduct extends Model {
     public function getSimilarProducts($product_info) {
         $join = " INNER JOIN " . DB_PREFIX . "product p ON p.product_id = pd.product_id ";
         // $join = " ";
-        $sql = "SELECT Distinct(p.product_id),pd.name,p.model FROM " . DB_PREFIX . "product_description pd " . $join . " WHERE p.group_name = '" . $product_info['group_name'] . "' and pd.product_id <> " . (int) $product_info['product_id'];
+        $sql = "SELECT Distinct(p.product_id),pd.name,p.model FROM " . DB_PREFIX . "product_description pd " . $join . " WHERE p.group_name LIKE '%" . $product_info['group_name'] . "%' and pd.product_id <> " . (int) $product_info['product_id'];
 
         $query = $this->db->query($sql);
 

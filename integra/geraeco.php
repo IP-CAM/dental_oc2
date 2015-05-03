@@ -175,6 +175,28 @@ for ($i = 0; $i < $count; $i++) {
            unset($product_arr[count($product_arr)-1]);
            $product_name = implode(" ",$product_arr);
            $group_name = substr($product_name,0,strlen($product_name)-1);
+           $group_name = trim($group_name);
+       }
+       else {
+           $group_split = explode(" ",$proddes);
+           if (count($group_split) == 8) {
+                unset($group_split[7]);
+                unset($group_split[6]);
+                unset($group_split[5]);
+                $group_name = implode(" ", $group_split);
+            } else if (count($group_split) == 7) {
+                unset($group_split[6]);
+                unset($group_split[5]);
+                $group_name = implode(" ", $group_split);
+            } else if (count($group_split) == 6) {
+                unset($group_split[5]);
+                $group_name = implode(" ", $group_split);
+            } else {
+                $group_name = substr($product_name, 0, strlen($product_name) - 1);
+            }
+            
+            $group_name = str_replace_first($out[0][0], "", $group_name);
+            $group_name = trim($group_name);
        }
     }
     //implementing new algo
