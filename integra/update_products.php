@@ -33,7 +33,7 @@ while ($row = mysqli_fetch_assoc($sql_res)) {
     print_r($out[0]);
     echo "</pre>";
     echo "<br/>";
-
+    $product_name = $row[$unique_field];
     if (!empty($out) && $out[0]) {
         $product_name = str_replace_first($out[0][0], "", $row[$unique_field]);
         if (!empty($out[0][1])) {
@@ -51,7 +51,7 @@ while ($row = mysqli_fetch_assoc($sql_res)) {
             echo "<br/>---------else-------- <br/>";
             echo $product_name;
             $group_split = explode(" ", $row[$unique_field]);
-           
+
 
             if (count($group_split) == 8) {
                 unset($group_split[7]);
@@ -75,16 +75,28 @@ while ($row = mysqli_fetch_assoc($sql_res)) {
             echo $group_name;
         }
     }
+
+    //seting group to just only two words
+    $group_split = explode(" ", $group_name);
+    $g = 0;
+    foreach ($group_split as $group) {
+        if ($g > 1) {
+          unset($group_split[$g]);  
+        }
+        $g++;
+    }
+    $group_name = implode(" ",$group_split);
+
     echo "<br/>";
     $i++;
-    
-    $sql = "UPDATE ".$db_prefix."product SET unique_name = '$row[$unique_field]',group_name='$group_name' WHERE product_id = '$product_id'";
-    
+
+    $sql = "UPDATE " . $db_prefix . "product SET unique_name = '$row[$unique_field]',group_name='$group_name' WHERE product_id = '$product_id'";
+
     echo $sql;
    mysqli_query($conexao, $sql);
-    
+
     echo "<br/>";
-    $sql_des = "UPDATE ".$db_prefix."product_description SET name = '$product_name' WHERE product_id = '$product_id'";
+    $sql_des = "UPDATE " . $db_prefix . "product_description SET name = '$product_name' WHERE product_id = '$product_id'";
     echo $sql_des;
     mysqli_query($conexao, $sql_des);
 }

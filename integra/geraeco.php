@@ -16,6 +16,7 @@ function str_replace_first($search, $replace, $subject) {
     }
     return $subject;
 }
+
 $testk = '(01010034) CZR DENTINA A4B (10G)';
 
 include_once('chaveiro.php');
@@ -165,21 +166,20 @@ for ($i = 0; $i < $count; $i++) {
     print_r($out[0]);
     echo "</pre>";
     echo "<br/>";
-    
-    if(!empty($out) && $out[0]){
-       $product_name = str_replace_first($out[0][0],"",$proddes); 
-       if(!empty($out[0][1])){
-           $product_name = str_replace_first($out[0][1],"",$product_name); 
-           $product_arr = explode(' ',$product_name);
+
+    if (!empty($out) && $out[0]) {
+        $product_name = str_replace_first($out[0][0], "", $proddes);
+        if (!empty($out[0][1])) {
+            $product_name = str_replace_first($out[0][1], "", $product_name);
+            $product_arr = explode(' ', $product_name);
 //           $product_arr = array_filter($product_arr);
-           unset($product_arr[count($product_arr)-1]);
-           $product_name = implode(" ",$product_arr);
-           $group_name = substr($product_name,0,strlen($product_name)-1);
-           $group_name = trim($group_name);
-       }
-       else {
-           $group_split = explode(" ",$proddes);
-           if (count($group_split) == 8) {
+            unset($product_arr[count($product_arr) - 1]);
+            $product_name = implode(" ", $product_arr);
+            $group_name = substr($product_name, 0, strlen($product_name) - 1);
+            $group_name = trim($group_name);
+        } else {
+            $group_split = explode(" ", $proddes);
+            if (count($group_split) == 8) {
                 unset($group_split[7]);
                 unset($group_split[6]);
                 unset($group_split[5]);
@@ -194,11 +194,21 @@ for ($i = 0; $i < $count; $i++) {
             } else {
                 $group_name = substr($product_name, 0, strlen($product_name) - 1);
             }
-            
+
             $group_name = str_replace_first($out[0][0], "", $group_name);
             $group_name = trim($group_name);
-       }
+        }
     }
+    //seting group to just only two words
+    $group_split = explode(" ", $group_name);
+    $g = 0;
+    foreach ($group_split as $group) {
+        if ($g > 1) {
+          unset($group_split[$g]);  
+        }
+        $g++;
+    }
+    $group_name = implode(" ",$group_split);
     //implementing new algo
 //    if (substr($proddes, strlen($proddes) - 1, 1) == ")") {
 //        $product_arr = explode(" ", $proddes);
@@ -298,7 +308,7 @@ for ($i = 0; $i < $count; $i++) {
 
         //find reference_id 
 
-        echo $ref_sql = "SELECT product_id FROM " . $db_prefix . "product_description WHERE name = '$product_name' AND product_id <> $product_cus_id order by product_id ASC limit 1";
+        echo $ref_sql = "SELECT product_id FROM " . $db_prefix . "product WHERE group_name = '$group_name' AND product_id <> $product_cus_id order by product_id ASC limit 1";
         echo "<br/>";
         $ref_data = mysqli_query($conexao, $ref_sql);
         $_ref_data = mysqli_fetch_array($ref_data, MYSQLI_NUM);
@@ -323,13 +333,8 @@ for ($i = 0; $i < $count; $i++) {
                 echo "<br/>";
                 mysqli_query($conexao, $updat_ref_sql);
             }
-        } else {
-            echo "<br/>";
-            echo "-------faeilure----------";
-            echo "<br/>";
-        }
+            echo "<br/>Set ---------relations-------------<br/>";
 
-        if (mysqli_affected_rows($conexao) > 0) {
             /* Insere o detalhamento */
 
 
@@ -357,9 +362,14 @@ for ($i = 0; $i < $count; $i++) {
                 echo "<br/>";
             }
             $inseridos++;
-        } else {
+
+            echo "<br/>";
             $linha = "300E;" . $prodcod . ";" . $quebralinha;
             fwrite($logfile, $linha);
+        } else {
+            echo "<br/>";
+            echo "-------faeilure----------";
+            echo "<br/>";
         }
     }
     echo "<br/>";

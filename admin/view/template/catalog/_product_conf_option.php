@@ -94,7 +94,6 @@ if (!empty($this->data['product_config_options_json'])) {
                         if ($this->config->get('config_language') != "en") {
                             echo $option['value_' . $this->config->get('config_language')];
                             $options_data['quantitdy'][$option['id']] = $option['value_' . $this->config->get('config_language')];
-                            
                         } else {
                             echo $option['value'];
                             $options_data['quantitdy'][$option['id']] = $option['value'];
@@ -124,7 +123,7 @@ if (!empty($this->data['product_config_options_json'])) {
                         echo "<option value='" . $option['id'] . "' " . $selected . ">";
                         if ($this->config->get('config_language') != "en") {
                             echo $option['value_' . $this->config->get('config_language')];
-                             $options_data['cor'][$option['id']] = $option['value_' . $this->config->get('config_language')];
+                            $options_data['cor'][$option['id']] = $option['value_' . $this->config->get('config_language')];
                         } else {
                             echo $option['value'];
                             $options_data['cor'][$option['id']] = $option['value'];
@@ -137,21 +136,24 @@ if (!empty($this->data['product_config_options_json'])) {
             </td>
 
         </tr>
-         <tr>
+        <tr>
             <th><?php echo $similar_product; ?></th>
             <td>
-                <select class="add_similar" name="similar">
+    <!--                <select class="add_similar" name="similar">
                     <option value="">Select</option>
-                    <?php
-                    $selected = "";
-                    foreach ($similar_products as $product) {
-                       
-                        echo "<option value='" . $product['product_id']."'>";
-                        echo $product['name']."-".$product['model'];
-                        echo "</option>";
-                    }
-                    ?>
-                </select>
+                <?php
+//                    $selected = "";
+//                    foreach ($similar_products as $product) {
+//                       
+//                        echo "<option value='" . $product['product_id']."'>";
+//                        echo $product['name']."-".$product['model'];
+//                        echo "</option>";
+//                    }
+                ?>
+                </select>-->
+                <input class="add_similar" type="text" id="similar_value" name="similar_value" style="width:200px;" />
+                <input class="add_similar" type="hidden" id="similar" name="similar" style="width:200px;" />
+
 
             </td>
 
@@ -287,18 +289,20 @@ if (!empty($this->data['product_config_options_json'])) {
         <tr>
             <th><?php echo $similar_product; ?></th>
             <td>
-                <select class="add_similar" name="similar">
+    <!--                <select class="add_similar" name="similar">
                     <option value="">Select</option>
-                    <?php
-                    $selected = "";
-                    foreach ($similar_products as $product) {
-                       
-                        echo "<option value='" . $product['product_id']."'>";
-                        echo $product['name']."-".$product['model'];
-                        echo "</option>";
-                    }
-                    ?>
-                </select>
+                <?php
+//                    $selected = "";
+//                    foreach ($similar_products as $product) {
+//                       
+//                        echo "<option value='" . $product['product_id']."'>";
+//                        echo $product['name']."-".$product['model'];
+//                        echo "</option>";
+//                    }
+                ?>
+                </select>-->
+                <input class="add_similar" type="text" id="similar_value" name="similar_value" style="width:200px;" />
+                <input class="add_similar" type="hidden" id="similar" name="similar" style="width:200px;" />
 
             </td>
 
@@ -311,7 +315,6 @@ if (!empty($this->data['product_config_options_json'])) {
 <input type="hidden" name="delete_conf_ids" id="delete_conf_ids" value="" />
 <br/>
 <?php
-
 if (isset($referenc_products) && !empty($referenc_products)) {
     ?>
     <table class="list">
@@ -327,9 +330,9 @@ if (isset($referenc_products) && !empty($referenc_products)) {
             </tr>
         </thead>  
         <tbody>
-            <?php
-            foreach ($referenc_products as $product) {
-                ?>
+    <?php
+    foreach ($referenc_products as $product) {
+        ?>
                 <tr>
                     <td class="left"><?php echo $product['model']; ?></td> 
                     <td class="left"><?php echo $product['sku']; ?></td> 
@@ -339,18 +342,53 @@ if (isset($referenc_products) && !empty($referenc_products)) {
                     <td class="left"><?php echo $options_data['cor'][$product['cor']]; ?></td>      
                     <td class="right">
                         <a href="<?php
-                        echo $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'].'&product_id='.$product['product_id'] , 'SSL');
-                        ?>" >
+        echo $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL');
+        ?>" >
                         <?php echo $this->language->get('text_edit'); ?>
                         </a>
 
                     </td>
                 </tr>
-                <?php
-            }
-            ?>
+        <?php
+    }
+    ?>
         </tbody>
     </table> 
     <?php
 }
 ?>
+<script>
+    $(function() {
+
+        $("#similar").autocomplete({
+//        source: 'index.php?route=catalog/product/autocomplete_product&token=<?php echo $token; ?>&term='+ $("#similar").val(),
+            source: function(request, response) {
+                $.ajax({
+                    url: 'index.php?route=catalog/product/autocomplete_product&token=<?php echo $token; ?>&term=' + $("#similar").val(),
+                    dataType: 'json',
+                    success: function(json) {
+                        response($.map(json, function(item) {
+                            return {
+                                label: item.label,
+                                value: item.value,
+                                item_id: item.id
+                            }
+                        }));
+                    }
+                });
+            },
+            minLength: 1,
+            select: function(event, ui) {
+                console.log(ui.item.item_id)
+
+            },
+//        html: true, // optional (jquery.ui.autocomplete.html.js required)
+
+            // optional (if other layers overlap autocomplete list)
+            open: function(event, ui) {
+//            $(".ui-autocomplete").css("z-index", 1000);
+            }
+        });
+
+    });
+</script>    

@@ -5,7 +5,7 @@ class ModelCatalogProduct extends Model {
     public function getSimilarProducts($product_info) {
         $join = " INNER JOIN " . DB_PREFIX . "product p ON p.product_id = pd.product_id ";
         // $join = " ";
-        $sql = "SELECT Distinct(p.product_id),pd.name,p.model FROM " . DB_PREFIX . "product_description pd " . $join . " WHERE p.group_name LIKE '%" . $product_info['group_name'] . "%' and pd.product_id <> " . (int) $product_info['product_id'];
+        $sql = "SELECT Distinct(p.product_id),pd.name,p.model,p.unique_name FROM " . DB_PREFIX . "product_description pd " . $join . " WHERE p.group_name LIKE '%" . $product_info['group_name'] . "%' and pd.product_id <> " . (int) $product_info['product_id'];
 
         $query = $this->db->query($sql);
 
@@ -352,6 +352,12 @@ class ModelCatalogProduct extends Model {
             }
             if (!empty($data['similar'])) {
                 $columns [] = "product_id = '" . (int) $data['similar'] . "'";
+                //update refernce
+                
+                $sql_ref = "UPDATE ".DB_PREFIX."product SET referenc_id = ".(int)$product_id.' WHERE product_id = '.(int) $data['similar'];
+              
+                $this->db->query($sql_ref);
+                
             } else {
                 $columns [] = "product_id = '" . (int) $product_id . "'";
             }
@@ -578,7 +584,7 @@ class ModelCatalogProduct extends Model {
 
             $sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
         }
-
+        
         $query = $this->db->query($sql);
 
         return $query->rows;
@@ -788,6 +794,9 @@ class ModelCatalogProduct extends Model {
         if (!empty($data['filter_name'])) {
             $sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
         }
+        if (!empty($data['filter_unique_name'])) {
+            $sql .= " AND p.unique_name LIKE '%" . $this->db->escape($data['filter_unique_name']) . "%'";
+        }
 
         if (!empty($data['filter_model'])) {
             $sql .= " AND p.model LIKE '" . $this->db->escape($data['filter_model']) . "%'";
@@ -804,7 +813,7 @@ class ModelCatalogProduct extends Model {
         if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
             $sql .= " AND p.status = '" . (int) $data['filter_status'] . "'";
         }
-
+        
         $query = $this->db->query($sql);
 
         return $query->row['total'];
@@ -875,6 +884,17 @@ class ModelCatalogProduct extends Model {
         $data = array();
         $sql = "SELECT DISTINCT(t.product_id),model,t.sku,arcade,tamanho,cor,quantitdy FROM " . DB_PREFIX . "product t  INNER JOIN " . DB_PREFIX . "product_config_options as op ON t.product_id = op.product_id WHERE referenc_id = " . (int) $id;
         return $this->db->query($sql)->rows;
+    }
+    
+    public function get_auto_complete($term){
+        $sql = "Select product_id,unique_name FROM " . DB_PREFIX . "product WHERE unique_name LIKE '%$term%'";
+        $query = $this->db->query($sql);
+     
+        $products = array();
+        foreach ($query->rows as $result) {
+            $products[] = array("id" => $result['product_id'],"value" => $result['unique_name'], 'label' => $result['unique_name']);
+        }
+        return $products;
     }
 
 }

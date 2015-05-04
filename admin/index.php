@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 // Version
 define('VERSION', '1.5.6.4');
 
@@ -82,7 +83,7 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 	}
 		
 	if ($config->get('config_error_display')) {
-		echo '<b>' . $error . '</b>: ' . $errstr . ' in <b>' . $errfile . '</b> on line <b>' . $errline . '</b>';
+		//echo '<b>' . $error . '</b>: ' . $errstr . ' in <b>' . $errfile . '</b> on line <b>' . $errline . '</b>';
 	}
 	
 	if ($config->get('config_error_log')) {
