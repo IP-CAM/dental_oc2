@@ -113,15 +113,13 @@ class ControllerCatalogProduct extends Controller {
             if (isset($this->request->get['page'])) {
                 $url .= '&page=' . $this->request->get['page'];
             }
-            
-            if(!empty($return_product_id)){
+
+            if (!empty($return_product_id)) {
                 $url .= '&product_id=' . $return_product_id;
                 $this->redirect($this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            } else {
+                $this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
             }
-            else {
-              $this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));  
-            }
-            
         }
 
         $this->getForm();
@@ -285,8 +283,8 @@ class ControllerCatalogProduct extends Controller {
         } else {
             $filter_unique_name = null;
         }
-        
-       
+
+
 
         if (isset($this->request->get['filter_model'])) {
             $filter_model = $this->request->get['filter_model'];
@@ -492,7 +490,7 @@ class ControllerCatalogProduct extends Controller {
         if (isset($this->request->get['filter_unique_name'])) {
             $url .= '&filter_unique_name=' . urlencode(html_entity_decode($this->request->get['filter_unique_name'], ENT_QUOTES, 'UTF-8'));
         }
-       
+
 
         if (isset($this->request->get['filter_model'])) {
             $url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -749,7 +747,7 @@ class ControllerCatalogProduct extends Controller {
         } else {
             $this->data['error_date_available'] = '';
         }
-        
+
         if (isset($this->session->data['success'])) {
             $this->data['success'] = $this->session->data['success'];
 
@@ -813,6 +811,8 @@ class ControllerCatalogProduct extends Controller {
         }
 
         $this->data['cancel'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL');
+
+        $this->data['autocomplete_product'] = $this->url->link('catalog/product/autocomplete_product', 'token=' . $this->session->data['token'] , 'SSL');
 
         if (isset($this->request->get['product_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
@@ -957,11 +957,11 @@ class ControllerCatalogProduct extends Controller {
                 'href' => $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL')
             );
         }
-        
+
         $this->data['referenc_products'] = $this->model_catalog_product->get_reference_products($this->request->get['product_id']);
         $this->data['column_name'] = $this->language->get('column_name');
         $this->data['column_model'] = $this->language->get('column_model');
-        
+
         $product_config = array();
         if (isset($this->request->get['product_config_id'])) {
             $this->data['product_config_id'] = $this->request->get['product_config_id'];
@@ -1446,6 +1446,8 @@ class ControllerCatalogProduct extends Controller {
 
         $this->load->model('design/layout');
 
+
+
         $this->data['layouts'] = $this->model_design_layout->getLayouts();
 
         $this->template = 'catalog/product_form.tpl';
@@ -1600,9 +1602,14 @@ class ControllerCatalogProduct extends Controller {
 
         $this->response->setOutput(json_encode($json));
     }
-    
-    
-   
+
+    public function autocomplete_product() {
+        $term = $this->request->get['term'];
+        $this->load->model('catalog/product');
+        $results = $this->model_catalog_product->get_auto_complete($term);
+      
+        $this->response->setOutput(json_encode($results));
+    }
 
 }
 
