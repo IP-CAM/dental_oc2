@@ -224,6 +224,25 @@
                     }
                 
                 }
+                protected function add_custom_columns($column,$table,$type=""){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    if(!in_array($column,$fields)){
+                        if($type==""){
+                            $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) DEFAULT NULL";
+                        }
+                        else {
+                            $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." ".$type." DEFAULT NULL";
+                        }
+                        $this->db->query($query);
+                    }
+                    
+                
+                }
                 public function index() {
                     $languages = $this->getLanguages();
                    
@@ -235,7 +254,9 @@
                     $this->dbOrderProductConfigOptions();
                     $this->addCheckoutColumns("order");
                     $this->addCheckoutColumns("address");
-                    
+                    $this->add_custom_columns("quantitdy","product_config_options","int(11)");
+                    $this->add_custom_columns("referenc_id","product","int(11)");
+               
                 ]]>
             </add>
         </operation>

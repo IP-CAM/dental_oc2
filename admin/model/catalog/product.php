@@ -459,6 +459,13 @@ class ModelCatalogProduct extends Model {
 
         return $query->row;
     }
+    
+    
+    public function getReferenceProduct($product_id){
+        $query = $this->db->query("SELECT unique_name FROM  ".DB_PREFIX."product WHERE product_id = ".(int)$product_id); 
+        return $query->row;
+        
+    }
 
     /**
      *  Get Product Config options

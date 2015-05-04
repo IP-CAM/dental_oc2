@@ -1518,6 +1518,7 @@ function addProfile() {
         $("#json_content").val(JSON.stringify(arcades));
         $('#form').submit();
     }
+     
   </script>
 
 <?php echo $footer; ?>

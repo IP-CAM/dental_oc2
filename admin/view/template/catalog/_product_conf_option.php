@@ -1,8 +1,9 @@
 <?php
 $options_data = array();
-
+;
 if (!empty($this->data['product_config_options_json'])) {
     $json_data = $this->data['product_config_options_json'][0];
+
     ?>
 
     <table class="arcade_parent list" 
@@ -137,7 +138,7 @@ if (!empty($this->data['product_config_options_json'])) {
 
         </tr>
         <tr>
-            <th><?php echo $similar_product; ?></th>
+            <th><?php echo $similar_product;?></th>
             <td>
     <!--                <select class="add_similar" name="similar">
                     <option value="">Select</option>
@@ -151,8 +152,11 @@ if (!empty($this->data['product_config_options_json'])) {
 //                    }
                 ?>
                 </select>-->
-                <input class="add_similar" type="text" id="similar_value" name="similar_value" style="width:200px;" />
-                <input class="add_similar" type="hidden" id="similar" name="similar" style="width:200px;" />
+                <?php
+                 $ref_product = $this->model_catalog_product->getReferenceProduct($json_data['product_id']);
+                ?>
+                <input class="add_similar" type="text" id="similar_value" name="similar_value" style="width:200px;" value="<?php echo $ref_product['unique_name'] ?>" />
+                <input class="add_similar" type="hidden" id="similar" name="similar" style="width:200px;" value="<?php echo $json_data['product_id'] ?>" />
 
 
             </td>
@@ -302,7 +306,7 @@ if (!empty($this->data['product_config_options_json'])) {
                 ?>
                 </select>-->
                 <input class="add_similar" type="text" id="similar_value" name="similar_value" style="width:200px;" />
-                <input class="add_similar" type="hidden" id="similar" name="similar" style="width:200px;" />
+                <input class="add_similar" type="hidden" id="similar" name="similar" style="width:200px;"  />
 
             </td>
 
@@ -330,9 +334,9 @@ if (isset($referenc_products) && !empty($referenc_products)) {
             </tr>
         </thead>  
         <tbody>
-    <?php
-    foreach ($referenc_products as $product) {
-        ?>
+            <?php
+            foreach ($referenc_products as $product) {
+                ?>
                 <tr>
                     <td class="left"><?php echo $product['model']; ?></td> 
                     <td class="left"><?php echo $product['sku']; ?></td> 
@@ -342,25 +346,25 @@ if (isset($referenc_products) && !empty($referenc_products)) {
                     <td class="left"><?php echo $options_data['cor'][$product['cor']]; ?></td>      
                     <td class="right">
                         <a href="<?php
-        echo $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL');
-        ?>" >
-                        <?php echo $this->language->get('text_edit'); ?>
+                        echo $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL');
+                        ?>" >
+                               <?php echo $this->language->get('text_edit'); ?>
                         </a>
 
                     </td>
                 </tr>
-        <?php
-    }
-    ?>
+                <?php
+            }
+            ?>
         </tbody>
     </table> 
     <?php
 }
 ?>
-<script>
-    $(function() {
-
-        $("#similar").autocomplete({
+<script type="text/javascript">
+    function set_auto_complete_option() {
+        $("#similar_value").autocomplete({
+            delay: 500,
 //        source: 'index.php?route=catalog/product/autocomplete_product&token=<?php echo $token; ?>&term='+ $("#similar").val(),
             source: function(request, response) {
                 $.ajax({
@@ -379,7 +383,8 @@ if (isset($referenc_products) && !empty($referenc_products)) {
             },
             minLength: 1,
             select: function(event, ui) {
-                console.log(ui.item.item_id)
+        
+                $("#similar").val(ui.item.item_id)
 
             },
 //        html: true, // optional (jquery.ui.autocomplete.html.js required)
@@ -389,6 +394,11 @@ if (isset($referenc_products) && !empty($referenc_products)) {
 //            $(".ui-autocomplete").css("z-index", 1000);
             }
         });
+    }
+    $(function() {
+        set_auto_complete_option();
 
     });
+    
+    
 </script>    

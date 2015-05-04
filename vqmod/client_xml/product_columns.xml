@@ -1,0 +1,68 @@
+<modification>
+    <id>Adds Product Columns Database Tables</id>
+    <version>1.0]</version>
+    <vqmver>1.0</vqmver>
+    <author>itsgeniusstar@gmail.com</author>
+
+    <file name="admin/controller/catalog/product.php">
+        <operation>
+            <search position="replace"><![CDATA[
+                public function index() {
+                ]]></search>
+            <add><![CDATA[
+                protected function add_column_table($table,$column){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    
+                    if(!in_array($column,$fields)){
+                        $query = "ALTER TABLE ".DB_PREFIX.$table." ADD COLUMN ".$column." varchar(150) NOT NULL";
+                        $this->db->query($query);;
+                    }
+                    
+                
+                }
+                protected function remove_column_table($table,$column){
+                    $query = $this->db->query("SHOW COLUMNS FROM ".DB_PREFIX.$table);
+                    $rows = $query->rows;
+                    $fields = array();
+                    foreach($rows as $field){
+                        $fields[] = $field['Field'];
+                    }
+                    
+                    if(in_array($column,$fields)){
+                        $query = "ALTER TABLE ".DB_PREFIX.$table." DROP COLUMN ".$column;
+                        $this->db->query($query);;
+                    }
+                    
+                
+                }
+                public function index() {
+                     $this->add_column_table("product","weight_net");
+                     $this->add_column_table("product","cubage");
+                     $this->add_column_table("product","square_meters");
+                     $this->add_column_table("product","youtube");
+                     $this->add_column_table("product","sidicom_file");
+                     $this->add_column_table("product","total_count");
+                     $this->add_column_table("product","unique_name");
+                     $this->add_column_table("product","group_name");
+                     $this->remove_column_table("product_description","youtube");
+               
+                ]]>
+            </add>
+        </operation>
+  ]
+    </file>	
+
+
+
+</modification>
+
+
+
+
+
+

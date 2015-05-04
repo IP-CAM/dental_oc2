@@ -1,4 +1,4 @@
-<modification>
+<!--<modification>
     <id>Adds Youtube videos to product pages</id>
     <version>1.0]</version>
     <vqmver>1.0</vqmver>
@@ -74,11 +74,14 @@
             <add><![CDATA[
 					</tr>
 					  <tr>
-						<td><?php echo $entry_youtube; ?></td>
-						<td><input type="text" name="product_description[<?php echo $language['language_id']; ?>][youtube]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['youtube'] : ''; ?>" /></td>
+                                    <td><?php echo $entry_youtube; ?></td>
+                                    <?php
+                                        $youtube_value = isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['youtube'] : '';
+                                    ?>
+                                        <td><input type="text" name="product_description[<?php echo $language['language_id']; ?>][youtube]" value="<?php echo $youtube_value; ?>" /></td>
             ]]></add>
         </operation>
-	</file>	
+    </file>	
 			
     <file name="catalog/model/catalog/product.php">	
         <operation>
@@ -142,4 +145,4 @@
 			
 			
 			
-			
+			-->
