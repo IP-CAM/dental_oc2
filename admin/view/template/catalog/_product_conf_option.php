@@ -3,7 +3,6 @@ $options_data = array();
 ;
 if (!empty($this->data['product_config_options_json'])) {
     $json_data = $this->data['product_config_options_json'][0];
-
     ?>
 
     <table class="arcade_parent list" 
@@ -138,7 +137,7 @@ if (!empty($this->data['product_config_options_json'])) {
 
         </tr>
         <tr>
-            <th><?php echo $similar_product;?></th>
+            <th><?php echo $similar_product; ?></th>
             <td>
     <!--                <select class="add_similar" name="similar">
                     <option value="">Select</option>
@@ -153,10 +152,10 @@ if (!empty($this->data['product_config_options_json'])) {
                 ?>
                 </select>-->
                 <?php
-                 $ref_product = $this->model_catalog_product->getReferenceProduct($json_data['product_id']);
+                $ref_product = $this->model_catalog_product->getReferenceProduct($json_data['product_id']);
                 ?>
-                <input class="add_similar" type="text" id="similar_value" name="similar_value" style="width:200px;" value="<?php echo $ref_product['unique_name'] ?>" />
-                <input class="add_similar" type="hidden" id="similar" name="similar" style="width:200px;" value="<?php echo $json_data['product_id'] ?>" />
+                <input class="add_similar" type="text" id="similar_value" name="similar_value" style="width:200px;"  />
+                <input class="add_similar" type="hidden" id="similar" name="similar" style="width:200px;"  />
 
 
             </td>
@@ -187,9 +186,12 @@ if (!empty($this->data['product_config_options_json'])) {
 
                         if ($this->config->get('config_language') != "en") {
                             echo $option['value_' . $this->config->get('config_language')];
+                            $options_data['arcade'][$option['id']] = $option['value_' . $this->config->get('config_language')];
                         } else {
                             echo $option['value'];
+                            $options_data['arcade'][$option['id']] = $option['value'];
                         }
+
 
                         echo "</option>";
                     }
@@ -224,9 +226,14 @@ if (!empty($this->data['product_config_options_json'])) {
                         echo "<option value='" . $option['id'] . "' " . $selected . ">";
                         if ($this->config->get('config_language') != "en") {
                             echo $option['value_' . $this->config->get('config_language')];
+                            $options_data['tamanho'][$option['id']] = $option['value_' . $this->config->get('config_language')];
                         } else {
                             echo $option['value'];
+                            $options_data['tamanho'][$option['id']] = $option['value'];
                         }
+
+
+
                         echo "</option>";
                     }
                     ?>
@@ -251,9 +258,13 @@ if (!empty($this->data['product_config_options_json'])) {
                         echo "<option value='" . $option['id'] . "' " . $selected . ">";
                         if ($this->config->get('config_language') != "en") {
                             echo $option['value_' . $this->config->get('config_language')];
+                            $options_data['quantitdy'][$option['id']] = $option['value_' . $this->config->get('config_language')];
                         } else {
                             echo $option['value'];
+                            $options_data['quantitdy'][$option['id']] = $option['value'];
                         }
+
+
                         echo "</option>";
                     }
                     ?>
@@ -279,8 +290,10 @@ if (!empty($this->data['product_config_options_json'])) {
                         echo "<option value='" . $option['id'] . "' " . $selected . ">";
                         if ($this->config->get('config_language') != "en") {
                             echo $option['value_' . $this->config->get('config_language')];
+                            $options_data['cor'][$option['id']] = $option['value_' . $this->config->get('config_language')];
                         } else {
                             echo $option['value'];
+                            $options_data['cor'][$option['id']] = $option['value'];
                         }
                         echo "</option>";
                     }
@@ -316,7 +329,8 @@ if (!empty($this->data['product_config_options_json'])) {
     <?php
 }
 ?>
-<input type="hidden" name="delete_conf_ids" id="delete_conf_ids" value="" />
+<input type="hidden" name="delete_conf_ids" id="delete_conf_ids" />
+<input type="hidden" name="conf_option_id"  value="<?php echo $this->request->get['option_id']; ?>" />
 <br/>
 <?php
 if (isset($referenc_products) && !empty($referenc_products)) {
@@ -326,6 +340,7 @@ if (isset($referenc_products) && !empty($referenc_products)) {
             <tr>
                 <td class="left"><?php echo $column_name; ?></td> 
                 <td class="left"><?php echo $column_model; ?></td> 
+                <td class="left"><?php echo ''; ?></td> 
                 <td class="left"><?php echo $entry_arcade; ?></td> 
                 <td class="left"><?php echo $entry_tamanho; ?></td> 
                 <td class="left"><?php echo $entry_quantity; ?></td> 
@@ -340,13 +355,14 @@ if (isset($referenc_products) && !empty($referenc_products)) {
                 <tr>
                     <td class="left"><?php echo $product['model']; ?></td> 
                     <td class="left"><?php echo $product['sku']; ?></td> 
+                    <td class="left"><?php echo $product['unique_name']; ?></td> 
                     <td class="left"><?php echo $options_data['arcade'][$product['arcade']]; ?></td> 
                     <td class="left"><?php echo $options_data['tamanho'][$product['tamanho']]; ?></td> 
                     <td class="left"><?php echo $options_data['quantitdy'][$product['quantitdy']]; ?></td> 
                     <td class="left"><?php echo $options_data['cor'][$product['cor']]; ?></td>      
                     <td class="right">
                         <a href="<?php
-                        echo $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL');
+                        echo $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&option_id=' . $product['id'].'&product_id=' . $product['product_id'], 'SSL');
                         ?>" >
                                <?php echo $this->language->get('text_edit'); ?>
                         </a>
@@ -368,7 +384,7 @@ if (isset($referenc_products) && !empty($referenc_products)) {
 //        source: 'index.php?route=catalog/product/autocomplete_product&token=<?php echo $token; ?>&term='+ $("#similar").val(),
             source: function(request, response) {
                 $.ajax({
-                    url: 'index.php?route=catalog/product/autocomplete_product&token=<?php echo $token; ?>&term=' + $("#similar").val(),
+                    url: 'index.php?route=catalog/product/autocomplete_product&token=<?php echo $token; ?>&product_id=<?php echo $this->request->get['product_id']; ?>&term=' + $("#similar_value").val(),
                     dataType: 'json',
                     success: function(json) {
                         response($.map(json, function(item) {
@@ -383,7 +399,7 @@ if (isset($referenc_products) && !empty($referenc_products)) {
             },
             minLength: 1,
             select: function(event, ui) {
-        
+
                 $("#similar").val(ui.item.item_id)
 
             },
@@ -397,8 +413,14 @@ if (isset($referenc_products) && !empty($referenc_products)) {
     }
     $(function() {
         set_auto_complete_option();
+        $("#similar_value").change(function() {
+            if ($.trim($(this).val()) == '') {
+                $("#similar").val('');
+            }
+
+        })
 
     });
-    
-    
+
+
 </script>    

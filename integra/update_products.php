@@ -21,7 +21,7 @@ $testk = '(01010034) CZR DENTINA A4B (10G)';
 include_once('chaveiro.php');
 
 $sql = 'Select p.product_id,p.unique_name,p.group_name,pd.name FROM ' . $db_prefix . 'product p';
-$sql.= ' INNER JOIN ' . $db_prefix . 'product_description pd on pd.product_id = p.product_id';
+$sql.= ' LEFT JOIN ' . $db_prefix . 'product_description pd on pd.product_id = p.product_id';
 $sql_res = mysqli_query($conexao, $sql);
 $i = 0;
 

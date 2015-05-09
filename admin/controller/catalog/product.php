@@ -988,6 +988,11 @@ class ControllerCatalogProduct extends Controller {
         } else {
             $this->data['cor'] = '';
         }
+        if (isset($this->request->post['conf_option_id'])) {
+            $this->data['conf_option_id'] = $this->request->post['conf_option_id'];
+        } else {
+            $this->data['conf_option_id'] = '';
+        }
 
 
 
@@ -1605,8 +1610,9 @@ class ControllerCatalogProduct extends Controller {
 
     public function autocomplete_product() {
         $term = $this->request->get['term'];
+        $product_id = $this->request->get['product_id'];
         $this->load->model('catalog/product');
-        $results = $this->model_catalog_product->get_auto_complete($term);
+        $results = $this->model_catalog_product->get_auto_complete($term,$product_id);
       
         $this->response->setOutput(json_encode($results));
     }

@@ -241,17 +241,13 @@ for ($i = 0; $i < $count; $i++) {
     $prodgen = mysql_escape_string($campos[33]); /* ida_product_description */
 
     $product_model = '';
-    if (isset($campos[9])) {
-        $product_model = mysql_escape_string($campos[9]);
-        $product_model = explode(")", $product_model);
-        $product_model = substr($product_model[0], 1, strlen($product_model[0]));
+    if (isset($campos[2])) {
+        $product_model = mysql_escape_string($campos[2]);        
     }
 
 
     $test[$proddes] = $proddes;
-    ;
-
-
+   
     /* outros campos advindos necessários */
     $prodstk = 7;
 

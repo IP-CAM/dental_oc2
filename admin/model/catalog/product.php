@@ -364,14 +364,31 @@ class ModelCatalogProduct extends Model {
 
             if (count($columns) > 0) {
                 $where = implode(" AND ", $columns);
-
-                $sql_count = 'Select count(*) as option_count  FROM ' . DB_PREFIX . "product_config_options WHERE " . $where;
                 
-                $option_count = $this->db->query($sql_count)->row['option_count'];
-
-                if ($option_count > 0) {
-
-
+                if(!empty($data['conf_option_id'])){
+                    $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE id = " . (int)$data['conf_option_id'];
+                }
+                else if(empty($data['similar'])){
+                    $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE product_id = " . (int)$product_id;
+                }
+                else {
+                    //$sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE " . $where;
+                    $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE product_id = " . (int)$data['similar'];
+                }
+               
+                
+//                if (!empty($data['similar'])) {
+//                    echo $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE " . $where;
+//                }
+//                else {
+//                    echo $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE " . $where;
+//                }
+              
+                if (!empty($this->db->query($sql_count)->row)) {
+                    
+                    $option_product = $this->db->query($sql_count)->row['id'];
+                    $sql2 = "UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",")." WHERE id = ".(int)$option_product;
+                    $this->db->query($sql2);
                 } else {
         
                     $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
@@ -889,17 +906,26 @@ class ModelCatalogProduct extends Model {
      */
     public function get_reference_products($id) {
         $data = array();
-        $sql = "SELECT DISTINCT(t.product_id),model,t.sku,arcade,tamanho,cor,quantitdy FROM " . DB_PREFIX . "product t  INNER JOIN " . DB_PREFIX . "product_config_options as op ON t.product_id = op.product_id WHERE referenc_id = " . (int) $id;
+        $sql = "SELECT DISTINCT(t.product_id),op.id,t.unique_name,model,t.sku,arcade,tamanho,cor,quantitdy FROM " . DB_PREFIX . "product t  INNER JOIN " . DB_PREFIX . "product_config_options as op ON t.product_id = op.product_id WHERE referenc_id = " . (int) $id;
+        
         return $this->db->query($sql)->rows;
     }
     
-    public function get_auto_complete($term){
-        $sql = "Select product_id,unique_name FROM " . DB_PREFIX . "product WHERE unique_name LIKE '%$term%'";
+    public function get_auto_complete($term,$product_id){
+        if(strlen($term)>30){
+            $sql = "Select product_id,model FROM " . DB_PREFIX . "product WHERE model LIKE '$term%' AND product_id <> ".(int)$product_id;
+        }
+        else {
+            $sql = "Select product_id,model FROM " . DB_PREFIX . "product WHERE model LIKE '%$term%' AND product_id <> ".(int)$product_id;
+        }
+        
+       
+        
         $query = $this->db->query($sql);
      
         $products = array();
         foreach ($query->rows as $result) {
-            $products[] = array("id" => $result['product_id'],"value" => $result['unique_name'], 'label' => $result['unique_name']);
+            $products[] = array("id" => $result['product_id'],"value" => $result['model'], 'label' => $result['model']);
         }
         return $products;
     }
