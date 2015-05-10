@@ -59,6 +59,11 @@
                 <?php } else { ?>
                 <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?></a>
                 <?php } ?></td>
+              <td class="left"><?php if ($sort == 'p.referenc_id') { ?>
+                <a href="<?php echo $sort_referenc_id; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_referenc_id; ?></a>
+                <?php } else { ?>
+                <a href="<?php echo $sort_referenc_id; ?>"><?php echo $column_referenc_id;; ?></a>
+                <?php } ?></td>
               <td class="right"><?php echo $column_action; ?></td>
             </tr>
           </thead>
@@ -86,6 +91,7 @@
                   <option value="0"><?php echo $text_disabled; ?></option>
                   <?php } ?>
                 </select></td>
+                <td></td>  
               <td align="right"><a onclick="filter();" class="button"><?php echo $button_filter; ?></a></td>
             </tr>
             <?php if ($products) { ?>
@@ -118,6 +124,19 @@
                 <span style="color: #008000;"><?php echo $product['quantity']; ?></span>
                 <?php } ?></td>
               <td class="left"><?php echo $product['status']; ?></td>
+              <td class="left">
+                  <?php
+                    if(!empty($product['referenc_id'])){
+                    ?>
+                  <a href="<?php echo $product['ref_href']; ?>">
+                      <?php echo $product['ref_model']; ?>
+                  </a>
+                 <?php   
+                    }
+                  ?>
+                 
+                  
+              </td>
               <td class="right"><?php foreach ($product['action'] as $action) { ?>
                 [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
                 <?php } ?></td>

@@ -439,6 +439,9 @@ class ControllerCatalogProduct extends Controller {
                 'special' => $special,
                 'image' => $image,
                 'quantity' => $result['quantity'],
+                'referenc_id' => $result['referenc_id'],
+                'ref_model' => $result['ref_model'],
+                'ref_href' => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $result['referenc_id'] . $url, 'SSL'),
                 'status' => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
                 'selected' => isset($this->request->post['selected']) && in_array($result['product_id'], $this->request->post['selected']),
                 'action' => $action
@@ -459,6 +462,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['column_price'] = $this->language->get('column_price');
         $this->data['column_quantity'] = $this->language->get('column_quantity');
         $this->data['column_status'] = $this->language->get('column_status');
+        $this->data['column_referenc_id'] = $this->language->get('column_referenc_id');
         $this->data['column_action'] = $this->language->get('column_action');
 
         $this->data['button_copy'] = $this->language->get('button_copy');
@@ -507,6 +511,7 @@ class ControllerCatalogProduct extends Controller {
         if (isset($this->request->get['filter_status'])) {
             $url .= '&filter_status=' . $this->request->get['filter_status'];
         }
+       
 
         if ($order == 'ASC') {
             $url .= '&order=DESC';
@@ -524,6 +529,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['sort_price'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.price' . $url, 'SSL');
         $this->data['sort_quantity'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.quantity' . $url, 'SSL');
         $this->data['sort_status'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.status' . $url, 'SSL');
+        $this->data['sort_referenc_id'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.referenc_id' . $url, 'SSL');
         $this->data['sort_order'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.sort_order' . $url, 'SSL');
 
         $url = '';

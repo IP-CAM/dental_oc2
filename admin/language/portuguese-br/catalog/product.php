@@ -30,6 +30,7 @@ $_['column_image']           = 'Imagem';
 $_['column_price']           = 'Preço';
 $_['column_quantity']        = 'Quantidade';
 $_['column_status']          = 'Situação';
+$_['column_referenc_id']          = 'Prooduct Pais';
 $_['column_action']          = 'Ação';
 
 

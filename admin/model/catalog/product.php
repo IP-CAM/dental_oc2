@@ -543,8 +543,9 @@ class ModelCatalogProduct extends Model {
     }
 
     public function getProducts($data = array()) {
-        $sql = "SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
-
+            
+        $sql = "SELECT p.*,pd.*,ref.model as ref_model FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) ";
+        $sql .=" LEFT JOIN ".DB_PREFIX."product ref ON ref.product_id = p.referenc_id ";
         if (!empty($data['filter_category_id'])) {
             $sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";
         }
@@ -573,6 +574,9 @@ class ModelCatalogProduct extends Model {
         if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
             $sql .= " AND p.status = '" . (int) $data['filter_status'] . "'";
         }
+        if (isset($data['filter_referenc_id']) && !is_null($data['filter_referenc_id'])) {
+            $sql .= " AND p.referenc_id = '" . (int) $data['referenc_id'] . "'";
+        }
 
         $sql .= " GROUP BY p.product_id";
 
@@ -582,6 +586,7 @@ class ModelCatalogProduct extends Model {
             'p.price',
             'p.quantity',
             'p.status',
+            'p.referenc_id',
             'p.sort_order'
         );
 
@@ -608,7 +613,7 @@ class ModelCatalogProduct extends Model {
 
             $sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
         }
-        
+ 
         $query = $this->db->query($sql);
 
         return $query->rows;
