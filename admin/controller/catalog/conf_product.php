@@ -119,6 +119,18 @@ class ControllerCatalogConfProduct extends Controller {
         $this->getList();
     }
 
+    public function deleteOption() {
+
+        $this->load->model('catalog/product_config_options');
+        $this->language->load('catalog/product');
+        $model = 'model_catalog_product_config_options';
+    
+        $this->$model->deleteRecord($this->request->get['option_id']);
+        $url = '&product_id=' . $this->request->get['product_id'];
+        $this->session->data['success'] = $this->language->get('text_success');
+        $this->redirect($this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+    }
+
     protected function getList() {
 
         $this->language->load('catalog/conf_product_' . $this->_model);
@@ -333,7 +345,6 @@ class ControllerCatalogConfProduct extends Controller {
                 $info = $this->$model->getCor($this->request->get['conf_product_id']);
             } else if ($this->_model == "tamanho") {
                 $info = $this->$model->getTamanho($this->request->get['conf_product_id']);
-            
             } else if ($this->_model == "quantity") {
                 $info = $this->$model->getQuantity($this->request->get['conf_product_id']);
             }

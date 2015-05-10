@@ -346,6 +346,7 @@ if (isset($referenc_products) && !empty($referenc_products)) {
                 <td class="left"><?php echo $entry_quantity; ?></td> 
                 <td class="left"><?php echo $entry_cor; ?></td> 
                 <td></td>
+                <td></td>
             </tr>
         </thead>  
         <tbody>
@@ -366,7 +367,16 @@ if (isset($referenc_products) && !empty($referenc_products)) {
                         ?>" >
                                <?php echo $this->language->get('text_edit'); ?>
                         </a>
+                        <?php echo " "; ?>
+                       
 
+                    </td>
+                    <td class="right">
+                        <a onclick="if(confirm('Are you sure ?')){ return true;} return false;" href="<?php
+                        echo $this->url->link('catalog/conf_product/deleteOption', 'token=' . $this->session->data['token'] . '&option_id=' . $product['id'].'&product_id=' . $this->request->get['product_id'], 'SSL');
+                        ?>" >
+                               <?php echo $this->language->get('text_remove'); ?>
+                        </a> 
                     </td>
                 </tr>
                 <?php
