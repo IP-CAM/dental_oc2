@@ -21,7 +21,13 @@ class ModelCatalogProductConfigOptions extends Model {
         $this->db->query("UPDATE " . DB_PREFIX . "product_config_options SET ".implode($columns,",")." WHERE id = '" . (int) $conf_id . "'");
     }
 
-    public function deleteRecord($conf_id) {
+    public function deleteRecord($conf_id,$reference_id = '') {
+     
+        if(!empty($reference_id)){
+            
+            $this->db->query("UPDATE " . DB_PREFIX . "product SET referenc_id = NULL WHERE product_id = '" . (int) $reference_id . "'");
+        }
+        
         $this->db->query("DELETE FROM " . DB_PREFIX . "product_config_options WHERE id = '" . (int) $conf_id . "'");
     }
 

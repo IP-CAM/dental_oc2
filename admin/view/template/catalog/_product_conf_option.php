@@ -373,7 +373,7 @@ if (isset($referenc_products) && !empty($referenc_products)) {
                     </td>
                     <td class="right">
                         <a onclick="if(confirm('Are you sure ?')){ return true;} return false;" href="<?php
-                        echo $this->url->link('catalog/conf_product/deleteOption', 'token=' . $this->session->data['token'] . '&option_id=' . $product['id'].'&product_id=' . $this->request->get['product_id'], 'SSL');
+                        echo $this->url->link('catalog/conf_product/deleteOption', 'token=' . $this->session->data['token'] . '&option_id=' . $product['id'].'&reference_id=' . $product['product_id'].'&product_id=' . $this->request->get['product_id'], 'SSL');
                         ?>" >
                                <?php echo $this->language->get('text_remove'); ?>
                         </a> 

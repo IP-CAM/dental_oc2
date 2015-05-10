@@ -125,7 +125,7 @@ class ControllerCatalogConfProduct extends Controller {
         $this->language->load('catalog/product');
         $model = 'model_catalog_product_config_options';
     
-        $this->$model->deleteRecord($this->request->get['option_id']);
+        $this->$model->deleteRecord($this->request->get['option_id'],$this->request->get['reference_id']);
         $url = '&product_id=' . $this->request->get['product_id'];
         $this->session->data['success'] = $this->language->get('text_success');
         $this->redirect($this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . $url, 'SSL'));
