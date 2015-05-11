@@ -12,19 +12,24 @@ class ModelCatalogProductOptions extends Model {
             'quantitdy' => 'quantity',
             'cor' => 'cor',
         );
-
-        $sub_query = "SELECT product_id FROM " . DB_PREFIX . "product WHERE referenc_id =" . $product_id;
+        
+        $sub_query = "SELECT product_id FROM ( ";
+        $sub_query.= " SELECT product_id FROM " . DB_PREFIX . "product WHERE referenc_id =" . $product_id;
+        $sub_query.= " UNION SELECT product_id FROM " . DB_PREFIX . "product WHERE product_id =" . $product_id;
+        $sub_query.= " ) as product_view ";
         $column = "value";
         if ($this->config->get('config_language') != "en") {
             $column = "value_" . $this->config->get('config_language');
         }
-        $sql = "Select DISTINCT($option_type) as option_id,$column as value,t.product_id,prod.price,prod.quantity,prod.tax_class_id,prod_sp.price as special FROM " . DB_PREFIX . "product_config_options t INNER JOIN " .
+        $sql = "Select DISTINCT($option_type) as option_id,$column as value,t.product_id,prod.price,prod.model,prod_desc.name,prod.quantity,prod.tax_class_id,prod_sp.price as special FROM " . DB_PREFIX . "product_config_options t INNER JOIN " .
                 " " . DB_PREFIX . "conf_product_" . $options_types[$option_type] . " op ON op.id = t." . $option_type .
                 " INNER JOIN " . DB_PREFIX . "product  as prod ON prod.product_id = t.product_id " .
+                " INNER JOIN " . DB_PREFIX . "product_description  as prod_desc ON prod.product_id = prod_desc.product_id " .
+                " AND language_id = '".(int)$this->config->get('config_language_id')."'".
                 " LEFT JOIN " . DB_PREFIX . "product_special as prod_sp ON t.product_id = prod_sp.product_id " .
                 "  WHERE t.product_id IN($sub_query) ";
         $sql.= ' ';
-
+        
 
         $where = '';
         if (!empty($options_arr)) {

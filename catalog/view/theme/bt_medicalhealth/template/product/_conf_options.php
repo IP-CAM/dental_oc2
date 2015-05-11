@@ -45,6 +45,8 @@ if ($arcade_count > 0) {
                        tax="<?php echo $option_v['tax']; ?>"
                        special="<?php echo $option_v['special']; ?>"
                        quantity="<?php echo $option_v['quantity']; ?>"
+                       p_name="<?php echo $option_v['name']; ?>"
+                       model="<?php echo $option_v['model']; ?>"
                        id="option-value-<?php echo $option_v['option_id']; ?>" />
                 <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -82,6 +84,8 @@ if ($tamanho_count > 0) {
                                tax="<?php echo $option_v['tax']; ?>"
                                special="<?php echo $option_v['special']; ?>"
                                quantity="<?php echo $option_v['quantity']; ?>"
+                               p_name="<?php echo $option_v['name']; ?>"
+                               model="<?php echo $option_v['model']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -122,6 +126,8 @@ if ($quantitdy_count > 0) {
                                tax="<?php echo $option_v['tax']; ?>"
                                special="<?php echo $option_v['special']; ?>"
                                quantity="<?php echo $option_v['quantity']; ?>"
+                               p_name="<?php echo $option_v['name']; ?>"
+                               model="<?php echo $option_v['model']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -162,6 +168,8 @@ if ($cor_count > 0) {
                                tax="<?php echo $option_v['tax']; ?>"
                                special="<?php echo $option_v['special']; ?>"
                                quantity="<?php echo $option_v['quantity']; ?>"
+                               p_name="<?php echo $option_v['name']; ?>"
+                               model="<?php echo $option_v['model']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -212,6 +220,8 @@ if ($cor_count > 0) {
                     $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
                     $("span.price-text").html($(this).attr("price"));
                     $("span.product_tax").html($(this).attr("tax"));
+                    $("#title_heading").html($(this).attr("p_name"));
+                    $("#text_model").html($(this).attr("model"));
                 }
                 loader_box.hide();
             });
@@ -244,6 +254,9 @@ if ($cor_count > 0) {
                     $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
                     $("span.price-text").html($(this).attr("price"));
                     $("span.product_tax").html($(this).attr("tax"));
+           
+                    $("#title_heading").html($(this).attr("p_name"));
+                    $("#text_model").html($(this).attr("model"));
                 }
 
                 loader_box.hide();
@@ -270,6 +283,8 @@ if ($cor_count > 0) {
                     $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
                     $("span.price-text").html($(this).attr("price"));
                     $("span.product_tax").html($(this).attr("tax"));
+                    $("#title_heading").html($(this).attr("p_name"));
+                    $("#text_model").html($(this).attr("model"));
                 }
 
                 loader_box.hide();
@@ -281,6 +296,8 @@ if ($cor_count > 0) {
             $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
             $("span.price-text").html($(this).attr("price"));
             $("span.product_tax").html($(this).attr("tax"));
+            $("#title_heading").html($(this).attr("p_name"));
+            $("#text_model").html($(this).attr("model"));
         })
 
     })
@@ -299,6 +316,8 @@ if ($cor_count > 0) {
                     'tax="' + v['tax'] + '" ' +
                     'special="' + v['special'] + '" ' +
                     'quantity="' + v['quantity'] + '" ' +
+                    'p_name="' + v['name'] + '" ' +
+                    'model="' + v['model'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +
@@ -323,6 +342,8 @@ if ($cor_count > 0) {
                     'tax="' + v['tax'] + '" ' +
                     'special="' + v['special'] + '" ' +
                     'quantity="' + v['quantity'] + '" ' +
+                    'p_name="' + v['name'] + '" ' +
+                    'model="' + v['model'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +
@@ -346,6 +367,8 @@ if ($cor_count > 0) {
                     'tax="' + v['tax'] + '" ' +
                     'special="' + v['special'] + '" ' +
                     'quantity="' + v['quantity'] + '" ' +
+                    'p_name="' + v['name'] + '" ' +
+                    'model="' + v['model'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +

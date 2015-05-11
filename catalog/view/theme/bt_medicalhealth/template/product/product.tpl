@@ -34,12 +34,12 @@
             </div>
             <?php } ?>
             <div class="right">
-                <h3><?php echo $heading_title; ?></h3>
+                <h3 id="title_heading"><?php echo $heading_title; ?></h3>
                 <div class="description">
                     <?php if ($manufacturer) { ?>
                     <span><?php echo $text_manufacturer; ?></span> <a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a><br />
                     <?php } ?>
-                    <span><?php echo $text_model; ?></span> <?php echo $model; ?><br />
+                    <span ><?php echo $text_model; ?></span> <span id="text_model"><?php echo $model; ?></span><br />
                     <?php if ($reward) { ?>
                     <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
                     <?php } ?>
