@@ -44,9 +44,13 @@ if ($arcade_count > 0) {
         foreach ($options_arcade as $option_v) {
             $title_alt = '';
             if ($option_v['quantity'] <= 0) {
-                $title_alt = $stock_statuses['out_of_stock'];
-            } else if ($option_v['stock_status'] == 'Out Of Stock') {
-                $title_alt = $stock_statuses['out_of_stock'];
+                if ($option_v['stock_status'] == 'Out Of Stock') {
+                    $title_alt = $stock_statuses['out_of_stock'];
+                } else {
+                    $title_alt = $option_v['stock_status'];
+                }
+            } else if ($option_v['quantity'] > 0) {
+                $title_alt = $stock_statuses['in_stock'];
             } else {
                 $title_alt = $stock_statuses['in_stock'];
             }
@@ -92,9 +96,13 @@ if ($tamanho_count > 0) {
                 foreach ($options_tamanho as $option_v) {
                     $title_alt = '';
                     if ($option_v['quantity'] <= 0) {
-                        $title_alt = $stock_statuses['out_of_stock'];
-                    } else if ($option_v['stock_status'] == 'Out Of Stock') {
-                        $title_alt = $stock_statuses['out_of_stock'];
+                        if ($option_v['stock_status'] == 'Out Of Stock') {
+                            $title_alt = $stock_statuses['out_of_stock'];
+                        } else {
+                            $title_alt = $option_v['stock_status'];
+                        }
+                    } else if ($option_v['quantity'] > 0) {
+                        $title_alt = $stock_statuses['in_stock'];
                     } else {
                         $title_alt = $stock_statuses['in_stock'];
                     }
@@ -142,9 +150,13 @@ if ($quantitdy_count > 0) {
                 foreach ($options_quantitdy as $option_v) {
                     $title_alt = '';
                     if ($option_v['quantity'] <= 0) {
-                        $title_alt = $stock_statuses['out_of_stock'];
-                    } else if ($option_v['stock_status'] == 'Out Of Stock') {
-                        $title_alt = $stock_statuses['out_of_stock'];
+                        if ($option_v['stock_status'] == 'Out Of Stock') {
+                            $title_alt = $stock_statuses['out_of_stock'];
+                        } else {
+                            $title_alt = $option_v['stock_status'];
+                        }
+                    } else if ($option_v['quantity'] > 0) {
+                        $title_alt = $stock_statuses['in_stock'];
                     } else {
                         $title_alt = $stock_statuses['in_stock'];
                     }
@@ -192,9 +204,13 @@ if ($cor_count > 0) {
                 foreach ($options_cor as $option_v) {
                     $title_alt = '';
                     if ($option_v['quantity'] <= 0) {
-                        $title_alt = $stock_statuses['out_of_stock'];
-                    } else if ($option_v['stock_status'] == 'Out Of Stock') {
-                        $title_alt = $stock_statuses['out_of_stock'];
+                        if ($option_v['stock_status'] == 'Out Of Stock') {
+                            $title_alt = $stock_statuses['out_of_stock'];
+                        } else {
+                            $title_alt = $option_v['stock_status'];
+                        }
+                    } else if ($option_v['quantity'] > 0) {
+                        $title_alt = $stock_statuses['in_stock'];
                     } else {
                         $title_alt = $stock_statuses['in_stock'];
                     }
@@ -352,13 +368,19 @@ if ($cor_count > 0) {
             console.log(v);
             title_alt = '';
             if (v['quantity'] <= 0) {
-                title_alt = stock_statuses['out_of_stock'];
-            } else if (v['stock_status'] == 'Out Of Stock') {
-                title_alt = stock_statuses['out_of_stock'];
+                if (v['stock_status'] == 'Out Of Stock') {
+                    title_alt = stock_statuses['out_of_stock'];
+                }
+                else {
+                    title_alt = v['stock_status'];
+                }
+
+            } else if (v['quantity'] > 0 0) {
+                title_alt = stock_statuses['in_stock'];
             } else {
                 title_alt = stock_statuses['in_stock'];
             }
-            htm += '<span style="margin-right:10px;" alt="'+title_alt+'" title="'+title_alt+'">' +
+            htm += '<span style="margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
                     '<input index="' + index + '" type="radio" name="option[tamanho]"' +
                     'value="' + v['option_id'] + '" ' +
                     'product_id="' + v['product_id'] + '" ' +
@@ -385,74 +407,78 @@ if ($cor_count > 0) {
 
         $.each(quantaties['data'], function(k, v) {
             title_alt = '';
-            if (v['quantity'] <= 0) {
+                if (v['quantity'] <= 0) {
+                if (v['stock_status'] == 'Out Of Stock') {
                 title_alt = stock_statuses['out_of_stock'];
-            } else if (v['stock_status'] == 'Out Of Stock') {
-                title_alt = stock_statuses['out_of_stock'];
-            } else {
+                }
+                else {
+                title_alt = v['stock_status'];
+                }
+
+            } else if (v['quantity'] > 0 0) {
                 title_alt = stock_statuses['in_stock'];
+            } else {
+                    title_alt = stock_statuses['in_stock'];
             }
-            htm += '<span style="margin-right:10px;" alt="'+title_alt+'" title="'+title_alt+'">' +
+                    htm += '<span style="margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
                     '<input  type="radio" name="option[quantitdy]"' +
-                    'value="' + v['option_id'] + '" ' +
-                    'product_id="' + v['product_id'] + '" ' +
-                    'price="' + v['price'] + '" ' +
-                    'tax="' + v['tax'] + '" ' +
-                    'special="' + v['special'] + '" ' +
-                    'quantity="' + v['quantity'] + '" ' +
+                    'value="' + v['option_id'] + '" ' +                     'product_id="' + v['product_id'] + '" ' +
+                    'price="' + v['price'] + '" ' +                     'tax="' + v['tax'] + '" ' +
+                    'special="' + v['special'] + '" ' +                     'quantity="' + v['quantity'] + '" ' +
                     'p_name="' + v['name'] + '" ' +
                     'model="' + v['model'] + '" ' +
-                    'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
-                    '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
-                    '</label>' +
-                    '</span>';
+        'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
+    '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
+        '</label>' +
+        '</span>';
         })
 
-        $("#option-quantitdy").html(htm);
-
+            $("#option-quantitdy").html(htm);
+            
     }
     function renderCor(cors) {
-
+                
         htm = "";
         disabled = '';
 
-        $.each(cors['data'], function(k, v) {
+            $.each(cors['data'], function(k, v) {
             title_alt = '';
-            if (v['quantity'] <= 0) {
-                title_alt = stock_statuses['out_of_stock'];
-            } else if (v['stock_status'] == 'Out Of Stock') {
-                title_alt = stock_statuses['out_of_stock'];
-            } else {
-                title_alt = stock_statuses['in_stock'];
+                if (v['quantity'] <= 0) {
+                if (v['stock_status'] == 'Out Of Stock') {
+            title_alt = stock_statuses['out_of_stock'];
+                }
+                else {
+                    title_alt = v['stock_status'];
+                    }
+
+            } else if (v['quantity'] > 0 0) {
+                    title_alt = stock_statuses['in_stock'];             } else {
+                    title_alt = stock_statuses['in_stock'];
             }
-            htm += '<span style="margin-right:10px;" alt="'+title_alt+'" title="'+title_alt+'">' +
-                    '<input  type="radio" name="option[cor]"' +
-                    'value="' + v['option_id'] + '" ' +
-                    'product_id="' + v['product_id'] + '" ' +
-                    'price="' + v['price'] + '" ' +
+                    htm += '<span style="margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
+                    '<input  type="radio" name="option[cor]"' +                     'value="' + v['option_id'] + '" ' +                     'product_id="' + v['product_id'] + '" ' +                     'price="' + v['price'] + '" ' +
                     'tax="' + v['tax'] + '" ' +
                     'special="' + v['special'] + '" ' +
                     'quantity="' + v['quantity'] + '" ' +
-                    'p_name="' + v['name'] + '" ' +
-                    'model="' + v['model'] + '" ' +
-                    'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
-                    '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
-                    '</label>' +
-                    '</span>';
+        'p_name="' + v['name'] + '" ' +
+    'model="' + v['model'] + '" ' +
+    'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
+            '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
+    '</label>' +
+        '</span>';
         })
 
-        $("#option-cor").html(htm);
+            $("#option-cor").html(htm);
 
     }
 
-    function un_prop_all() {
+        function un_prop_all() {
         $('input[type="checkbox"]').prop('checked', false);
-
-
-    }
+ 
+            }
 
     function reset_tam() {
-        if (tamanho_count != 0) {
+    if (tamanho_count != 0) {
             $("#option-tom").html('');
         }
     }

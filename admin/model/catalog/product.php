@@ -13,6 +13,12 @@ class ModelCatalogProduct extends Model {
     }
 
     public function addProduct($data) {
+        if (!empty($data['quantity']) && (int) $data['quantity'] > 0) {
+            $sql_status = "Select stock_status_id FROM " . DB_PREFIX . "stock_status WHERE name ='In Stock'";
+            $data['stock_status_id'] = $this->db->query($sql_status)->row['stock_status_id'];
+        }
+
+
         $this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int) $data['quantity'] . "', minimum = '" . (int) $data['minimum'] . "', subtract = '" . (int) $data['subtract'] . "', stock_status_id = '" . (int) $data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', manufacturer_id = '" . (int) $data['manufacturer_id'] . "', shipping = '" . (int) $data['shipping'] . "', price = '" . (float) $data['price'] . "', points = '" . (int) $data['points'] . "', weight = '" . (float) $data['weight'] . "',youtube = '" . $data['product']['youtube'] . "', weight_class_id = '" . (int) $data['weight_class_id'] . "', length = '" . (float) $data['length'] . "', width = '" . (float) $data['width'] . "', height = '" . (float) $data['height'] . "', length_class_id = '" . (int) $data['length_class_id'] . "', status = '" . (int) $data['status'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', sort_order = '" . (int) $data['sort_order'] . "', date_added = NOW()");
 
         $product_id = $this->db->getLastId();
@@ -153,8 +159,7 @@ class ModelCatalogProduct extends Model {
                 $option_count = $this->db->query($sql_count)->row['option_count'];
 
                 if ($option_count > 0) {
-
-
+                    
                 } else {
 //                    $sql_max1 = "Select Max(p.product_id) as max_product_id FROM " . DB_PREFIX . "product p ";
 //                    $sql_max2 = "Select Max(pd.product_id) as max_product_id FROM " . DB_PREFIX . "product_description pd";
@@ -199,6 +204,11 @@ class ModelCatalogProduct extends Model {
     }
 
     public function editProduct($product_id, $data) {
+        if (!empty($data['quantity']) && (int) $data['quantity'] > 0) {
+            $sql_status = "Select stock_status_id   FROM " . DB_PREFIX . "stock_status WHERE name ='In Stock'";
+            $data['stock_status_id'] = $this->db->query($sql_status)->row['stock_status_id'];
+        }
+
 
         $update_sql = "UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "',youtube = '" . $this->db->escape($data['product']['youtube']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int) $data['quantity'] . "', minimum = '" . (int) $data['minimum'] . "', subtract = '" . (int) $data['subtract'] . "', stock_status_id = '" . (int) $data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', manufacturer_id = '" . (int) $data['manufacturer_id'] . "', shipping = '" . (int) $data['shipping'] . "', price = '" . (float) $data['price'] . "', points = '" . (int) $data['points'] . "', weight = '" . (float) $data['weight'] . "', weight_class_id = '" . (int) $data['weight_class_id'] . "', length = '" . (float) $data['length'] . "', width = '" . (float) $data['width'] . "', height = '" . (float) $data['height'] . "', length_class_id = '" . (int) $data['length_class_id'] . "', status = '" . (int) $data['status'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', sort_order = '" . (int) $data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int) $product_id . "'";
 
@@ -353,44 +363,41 @@ class ModelCatalogProduct extends Model {
             if (!empty($data['similar'])) {
                 $columns [] = "product_id = '" . (int) $data['similar'] . "'";
                 //update refernce
-                
-                $sql_ref = "UPDATE ".DB_PREFIX."product SET referenc_id = ".(int)$product_id.' WHERE product_id = '.(int) $data['similar'];
-              
+
+                $sql_ref = "UPDATE " . DB_PREFIX . "product SET referenc_id = " . (int) $product_id . ' WHERE product_id = ' . (int) $data['similar'];
+
                 $this->db->query($sql_ref);
-                
             } else {
                 $columns [] = "product_id = '" . (int) $product_id . "'";
             }
 
             if (count($columns) > 0) {
                 $where = implode(" AND ", $columns);
-                
-                if(!empty($data['conf_option_id'])){
-                    $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE id = " . (int)$data['conf_option_id'];
-                }
-                else if(empty($data['similar'])){
-                    $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE product_id = " . (int)$product_id;
-                }
-                else {
+
+                if (!empty($data['conf_option_id'])) {
+                    $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE id = " . (int) $data['conf_option_id'];
+                } else if (empty($data['similar'])) {
+                    $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE product_id = " . (int) $product_id;
+                } else {
                     //$sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE " . $where;
-                    $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE product_id = " . (int)$data['similar'];
+                    $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE product_id = " . (int) $data['similar'];
                 }
-               
-                
+
+
 //                if (!empty($data['similar'])) {
 //                    echo $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE " . $where;
 //                }
 //                else {
 //                    echo $sql_count = 'Select id  FROM ' . DB_PREFIX . "product_config_options WHERE " . $where;
 //                }
-              
+
                 if (!empty($this->db->query($sql_count)->row)) {
-                    
+
                     $option_product = $this->db->query($sql_count)->row['id'];
-                    $sql2 = "UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",")." WHERE id = ".(int)$option_product;
+                    $sql2 = "UPDATE " . DB_PREFIX . "product_config_options SET " . implode($columns, ",") . " WHERE id = " . (int) $option_product;
                     $this->db->query($sql2);
                 } else {
-        
+
                     $sql2 = "INSERT INTO " . DB_PREFIX . "product_config_options SET " . implode($columns, ",");
 
                     $this->db->query($sql2);
@@ -476,12 +483,10 @@ class ModelCatalogProduct extends Model {
 
         return $query->row;
     }
-    
-    
-    public function getReferenceProduct($product_id){
-        $query = $this->db->query("SELECT unique_name FROM  ".DB_PREFIX."product WHERE product_id = ".(int)$product_id); 
+
+    public function getReferenceProduct($product_id) {
+        $query = $this->db->query("SELECT unique_name FROM  " . DB_PREFIX . "product WHERE product_id = " . (int) $product_id);
         return $query->row;
-        
     }
 
     /**
@@ -543,9 +548,9 @@ class ModelCatalogProduct extends Model {
     }
 
     public function getProducts($data = array()) {
-            
+
         $sql = "SELECT p.*,pd.*,ref.model as ref_model FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) ";
-        $sql .=" LEFT JOIN ".DB_PREFIX."product ref ON ref.product_id = p.referenc_id ";
+        $sql .=" LEFT JOIN " . DB_PREFIX . "product ref ON ref.product_id = p.referenc_id ";
         if (!empty($data['filter_category_id'])) {
             $sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";
         }
@@ -591,13 +596,11 @@ class ModelCatalogProduct extends Model {
         );
 
         if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-            if ($data['sort']=='p.model'){
-                 $sql .= " ORDER BY CAST(".$data['sort']." AS decimal) ";
+            if ($data['sort'] == 'p.model') {
+                $sql .= " ORDER BY CAST(TRIM(" . $data['sort'] . ") AS decimal) ";
+            } else {
+                $sql .= " ORDER BY " . $data['sort'];
             }
-            else {
-                $sql .= " ORDER BY " . $data['sort']; 
-            }
-           
         } else {
             $sql .= " ORDER BY pd.name";
         }
@@ -619,7 +622,7 @@ class ModelCatalogProduct extends Model {
 
             $sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
         }
-     
+
         $query = $this->db->query($sql);
 
         return $query->rows;
@@ -848,7 +851,7 @@ class ModelCatalogProduct extends Model {
         if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
             $sql .= " AND p.status = '" . (int) $data['filter_status'] . "'";
         }
-        
+
         $query = $this->db->query($sql);
 
         return $query->row['total'];
@@ -918,25 +921,24 @@ class ModelCatalogProduct extends Model {
     public function get_reference_products($id) {
         $data = array();
         $sql = "SELECT DISTINCT(t.product_id),op.id,t.unique_name,model,t.sku,arcade,tamanho,cor,quantitdy FROM " . DB_PREFIX . "product t  INNER JOIN " . DB_PREFIX . "product_config_options as op ON t.product_id = op.product_id WHERE referenc_id = " . (int) $id;
-        
+
         return $this->db->query($sql)->rows;
     }
-    
-    public function get_auto_complete($term,$product_id){
-        if(strlen($term)>30){
-            $sql = "Select product_id,model FROM " . DB_PREFIX . "product WHERE model LIKE '$term%' AND product_id <> ".(int)$product_id;
+
+    public function get_auto_complete($term, $product_id) {
+        if (strlen($term) > 30) {
+            $sql = "Select product_id,model FROM " . DB_PREFIX . "product WHERE model LIKE '$term%' AND product_id <> " . (int) $product_id;
+        } else {
+            $sql = "Select product_id,model FROM " . DB_PREFIX . "product WHERE model LIKE '%$term%' AND product_id <> " . (int) $product_id;
         }
-        else {
-            $sql = "Select product_id,model FROM " . DB_PREFIX . "product WHERE model LIKE '%$term%' AND product_id <> ".(int)$product_id;
-        }
-        
-       
-        
+
+
+
         $query = $this->db->query($sql);
-     
+
         $products = array();
         foreach ($query->rows as $result) {
-            $products[] = array("id" => $result['product_id'],"value" => $result['model'], 'label' => $result['model']);
+            $products[] = array("id" => $result['product_id'], "value" => $result['model'], 'label' => $result['model']);
         }
         return $products;
     }

@@ -161,8 +161,8 @@ class ControllerProductProduct extends Controller {
         } else {
             $product_id = 0;
         }
-        
-        
+
+
 
         $this->load->model('catalog/product');
 
@@ -263,7 +263,7 @@ class ControllerProductProduct extends Controller {
             $this->data['entry_bad'] = $this->language->get('entry_bad');
             $this->data['entry_captcha'] = $this->language->get('entry_captcha');
             $this->data['text_youtube'] = $this->language->get('text_youtube');
-            
+
             //shipping calcualation
             $this->data['text_postal_code'] = $this->language->get('text_postal_code');
             $this->data['button_postal_code'] = $this->language->get('button_postal_code');
@@ -289,25 +289,29 @@ class ControllerProductProduct extends Controller {
             $this->data['model'] = $product_info['model'];
             $this->data['reward'] = $product_info['reward'];
             $this->data['points'] = $product_info['points'];
-            
+
             //product config options 
-            
+
             $this->data['product_config_options'] = $this->model_catalog_product->getProductConfigOptions($this->request->get['product_id']);
             $this->data['product_config_all'] = $this->model_catalog_product->getAllconfigurations();
-     
-            
+
+
             if ($product_info['quantity'] <= 0) {
-                $this->data['stock'] = $product_info['stock_status'];
-            } 
-            elseif ($product_info['stock_status'] =='Out Of Stock') {
-                $this->data['stock'] = $this->language->get('text_outstock');
-            } 
+                if ($product_info['stock_status'] == 'Out Of Stock') {
+                    $this->data['stock'] = $this->language->get('text_outstock');
+                } else {
+                    $this->data['stock'] = $product_info['stock_status'];
+                }
+            }
+            else if ($product_info['quantity'] > 0){
+                $this->data['stock'] = $this->language->get('text_instock');
+            }
             elseif ($this->config->get('config_stock_display')) {
                 $this->data['stock'] = $product_info['quantity'];
             } else {
                 $this->data['stock'] = $this->language->get('text_instock');
             }
-            
+
 //            echo "<pre>";
 //            print_r($product_info);
 //            print_r($this->data['stock']);
@@ -356,7 +360,7 @@ class ControllerProductProduct extends Controller {
             } else {
                 $this->data['tax'] = false;
             }
-            
+
             $this->data['youtube'] = $product_info['youtube'];
 
             $discounts = $this->model_catalog_product->getProductDiscounts($this->request->get['product_id']);

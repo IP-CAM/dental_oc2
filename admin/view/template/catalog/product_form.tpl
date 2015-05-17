@@ -130,7 +130,7 @@
             </tr>
             <tr>
               <td><?php echo $entry_quantity; ?></td>
-              <td><input type="text" name="quantity" value="<?php echo $quantity; ?>" size="2" /></td>
+              <td><input type="text" name="quantity" id="id_quantity" value="<?php echo $quantity; ?>" size="2" /></td>
             </tr>
             <tr>
               <td><?php echo $entry_minimum; ?></td>
@@ -150,7 +150,7 @@
             </tr>
             <tr>
               <td><?php echo $entry_stock_status; ?></td>
-              <td><select name="stock_status_id">
+              <td><select name="stock_status_id" id="id_stock_status_id">
                   <?php foreach ($stock_statuses as $stock_status) { ?>
                   <?php if ($stock_status['stock_status_id'] == $stock_status_id) { ?>
                   <option value="<?php echo $stock_status['stock_status_id']; ?>" selected="selected"><?php echo $stock_status['name']; ?></option>
