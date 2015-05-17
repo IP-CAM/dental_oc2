@@ -591,7 +591,13 @@ class ModelCatalogProduct extends Model {
         );
 
         if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-            $sql .= " ORDER BY " . $data['sort'];
+            if ($data['sort']=='p.model'){
+                 $sql .= " ORDER BY CAST(".$data['sort']." AS decimal) ";
+            }
+            else {
+                $sql .= " ORDER BY " . $data['sort']; 
+            }
+           
         } else {
             $sql .= " ORDER BY pd.name";
         }
@@ -613,7 +619,7 @@ class ModelCatalogProduct extends Model {
 
             $sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
         }
- 
+     
         $query = $this->db->query($sql);
 
         return $query->rows;

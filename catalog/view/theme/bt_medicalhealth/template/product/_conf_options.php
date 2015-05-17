@@ -1,8 +1,15 @@
-
+<?php
+$stock_statuses = array(
+    "in_stock" => $this->language->get('text_instock'),
+    "out_of_stock" => $this->language->get('text_outstock')
+);
+?>
 <script>
     var arcades = [];
-    var all_options = <?php echo json_encode($product_config_all);
-?>;
+    var all_options = <?php echo json_encode($product_config_all); ?>;
+    var stock_statuses = <?php echo json_encode($stock_statuses); ?>;
+
+
 </script>
 <?php
 $this->load->model('catalog/product_options');
@@ -35,8 +42,16 @@ if ($arcade_count > 0) {
         <?php
         $index = 0;
         foreach ($options_arcade as $option_v) {
+            $title_alt = '';
+            if ($option_v['quantity'] <= 0) {
+                $title_alt = $stock_statuses['out_of_stock'];
+            } else if ($option_v['stock_status'] == 'Out Of Stock') {
+                $title_alt = $stock_statuses['out_of_stock'];
+            } else {
+                $title_alt = $stock_statuses['in_stock'];
+            }
             ?>
-            <span style="margin-right:10px;">
+            <span style="margin-right:10px;" alt="<?php echo $title_alt; ?>" title="<?php echo $title_alt; ?>">
                 <input db_id="<?php echo $option_v['option_id']; ?>" 
                        index="<?php echo $index ?>" type="radio" name="option[arcade]" 
                        product_id="<?php echo $option_v['product_id']; ?>" 
@@ -75,8 +90,16 @@ if ($tamanho_count > 0) {
 
                 $index = 0;
                 foreach ($options_tamanho as $option_v) {
+                    $title_alt = '';
+                    if ($option_v['quantity'] <= 0) {
+                        $title_alt = $stock_statuses['out_of_stock'];
+                    } else if ($option_v['stock_status'] == 'Out Of Stock') {
+                        $title_alt = $stock_statuses['out_of_stock'];
+                    } else {
+                        $title_alt = $stock_statuses['in_stock'];
+                    }
                     ?>
-                    <span style="margin-right:10px;">
+                    <span style="margin-right:10px;" alt="<?php echo $title_alt; ?>" title="<?php echo $title_alt; ?>">
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[tamanho]" 
                                value="<?php echo $option_v['option_id']; ?>" 
                                product_id="<?php echo $option_v['product_id']; ?>"
@@ -117,8 +140,16 @@ if ($quantitdy_count > 0) {
 
                 $index = 0;
                 foreach ($options_quantitdy as $option_v) {
+                    $title_alt = '';
+                    if ($option_v['quantity'] <= 0) {
+                        $title_alt = $stock_statuses['out_of_stock'];
+                    } else if ($option_v['stock_status'] == 'Out Of Stock') {
+                        $title_alt = $stock_statuses['out_of_stock'];
+                    } else {
+                        $title_alt = $stock_statuses['in_stock'];
+                    }
                     ?>
-                    <span style="margin-right:10px;">
+                    <span style="margin-right:10px;" alt="<?php echo $title_alt; ?>" title="<?php echo $title_alt; ?>">
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[quantitdy]" 
                                value="<?php echo $option_v['option_id']; ?>" 
                                product_id="<?php echo $option_v['product_id']; ?>"
@@ -159,8 +190,16 @@ if ($cor_count > 0) {
 
                 $index = 0;
                 foreach ($options_cor as $option_v) {
+                    $title_alt = '';
+                    if ($option_v['quantity'] <= 0) {
+                        $title_alt = $stock_statuses['out_of_stock'];
+                    } else if ($option_v['stock_status'] == 'Out Of Stock') {
+                        $title_alt = $stock_statuses['out_of_stock'];
+                    } else {
+                        $title_alt = $stock_statuses['in_stock'];
+                    }
                     ?>
-                    <span style="margin-right:10px;">
+                    <span style="margin-right:10px;" alt="<?php echo $title_alt; ?>" title="<?php echo $title_alt; ?>">
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[cor]" 
                                value="<?php echo $option_v['option_id']; ?>" 
                                product_id="<?php echo $option_v['product_id']; ?>"
@@ -222,6 +261,7 @@ if ($cor_count > 0) {
                     $("span.product_tax").html($(this).attr("tax"));
                     $("#title_heading").html($(this).attr("p_name"));
                     $("#text_model").html($(this).attr("model"));
+                    $("#stock_status").html($(this).attr("title"));
                 }
                 loader_box.hide();
             });
@@ -242,11 +282,11 @@ if ($cor_count > 0) {
                 if (data['data'].length > 0) {
                     $(".label_option").show();
                     if (data['option_name'] == 'quantitdy') {
-                       
+
                         renderQuantity(data);
                     }
                     else if (data['option_name'] == 'cor') {
-                       
+
                         renderCor(data);
                     }
                 }
@@ -254,9 +294,10 @@ if ($cor_count > 0) {
                     $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
                     $("span.price-text").html($(this).attr("price"));
                     $("span.product_tax").html($(this).attr("tax"));
-           
+
                     $("#title_heading").html($(this).attr("p_name"));
                     $("#text_model").html($(this).attr("model"));
+                    $("#stock_status").html($(this).attr("title"));
                 }
 
                 loader_box.hide();
@@ -298,6 +339,7 @@ if ($cor_count > 0) {
             $("span.product_tax").html($(this).attr("tax"));
             $("#title_heading").html($(this).attr("p_name"));
             $("#text_model").html($(this).attr("model"));
+            $("#stock_status").html($(this).attr("title"));
         })
 
     })
@@ -308,7 +350,15 @@ if ($cor_count > 0) {
         $.each(toms['data'], function(k, v) {
             index = 0;
             console.log(v);
-            htm += '<span style="margin-right:10px;">' +
+            title_alt = '';
+            if (v['quantity'] <= 0) {
+                title_alt = stock_statuses['out_of_stock'];
+            } else if (v['stock_status'] == 'Out Of Stock') {
+                title_alt = stock_statuses['out_of_stock'];
+            } else {
+                title_alt = stock_statuses['in_stock'];
+            }
+            htm += '<span style="margin-right:10px;" alt="'+title_alt+'" title="'+title_alt+'">' +
                     '<input index="' + index + '" type="radio" name="option[tamanho]"' +
                     'value="' + v['option_id'] + '" ' +
                     'product_id="' + v['product_id'] + '" ' +
@@ -334,7 +384,15 @@ if ($cor_count > 0) {
         disabled = '';
 
         $.each(quantaties['data'], function(k, v) {
-            htm += '<span style="margin-right:10px;">' +
+            title_alt = '';
+            if (v['quantity'] <= 0) {
+                title_alt = stock_statuses['out_of_stock'];
+            } else if (v['stock_status'] == 'Out Of Stock') {
+                title_alt = stock_statuses['out_of_stock'];
+            } else {
+                title_alt = stock_statuses['in_stock'];
+            }
+            htm += '<span style="margin-right:10px;" alt="'+title_alt+'" title="'+title_alt+'">' +
                     '<input  type="radio" name="option[quantitdy]"' +
                     'value="' + v['option_id'] + '" ' +
                     'product_id="' + v['product_id'] + '" ' +
@@ -359,7 +417,15 @@ if ($cor_count > 0) {
         disabled = '';
 
         $.each(cors['data'], function(k, v) {
-            htm += '<span style="margin-right:10px;">' +
+            title_alt = '';
+            if (v['quantity'] <= 0) {
+                title_alt = stock_statuses['out_of_stock'];
+            } else if (v['stock_status'] == 'Out Of Stock') {
+                title_alt = stock_statuses['out_of_stock'];
+            } else {
+                title_alt = stock_statuses['in_stock'];
+            }
+            htm += '<span style="margin-right:10px;" alt="'+title_alt+'" title="'+title_alt+'">' +
                     '<input  type="radio" name="option[cor]"' +
                     'value="' + v['option_id'] + '" ' +
                     'product_id="' + v['product_id'] + '" ' +

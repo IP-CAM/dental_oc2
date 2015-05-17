@@ -8,6 +8,7 @@ $_['text_reward']       = 'Pontos pela Compra:';
 $_['text_points']       = 'Pontos necessários para comprar:';
 $_['text_stock']        = 'Disponibilidade:';
 $_['text_instock']      = 'Em Estoque';
+$_['text_outstock'] = 'Fora de estoque';
 $_['text_price']        = 'Preço:'; 
 $_['text_tax']          = 'Sem Impostos:'; 
 $_['text_discount']     = '%s ou mais %s';

@@ -43,7 +43,7 @@
                     <?php if ($reward) { ?>
                     <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
                     <?php } ?>
-                    <span><?php echo $text_stock; ?></span><b><?php echo $stock; ?></b><br />
+                    <span><?php echo $text_stock; ?></span><b id="stock_status"><?php echo $stock; ?></b><br />
                     <?php
                        if(!empty($youtube)){
                     ?>

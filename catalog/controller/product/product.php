@@ -298,11 +298,21 @@ class ControllerProductProduct extends Controller {
             
             if ($product_info['quantity'] <= 0) {
                 $this->data['stock'] = $product_info['stock_status'];
-            } elseif ($this->config->get('config_stock_display')) {
+            } 
+            elseif ($product_info['stock_status'] =='Out Of Stock') {
+                $this->data['stock'] = $this->language->get('text_outstock');
+            } 
+            elseif ($this->config->get('config_stock_display')) {
                 $this->data['stock'] = $product_info['quantity'];
             } else {
                 $this->data['stock'] = $this->language->get('text_instock');
             }
+            
+//            echo "<pre>";
+//            print_r($product_info);
+//            print_r($this->data['stock']);
+//            print_r($this->config->get('config_stock_display'));
+//            die;
 
             $this->load->model('tool/image');
 
