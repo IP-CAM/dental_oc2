@@ -270,7 +270,7 @@ for ($i = 0; $i < $count; $i++) {
 
     /* Procura por Produto */
     echo "<br/>";
-    $sql = "SELECT * FROM  " . $db_prefix . "product where unique_name = '$proddes'";
+    $sql = "SELECT * FROM  " . $db_prefix . "product where model = '$product_model'";
     echo $sql;
     echo "<br/>";
     $sql_res = mysqli_query($conexao, $sql);
