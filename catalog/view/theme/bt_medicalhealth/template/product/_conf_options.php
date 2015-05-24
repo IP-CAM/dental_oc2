@@ -11,6 +11,11 @@ $stock_statuses = array(
 
 
 </script>
+<style>
+    div.right div.option {
+        min-width: 490px;
+    }
+</style>
 <?php
 $this->load->model('catalog/product_options');
 $options_arcade = $this->model_catalog_product_options->gerProductOptions($product_id);
@@ -375,7 +380,7 @@ if ($cor_count > 0) {
                     title_alt = v['stock_status'];
                 }
 
-            } else if (v['quantity'] > 0 0) {
+            } else if (v['quantity'] > 0) {
                 title_alt = stock_statuses['in_stock'];
             } else {
                 title_alt = stock_statuses['in_stock'];
@@ -407,78 +412,79 @@ if ($cor_count > 0) {
 
         $.each(quantaties['data'], function(k, v) {
             title_alt = '';
-                if (v['quantity'] <= 0) {
+            if (v['quantity'] <= 0) {
                 if (v['stock_status'] == 'Out Of Stock') {
-                title_alt = stock_statuses['out_of_stock'];
-                }
-                else {
-                title_alt = v['stock_status'];
-                }
-
-            } else if (v['quantity'] > 0 0) {
-                title_alt = stock_statuses['in_stock'];
-            } else {
-                    title_alt = stock_statuses['in_stock'];
-            }
-                    htm += '<span style="margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
-                    '<input  type="radio" name="option[quantitdy]"' +
-                    'value="' + v['option_id'] + '" ' +                     'product_id="' + v['product_id'] + '" ' +
-                    'price="' + v['price'] + '" ' +                     'tax="' + v['tax'] + '" ' +
-                    'special="' + v['special'] + '" ' +                     'quantity="' + v['quantity'] + '" ' +
-                    'p_name="' + v['name'] + '" ' +
-                    'model="' + v['model'] + '" ' +
-        'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
-    '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
-        '</label>' +
-        '</span>';
-        })
-
-            $("#option-quantitdy").html(htm);
-            
-    }
-    function renderCor(cors) {
-                
-        htm = "";
-        disabled = '';
-
-            $.each(cors['data'], function(k, v) {
-            title_alt = '';
-                if (v['quantity'] <= 0) {
-                if (v['stock_status'] == 'Out Of Stock') {
-            title_alt = stock_statuses['out_of_stock'];
+                    title_alt = stock_statuses['out_of_stock'];
                 }
                 else {
                     title_alt = v['stock_status'];
-                    }
+                }
 
-            } else if (v['quantity'] > 0 0) {
-                    title_alt = stock_statuses['in_stock'];             } else {
-                    title_alt = stock_statuses['in_stock'];
+            } else if (v['quantity'] > 0) {
+                title_alt = stock_statuses['in_stock'];
+            } else {
+                title_alt = stock_statuses['in_stock'];
             }
-                    htm += '<span style="margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
-                    '<input  type="radio" name="option[cor]"' +                     'value="' + v['option_id'] + '" ' +                     'product_id="' + v['product_id'] + '" ' +                     'price="' + v['price'] + '" ' +
+            htm += '<span style="margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
+                    '<input  type="radio" name="option[quantitdy]"' +
+                    'value="' + v['option_id'] + '" ' + 'product_id="' + v['product_id'] + '" ' +
+                    'price="' + v['price'] + '" ' + 'tax="' + v['tax'] + '" ' +
+                    'special="' + v['special'] + '" ' + 'quantity="' + v['quantity'] + '" ' +
+                    'p_name="' + v['name'] + '" ' +
+                    'model="' + v['model'] + '" ' +
+                    'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
+                    '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
+                    '</label>' +
+                    '</span>';
+        })
+
+        $("#option-quantitdy").html(htm);
+
+    }
+    function renderCor(cors) {
+
+        htm = "";
+        disabled = '';
+
+        $.each(cors['data'], function(k, v) {
+            title_alt = '';
+            if (v['quantity'] <= 0) {
+                if (v['stock_status'] == 'Out Of Stock') {
+                    title_alt = stock_statuses['out_of_stock'];
+                }
+                else {
+                    title_alt = v['stock_status'];
+                }
+
+            } else if (v['quantity'] > 0) {
+                title_alt = stock_statuses['in_stock'];
+            } else {
+                title_alt = stock_statuses['in_stock'];
+            }
+            htm += '<span style="margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
+                    '<input  type="radio" name="option[cor]"' + 'value="' + v['option_id'] + '" ' + 'product_id="' + v['product_id'] + '" ' + 'price="' + v['price'] + '" ' +
                     'tax="' + v['tax'] + '" ' +
                     'special="' + v['special'] + '" ' +
                     'quantity="' + v['quantity'] + '" ' +
-        'p_name="' + v['name'] + '" ' +
-    'model="' + v['model'] + '" ' +
-    'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
-            '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
-    '</label>' +
-        '</span>';
+                    'p_name="' + v['name'] + '" ' +
+                    'model="' + v['model'] + '" ' +
+                    'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
+                    '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
+                    '</label>' +
+                    '</span>';
         })
 
-            $("#option-cor").html(htm);
+        $("#option-cor").html(htm);
 
     }
 
-        function un_prop_all() {
+    function un_prop_all() {
         $('input[type="checkbox"]').prop('checked', false);
- 
-            }
+
+    }
 
     function reset_tam() {
-    if (tamanho_count != 0) {
+        if (tamanho_count != 0) {
             $("#option-tom").html('');
         }
     }

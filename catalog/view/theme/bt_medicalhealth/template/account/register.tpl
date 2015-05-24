@@ -174,6 +174,20 @@
         </tr>
       </table>
     </div>
+    <table class="form">
+    <tr>
+      <td colspan="2">Extra Customer Information</td>
+      
+    </tr>
+    <tr>
+        <td colspan="2">
+            <?php
+                include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");
+            ?>
+     
+        </td>
+    </tr>
+    </table>
     <?php if ($text_agree) { ?>
     <div class="buttons">
       <div class="left">
