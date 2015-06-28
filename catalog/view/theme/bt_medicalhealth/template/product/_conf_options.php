@@ -96,7 +96,14 @@ if ($tamanho_count > 0) {
 
             if (!empty($options_tamanho)) {
                 $level_tree[] = 'tamanho';
-
+                echo "<select id='option-tom-select'>";
+                echo '<option value=""></option>';
+                foreach ($options_tamanho as $option_v) {
+                    echo "<option value='" . $option_v['option_id'] . "'>";
+                    echo $option_v['value'];
+                    echo "</option>";
+                }
+                echo "</select>";
                 $index = 0;
                 foreach ($options_tamanho as $option_v) {
                     $title_alt = '';
@@ -112,7 +119,7 @@ if ($tamanho_count > 0) {
                         $title_alt = $stock_statuses['in_stock'];
                     }
                     ?>
-                    <span style="margin-right:10px;" alt="<?php echo $title_alt; ?>" title="<?php echo $title_alt; ?>">
+                    <span style="display:none;margin-right:10px;" alt="<?php echo $title_alt; ?>" title="<?php echo $title_alt; ?>">
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[tamanho]" 
                                value="<?php echo $option_v['option_id']; ?>" 
                                product_id="<?php echo $option_v['product_id']; ?>"
@@ -205,6 +212,15 @@ if ($cor_count > 0) {
 
                 $level_tree[] = 'cor';
 
+                echo "<select id='option-cor-select'>";
+                echo '<option value=""></option>';
+                foreach ($options_cor as $option_v) {
+                    echo "<option value='" . $option_v['option_id'] . "'>";
+                    echo $option_v['value'];
+                    echo "</option>";
+                }
+                echo "</select>";
+
                 $index = 0;
                 foreach ($options_cor as $option_v) {
                     $title_alt = '';
@@ -220,7 +236,7 @@ if ($cor_count > 0) {
                         $title_alt = $stock_statuses['in_stock'];
                     }
                     ?>
-                    <span style="margin-right:10px;" alt="<?php echo $title_alt; ?>" title="<?php echo $title_alt; ?>">
+                    <span style="display:none;margin-right:10px;" alt="<?php echo $title_alt; ?>" title="<?php echo $title_alt; ?>">
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[cor]" 
                                value="<?php echo $option_v['option_id']; ?>" 
                                product_id="<?php echo $option_v['product_id']; ?>"
@@ -248,8 +264,18 @@ if ($cor_count > 0) {
 <input type="hidden" id="conf_option_id" name="option[conf_id]" value="" />
 
 <script>
-    $(function() {
-        $("#option-arcade input").click(function() {
+    $(function () {
+        $("#option-cor-select").live('change', function () {
+            if ($(this).val() != "") {
+                $("#option-cor span input[value='"+$(this).val()+"']").trigger("click");
+            }
+        });
+        $("#option-tom-select").live('change', function () {
+            if ($(this).val() != "") {
+                $("#option-tom span input[value='"+$(this).val()+"']").trigger("click");
+            }
+        });
+        $("#option-arcade input").click(function () {
             loader_box.show();
             un_prop_all();
             reset_tam();
@@ -258,7 +284,7 @@ if ($cor_count > 0) {
             url = "?route=product/conf_product/options&product_id=<?php echo $product_id; ?>";
             url += "&option_key=tamanho&option[arcade]=" + $(this).val();
 
-            $.getJSON(url, function(data) {
+            $.getJSON(url, function (data) {
                 if (data['data'].length > 0) {
                     $(".label_option").show();
                     if (data['option_name'] == 'tamanho') {
@@ -289,7 +315,7 @@ if ($cor_count > 0) {
             //renderToms(arcades[index_v]);
 
         })
-        $("#option-tom input").live('click', function() {
+        $("#option-tom input").live('click', function () {
             loader_box.show();
             un_prop_all();
             reset_quantitdy();
@@ -299,7 +325,7 @@ if ($cor_count > 0) {
             if (arcade_count != 0) {
                 url += "&option[arcade]=" + $("#option-arcade input:checked").val();
             }
-            $.getJSON(url, function(data) {
+            $.getJSON(url, function (data) {
                 if (data['data'].length > 0) {
                     $(".label_option").show();
                     if (data['option_name'] == 'quantitdy') {
@@ -325,7 +351,7 @@ if ($cor_count > 0) {
             });
 
         })
-        $("#option-quantitdy input").live('click', function() {
+        $("#option-quantitdy input").live('click', function () {
             loader_box.show();
             un_prop_all();
             reset_cor();
@@ -337,7 +363,7 @@ if ($cor_count > 0) {
             if (tamanho_count != 0) {
                 url += "&option[tamanho]=" + $("#option-tom input:checked").val();
             }
-            $.getJSON(url, function(data) {
+            $.getJSON(url, function (data) {
                 if (data['data'].length > 0) {
                     renderCor(data);
                 }
@@ -354,7 +380,7 @@ if ($cor_count > 0) {
 
         })
 
-        $("#option-cor input").live('click', function() {
+        $("#option-cor input").live('click', function () {
             $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
             $("span.price-text").html($(this).attr("price"));
             $("span.product_tax").html($(this).attr("tax"));
@@ -368,7 +394,16 @@ if ($cor_count > 0) {
     function renderToms(toms) {
         htm = "";
         console.log(toms);
-        $.each(toms['data'], function(k, v) {
+        htm += "<select id='option-tom-select'>";
+        htm += '<option value=""></option>';
+        $.each(toms['data'], function (k, v) {
+            htm += "<option value='" + v['option_id'] + "'>";
+            htm += v['value']
+            htm += "</option>";
+
+        });
+        htm += "</select>";
+        $.each(toms['data'], function (k, v) {
             index = 0;
             console.log(v);
             title_alt = '';
@@ -385,7 +420,7 @@ if ($cor_count > 0) {
             } else {
                 title_alt = stock_statuses['in_stock'];
             }
-            htm += '<span style="margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
+            htm += '<span style="display:none;margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
                     '<input index="' + index + '" type="radio" name="option[tamanho]"' +
                     'value="' + v['option_id'] + '" ' +
                     'product_id="' + v['product_id'] + '" ' +
@@ -410,7 +445,7 @@ if ($cor_count > 0) {
         htm = "";
         disabled = '';
 
-        $.each(quantaties['data'], function(k, v) {
+        $.each(quantaties['data'], function (k, v) {
             title_alt = '';
             if (v['quantity'] <= 0) {
                 if (v['stock_status'] == 'Out Of Stock') {
@@ -446,7 +481,17 @@ if ($cor_count > 0) {
         htm = "";
         disabled = '';
 
-        $.each(cors['data'], function(k, v) {
+        htm += "<select id='option-cor-select'>";
+        htm += '<option value=""></option>';
+        $.each(cors['data'], function (k, v) {
+            htm += "<option value='" + v['option_id'] + "'>";
+            htm += v['value']
+            htm += "</option>";
+
+        });
+        htm += "</select>";
+
+        $.each(cors['data'], function (k, v) {
             title_alt = '';
             if (v['quantity'] <= 0) {
                 if (v['stock_status'] == 'Out Of Stock') {
@@ -461,7 +506,7 @@ if ($cor_count > 0) {
             } else {
                 title_alt = stock_statuses['in_stock'];
             }
-            htm += '<span style="margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
+            htm += '<span style="display:none;margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
                     '<input  type="radio" name="option[cor]"' + 'value="' + v['option_id'] + '" ' + 'product_id="' + v['product_id'] + '" ' + 'price="' + v['price'] + '" ' +
                     'tax="' + v['tax'] + '" ' +
                     'special="' + v['special'] + '" ' +
