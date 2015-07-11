@@ -1,88 +1,99 @@
-<?php  
+<?php
+
 class ControllerCommonContentBottom extends Controller {
-	protected function index() {
-		$this->load->model('design/layout');
-		$this->load->model('catalog/category');
-		$this->load->model('catalog/product');
-		$this->load->model('catalog/information');
 
-		if (isset($this->request->get['route'])) {
-			$route = (string)$this->request->get['route'];
-		} else {
-			$route = 'common/home';
-		}
+    protected function index() {
+        $this->load->model('design/layout');
+        $this->load->model('catalog/category');
+        $this->load->model('catalog/product');
+        $this->load->model('catalog/information');
 
-		$layout_id = 0;
+        if (isset($this->request->get['route'])) {
+            $route = (string) $this->request->get['route'];
+        } else {
+            $route = 'common/home';
+        }
 
-		if ($route == 'product/category' && isset($this->request->get['path'])) {
-			$path = explode('_', (string)$this->request->get['path']);
+        $layout_id = 0;
 
-			$layout_id = $this->model_catalog_category->getCategoryLayoutId(end($path));			
-		}
+        if ($route == 'product/category' && isset($this->request->get['path'])) {
+            $path = explode('_', (string) $this->request->get['path']);
 
-		if ($route == 'product/product' && isset($this->request->get['product_id'])) {
-			$layout_id = $this->model_catalog_product->getProductLayoutId($this->request->get['product_id']);
-		}
+            $layout_id = $this->model_catalog_category->getCategoryLayoutId(end($path));
+        }
 
-		if ($route == 'information/information' && isset($this->request->get['information_id'])) {
-			$layout_id = $this->model_catalog_information->getInformationLayoutId($this->request->get['information_id']);
-		}
+        if ($route == 'product/product' && isset($this->request->get['product_id'])) {
+            $layout_id = $this->model_catalog_product->getProductLayoutId($this->request->get['product_id']);
+        }
 
-		if (!$layout_id) {
-			$layout_id = $this->model_design_layout->getLayout($route);
-		}
+        if ($route == 'information/information' && isset($this->request->get['information_id'])) {
+            $layout_id = $this->model_catalog_information->getInformationLayoutId($this->request->get['information_id']);
+        }
 
-		if (!$layout_id) {
-			$layout_id = $this->config->get('config_layout_id');
-		}
+        if (!$layout_id) {
+            $layout_id = $this->model_design_layout->getLayout($route);
+        }
 
-		$module_data = array();
+        if (!$layout_id) {
+            $layout_id = $this->config->get('config_layout_id');
+        }
 
-		$this->load->model('setting/extension');
+        $module_data = array();
 
-		$extensions = $this->model_setting_extension->getExtensions('module');		
+        $this->load->model('setting/extension');
 
-		foreach ($extensions as $extension) {
-			$modules = $this->config->get($extension['code'] . '_module');
+        $extensions = $this->model_setting_extension->getExtensions('module');
 
-			if ($modules) {
-				foreach ($modules as $module) {
-					if ($module['layout_id'] == $layout_id && $module['position'] == 'content_bottom' && $module['status']) {
-						$module_data[] = array(
-							'code'       => $extension['code'],
-							'setting'    => $module,
-							'sort_order' => $module['sort_order']
-						);				
-					}
-				}
-			}
-		}
+        foreach ($extensions as $extension) {
+            $modules = $this->config->get($extension['code'] . '_module');
 
-		$sort_order = array(); 
+            if ($modules) {
+                foreach ($modules as $module) {
+                    if ($module['layout_id'] == $layout_id && $module['position'] == 'content_bottom' && $module['status']) {
+                        $module_data[] = array(
+                            'code' => $extension['code'],
+                            'setting' => $module,
+                            'sort_order' => $module['sort_order']
+                        );
+                    }
+                }
+            }
+        }
 
-		foreach ($module_data as $key => $value) {
-			$sort_order[$key] = $value['sort_order'];
-		}
+        $sort_order = array();
 
-		array_multisort($sort_order, SORT_ASC, $module_data);
+        foreach ($module_data as $key => $value) {
+            $sort_order[$key] = $value['sort_order'];
+        }
 
-		$this->data['modules'] = array();
+        array_multisort($sort_order, SORT_ASC, $module_data);
+        
+         
+        
 
-		foreach ($module_data as $module) {
-			$module = $this->getChild('module/' . $module['code'], $module['setting']);
+        $this->data['modules'] = array();
 
-			if ($module) {
-				$this->data['modules'][] = $module;
-			}
-		}
+        foreach ($module_data as $module) {
+          
+           
+            $module = $this->getChild('module/' . $module['code'], $module['setting']);
+           
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/content_bottom.tpl')) {
-			$this->template = $this->config->get('config_template') . '/template/common/content_bottom.tpl';
-		} else {
-			$this->template = 'default/template/common/content_bottom.tpl';
-		}
+            if ($module) {
+                $this->data['modules'][] = $module;
+            }
+        }
+       
 
-		$this->render();
-	}
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/content_bottom.tpl')) {
+            $this->template = $this->config->get('config_template') . '/template/common/content_bottom.tpl';
+        } else {
+            $this->template = 'default/template/common/content_bottom.tpl';
+        }
+
+        $this->render();
+    }
+
 }
+
 ?>
