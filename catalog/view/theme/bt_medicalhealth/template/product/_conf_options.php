@@ -267,6 +267,7 @@ if ($cor_count > 0) {
     $(function () {
         $("#option-cor-select").live('change', function () {
             if ($(this).val() != "") {
+                console.log($("#option-cor span input[value='"+$(this).val()+"']"));
                 $("#option-cor span input[value='"+$(this).val()+"']").trigger("click");
             }
         });

@@ -12,7 +12,7 @@
             <?php if ($thumb || $images) { ?>
                 <div class="left">
                     <?php if ($thumb) { ?>
-                        <div class="image a_bossthemes"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image"
+                        <div class="image a_bossthemes a_bossthemes_zoom"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image"
                                                                                                                                                     data-zoom-image="<?php echo $popup; ?>"
 
                                                                                                                                                     /></a></div>
@@ -24,7 +24,7 @@
                                     <?php foreach ($images as $image) { ?>
                                         <li><div class="boss-image-add"><a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" 
                                                                                                                                                                              alt="<?php echo $heading_title; ?>" 
-                                                                                                                                                                             data-zoom-image="<?php echo $image['popup']; ?>"
+                                                                                                                                                                            
                                                                                                                                                                              /></a></div></li>
                                         <?php } ?>
                                 </ul>
@@ -300,7 +300,7 @@
                 if (strstr($youtube, 'http') && strstr($youtube, 'youtube')) {
                     if (!strstr($youtube, 'embed')) {
                         $youtube = explode("?v=", $youtube);
-                       
+
                         if (!empty($youtube[1])) {
                             $youtube = "https://www.youtube.com/embed/" . trim($youtube[1]);
                         }
@@ -323,9 +323,9 @@
         </div>
 
 
-<?php if ($tags) { ?>
+        <?php if ($tags) { ?>
             <div class="tags"><b><?php echo $text_tags; ?></b>
-            <?php for ($i = 0; $i < count($tags); $i++) { ?>
+                <?php for ($i = 0; $i < count($tags); $i++) { ?>
                     <?php if ($i < (count($tags) - 1)) { ?>
                         <a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a>,
                     <?php } else { ?>
@@ -333,31 +333,31 @@
                     <?php } ?>
                 <?php } ?>
             </div>
-            <?php } ?>
+        <?php } ?>
 
 
-<?php if ($attribute_groups) { ?>
+        <?php if ($attribute_groups) { ?>
             <h2 class="ta-header"><span><?php echo $tab_attribute; ?></span></h2>
             <div id="tab-attribute" class="tab-content">
                 <table class="attribute">
-    <?php foreach ($attribute_groups as $attribute_group) { ?>
+                    <?php foreach ($attribute_groups as $attribute_group) { ?>
                         <thead>
                             <tr>
                                 <td colspan="2"><?php echo $attribute_group['name']; ?></td>
                             </tr>
                         </thead>
                         <tbody>
-        <?php foreach ($attribute_group['attribute'] as $attribute) { ?>
+                            <?php foreach ($attribute_group['attribute'] as $attribute) { ?>
                                 <tr>
                                     <td><?php echo $attribute['name']; ?></td>
                                     <td><?php echo $attribute['text']; ?></td>
                                 </tr>
-        <?php } ?>
+                            <?php } ?>
                         </tbody>
-                        <?php } ?>
+                    <?php } ?>
                 </table>
             </div>
-<?php } ?>
+        <?php } ?>
         <?php if ($review_status) { ?>
             <h2 class="ta-review"><span><?php echo $tab_review; ?></span></h2>
             <div id="tab-review" class="tab-content">
@@ -395,38 +395,38 @@
                 </div>
 
             </div>
-<?php } ?>
+        <?php } ?>
 
         <?php if ($products) { ?>
             <h2 class="ta-related"><?php echo $tab_related; ?> (<?php echo count($products); ?>)</h2>
             <div id="tab-related" class="tab-content">
                 <div class="es-carousel">
                     <ul class="skin-opencart">
-    <?php foreach ($products as $product) { ?>
+                        <?php foreach ($products as $product) { ?>
                             <li><div class="boss-tab-related">
-                            <?php if ($product['thumb']) { ?>
+                                    <?php if ($product['thumb']) { ?>
                                         <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>"  title="<?php echo $product['name']; ?>" /></a></div>
                                     <?php } ?>
                                     <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
                                     <?php if ($product['price']) { ?>
                                         <div class="price">
-                                        <?php if (!$product['special']) { ?>
+                                            <?php if (!$product['special']) { ?>
                                                 <?php echo $product['price']; ?>
                                             <?php } else { ?>
                                                 <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
                                             <?php } ?>
                                         </div>
-                                        <?php } ?>
+                                    <?php } ?>
                                     <div class="cart"><a onclick="boss_addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a></div>
                                 </div></li>
-    <?php } ?>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
-<?php } ?>
+        <?php } ?>
 
 
-<?php echo $content_bottom; ?></div></div>
+        <?php echo $content_bottom; ?></div></div>
 
 
 <?php
@@ -604,7 +604,7 @@ src="catalog/view/javascript/bossthemes/jquery.elevatezoom.js"></script>
 
 <script>
 
-                $(".image.a_bossthemes img,.boss-image-add img").elevateZoom({
+                $(".image.a_bossthemes_zoom img").elevateZoom({
                     //zoomType: "inner",
                     cursor: "crosshair",
                     zoomWindowFadeIn: 500,
