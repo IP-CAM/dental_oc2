@@ -34,25 +34,31 @@
                 </div>
             <?php } ?>
             <div class="right">
-                <h3><?php echo $heading_title; ?></h3>
+                <h3 id="title_heading"><?php echo $heading_title; ?></h3>
                 <div class="description">
                     <?php if ($manufacturer) { ?>
                         <span><?php echo $text_manufacturer; ?></span> <a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a><br />
                     <?php } ?>
-                    <span><?php echo $text_model; ?></span> <?php echo $model; ?><br />
+                    <span ><?php echo $text_model; ?></span> <span id="text_model"><?php echo $model; ?></span><br />
                     <?php if ($reward) { ?>
                         <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
                     <?php } ?>
-                    <span><?php echo $text_stock; ?></span><b><?php echo $stock; ?></b></div>
+                    <span><?php echo $text_stock; ?></span><b id="stock_status"><?php echo $stock; ?></b><br />
+
+                </div>
                 <?php if ($price) { ?>
                     <div class="price">
                         <?php if (!$special) { ?>
-                            <?php echo $price; ?>
+                            <span class="price-text">
+                                <?php echo $price; ?>
+                            </span>
+
+
                         <?php } else { ?>
                             <span class="price-old"><?php echo $price; ?></span> <span class="price-new"><?php echo $special; ?></span>
                         <?php } ?>
                         <?php if ($tax) { ?>
-                            <span class="price-tax"><?php echo $text_tax; ?> <?php echo $tax; ?></span>
+                            <span class="price-tax"><?php echo $text_tax; ?> <span class="product_tax"><?php echo $tax; ?></span></span>
                         <?php } ?>
                         <?php if ($points) { ?>
                             <span class="reward"><small><?php echo $text_points; ?> <?php echo $points; ?></small></span>
@@ -109,7 +115,8 @@
                                 <br />
                                 <h2><?php echo $text_conf_option; ?></h2>
                                 <br />
-                               
+
+                                <br />
 
                                 <br />
                             <?php } ?>
@@ -233,8 +240,16 @@
                                 <br />
                             <?php } ?>
                         <?php } ?>
+                        <?php
+                        ?>
                     </div>
                 <?php } ?>
+                <div class="options">
+                    <?php
+                    //including something
+                    include_once(DIR_TEMPLATE . "bt_medicalhealth/template/product/_conf_options.php");
+                    ?>
+                </div>
                 <div class="cart">
                     <div><span class="qty"><?php echo $text_qty; ?></span>
                         <input type="text" name="quantity" size="2" value="<?php echo $minimum; ?>" />
@@ -250,11 +265,15 @@
                     <?php if ($minimum > 1) { ?>
                     <?php } ?>
                 </div>
+                <?php
+                //calculate shipping
+                include_once(DIR_TEMPLATE . "bt_medicalhealth/template/product/_calculate_shipping.php");
+                ?>
                 <?php if ($review_status) { ?>
                     <div class="review">
                         <div><img src="catalog/view/theme/bt_medicalhealth/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
-                                goToByScroll('tab-review');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
-                                        goToByScroll('review-title');"><?php echo $text_write; ?></a></div>
+                                    goToByScroll('tab-review');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
+                                            goToByScroll('review-title');"><?php echo $text_write; ?></a></div>
                         <div class="share"><!-- AddThis Button BEGIN -->
                             <div class="addthis_default_style"><a class="addthis_button_compact"><?php echo $text_share; ?></a> <a class="addthis_button_email"></a><a class="addthis_button_print"></a> <a class="addthis_button_facebook"></a> <a class="addthis_button_twitter"></a></div>
                             <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js"></script> 
@@ -270,12 +289,43 @@
             <?php } ?>
         </div>
         <h2 class="ta-header"><span><?php echo $tab_description; ?></span></h2>
-        <div id="tab-description" class="tab-content"><?php echo $description; ?></div>
+        <div id="tab-description" class="tab-content">
+            <?php echo $description; ?>
+            <br/>
+            <?php
+            if (!empty($youtube)) {
+                ?>
+                <span><?php echo $text_youtube; ?></span>
+                <?php
+                if (strstr($youtube, 'http') && strstr($youtube, 'youtube')) {
+                    if (!strstr($youtube, 'embed')) {
+                        $youtube = explode("?v=", $youtube);
+                       
+                        if (!empty($youtube[1])) {
+                            $youtube = "https://www.youtube.com/embed/" . trim($youtube[1]);
+                        }
+                    } else {
+                        
+                    }
+                    echo '<object width="420" height="315"
+                                data="' . $youtube . '">
+                                </object>';
+                } else {
+                    ?>
+                    <b><?php echo $youtube; ?></b>    
+                    <?php
+                }
+                ?>
+
+                <?php
+            }
+            ?>
+        </div>
 
 
-        <?php if ($tags) { ?>
+<?php if ($tags) { ?>
             <div class="tags"><b><?php echo $text_tags; ?></b>
-                <?php for ($i = 0; $i < count($tags); $i++) { ?>
+            <?php for ($i = 0; $i < count($tags); $i++) { ?>
                     <?php if ($i < (count($tags) - 1)) { ?>
                         <a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a>,
                     <?php } else { ?>
@@ -283,31 +333,31 @@
                     <?php } ?>
                 <?php } ?>
             </div>
-        <?php } ?>
+            <?php } ?>
 
 
-        <?php if ($attribute_groups) { ?>
+<?php if ($attribute_groups) { ?>
             <h2 class="ta-header"><span><?php echo $tab_attribute; ?></span></h2>
             <div id="tab-attribute" class="tab-content">
                 <table class="attribute">
-                    <?php foreach ($attribute_groups as $attribute_group) { ?>
+    <?php foreach ($attribute_groups as $attribute_group) { ?>
                         <thead>
                             <tr>
                                 <td colspan="2"><?php echo $attribute_group['name']; ?></td>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($attribute_group['attribute'] as $attribute) { ?>
+        <?php foreach ($attribute_group['attribute'] as $attribute) { ?>
                                 <tr>
                                     <td><?php echo $attribute['name']; ?></td>
                                     <td><?php echo $attribute['text']; ?></td>
                                 </tr>
-                            <?php } ?>
+        <?php } ?>
                         </tbody>
-                    <?php } ?>
+                        <?php } ?>
                 </table>
             </div>
-        <?php } ?>
+<?php } ?>
         <?php if ($review_status) { ?>
             <h2 class="ta-review"><span><?php echo $tab_review; ?></span></h2>
             <div id="tab-review" class="tab-content">
@@ -345,38 +395,38 @@
                 </div>
 
             </div>
-        <?php } ?>
+<?php } ?>
 
         <?php if ($products) { ?>
             <h2 class="ta-related"><?php echo $tab_related; ?> (<?php echo count($products); ?>)</h2>
             <div id="tab-related" class="tab-content">
                 <div class="es-carousel">
                     <ul class="skin-opencart">
-                        <?php foreach ($products as $product) { ?>
+    <?php foreach ($products as $product) { ?>
                             <li><div class="boss-tab-related">
-                                    <?php if ($product['thumb']) { ?>
+                            <?php if ($product['thumb']) { ?>
                                         <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>"  title="<?php echo $product['name']; ?>" /></a></div>
                                     <?php } ?>
                                     <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
                                     <?php if ($product['price']) { ?>
                                         <div class="price">
-                                            <?php if (!$product['special']) { ?>
+                                        <?php if (!$product['special']) { ?>
                                                 <?php echo $product['price']; ?>
                                             <?php } else { ?>
                                                 <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
                                             <?php } ?>
                                         </div>
-                                    <?php } ?>
+                                        <?php } ?>
                                     <div class="cart"><a onclick="boss_addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a></div>
                                 </div></li>
-                        <?php } ?>
+    <?php } ?>
                     </ul>
                 </div>
             </div>
-        <?php } ?>
+<?php } ?>
 
 
-        <?php echo $content_bottom; ?></div></div>
+<?php echo $content_bottom; ?></div></div>
 
 
 <?php
@@ -392,13 +442,13 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
 
 <script type="text/javascript"><!--
 
-    $(function() {
-        $(".ta-review").live("click", function() {
+    $(function () {
+        $(".ta-review").live("click", function () {
 
             $("#review").toggle("slow");
         })
 
-        $("#review-title").live("click", function() {
+        $("#review-title").live("click", function () {
 
             $("#review-form").toggle("slow");
         })
@@ -408,16 +458,16 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
     }
 //--></script>    
 <script type="text/javascript"><!--
-    $('select[name="profile_id"], input[name="quantity"]').change(function() {
+    $('select[name="profile_id"], input[name="quantity"]').change(function () {
         $.ajax({
             url: 'index.php?route=product/product/getRecurringDescription',
             type: 'post',
             data: $('input[name="product_id"], input[name="quantity"], select[name="profile_id"]'),
             dataType: 'json',
-            beforeSend: function() {
+            beforeSend: function () {
                 $('#profile-description').html('');
             },
-            success: function(json) {
+            success: function (json) {
                 $('.success, .warning, .attention, information, .error').remove();
                 if (json['success']) {
                     $('#profile-description').html(json['success']);
@@ -425,13 +475,13 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
             }
         });
     });
-    $('#button-cart').bind('click', function() {
+    $('#button-cart').bind('click', function () {
         $.ajax({
             url: 'index.php?route=bossthemes/cart/add',
             type: 'post',
             data: $('.product-info input[type=\'text\'], .product-info input[type=\'hidden\'], .product-info input[type=\'radio\']:checked, .product-info input[type=\'checkbox\']:checked, .product-info select, .product-info textarea'),
             dataType: 'json',
-            success: function(json) {
+            success: function (json) {
                 $('.warning, .attention, information, .error').remove();
                 if (json['error']) {
                     if (json['error']['option']) {
@@ -507,7 +557,7 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
     }
 //--></script>
 <script type="text/javascript"><!--
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.colorbox').colorbox({
             overlayClose: true,
             opacity: 0.5,
@@ -526,11 +576,11 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
                     name: 'file',
                     autoSubmit: true,
                     responseType: 'json',
-                    onSubmit: function(file, extension) {
+                    onSubmit: function (file, extension) {
                         $('#button-option-<?php echo $option['product_option_id']; ?>').after('<img src="catalog/view/theme/default/image/loading.gif" class="loading" style="padding-left: 5px;" />');
                         $('#button-option-<?php echo $option['product_option_id']; ?>').attr('disabled', true);
                     },
-                    onComplete: function(file, json) {
+                    onComplete: function (file, json) {
                         $('#button-option-<?php echo $option['product_option_id']; ?>').attr('disabled', false);
                         $('.error').remove();
                         if (json['success']) {
@@ -545,7 +595,7 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
                         $('.loading').remove();
                     }
                 });
-            //--></script>
+                //--></script>
         <?php } ?>
     <?php } ?>
 <?php } ?>
@@ -554,36 +604,36 @@ src="catalog/view/javascript/bossthemes/jquery.elevatezoom.js"></script>
 
 <script>
 
-    $(".image.a_bossthemes img,.boss-image-add img").elevateZoom({
-        //zoomType: "inner",
-        cursor: "crosshair",
-        zoomWindowFadeIn: 500,
-        zoomWindowFadeOut: 750
-    });</script>
+                $(".image.a_bossthemes img,.boss-image-add img").elevateZoom({
+                    //zoomType: "inner",
+                    cursor: "crosshair",
+                    zoomWindowFadeIn: 500,
+                    zoomWindowFadeOut: 750
+                });</script>
 <script type="text/javascript"><!--
-$('#review .pagination a').live('click', function() {
+$('#review .pagination a').live('click', function () {
         $('#review').fadeOut('slow');
         $('#review').load(this.href);
         $('#review').fadeIn('slow');
         return false;
     });
     $('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
-    $('#button-review').bind('click', function() {
+    $('#button-review').bind('click', function () {
         $.ajax({
             url: 'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
             type: 'post',
             dataType: 'json',
             data: 'name=' + encodeURIComponent($('input[name=\'name\']').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']').val()) + '&rating=' + encodeURIComponent($('input[name=\'rating\']:checked').val() ? $('input[name=\'rating\']:checked').val() : '') + '&captcha=' + encodeURIComponent($('input[name=\'captcha\']').val()),
-            beforeSend: function() {
+            beforeSend: function () {
                 $('.success, .warning').remove();
                 $('#button-review').attr('disabled', true);
                 $('#review-title').after('<div class="attention"><img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
             },
-            complete: function() {
+            complete: function () {
                 $('#button-review').attr('disabled', false);
                 $('.attention').remove();
             },
-            success: function(data) {
+            success: function (data) {
                 if (data['error']) {
                     $('#review-title').after('<div class="warning">' + data['error'] + '</div>');
                 }
@@ -600,7 +650,7 @@ $('#review .pagination a').live('click', function() {
     });
 //--></script>
 <script type="text/javascript"><!--
-    $('h2.ta-header').click(function() {
+    $('h2.ta-header').click(function () {
         $(this).next().toggle();
         return false;
     }).next().hide();
@@ -610,7 +660,7 @@ $('#review .pagination a').live('click', function() {
 //--></script> 
 <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script> 
 <script type="text/javascript"><!--
-$(document).ready(function() {
+$(document).ready(function () {
         if ($.browser.msie && $.browser.version == 6) {
             $('.date, .datetime, .time').bgIframe();
         }
@@ -624,10 +674,10 @@ $(document).ready(function() {
     });
 //--></script>
 <script type="text/javascript"><!--
-    $(document).ready(function() {
+    $(document).ready(function () {
         product_resize();
     });
-    $(window).resize(function() {
+    $(window).resize(function () {
         product_resize();
     });
     function disableLink(e) {
