@@ -733,7 +733,7 @@ class ControllerCatalogProduct extends Controller {
         if (isset($this->error['youtube'])) {
             $this->data['error_youtube'] = $this->error['youtube'];
         } else {
-            $this->data['error_youtube'] = array();
+            $this->data['error_youtube'] = '';
         }
 
         if (isset($this->error['meta_description'])) {
