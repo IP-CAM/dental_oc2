@@ -729,6 +729,12 @@ class ControllerCatalogProduct extends Controller {
         } else {
             $this->data['error_name'] = array();
         }
+        
+        if (isset($this->error['youtube'])) {
+            $this->data['error_youtube'] = $this->error['youtube'];
+        } else {
+            $this->data['error_youtube'] = array();
+        }
 
         if (isset($this->error['meta_description'])) {
             $this->data['error_meta_description'] = $this->error['meta_description'];
@@ -1478,6 +1484,15 @@ class ControllerCatalogProduct extends Controller {
         foreach ($this->request->post['product_description'] as $language_id => $value) {
             if ((utf8_strlen($value['name']) < 1) || (utf8_strlen($value['name']) > 255)) {
                 $this->error['name'][$language_id] = $this->language->get('error_name');
+            }
+        }
+        
+        if(!empty($this->request->post['product']['youtube'])){
+            if(!strstr($this->request->post['product']['youtube'],'youtube')){
+                $this->error['youtube'] = 'Não válido exemplo link do Youtube dada sob';
+            }
+            else if(!strstr($this->request->post['product']['youtube'],'embed')){
+                $this->error['youtube'] = 'Não válido exemplo link do Youtube dada sob';
             }
         }
 

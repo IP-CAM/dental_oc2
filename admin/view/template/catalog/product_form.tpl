@@ -68,7 +68,12 @@
               </tr>
               <tr>
                 <td><?php echo $entry_youtube; ?></td>
-                <td><input type="text" name="product[youtube]" value="<?php echo isset($youtube) ? $youtube : ''; ?>" size="80" /></td>
+                <td><input type="text" name="product[youtube]" value="<?php echo isset($youtube) ? $youtube : ''; ?>" size="80" />
+                    <br>
+                   <span class="error"><?php echo $error_youtube; ?></span>
+                    <br>
+                    e.g https://www.youtube.com/embed/qnl8g0fEgWE
+                </td>
               </tr>
             </table>
           </div>
