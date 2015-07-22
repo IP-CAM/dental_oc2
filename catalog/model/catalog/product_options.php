@@ -24,9 +24,9 @@ class ModelCatalogProductOptions extends Model {
         $sql = "Select DISTINCT($option_type) as option_id,$column as value,t.product_id,prod.price,prod.model,prod_desc.name,prod.quantity,ss.name as stock_status,prod.tax_class_id,prod_sp.price as special FROM " . DB_PREFIX . "product_config_options t INNER JOIN " .
                 " " . DB_PREFIX . "conf_product_" . $options_types[$option_type] . " op ON op.id = t." . $option_type .
                 " INNER JOIN " . DB_PREFIX . "product  as prod ON prod.product_id = t.product_id " .
-                " INNER JOIN " . DB_PREFIX . "product_description  as prod_desc ON prod.product_id = prod_desc.product_id " .
+                " LEFT JOIN " . DB_PREFIX . "product_description  as prod_desc ON prod.product_id = prod_desc.product_id " .
                 " AND language_id = '".(int)$this->config->get('config_language_id')."'".
-                " INNER JOIN " . DB_PREFIX . "stock_status  as ss ON ss.stock_status_id = prod.stock_status_id " .
+                " LEFT JOIN " . DB_PREFIX . "stock_status  as ss ON ss.stock_status_id = prod.stock_status_id " .
                 " LEFT JOIN " . DB_PREFIX . "product_special as prod_sp ON t.product_id = prod_sp.product_id " .
                 "  WHERE t.product_id IN($sub_query) ";
         $sql.= ' ';
@@ -46,8 +46,7 @@ class ModelCatalogProductOptions extends Model {
             }
         }
         $sql.= $where . ' group by   ' . $option_type;
-//        echo $sql;
-//        die;
+        
         $query = $this->db->query($sql);
         $options_return = array();
         foreach ($query->rows as $key => $option) {

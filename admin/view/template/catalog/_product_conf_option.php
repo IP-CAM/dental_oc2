@@ -3,6 +3,27 @@ $options_data = array();
 ;
 if (!empty($this->data['product_config_options_json'])) {
     $json_data = $this->data['product_config_options_json'][0];
+
+    if (!empty($json_data)) {
+        ?>
+        <table>
+
+            <tr >
+                <td>
+                    <a onclick="if (confirm('Are you sure ?')) {
+                                    return true;
+                                }
+                                return false;" href="<?php
+                       echo $this->url->link('catalog/conf_product/deleteOption', 'token=' . $this->session->data['token'] . '&option_id=' . $json_data['id'] . '&reference_id=' . $json_data['product_id'] . '&product_id=' . $json_data['product_id'], 'SSL');
+                       ?>" class="btn btn-primary">
+                        Delete Its self options
+
+                    </a> 
+                </td>    
+            </tr>
+        </table>    
+        <?php
+    }
     ?>
 
     <table class="arcade_parent list" 
@@ -395,12 +416,12 @@ if (isset($referenc_products) && !empty($referenc_products)) {
         $("#similar_value").autocomplete({
             delay: 500,
 //        source: 'index.php?route=catalog/product/autocomplete_product&token=<?php echo $token; ?>&term='+ $("#similar").val(),
-            source: function(request, response) {
+            source: function (request, response) {
                 $.ajax({
                     url: 'index.php?route=catalog/product/autocomplete_product&token=<?php echo $token; ?>&product_id=<?php echo $this->request->get['product_id']; ?>&term=' + $("#similar_value").val(),
                     dataType: 'json',
-                    success: function(json) {
-                        response($.map(json, function(item) {
+                    success: function (json) {
+                        response($.map(json, function (item) {
                             return {
                                 label: item.label,
                                 value: item.value,
@@ -411,7 +432,7 @@ if (isset($referenc_products) && !empty($referenc_products)) {
                 });
             },
             minLength: 1,
-            select: function(event, ui) {
+            select: function (event, ui) {
 
                 $("#similar").val(ui.item.item_id)
 
@@ -419,14 +440,14 @@ if (isset($referenc_products) && !empty($referenc_products)) {
 //        html: true, // optional (jquery.ui.autocomplete.html.js required)
 
             // optional (if other layers overlap autocomplete list)
-            open: function(event, ui) {
+            open: function (event, ui) {
 //            $(".ui-autocomplete").css("z-index", 1000);
             }
         });
     }
-    $(function() {
+    $(function () {
         set_auto_complete_option();
-        $("#similar_value").change(function() {
+        $("#similar_value").change(function () {
             if ($.trim($(this).val()) == '') {
                 $("#similar").val('');
             }
