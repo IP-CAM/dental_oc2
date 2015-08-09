@@ -224,16 +224,19 @@ class ModelCatalogProduct extends Model {
         }
         if (!empty($data['filter_video'])) {
             if ($data['filter_video'] == 0) {
-                $sql.= " AND (pd.youtube IS NULL OR pd.youtube='') ";
+                $sql.= " AND (p.youtube IS NULL OR p.youtube='') ";
             } else {
-                $sql.= " AND pd.youtube IS NOT NULL ";
+                $sql.= " AND ( p.youtube <> '' ) ";
             }
         }
         //applying reference id condition only parent products will show
         $sql.= " AND p.referenc_id IS NULL ";
 
         $sql .= " GROUP BY p.product_id";
+        
+        
 
+        
         $sort_data = array(
             'pd.name',
             'p.model',
@@ -273,7 +276,6 @@ class ModelCatalogProduct extends Model {
 
             $sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
         }
-
 
         $product_data = array();
 
@@ -330,7 +332,8 @@ class ModelCatalogProduct extends Model {
 
             $sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
         }
-
+        
+        
         $product_data = array();
 
         $query = $this->db->query($sql);
@@ -641,9 +644,9 @@ class ModelCatalogProduct extends Model {
         }
         if (!empty($data['filter_video'])) {
             if ($data['filter_video'] == 0) {
-                $sql.= " AND (pd.youtube IS NULL OR pd.youtube='') ";
+                $sql.= " AND (p.youtube IS NULL OR p.youtube='') ";
             } else {
-                $sql.= " AND pd.youtube IS NOT NULL ";
+                $sql.= " AND (p.youtube <> '' )  ";
             }
         }
 

@@ -3,6 +3,7 @@
 class ControllerProductCategory extends Controller {
 
     public function index() {
+        
         $this->language->load('product/category');
 
         $this->load->model('catalog/category');
@@ -218,6 +219,7 @@ class ControllerProductCategory extends Controller {
             if(isset($this->request->get['manu_f'])){
                 $manus_f = $this->request->get['manu_f'];
             }
+            
             $data = array(
                 'filter_category_id' => $category_id,
                 'filter_manufacturer_ids' => $manus_f,
@@ -228,6 +230,8 @@ class ControllerProductCategory extends Controller {
                 'start' => ($page - 1) * $limit,
                 'limit' => $limit
             );
+            
+            
 
             $product_total = $this->model_catalog_product->getTotalProducts($data);
             
@@ -407,8 +411,9 @@ class ControllerProductCategory extends Controller {
             $this->data['limit'] = $limit;
 
             $this->data['continue'] = $this->url->link('common/home');
-
+           
             if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.tpl')) {
+               
                 $this->template = $this->config->get('config_template') . '/template/product/category.tpl';
             } else {
                 $this->template = 'default/template/product/category.tpl';

@@ -23,7 +23,7 @@ $_['text_agree']         = 'Eu li e concordo com <a class="colorbox" href="%s" a
 
 // Column
 $_['column_product']     = 'Produto';
-$_['column_model']       = 'Modelo';
+$_['column_model']       = 'ID';
 $_['column_quantity']    = 'Quantidade';
 $_['column_price']       = 'Preço';
 $_['column_opened']      = 'Em Aberto';
@@ -41,7 +41,7 @@ $_['entry_lastname']     = 'Sobrenome:';
 $_['entry_email']        = 'E-mail:';
 $_['entry_telephone']    = 'Telefone:';
 $_['entry_product']      = 'Nome do Produto:';
-$_['entry_model']        = 'Modelo do Produto:';
+$_['entry_model']        = 'ID do Produto:';
 $_['entry_quantity']     = 'Quantidade:';
 $_['entry_reason']       = 'Motivo da Devolução:';
 $_['entry_opened']       = 'Embalagem Aberta:';
@@ -56,7 +56,7 @@ $_['error_lastname']     = 'O sobrenome deve ter entre 10 e 32 caracteres!!';
 $_['error_email']        = 'O e-mail não é válido!';
 $_['error_telephone']    = 'O telefone deve ter entre 3 e 32 caracteres!';
 $_['error_product']      = 'O nome do produto deve ser maior que 3 e menor que 255 caracteres!!';
-$_['error_model']        = 'O modelo do produto deve ser maior que 3 e menor que 64 caracteres!';
+$_['error_model']        = 'O ID do produto deve ser maior que 3 e menor que 64 caracteres!';
 $_['error_reason']       = 'Você deve selecionar um motivo para a devolução!';
 $_['error_captcha']      = 'O código digitado não corresponde a imagem!';
 $_['error_agree']        = 'Aviso: Você deve concordar com %s!';

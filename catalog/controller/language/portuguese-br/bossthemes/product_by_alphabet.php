@@ -1,0 +1,26 @@
+<?php
+$_['heading_title'] = 'Os produtos que comeam com: %s';
+$_['text_compare'] = 'Comparar produto (%s)';
+$_['text_default'] = 'Default';
+$_['text_display'] = 'Display:';
+$_['text_empty'] = 'N‹o h‡ produtos para listar.';
+$_['text_error'] = 'Alphabet n‹o encontrado!';
+$_['text_grid'] = 'Grade';
+$_['text_limit'] = 'Mostra:';
+$_['text_list'] = 'Lista';
+$_['text_manufacturer'] = 'Marca:';
+$_['text_model'] = 'C—digo do produto:';
+$_['text_model_asc'] = 'Modelo (A - Z)';
+$_['text_model_desc'] = 'Modelo (A - Z)';
+$_['text_name_asc'] = 'Nome (A - Z)';
+$_['text_name_desc'] = 'Nome (A - Z)';
+$_['text_points'] = 'Pontos de Recompensa';
+$_['text_price'] = 'Preo:';
+$_['text_price_asc'] = 'Preo (Low &gt; High)';
+$_['text_price_desc'] = 'Preo (Low &gt; High)';
+$_['text_quantity'] = 'Qty:';
+$_['text_rating_asc'] = 'Classifica‹o (Mais baixo)';
+$_['text_rating_desc'] = 'Classifica‹o (Mais alto)';
+$_['text_reviews'] = 'Baseado nas %s avalia›es';
+$_['text_sort'] = 'Ordenar Por:';
+$_['text_tax'] = 'Ex Tax:';

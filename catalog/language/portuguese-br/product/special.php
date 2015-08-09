@@ -5,7 +5,7 @@ $_['heading_title']     = 'Ofertas Especiais';
 // Text
 $_['text_empty']        = 'No momento não há ofertas disponíveis.';
 $_['text_quantity']     = 'Qtd:';
-$_['text_manufacturer'] = 'Fabricante:';
+$_['text_manufacturer'] = 'Marca:';
 $_['text_model']        = 'Código do Produto:'; 
 $_['text_points']       = 'Pontos pela Compra:'; 
 $_['text_price']        = 'Preço:'; 
@@ -23,7 +23,7 @@ $_['text_price_asc']    = 'Preço (Menor &gt; Maior)';
 $_['text_price_desc']   = 'Preço (Maior &gt; Menor)';
 $_['text_rating_asc']   = 'Avaliação (Baixa)';
 $_['text_rating_desc']  = 'Avaliação (Alta)';
-$_['text_model_asc']    = 'Modelo (A - Z)';
-$_['text_model_desc']   = 'Modelo (Z - A)';
+$_['text_model_asc']    = 'Produtos (A - Z)';
+$_['text_model_desc']   = 'Produtos (Z - A)';
 $_['text_limit']        = 'Exibir até:';
 ?>

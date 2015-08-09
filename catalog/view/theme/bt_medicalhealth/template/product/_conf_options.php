@@ -99,8 +99,14 @@ if ($tamanho_count > 0) {
                 echo "<select id='option-tom-select'>";
                 echo '<option value=""></option>';
                 foreach ($options_tamanho as $option_v) {
-                    echo "<option value='" . $option_v['option_id'] . "'>";
-                    echo $option_v['value'];
+                    $stock_status_class = '';
+                    $stoc_css = '';
+                    if ($option_v['stock_status'] != "In Stock") {
+                        $stock_status_class = ' **não disponível';
+                        $stoc_css = 'red_staric';
+                    }
+                    echo "<option class='$stoc_css' value='" . $option_v['option_id'] . "'>";
+                    echo $option_v['value'] . $stock_status_class;
                     echo "</option>";
                 }
                 echo "</select>";
@@ -158,6 +164,22 @@ if ($quantitdy_count > 0) {
 
                 $level_tree[] = 'quantitdy';
 
+                echo "<select id='option-quantitdy-select'>";
+                echo '<option value=""></option>';
+                foreach ($options_quantitdy as $option_v) {
+                    $stock_status_class = '';
+                    $stoc_css = '';
+                    if ($option_v['stock_status'] != "In Stock") {
+                        $stock_status_class = ' **não disponível';
+                        $stoc_css = 'red_staric';
+                    }
+
+                    echo "<option class='$stoc_css' value='" . $option_v['option_id'] . "'>";
+                    echo $option_v['value'] . $stock_status_class;
+                    echo "</option>";
+                }
+                echo "</select>";
+
                 $index = 0;
                 foreach ($options_quantitdy as $option_v) {
                     $title_alt = '';
@@ -173,7 +195,7 @@ if ($quantitdy_count > 0) {
                         $title_alt = $stock_statuses['in_stock'];
                     }
                     ?>
-                    <span style="margin-right:10px;" alt="<?php echo $title_alt; ?>" title="<?php echo $title_alt; ?>">
+                    <span style="display:none;margin-right:10px;" alt="<?php echo $title_alt; ?>" title="<?php echo $title_alt; ?>">
                         <input db_id="<?php echo $option_v['option_id']; ?>" index="<?php echo $index ?>" type="radio" name="option[quantitdy]" 
                                value="<?php echo $option_v['option_id']; ?>" 
                                product_id="<?php echo $option_v['product_id']; ?>"
@@ -199,6 +221,7 @@ if ($quantitdy_count > 0) {
 }
 ?>
 <br/>
+
 <?php
 if ($cor_count > 0) {
     echo "<b class='label_cor label_option'>Cor</b><br /><br />";
@@ -215,8 +238,14 @@ if ($cor_count > 0) {
                 echo "<select id='option-cor-select'>";
                 echo '<option value=""></option>';
                 foreach ($options_cor as $option_v) {
-                    echo "<option value='" . $option_v['option_id'] . "'>";
-                    echo $option_v['value'];
+                    $stock_status_class = '';
+                    $stoc_css = '';
+                    if ($option_v['stock_status'] != "In Stock") {
+                        $stock_status_class = ' **não disponível';
+                        $stoc_css = 'red_staric';
+                    }
+                    echo "<option class='$stoc_css' value='" . $option_v['option_id'] . "'>";
+                    echo $option_v['value'] . $stock_status_class;
                     echo "</option>";
                 }
                 echo "</select>";
@@ -261,22 +290,51 @@ if ($cor_count > 0) {
     <?php
 }
 ?>
+
+<div id="availability_status" style="margin-top:10px;"></div>
 <input type="hidden" id="conf_option_id" name="option[conf_id]" value="" />
 
 <script>
+    function IsEmail_valid(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
     $(function () {
+        $("#button-stock_email").click(function () {
+            if ($("#email_for_stock").val() != "" && IsEmail_valid($("#email_for_stock").val())) {
+                loader_box.show();
+                url = "?route=product/conf_product/send_email&product_id=" + $('input[type=hidden][name=product_id]').val();
+                url += '&email=' + $("#email_for_stock").val();
+
+                $.getJSON(url, function (data) {
+                    console.log(data);
+                    loader_box.hide();
+                    alert("E-mail enviado com sucesso");
+                })
+            }
+            else {
+                alert("Não válido de e-mail");
+            }
+
+        })
         $("#option-cor-select").live('change', function () {
             if ($(this).val() != "") {
-                console.log($("#option-cor span input[value='"+$(this).val()+"']"));
-                $("#option-cor span input[value='"+$(this).val()+"']").trigger("click");
+                console.log($("#option-cor span input[value='" + $(this).val() + "']"));
+                $("#option-cor span input[value='" + $(this).val() + "']").trigger("click");
             }
         });
         $("#option-tom-select").live('change', function () {
             if ($(this).val() != "") {
-                $("#option-tom span input[value='"+$(this).val()+"']").trigger("click");
+                $("#option-tom span input[value='" + $(this).val() + "']").trigger("click");
+            }
+        });
+        $("#option-quantitdy-select").live('change', function () {
+            if ($(this).val() != "") {
+                $("#option-quantitdy span input[value='" + $(this).val() + "']").trigger("click");
             }
         });
         $("#option-arcade input").click(function () {
+            ob = $(this);
             loader_box.show();
             un_prop_all();
             reset_tam();
@@ -304,12 +362,20 @@ if ($cor_count > 0) {
 
                 }
                 else {
-                    $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
-                    $("span.price-text").html($(this).attr("price"));
-                    $("span.product_tax").html($(this).attr("tax"));
-                    $("#title_heading").html($(this).attr("p_name"));
-                    $("#text_model").html($(this).attr("model"));
-                    $("#stock_status").html($(this).attr("title"));
+                    $('input[type=hidden][name=product_id]').val($(ob).attr('product_id'));
+                    $("span.price-text").html($(ob).attr("price"));
+                    $("span.product_tax").html($(ob).attr("tax"));
+                    $("#title_heading").html($(ob).attr("p_name"));
+                    $("#text_model").html($(ob).attr("model"));
+                    $("#stock_status").html($(ob).parent().attr("title"));
+
+                    if (stock_statuses['out_of_stock'] == $(ob).parent().attr("title")) {
+                        $("#availability_status").attr("class", "red_color");
+                    }
+                    else {
+                        $("#availability_status").attr("class", "green_color");
+                    }
+                    $("#availability_status").html($(ob).parent().attr("title"));
                 }
                 loader_box.hide();
             });
@@ -317,6 +383,7 @@ if ($cor_count > 0) {
 
         })
         $("#option-tom input").live('click', function () {
+            ob = $(this);
             loader_box.show();
             un_prop_all();
             reset_quantitdy();
@@ -339,13 +406,20 @@ if ($cor_count > 0) {
                     }
                 }
                 else {
-                    $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
-                    $("span.price-text").html($(this).attr("price"));
-                    $("span.product_tax").html($(this).attr("tax"));
+                    $('input[type=hidden][name=product_id]').val($(ob).attr('product_id'));
+                    $("span.price-text").html($(ob).attr("price"));
+                    $("span.product_tax").html($(ob).attr("tax"));
 
-                    $("#title_heading").html($(this).attr("p_name"));
-                    $("#text_model").html($(this).attr("model"));
-                    $("#stock_status").html($(this).attr("title"));
+                    $("#title_heading").html($(ob).attr("p_name"));
+                    $("#text_model").html($(ob).attr("model"));
+                    $("#stock_status").html($(ob).parent().attr("title"));
+                    if (stock_statuses['out_of_stock'] == $(ob).parent().attr("title")) {
+                        $("#availability_status").attr("class", "red_color");
+                    }
+                    else {
+                        $("#availability_status").attr("class", "green_color");
+                    }
+                    $("#availability_status").html($(ob).parent().attr("title"));
                 }
 
                 loader_box.hide();
@@ -353,6 +427,7 @@ if ($cor_count > 0) {
 
         })
         $("#option-quantitdy input").live('click', function () {
+            ob = $(this);
             loader_box.show();
             un_prop_all();
             reset_cor();
@@ -369,11 +444,12 @@ if ($cor_count > 0) {
                     renderCor(data);
                 }
                 else {
-                    $('input[type=hidden][name=product_id]').val($(this).attr('product_id'));
-                    $("span.price-text").html($(this).attr("price"));
-                    $("span.product_tax").html($(this).attr("tax"));
-                    $("#title_heading").html($(this).attr("p_name"));
-                    $("#text_model").html($(this).attr("model"));
+
+                    $('input[type=hidden][name=product_id]').val($(ob).attr('product_id'));
+                    $("span.price-text").html($(ob).attr("price"));
+                    $("span.product_tax").html($(ob).attr("tax"));
+                    $("#title_heading").html($(ob).attr("p_name"));
+                    $("#text_model").html($(ob).attr("model"));
                 }
 
                 loader_box.hide();
@@ -387,19 +463,34 @@ if ($cor_count > 0) {
             $("span.product_tax").html($(this).attr("tax"));
             $("#title_heading").html($(this).attr("p_name"));
             $("#text_model").html($(this).attr("model"));
-            $("#stock_status").html($(this).attr("title"));
+            $("#stock_status").html($(this).parent().attr("title"));
+
+            if (stock_statuses['out_of_stock'] == $(this).parent().attr("title")) {
+                $("#availability_status").attr("class", "red_color");
+            }
+            else {
+                $("#availability_status").attr("class", "green_color");
+            }
+            $("#availability_status").html($(this).parent().attr("title"));
+
         })
 
     })
 
     function renderToms(toms) {
         htm = "";
-        console.log(toms);
+
         htm += "<select id='option-tom-select'>";
         htm += '<option value=""></option>';
         $.each(toms['data'], function (k, v) {
-            htm += "<option value='" + v['option_id'] + "'>";
-            htm += v['value']
+            stock_status_class = '';
+            stock_css = '';
+            if (v['stock_status'] != "In Stock") {
+                stock_status_class = ' **não disponível';
+                stock_css = 'red_staric';
+            }
+            htm += "<option class='" + stock_css + "' value='" + v['option_id'] + "'>";
+            htm += v['value'] + stock_status_class;
             htm += "</option>";
 
         });
@@ -446,8 +537,27 @@ if ($cor_count > 0) {
         htm = "";
         disabled = '';
 
+        htm += "<select id='option-quantitdy-select'>";
+        htm += '<option value=""></option>';
+        $.each(quantaties['data'], function (k, v) {
+            stock_status_class = '';
+            stock_css = '';
+            if (v['stock_status'] != "In Stock") {
+                stock_status_class = ' **não disponível';
+                stock_css = 'red_staric';
+            }
+            htm += "<option class='" + stock_css + "' value='" + v['option_id'] + "'>";
+            htm += v['value'] + stock_status_class;
+            htm += "</option>";
+
+        });
+        htm += "</select>";
+
+        console.log(htm);
+
         $.each(quantaties['data'], function (k, v) {
             title_alt = '';
+
             if (v['quantity'] <= 0) {
                 if (v['stock_status'] == 'Out Of Stock') {
                     title_alt = stock_statuses['out_of_stock'];
@@ -461,7 +571,7 @@ if ($cor_count > 0) {
             } else {
                 title_alt = stock_statuses['in_stock'];
             }
-            htm += '<span style="margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
+            htm += '<span style="display:none;margin-right:10px;" alt="' + title_alt + '" title="' + title_alt + '">' +
                     '<input  type="radio" name="option[quantitdy]"' +
                     'value="' + v['option_id'] + '" ' + 'product_id="' + v['product_id'] + '" ' +
                     'price="' + v['price'] + '" ' + 'tax="' + v['tax'] + '" ' +
@@ -485,8 +595,15 @@ if ($cor_count > 0) {
         htm += "<select id='option-cor-select'>";
         htm += '<option value=""></option>';
         $.each(cors['data'], function (k, v) {
-            htm += "<option value='" + v['option_id'] + "'>";
-            htm += v['value']
+            stock_status_class = '';
+            stock_css = '';
+            if (v['stock_status'] != "In Stock") {
+                stock_status_class = ' **não disponível';
+                stock_css = 'red_staric';
+            }
+            htm += "<option class='" + stock_css + "' value='" + v['option_id'] + "'>";
+
+            htm += v['value'] + stock_status_class;
             htm += "</option>";
 
         });
@@ -545,3 +662,30 @@ if ($cor_count > 0) {
         }
     }
 </script>
+<style>
+    select option.red_staric {
+        color:red;
+    }
+    div.green_color {
+        color:green;
+    }
+    div.red_color {
+        color:red;
+    }
+    .product-info .stock_email input[type='email']{
+        border: 1px solid #D2D2D2;
+        color: #424141;
+        font-size: 11px;
+        height: 24px;
+        line-height: 24px;
+        margin: 0;
+        padding: 0 3px 2px;
+        width: 340px;
+        width:233px!important; margin-top:6px;
+    }
+
+    .product-info .stock_email .orange_button{
+        margin-top: 15px;
+        margin-left: 35px;
+    }
+</style>    

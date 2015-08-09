@@ -25,7 +25,7 @@ $_['text_error']            = 'O pedido que você está procurando não foi enco
 
 // Column
 $_['column_name']           = 'Produto';
-$_['column_model']          = 'Modelo';
+$_['column_model']          = 'ID';
 $_['column_quantity']       = 'Quantidade';
 $_['column_price']          = 'Preço';
 $_['column_total']          = 'Total';

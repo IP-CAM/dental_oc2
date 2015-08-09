@@ -1,14 +1,14 @@
 <?php
 // Heading
-$_['heading_title']     = 'Lista de Fabricantes';
+$_['heading_title']     = 'Lista de Marcas';
 
 // Text
-$_['text_brand']        = 'Fabricantes';
+$_['text_brand']        = 'Marcas';
 $_['text_index']        = 'Índice Alfabético por Letra:';
-$_['text_error']        = 'Fabricante não encontrado!';
+$_['text_error']        = 'Marcas não encontrado!';
 $_['text_empty']        = 'Não há produtos para listar.';
 $_['text_quantity']     = 'Qtd:';
-$_['text_manufacturer'] = 'Fabricante:';
+$_['text_manufacturer'] = 'Marca:';
 $_['text_model']        = 'Código do Produto:'; 
 $_['text_points']       = 'Pontos pela Compra:'; 
 $_['text_price']        = 'Preço:'; 
@@ -26,7 +26,7 @@ $_['text_price_asc']    = 'Preço (Menor &gt; Maior)';
 $_['text_price_desc']   = 'Preço (Maior &gt; Menor)';
 $_['text_rating_asc']   = 'Avaliação (Baixa)';
 $_['text_rating_desc']  = 'Avaliação (Alta)';
-$_['text_model_asc']    = 'Modelo (A - Z)';
-$_['text_model_desc']   = 'Modelo (Z - A)';
+$_['text_model_asc']    = 'Produtos (A - Z)';
+$_['text_model_desc']   = 'Produtos (Z - A)';
 $_['text_limit']        = 'Exibir até:';
 ?>

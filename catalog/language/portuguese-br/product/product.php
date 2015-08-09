@@ -1,9 +1,9 @@
 <?php
 // Text
 $_['text_search']       = 'Busca';
-$_['text_brand']        = 'Fabricantes';
-$_['text_manufacturer'] = 'Fabricante:';
-$_['text_model']        = 'Modelo:';
+$_['text_brand']        = 'Marcas';
+$_['text_manufacturer'] = 'Marca:';
+$_['text_model']        = 'ID:';
 $_['text_reward']       = 'Pontos pela Compra:'; 
 $_['text_points']       = 'Pontos necessários para comprar:';
 $_['text_stock']        = 'Disponibilidade:';

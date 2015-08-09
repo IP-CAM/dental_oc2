@@ -13,19 +13,23 @@
                 <div class="left">
                     <?php if ($thumb) { ?>
                         <div class="image a_bossthemes a_bossthemes_zoom"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image"
-                                                                                                                                                    data-zoom-image="<?php echo $popup; ?>"
+                                                                                                                                                                      data-zoom-image="<?php echo $popup; ?>"
 
-                                                                                                                                                    /></a></div>
-                        <?php } ?>
-                        <?php if ($images) { ?>
+                                                                                                                                                                      /></a></div>
+                        <?php } else { ?> 
+                        <div class="image a_bossthemes a_bossthemes_zoom"><a href="javascript:void(0)" title="" class="colorbox">
+                                <img src=""  data-zoom-image= "" />
+                            </a></div>
+                    <?php } ?>
+                    <?php if ($images) { ?>
                         <div class="image-additional a_bossthemes">
                             <div class="es-carousel">
                                 <ul  class="skin-opencart">
                                     <?php foreach ($images as $image) { ?>
-                                        <li><div class="boss-image-add"><a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" 
-                                                                                                                                                                             alt="<?php echo $heading_title; ?>" 
-                                                                                                                                                                            
-                                                                                                                                                                             /></a></div></li>
+                                        <li><div class="boss-image-add"><a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="colorbox" ><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" 
+                                                                                                                                                                              alt="<?php echo $heading_title; ?>" 
+
+                                                                                                                                                                              /></a></div></li>
                                         <?php } ?>
                                 </ul>
                             </div>
@@ -251,19 +255,50 @@
                     ?>
                 </div>
                 <div class="cart">
-                    <div><span class="qty"><?php echo $text_qty; ?></span>
-                        <input type="text" name="quantity" size="2" value="<?php echo $minimum; ?>" />
+                    <div ><span class="qty" style="display: none"><?php echo $text_qty; ?></span>
+                        <input type="hidden" name="quantity" size="2" value="<?php echo $minimum; ?>" />
                         <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
                         &nbsp;
-                        <div class="minimum"><?php echo $text_minimum; ?></div>
+                        <div class="minimum" style="display: none"><?php echo $text_minimum; ?></div>
                         <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
                     </div>
+
                     <div>
                         <div class="compare"><a onclick="boss_addToCompare('<?php echo $product_id; ?>');"><?php echo $button_compare; ?></a></div>
                         <div class="wishlist"><a onclick="boss_addToWishList('<?php echo $product_id; ?>');"><?php echo $button_wishlist; ?></a></div>
                     </div>  
                     <?php if ($minimum > 1) { ?>
                     <?php } ?>
+                </div>
+                <div class="stock_email">
+                    <?php
+                    if ($stock == $stock_statuses['out_of_stock']):
+                        ?>
+                        <div style="margin-top:10px;">
+                            <h3>Produto fora de estoque</h3>
+
+
+                            <p>Não temos este produto em estoque agora. Mas deixe seu email abaixo e você será notificado(a) quando este produto estiver disponível.
+                            </p>
+                            <div style="clear:both"></div>
+                            <span>E-mail</span>   
+
+                            <input type="email" id="email_for_stock" name="email_for_stock" size="15" >   
+                            <div style="clear:both"></div>
+                            <div class="buttons">
+                                <div class="left">
+                                    <span class="orange_button">
+                                        <input type="button" value="Assinar" id="button-stock_email" class="button">
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <?php
+                    endif;
+                    ?>
                 </div>
                 <?php
                 //calculate shipping
@@ -556,14 +591,42 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
         );
     }
 //--></script>
+
+<script>
+    var img_zoom = $(".image.a_bossthemes_zoom img")
+    img_zoom.elevateZoom({
+        //zoomType: "inner",
+        cursor: "crosshair",
+        zoomWindowFadeIn: 500,
+        zoomWindowFadeOut: 750
+    });
+
+
+</script>
 <script type="text/javascript"><!--
     $(document).ready(function () {
-        $('.colorbox').colorbox({
-            overlayClose: true,
-            opacity: 0.5,
-            rel: "colorbox"
-        });
+//        $('.colorbox').colorbox({
+//            overlayClose: true,
+//            opacity: 0.5,
+//            rel: "colorbox"
+//        });
     });
+    $('div.boss-image-add .colorbox').click(function () {
+        $('.zoomContainer').remove();
+        img_zoom.removeData('elevateZoom');
+        img_zoom.removeData('zoomImage');
+
+        $(".a_bossthemes_zoom a").attr("href", $(this).attr("href"));
+        $(".a_bossthemes_zoom a img").attr('src', $(this).attr("href"));
+        $(".a_bossthemes_zoom a img").attr('data-zoom-image', $(this).attr("href"));
+        img_zoom.elevateZoom({
+            //zoomType: "inner",
+            cursor: "crosshair",
+            zoomWindowFadeIn: 500,
+            zoomWindowFadeOut: 750
+        });
+        return false;
+    })
 //--></script> 
 
 <?php if ($options) { ?>
@@ -602,14 +665,7 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
 <script type="text/javascript" 
 src="catalog/view/javascript/bossthemes/jquery.elevatezoom.js"></script>
 
-<script>
 
-                $(".image.a_bossthemes_zoom img").elevateZoom({
-                    //zoomType: "inner",
-                    cursor: "crosshair",
-                    zoomWindowFadeIn: 500,
-                    zoomWindowFadeOut: 750
-                });</script>
 <script type="text/javascript"><!--
 $('#review .pagination a').live('click', function () {
         $('#review').fadeOut('slow');

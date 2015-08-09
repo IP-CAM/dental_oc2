@@ -1,5 +1,7 @@
 <?php
+
 class ControllerModuleManufacturer extends Controller {
+
     protected function index() {
         $this->language->load('module/manufacturer');
 
@@ -13,17 +15,17 @@ class ControllerModuleManufacturer extends Controller {
         }
 
         $this->load->model('catalog/manufacturer');
-				
+
         $this->data['manufacturers'] = array();
 
         $results = $this->model_catalog_manufacturer->getManufacturers();
 
         foreach ($results as $result) {
-						
-			$this->data['manufacturers'][] = array(
+
+            $this->data['manufacturers'][] = array(
                 'manufacturer_id' => $result['manufacturer_id'],
-                'name'       	  => $result['name'],
-				'href' => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
+                'name' => $result['name'],
+                'href' => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
             );
         }
 
@@ -35,5 +37,7 @@ class ControllerModuleManufacturer extends Controller {
 
         $this->render();
     }
+
 }
+
 ?>

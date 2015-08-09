@@ -25,7 +25,7 @@ $_['text_empty']             = 'Você ainda não adicionou produtos.';
 // Column
 $_['column_image']           = 'Imagem';
 $_['column_name']            = 'Produto';
-$_['column_model']           = 'Modelo';
+$_['column_model']           = 'ID';
 $_['column_quantity']        = 'Quantidade';
 $_['column_price']           = 'Unitário';
 $_['column_total']           = 'Total';

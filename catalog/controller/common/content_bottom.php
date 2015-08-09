@@ -75,14 +75,17 @@ class ControllerCommonContentBottom extends Controller {
 
         foreach ($module_data as $module) {
           
-           
+            
             $module = $this->getChild('module/' . $module['code'], $module['setting']);
-           
+             
+            
 
             if ($module) {
                 $this->data['modules'][] = $module;
             }
         }
+        
+    
        
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/content_bottom.tpl')) {

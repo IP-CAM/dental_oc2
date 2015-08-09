@@ -32,13 +32,13 @@ $_['text_comments']                  = 'Coloque aqui o comentário que você ach
 
 // Column
 $_['column_name']                    = 'Produto';
-$_['column_model']                   = 'Modelo';
+$_['column_model']                   = 'ID';
 $_['column_quantity']                = 'Quantidade';
 $_['column_price']                   = 'Preço';
 $_['column_total']                   = 'Total';
 
 // Entry
-$_['entry_email_address']            = 'Endereço de e-mail:';
+$_['entry_email_address']            = 'Endereco de e-mail:';
 $_['entry_email']                    = 'E-mail:';
 $_['entry_password']                 = 'Senha:';
 $_['entry_confirm']                  = 'Repetir a senha:';

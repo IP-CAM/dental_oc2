@@ -14,7 +14,7 @@ $_['text_empty']    = 'Sua Lista de Desejos está vazia.';
 // Column
 $_['column_image']  = 'Imagem';
 $_['column_name']   = 'Produto';
-$_['column_model']  = 'Modelo';
+$_['column_model']  = 'ID';
 $_['column_stock']  = 'Estoque';
 $_['column_price']  = 'Preço Unitário';
 $_['column_action'] = 'Ação';
