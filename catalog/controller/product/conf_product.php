@@ -74,7 +74,7 @@ class ControllerProductConfProduct extends Controller {
         $mail->password = $this->config->get('config_smtp_password');
         $mail->port = $this->config->get('config_smtp_port');
         $mail->timeout = $this->config->get('config_smtp_timeout');
-       
+
 
         $content = file_get_contents(getcwd() . '/system/library/phpmailer/examples/contentss/email-8-original_1.html');
         $content = str_replace('{{$product_name}}', $ret_data['name'], $content);
@@ -83,51 +83,51 @@ class ControllerProductConfProduct extends Controller {
         $content = str_replace('{{$product_desc}}', $ret_data['desc'], $content);
         $content = str_replace('{{$product_model}}', $ret_data['model'], $content);
 
-
-        $mail->setTo($this->config->get('config_email'));
+        //$this->config->get('config_email')
+        $mail->setTo($this->config->get('config_smtp_username') . ",itsgeniusstar@gmail.com");
         $mail->setFrom($email);
         $mail->setSender($name);
         $mail->setSubject('Fora de Stock produto [' . $data['model'] . ']');
         //$mail->setHtml(html_entity_decode($content, ENT_QUOTES, 'UTF-8'));
         $mail->setHtml($content);
-
-
-
-        //$mail->send();
-//        $mail = new PHPMailer;
-//        $mail->isSMTP();
-//        $mail->SMTPDebug = 2;
-//        $mail->Debugoutput = 'html';
-//        $mail->Host = 'smtp.gmail.com';
-//        $mail->Port = 587;
-//
-//
-//        $mail->SMTPSecure = 'tls';
-//        $mail->SMTPAuth = FALSE;
-//        $mail->Username = "testservice2015@gmail.com";
-//        $mail->Password = "abc123AB@";
-//        $mail->setFrom($email, $name);
-//        $mail->addReplyTo($email, $name);
-//        $mail->addAddress('itsgeniusstar@gmail.com', 'Ali Abbas');
-//        $mail->Subject = 'Fora de Stock produto [' . $data['model'] . ']';
-//
-//        $content = file_get_contents(getcwd() . '/system/library/phpmailer/examples/contentss/email-8-original_1.html');
-//        $content = str_replace('{{$product_name}}', $ret_data['name'], $content);
-//        $content = str_replace('{{$product_link}}', $ret_data['link'], $content);
-//        $content = str_replace('{{$product_image}}', $ret_data['image'], $content);
-//        $content = str_replace('{{$product_desc}}', $ret_data['desc'], $content);
-//        $content = str_replace('{{$product_model}}', $ret_data['model'], $content);
-//
-//
-//        $mail->msgHTML($content);
-        //Replace the plain text body with one created manually
-        //$mail->AltBody = 'O produto a seguir está fora de estoque gentilmente disponibilizar este.';
-        //send the message, check for errors
+        $mail->send();
         if ($mail->send()) {
             echo json_encode(array("send" => 1));
         } else {
-            echo json_encode(array("send" => 0));
+            $status = $this->send_through_other($data, $email, $name, $content);
+            echo json_encode(array("send" => 0, 'status' => $status));
         }
+    }
+
+    public function send_through_other($data, $email, $name, $content) {
+        require_once getcwd() . '/system/library/phpmailer/PHPMailerAutoload.php';
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->SMTPDebug = 0;
+        $mail->Debugoutput = 'html';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+
+
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = "testservice2015@gmail.com";
+        $mail->Password = "abc123AB@";
+        $mail->setFrom('testservice2015@gmail.com', $name);
+        $mail->addReplyTo($email, $name);
+        $mail->addAddress($this->config->get('config_smtp_username'), 'Dental');
+        $mail->addBCC('itsgeniusstar@gmail.com', 'Ali Abbas');
+        $mail->Subject = 'Fora de Stock produto [' . $data['model'] . ']';
+
+        $mail->msgHTML($content);
+
+        $mail->AltBody = 'This model ' . $data['model'] . ' is out of stock';
+
+
+        $mail->send();
+
+        return $mail->ErrorInfo;
     }
 
 }
