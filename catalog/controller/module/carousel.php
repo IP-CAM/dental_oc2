@@ -6,6 +6,7 @@ class ControllerModuleCarousel extends Controller {
         static $module = 0;
 
         $this->load->model('design/banner');
+        $this->load->model('catalog/manufacturer');
         $this->load->model('tool/image');
 
         $this->document->addScript('catalog/view/javascript/jquery/jquery.jcarousel.min.js');
@@ -22,12 +23,23 @@ class ControllerModuleCarousel extends Controller {
         $this->data['banners'] = array();
 
         $results = $this->model_design_banner->getBanner($setting['banner_id']);
+        
+        $results_manuf = $this->model_catalog_manufacturer->getManufacturers(array("sort"=>'id'));
 
-        foreach ($results as $result) {
+//        foreach ($results as $result) {
+//            if (file_exists(DIR_IMAGE . $result['image'])) {
+//                $this->data['banners'][] = array(
+//                    'title' => $result['title'],
+//                    'link' => $result['link'],
+//                    'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+//                );
+//            }
+//        }
+        foreach ($results_manuf as $result) {
             if (file_exists(DIR_IMAGE . $result['image'])) {
                 $this->data['banners'][] = array(
-                    'title' => $result['title'],
-                    'link' => $result['link'],
+                    'title' => $result['name'],
+                    'link' => $this->url->link('product/manufacturer/info/', 'manufacturer_id=' . $result['manufacturer_id']),
                     'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
                 );
             }
@@ -38,6 +50,7 @@ class ControllerModuleCarousel extends Controller {
 //        echo "<br/><br/><br/><br/><br/><br/><br/><br/>";
 //        echo DIR_IMAGE;
 //        echo "<pre>";
+//            print_r($resultsd);
 //            print_r($setting);
 //             echo "------------------";
 //            print_r($results);

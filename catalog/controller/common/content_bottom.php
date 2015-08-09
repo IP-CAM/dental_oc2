@@ -84,8 +84,7 @@ class ControllerCommonContentBottom extends Controller {
                 $this->data['modules'][] = $module;
             }
         }
-        
-    
+  
        
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/content_bottom.tpl')) {
