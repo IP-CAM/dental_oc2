@@ -41,6 +41,7 @@ $_['entry_tamanho']          = 'Tamanho:';
 $_['entry_cor']          = 'Cor:';
 $_['similar_product']          = 'Produto similar:';
 $_['entry_youtube']          = 'link do Youtube:';
+$_['entry_product_on_phone']          = 'Compras pelo televendas:';
 $_['text_remove'] = 'Remove';
 
 // Entry

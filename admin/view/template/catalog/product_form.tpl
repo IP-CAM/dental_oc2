@@ -75,6 +75,21 @@
                     e.g https://www.youtube.com/embed/qnl8g0fEgWE
                 </td>
               </tr>
+              <tr>
+                <td><?php echo $entry_product_on_phone; ?></td>
+                <?php
+                    $product_phone_c  = '';
+                    
+                    if(isset($product_on_phone) && $product_on_phone==1){
+                        $product_phone_c  = 'checked="checked"';
+                        
+                    }
+                ?>
+                <td><input type="checkbox" name="product[product_on_phone]" <?php echo $product_phone_c; ?> />
+                  
+                    
+                </td>
+              </tr>
             </table>
           </div>
           <?php } ?>

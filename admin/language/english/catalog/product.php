@@ -109,6 +109,7 @@ $_['entry_tamanho']          = 'Tamanho:';
 $_['entry_cor']          = 'Cor:';
 $_['similar_product']          = 'Similar Product:';
 $_['entry_youtube']          = 'Youtube link:';
+$_['entry_product_on_phone']          = 'Product On phone:';
 $_['text_remove'] = 'Remove';
 
 

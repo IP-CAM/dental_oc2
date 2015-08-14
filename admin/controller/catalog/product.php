@@ -113,6 +113,7 @@ class ControllerCatalogProduct extends Controller {
             if (isset($this->request->get['page'])) {
                 $url .= '&page=' . $this->request->get['page'];
             }
+            
 
             if (!empty($return_product_id)) {
                 $url .= '&product_id=' . $return_product_id;
@@ -641,6 +642,7 @@ class ControllerCatalogProduct extends Controller {
         $this->data['entry_weight'] = $this->language->get('entry_weight');
         $this->data['entry_dimension'] = $this->language->get('entry_dimension');
         $this->data['entry_youtube'] = $this->language->get('entry_youtube');
+        $this->data['entry_product_on_phone'] = $this->language->get('entry_product_on_phone');
         $this->data['entry_length'] = $this->language->get('entry_length');
         $this->data['entry_image'] = $this->language->get('entry_image');
         $this->data['entry_download'] = $this->language->get('entry_download');
@@ -908,12 +910,25 @@ class ControllerCatalogProduct extends Controller {
             $this->data['location'] = '';
         }
         if (isset($this->request->post['product']['youtube'])) {
-            $this->data['youtube'] = $this->request->post['location'];
+            $this->data['youtube'] = $this->request->post['youtube'];
         } elseif (!empty($product_info)) {
             $this->data['youtube'] = $product_info['youtube'];
         } else {
             $this->data['youtube'] = '';
         }
+        
+        if (!empty($this->request->post['product']['product_on_phone'])) {
+            $this->data['product_on_phone'] = 1;
+        } elseif (!empty($product_info)) {
+            $this->data['product_on_phone'] = $product_info['product_on_phone'];
+        } else {
+            $this->data['product_on_phone'] = 0;
+        }
+        
+     
+        
+        
+        
         if (isset($this->request->post['product']['unique_name'])) {
             $this->data['unique_name'] = $this->request->post['unique_name'];
         } elseif (!empty($product_info)) {
