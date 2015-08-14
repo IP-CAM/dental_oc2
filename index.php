@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 // Version
 define('VERSION', '1.5.6.4');
 
@@ -220,7 +221,7 @@ $registry->set('openbay', new Openbay($registry));
 
 // Encryption
 $registry->set('encryption', new Encryption($config->get('config_encryption')));
-		
+
 // Front Controller 
 $controller = new Front($registry);
 

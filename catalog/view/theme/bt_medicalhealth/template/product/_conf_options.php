@@ -101,11 +101,24 @@ if ($tamanho_count > 0) {
                 foreach ($options_tamanho as $option_v) {
                     $stock_status_class = '';
                     $stoc_css = '';
+                    if ($option_v['quantity'] <= 0) {
+                        if ($option_v['stock_status'] == 'Out Of Stock') {
+                            $stock_status_class = ' **não disponível';
+                            $stoc_css = 'red_staric';
+                        } else {
+                            
+                        }
+                    } else if ($option_v['quantity'] > 0) {
+                        
+                    } else {
+                        
+                    }
+
                     if ($option_v['stock_status'] != "In Stock") {
                         $stock_status_class = ' **não disponível';
                         $stoc_css = 'red_staric';
                     }
-                    echo "<option class='$stoc_css' value='" . $option_v['option_id'] . "'>";
+                    echo "<option class='$stoc_css' value='" . $option_v['option_id'] . "' product_id='" . $option_v['product_id'] . "'>";
                     echo $option_v['value'] . $stock_status_class;
                     echo "</option>";
                 }
@@ -169,12 +182,20 @@ if ($quantitdy_count > 0) {
                 foreach ($options_quantitdy as $option_v) {
                     $stock_status_class = '';
                     $stoc_css = '';
-                    if ($option_v['stock_status'] != "In Stock") {
-                        $stock_status_class = ' **não disponível';
-                        $stoc_css = 'red_staric';
+                    if ($option_v['quantity'] <= 0) {
+                        if ($option_v['stock_status'] == 'Out Of Stock') {
+                            $stock_status_class = ' **não disponível';
+                            $stoc_css = 'red_staric';
+                        } else {
+                            
+                        }
+                    } else if ($option_v['quantity'] > 0) {
+                        
+                    } else {
+                        
                     }
 
-                    echo "<option class='$stoc_css' value='" . $option_v['option_id'] . "'>";
+                    echo "<option class='$stoc_css' value='" . $option_v['option_id'] . "' product_id='" . $option_v['product_id'] . "'>";
                     echo $option_v['value'] . $stock_status_class;
                     echo "</option>";
                 }
@@ -240,11 +261,20 @@ if ($cor_count > 0) {
                 foreach ($options_cor as $option_v) {
                     $stock_status_class = '';
                     $stoc_css = '';
-                    if ($option_v['stock_status'] != "In Stock") {
-                        $stock_status_class = ' **não disponível';
-                        $stoc_css = 'red_staric';
+                    if ($option_v['quantity'] <= 0) {
+                        if ($option_v['stock_status'] == 'Out Of Stock') {
+                            $stock_status_class = ' **não disponível';
+                            $stoc_css = 'red_staric';
+                        } else {
+                            
+                        }
+                    } else if ($option_v['quantity'] > 0) {
+                        
+                    } else {
+                        
                     }
-                    echo "<option class='$stoc_css' value='" . $option_v['option_id'] . "'>";
+
+                    echo "<option class='$stoc_css' value='" . $option_v['option_id'] . "' product_id='" . $option_v['product_id'] . "'>";
                     echo $option_v['value'] . $stock_status_class;
                     echo "</option>";
                 }
@@ -371,9 +401,11 @@ if ($cor_count > 0) {
 
                     if (stock_statuses['out_of_stock'] == $(ob).parent().attr("title")) {
                         $("#availability_status").attr("class", "red_color");
+                        $(".stock_email").show();
                     }
                     else {
                         $("#availability_status").attr("class", "green_color");
+                        $(".stock_email").hide();
                     }
                     $("#availability_status").html($(ob).parent().attr("title"));
                 }
@@ -415,9 +447,11 @@ if ($cor_count > 0) {
                     $("#stock_status").html($(ob).parent().attr("title"));
                     if (stock_statuses['out_of_stock'] == $(ob).parent().attr("title")) {
                         $("#availability_status").attr("class", "red_color");
+                        $(".stock_email").show();
                     }
                     else {
                         $("#availability_status").attr("class", "green_color");
+                        $(".stock_email").hide();
                     }
                     $("#availability_status").html($(ob).parent().attr("title"));
                 }
@@ -467,9 +501,11 @@ if ($cor_count > 0) {
 
             if (stock_statuses['out_of_stock'] == $(this).parent().attr("title")) {
                 $("#availability_status").attr("class", "red_color");
+                $(".stock_email").show();
             }
             else {
                 $("#availability_status").attr("class", "green_color");
+                $(".stock_email").hide();
             }
             $("#availability_status").html($(this).parent().attr("title"));
 
@@ -485,11 +521,18 @@ if ($cor_count > 0) {
         $.each(toms['data'], function (k, v) {
             stock_status_class = '';
             stock_css = '';
-            if (v['stock_status'] != "In Stock") {
-                stock_status_class = ' **não disponível';
-                stock_css = 'red_staric';
+            if (v['quantity'] <= 0) {
+                if (v['stock_status'] == 'Out Of Stock') {
+                    stock_status_class = ' **não disponível';
+                    stock_css = 'red_staric';
+                }
+                else {
+                    
+                }
+
             }
-            htm += "<option class='" + stock_css + "' value='" + v['option_id'] + "'>";
+
+            htm += "<option class='" + stock_css + "' value='" + v['option_id'] + "' product_id='" + v['product_id'] + "'>";
             htm += v['value'] + stock_status_class;
             htm += "</option>";
 
@@ -497,7 +540,7 @@ if ($cor_count > 0) {
         htm += "</select>";
         $.each(toms['data'], function (k, v) {
             index = 0;
-            console.log(v);
+            
             title_alt = '';
             if (v['quantity'] <= 0) {
                 if (v['stock_status'] == 'Out Of Stock') {
@@ -542,18 +585,24 @@ if ($cor_count > 0) {
         $.each(quantaties['data'], function (k, v) {
             stock_status_class = '';
             stock_css = '';
-            if (v['stock_status'] != "In Stock") {
-                stock_status_class = ' **não disponível';
-                stock_css = 'red_staric';
+            if (v['quantity'] <= 0) {
+                if (v['stock_status'] == 'Out Of Stock') {
+                    stock_status_class = ' **não disponível';
+                    stock_css = 'red_staric';
+                }
+                else {
+                    
+                }
+
             }
-            htm += "<option class='" + stock_css + "' value='" + v['option_id'] + "'>";
+            htm += "<option class='" + stock_css + "' value='" + v['option_id'] + "' product_id='" + v['product_id'] + "'>";
             htm += v['value'] + stock_status_class;
             htm += "</option>";
 
         });
         htm += "</select>";
 
-        console.log(htm);
+       
 
         $.each(quantaties['data'], function (k, v) {
             title_alt = '';
@@ -595,13 +644,20 @@ if ($cor_count > 0) {
         htm += "<select id='option-cor-select'>";
         htm += '<option value=""></option>';
         $.each(cors['data'], function (k, v) {
+            
             stock_status_class = '';
             stock_css = '';
-            if (v['stock_status'] != "In Stock") {
-                stock_status_class = ' **não disponível';
-                stock_css = 'red_staric';
+            if (v['quantity'] <= 0) {
+                if (v['stock_status'] == 'Out Of Stock') {
+                    stock_status_class = ' **não disponível';
+                    stock_css = 'red_staric';
+                }
+                else {
+                    
+                }
+
             }
-            htm += "<option class='" + stock_css + "' value='" + v['option_id'] + "'>";
+            htm += "<option class='" + stock_css + "' value='" + v['option_id'] + "' product_id='" + v['product_id'] + "'>";
 
             htm += v['value'] + stock_status_class;
             htm += "</option>";

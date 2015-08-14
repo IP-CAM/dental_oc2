@@ -1,36 +1,3 @@
-/* God I hate Microsoft! */
-#header #cart {
-	width: 400px;
-}
-#header #cart .heading {
-	position: relative;
-	right: 172px;
-	margin-right: 0px;
-}
-#header #cart .content {
-
-}
-#header #search {
-	position: inherit;
-	float: right;
-}
-#header .button-search {
-	top: 1px;
-}
-#header #search input {
-	padding: 3px 1px 1px 33px;
-	height: 19px;
-}
-/* menu */
-#menu ul li {
-	position: relative;
-}
-#menu ul li div {
-	z-index: 5;
-}
-#menu ul li.active div {
-	display: block;
-}
 .success, .warning, .attention, .information {
 	position: relative;
 }
@@ -38,14 +5,49 @@
 	position: absolute;
 	right: 10px;
 }
-.box-product > div {
-	display: inline;
-}
-.product-grid > div {
-	display: inline;
-}
-/* button */
-.product-info a.button span {
-	line-height: 12px;
-	display: block;
-}
+.footer-top-left{width: 600px;}
+.footer-top-right {width: 358px;}
+.boss_featured .box-content .one-product-featured{padding-bottom:5px}
+.product-filter .display{width:53px}
+.main-column-left{margin-right:0}
+.main-column-content{margin-left:-1px}
+.cart input.button{padding-left:7px}
+.product-grid{padding-bottom:30px}
+.product-filter .sort b, .product-filter .limit b{vertical-align: 6px}
+.product-filter .display{margin-top:-5px}
+.product-filter{overflow:visible}
+.product-filter .sort select, .product-filter .limit select{vertical-align:-2px}
+.product-compare{margin-top:-2px}
+#boss_menu{margin-bottom:12px}
+.breadcrumb{margin-bottom:23px}
+#boss_menu > ul > li > div.dropdown{padding-bottom:18px}
+a.forgotten{vertical-align:5px}
+.cart-info tbody .quantity input[type="image"]{vertical-align:3px}
+.shopping-module table.radio tr td:first-child input{margin-top:-3px}
+.checkout-heading span{float:left; overflow:hidden}
+#shipping-method table.radio tr td:first-child input{margin-top:-3px}
+#payment-method table.radio tr td:first-child input{margin-top:-3px}
+.boss_category_box {width:175px; padding-right:10px}
+.boss_home_category{margin-bottom:20px}
+#header #cart .heading a span{line-height:34px}
+
+#boss_menu > ul > li > div.dropdown a.parent + .column.category{padding-left:0}
+#boss_menu > ul > li > div.dropdown .option ul.column li{padding-left:5px;margin-right:0;}
+#boss_menu > ul > li > div.dropdown .option ul.column.information li{padding-left:0}
+#boss_menu > ul > li > div.dropdown > div.option > ul.information{padding-left:3px}
+
+.button_compare{margin-bottom:28px}
+span.orange_button input.button{padding-bottom:0; padding-left:0; padding-right:5px}
+a.orange_button span{line-height:28px}
+#payment-address .checkout-content .buttons .left{margin-top:10px}
+.select-payment-address{margin-top:-10px; padding-top:0}
+.select-payment-address input[type="checkbox"]{margin-bottom:4px}
+#cboxLoadedContent table.radio tr td:first-child input[type='radio']{margin-top:-2px}
+.home-tab{margin-bottom:0}
+.acount .login-frame ul.link{margin-bottom:0}
+#checkout .checkout-content label{margin-left:-3px}
+p.choose_search span{vertical-align:5px}
+.boss-static-home .frame-static-home{padding-bottom:7px}
+.home-tab .box-heading span{padding-top:0}
+.acount .content-logged, .acount .login-frame input, #search-form #search-form-bot input{height:19px; padding-bottom:6px}
+.category-list{padding-bottom:20px}

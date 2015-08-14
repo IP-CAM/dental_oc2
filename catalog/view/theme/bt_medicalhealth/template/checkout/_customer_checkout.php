@@ -8,11 +8,19 @@
             );
             $i = 0;
             $checkd = '';
+
             foreach ($customer_types as $type) {
-                if ($i == 0) {
-                    $checkd = 'checked="checked"';
+                if (!empty($payment_customer_type)) {
+                    if ($payment_customer_type == $type) {
+                        $checkd = 'checked="checked"';
+                    }
                 } else {
                     $checkd = '';
+                    if ($i == 0) {
+                        $checkd = 'checked="checked"';
+                    } else {
+                        $checkd = '';
+                    }
                 }
                 ?>
                 <input type="radio" class="cusomer_type"  name="payment_customer_type" value="<?php echo $type ?>" <?php echo $checkd; ?> /> 
@@ -31,7 +39,7 @@
             <table class="customer" style="display:none" >
                 <tr>
                     <td>
-                        <h2><?php  echo $txt_payment_heading_customer;?></h2>
+                        <h2><?php echo $txt_payment_heading_customer; ?></h2>
 
                     </td>
 
@@ -39,46 +47,46 @@
                 <tr>
 
                     <td>
-                       p<?php echo $txt_payment_cad_name;?>
+                        p<?php echo $txt_payment_cad_name; ?>
                     </td>
                     <td>
-                        <input type="text" name="payment_cad_name" id="payment_cad_name" />
+                        <input type="text" name="payment_cad_name" id="payment_cad_name" value="<?php echo isset($payment_cad_name) ? $payment_cad_name : ""; ?>" />
                     </td>
                     <td>
-                       <?php echo $txt_payment_cad_dob;?>
+                        <?php echo $txt_payment_cad_dob; ?>
                     </td>
                     <td>
-                        <input type="text" name="payment_cad_dob" id="payment_cad_dob" />
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>
-                         <?php echo $txt_payment_cad_cpf;?>
-                    </td>
-                    <td>
-                        <input type="text" name="payment_cad_cpf" id="payment_cad_cpf" />
-                    </td>
-                    <td>
-                       <?php echo $txt_payment_cad_rg;?>
-                    </td>
-                    <td>
-                        <input type="text" name="payment_cad_rg" id="payment_cad_rg" />
+                        <input type="text" name="payment_cad_dob" id="payment_cad_dob"  value="<?php echo isset($payment_cad_dob) ? $payment_cad_dob : ""; ?>" />
                     </td>
                 </tr>
                 <tr>
 
                     <td>
-                         <?php echo $txt_payment_cad_telefone;?>
+                        <?php echo $txt_payment_cad_cpf; ?>
                     </td>
                     <td>
-                        <input type="text" name="payment_cad_telefone" id="payment_cad_telefone" />
+                        <input type="text" name="payment_cad_cpf" id="payment_cad_cpf" value="<?php echo isset($payment_cad_cpf) ? $payment_cad_cpf : ""; ?>"  />
                     </td>
                     <td>
-                        <?php echo $txt_payment_cad_celular;?>
+                        <?php echo $txt_payment_cad_rg; ?>
                     </td>
                     <td>
-                        <input type="text" name="payment_cad_celular" id="payment_cad_celular" />
+                        <input type="text" name="payment_cad_rg" id="payment_cad_rg" value="<?php echo isset($payment_cad_rg) ? $payment_cad_rg : ""; ?>"/>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <?php echo $txt_payment_cad_telefone; ?>
+                    </td>
+                    <td>
+                        <input type="text" name="payment_cad_telefone" id="payment_cad_telefone" value="<?php echo isset($payment_cad_telefone) ? $payment_cad_telefone : ""; ?>"/>
+                    </td>
+                    <td>
+                        <?php echo $txt_payment_cad_celular; ?>
+                    </td>
+                    <td>
+                        <input type="text" name="payment_cad_celular" id="payment_cad_celular" value="<?php echo isset($payment_cad_celular) ? $payment_cad_celular : ""; ?>" />
                     </td>
                 </tr>
                 <tr>
@@ -89,8 +97,12 @@
                             "Masculino", "Feminino"
                         );
                         foreach ($genders as $gend) {
+                            $selected = "";
+                            if (!empty($payment_cad_gender) && $payment_cad_gender == $gend) {
+                                $selected = "checked='checked';";
+                            }
                             ?>
-                            <input type="radio"  name="payment_cad_gender" value="<?php echo $gend ?>" /> 
+                            <input type="radio"  name="payment_cad_gender" value="<?php echo $gend ?>" <?php echo $selected; ?> /> 
                             <label><?php echo $gend ?></label>
 
                             <?php
@@ -105,7 +117,7 @@
             <table class="account" style="display:none">
                 <tr>
                     <td>
-                        <h2><?php echo $txt_payment_heading_account;?></h2>
+                        <h2><?php echo $txt_payment_heading_account; ?></h2>
 
                     </td>
 
@@ -113,61 +125,69 @@
                 <tr>
 
                     <td>
-                      <?php echo $txt_payment_corop_name;?>
+                        <?php echo $txt_payment_corop_name; ?>
                     </td>
                     <td>
-                        <input type="text" name="payment_corop_name" id="payment_corop_name" />
+                        <input type="text" name="payment_corop_name" id="payment_corop_name" value="<?php echo isset($payment_corop_name) ? $payment_corop_name : ""; ?>" />
                     </td>
                     <td>
-                       <?php echo $txt_payment_corop_trade_name;?>
+                        <?php echo $txt_payment_corop_trade_name; ?>
                     </td>
                     <td>
-                        <input type="text" name="payment_corop_trade_name" id="payment_corop_trade_name" />
+                        <input type="text" name="payment_corop_trade_name" id="payment_corop_trade_name" value="<?php echo isset($payment_corop_trade_name) ? $payment_corop_trade_name : ""; ?>"/>
                     </td>
                 </tr>
                 <tr>
 
                     <td>
-                        <?php echo $txt_payment_corop_cnpg;?>
+                        <?php echo $txt_payment_corop_cnpg; ?>
                     </td>
                     <td>
-                        <input type="text" name="payment_corop_cnpg" id="payment_corop_cnpg"/>
+                        <input type="text" name="payment_corop_cnpg" id="payment_corop_cnpg" value="<?php echo isset($payment_corop_cnpg) ? $payment_corop_cnpg : ""; ?>"  />
                     </td>
                     <td> 
-                        <?php echo $txt_payment_corop_responsible_name;?>
+                        <?php echo $txt_payment_corop_responsible_name; ?>
                     </td>
                     <td>
-                        <input type="text" id="payment_corop_responsible_name" name="payment_corop_responsible_name" />
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>
-                      <?php echo $txt_payment_corop_telefone;?>
-                    </td>
-                    <td>
-                        <input type="text" name="payment_corop_telefone" id="payment_corop_telefone"/>
-                    </td>
-                    <td>
-                       <?php echo $txt_payment_corop_responsible_cell;?>
-                    </td>
-                    <td>
-                        <input type="text" name="payment_corop_responsible_cell" id="payment_corop_responsible_cell" />
+                        <input type="text" id="payment_corop_responsible_name" 
+                               name="payment_corop_responsible_name" 
+                               value="<?php echo isset($payment_corop_responsible_name) ? $payment_corop_responsible_name : ""; ?>"/>
                     </td>
                 </tr>
                 <tr>
 
                     <td>
-                        <?php echo $txt_payment_corop_state_registration;?>
+                        <?php echo $txt_payment_corop_telefone; ?>
                     </td>
                     <td>
-                        <input type="text" name="payment_corop_state_registration" id="payment_corop_state_registration" />
+                        <input type="text" name="payment_corop_telefone" 
+                               id="payment_corop_telefone" 
+                               value = "<?php echo isset($payment_corop_telefone) ? $payment_corop_telefone : ""; ?>"
+                               />
                     </td>
                     <td>
-                      <?php echo $txt_payment_corop_isento;?>
+                        <?php echo $txt_payment_corop_responsible_cell; ?>
                     </td>
                     <td>
-                        <input type="checkbox" name="payment_corop_isento" id="payment_corop_isento" />
+                        <input type="text" name="payment_corop_responsible_cell" 
+                               id="payment_corop_responsible_cell" value = "<?php echo isset($payment_corop_responsible_cell) ? $payment_corop_responsible_cell : ""; ?>" />
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <?php echo $txt_payment_corop_state_registration; ?>
+                    </td>
+                    <td>
+                        <input type="text" name="payment_corop_state_registration" 
+                               id="payment_corop_state_registration" value="<?php echo isset($payment_corop_state_registration) ? $payment_corop_state_registration : ""; ?>" />
+                    </td>
+                    <td>
+                        <?php echo $txt_payment_corop_isento; ?>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="payment_corop_isento" id="payment_corop_isento"
+                               <?php echo!empty($payment_corop_isento) ? "checked='checked'" : ""; ?>/>
                     </td>
                 </tr>
 
@@ -176,7 +196,7 @@
             <table>
                 <tr>
 
-                    <th colspan="4"><?php echo $txt_payment_heading_profession;?></th>
+                    <th colspan="4"><?php echo $txt_payment_heading_profession; ?></th>
                 </tr>
                 <tr>
 
@@ -188,10 +208,20 @@
                         );
                         $i = 0;
                         foreach ($profession_types as $type) {
-                            if ($i == 0) {
-                                $checkd = 'checked="checked"';
+                            if (!empty($payment_profession_type)) {
+                                if($payment_profession_type == $type){
+                                    $checkd = 'checked="checked"';
+                                }
+                                else {
+                                    $checkd = '';
+                                }
+                                
                             } else {
-                                $checkd = '';
+                                if ($i == 0) {
+                                    $checkd = 'checked="checked"';
+                                } else {
+                                    $checkd = '';
+                                }
                             }
                             ?>
                             <input type="radio"  name="payment_profession_type" 
@@ -208,43 +238,52 @@
                 <tr class="od" style="display: none">
 
                     <td>
-                        <?php echo $txt_payment_profession_cro;?>
+                        <?php echo $txt_payment_profession_cro; ?>
                     </td>
                     <td colspan="3"> 
-                        <input type="text" id="payment_profession_cro" name="payment_profession_cro" />
+                        <input type="text" id="payment_profession_cro" name="payment_profession_cro" 
+                               value="<?php echo isset($payment_profession_cro) ? $payment_profession_cro : ""; ?>" />
                     </td>
 
                 </tr>
                 <tr class="pr" style="display: none">
 
                     <td>
-                        <?php echo $txt_payment_profession_tdp;?>
+                        <?php echo $txt_payment_profession_tdp; ?>
                     </td>
                     <td colspan="3"> 
-                        <input type="text" id="payment_profession_tdp" name="payment_profession_tdp" />
+                        <input type="text" id="payment_profession_tdp" 
+                               name="payment_profession_tdp"
+                               value="<?php echo isset($payment_profession_tdp) ? $payment_profession_tdp : ""; ?>" />
                     </td>
 
                 </tr>
                 <tr class="ac" style="display: none">
                     <td>
-                        <?php echo $txt_payment_profession_matricula;?>
+                        <?php echo $txt_payment_profession_matricula; ?>
                     </td>
                     <td colspan="3">
-                        <input type="text" id="payment_profession_matricula" name="payment_profession_matricula" />
+                        <input type="text" id="payment_profession_matricula" 
+                               name="payment_profession_matricula" 
+                               value="<?php echo isset($payment_profession_matricula) ? $payment_profession_matricula : ""; ?>" 
+                               />
                     </td>
 
                 </tr>
                 <tr class="ac" style="display: none">
                     <td>
-                        <?php echo $txt_payment_profession_ensino;?>
+                        <?php echo $txt_payment_profession_ensino; ?>
                     <td colspan="3">
-                        <input type="text" id="payment_profession_ensino" name="payment_profession_ensino" />
+                        <input type="text" id="payment_profession_ensino" 
+                               name="payment_profession_ensino"
+                               value="<?php echo isset($payment_profession_ensino) ? $payment_profession_ensino : ""; ?>"
+                               />
                     </td>
                 </tr>
                 <tr>
 
                     <td>
-                     <?php echo $txt_payment_profession_graduacao;?>
+                        <?php echo $txt_payment_profession_graduacao; ?>
                     </td>
                     <td>
                         <?php
@@ -259,9 +298,14 @@
                         ?>
                         <select id="payment_profession_graduacao" name="payment_profession_graduacao">
                             <?php
+                            $checked = '';
                             foreach ($prof_inst as $val) {
-
-                                echo "<option value='" . $val . "'>" . $val . "</option>";
+                                if (isset($payment_profession_graduacao) && $val == $payment_profession_graduacao) {
+                                    $checkd = 'selected="selected"';
+                                } else {
+                                    $checked = '';
+                                }
+                                echo "<option value='" . $val . "' $checkd>" . $val . "</option>";
 
                                 $i++;
                             }
@@ -271,16 +315,19 @@
 
                     </td>
                     <td>
-                       <?php echo $txt_payment_profession_instituica;?>
+                        <?php echo $txt_payment_profession_instituica; ?>
                     </td>
                     <td>
-                        <input type="text" id="payment_profession_instituica" name="payment_profession_instituica" />
+                        <input type="text" id="payment_profession_instituica" 
+                               name="payment_profession_instituica"
+                               value="<?php echo isset($payment_profession_instituica) ? $payment_profession_instituica : ""; ?>"
+                               />
                     </td>
                 </tr>
                 <tr class="area">
 
                     <td>
-                     <?php echo $txt_payment_profession_atuacao;?>
+                        <?php echo $txt_payment_profession_atuacao; ?>
                     </td>
                     <td colspan="3">
                         <?php
@@ -290,10 +337,17 @@
                             "Ortodondia", "Periodontia",
                             "Prótese", "Radiologia",
                         );
+                        $checkd = '';
+
                         foreach ($options_atuaca as $opt) {
+                            if (!empty($payment_profession_atuacao) && in_array($opt, $payment_profession_atuacao)) {
+                                $checkd = 'checked="checked"';
+                            } else {
+                                $checkd = '';
+                            }
                             ?>
                             <label><?php echo $opt; ?></label>    
-                            <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" />
+                            <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
                             <?php
                         }
                         ?>
@@ -303,7 +357,7 @@
                 </tr>
                 <tr class="">
                     <td>
-                     <?php echo $txt_payment_news_letter;?>
+                        <?php echo $txt_payment_news_letter; ?>
                     </td>
                     <td colspan="3">
                         <input type="checkbox" name="payment_news_letter" id="payment_news_letter" checked="checked" />
@@ -354,8 +408,8 @@
         //MANAGING MASKS
         $("#payment_cad_telefone").mask({mask: "(##)########?#"});
         $("#payment_corop_telefone").mask({mask: "(##)########?#"});
-        
-      
+
+
 
         $('#cpf_cnpj').focus(function() {
             $("#cpf_cnpj").mask('destroy');

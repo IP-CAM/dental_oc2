@@ -44,7 +44,7 @@
                         <?php endif; ?>
                         <tr>
                             <td class="image">
-                                <div class="remove"><a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/bt_medicalhealth/image/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a></div>
+                                
                                 <?php if ($product['thumb']) { ?>
                                     <a class="img_cart" href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
                                 <?php } ?></td>
@@ -64,7 +64,14 @@
                                 <?php if ($product['reward']) { ?>
                                     <small><?php echo $product['reward']; ?></small>
                                 <?php } ?></td>
-                            <td class="model"><?php echo $product['model']; ?></td>
+                            <td class="model"><?php echo $product['model']; ?>
+                            
+                             <div class="remove"><a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/bt_medicalhealth/image/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a></div>
+                             
+                            </td>
+                            
+                           
+                            
                             <td class="quantity"><input type="text" name="quantity[<?php echo $product['key']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" />
                                 &nbsp;
                                 <input type="image" src="catalog/view/theme/bt_medicalhealth/image/update.png" alt="<?php echo $button_update; ?>" title="<?php echo $button_update; ?>" />
@@ -88,7 +95,7 @@
         </div>
     </form>
     <?php if ($coupon_status || $voucher_status || $reward_status || $shipping_status) { ?>
-        <h2 class="title_cart"><?php echo $text_next; ?></h2>
+<!--      <h2 class="title_cart"><?php echo $text_next; ?></h2>
         <div class="content shopping-module">
             <p><?php echo $text_next_choice; ?></p>
             <table class="radio">
@@ -134,6 +141,10 @@
                 <?php } ?>
             </table>
         </div>
+        
+   -->
+        
+        
         <div class="cart-module">
             <?php //echo ($next == 'coupon' ? 'block' : 'none'); ?>
             <div id="coupon" class="content" style="display:block">

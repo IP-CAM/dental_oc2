@@ -21,46 +21,21 @@ $uri = "?".implode("",$query_string_arr);
 ?>
 <div id="column-left" class="four columns">
     <div class="main-column-left">
+     
+        <?php //include_once("catalog/view/theme/bt_medicalhealth/template/common/_manufactures.php"); ?>
         <div class="box category">
-            <div class="box-heading">Manufactures</div>
-            <div class="box-content">
-                <div class="box-category">
-                    <ul>
-                        <?php
-                        foreach($manufactures as $manuf){
-                        ?>
-                        <li>
-                            <input type="checkbox" class="manu_manuf" id="manuf_<?php echo $manuf['manufacturer_id']; ?>" value="<?php echo $manuf['manufacturer_id']; ?>" />
-                            <a href="?route=product/category/&manuf=<?php echo $manuf['manufacturer_id']; ?>"><?php echo $manuf['name']; ?></a>
-                        </li>
-
-                        <?php
-                        }
-
-                        ?>
-                        <li>
-                            <input onclick='reload_page()' 
-                            type="checkbox" class="" value="All" />
-                            All
-                        </li
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="box category">
-            <div class="box-heading">Video Or No Video</div>
+            <div class="box-heading">Filtro por vídeo</div>
             <div class="box-content">
                 <div class="box-category">
                     <ul>
                         <li>
                             <input name="video" type="radio" class="video" value="video" />
-                            Video
+                            Com Vídeo
                         </li>
                         <li>
                             <input name="video" type="radio" class="video"  
                             value="no_video" />
-                            No Video
+                            Sem Vídeo
                         </li>
                     </ul>
                 </div>

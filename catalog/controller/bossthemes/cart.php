@@ -68,8 +68,9 @@ class ControllerBossthemesCart extends Controller {
  
                 $this->load->model('tool/image');
                 $image = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
-
+             
                 $json['title'] = utf8_decode($this->language->get('text_title'));
+                
                 $json['thumb'] = sprintf($this->language->get('text_thumb'), $image);
                 $json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('checkout/cart'));
 

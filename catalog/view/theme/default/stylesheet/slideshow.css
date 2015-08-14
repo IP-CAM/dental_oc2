@@ -11,6 +11,8 @@
 /* The Nivo Slider styles */
 .nivoSlider {
 	position: relative;
+	margin-right: auto;
+	margin-left: auto;
 }
 .nivoSlider img {
 	position: absolute;
@@ -22,11 +24,11 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	width: 100%;
+	width: 960px;
 	height: 100%;
 	border: 0;
 	padding: 0;
-	margin: 0;
+	margin: 0 auto;
 	z-index: 6;
 	display: none;
 }
@@ -115,14 +117,16 @@
 	display: block;
 	width: 22px;
 	height: 22px;
-	background: url('../image/bullets.png') no-repeat;
+	background: url(../image/control-nav.png) no-repeat;
 	text-indent:-9999px;
 	border:0;
 	margin-right:3px;
 	float:left;
 }
+
 .slideshow .nivo-controlNav a.active {
 	background-position:0 -22px;
+	background: url(../image/control-nav-active.png) no-repeat;
 }
 .slideshow .nivo-directionNav a {
 	display:block;

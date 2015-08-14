@@ -35,7 +35,7 @@
         <?php foreach ($scripts as $script) { ?>
             <script type="text/javascript" src="<?php echo $script; ?>"></script>
         <?php } ?>
-        
+        <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui.mask.js"></script>
         <script type="text/javascript" src="catalog/view/loader/jquery.loading-indicator.min.js"></script>
         <script>
             var loader_box;

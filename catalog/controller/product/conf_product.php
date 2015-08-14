@@ -39,6 +39,7 @@ class ControllerProductConfProduct extends Controller {
         }
         $data['option_name'] = $option_name;
         $data['data'] = $options_arcade;
+       
         echo json_encode($data);
     }
 

@@ -270,35 +270,39 @@
                     <?php if ($minimum > 1) { ?>
                     <?php } ?>
                 </div>
-                <div class="stock_email">
-                    <?php
-                    if ($stock == $stock_statuses['out_of_stock']):
-                        ?>
-                        <div style="margin-top:10px;">
-                            <h3>Produto fora de estoque</h3>
+                <?php
+                $email_display = 'display:none;';
+                if ($product_quantity <= 0 && $stock == $stock_statuses['out_of_stock']) {
+                    $email_display = '';
+                }
+              
+                ?>
+                <div class="stock_email" style="<?php echo $email_display; ?>">
 
 
-                            <p>Não temos este produto em estoque agora. Mas deixe seu email abaixo e você será notificado(a) quando este produto estiver disponível.
-                            </p>
-                            <div style="clear:both"></div>
-                            <span>E-mail</span>   
+                    <div style="margin-top:10px;">
+                        <h3>Produto fora de estoque</h3>
 
-                            <input type="email" id="email_for_stock" name="email_for_stock" size="15" >   
-                            <div style="clear:both"></div>
-                            <div class="buttons">
-                                <div class="left">
-                                    <span class="orange_button">
-                                        <input type="button" value="Assinar" id="button-stock_email" class="button">
-                                    </span>
 
-                                </div>
+                        <p>Não temos este produto em estoque agora. Mas deixe seu email abaixo e você será notificado(a) quando este produto estiver disponível.
+                        </p>
+                        <div style="clear:both"></div>
+                        <span>E-mail</span>   
+
+                        <input type="email" id="email_for_stock" name="email_for_stock" size="15" >   
+                        <div style="clear:both"></div>
+                        <div class="buttons">
+                            <div class="left">
+                                <span class="orange_button">
+                                    <input type="button" value="Assinar" id="button-stock_email" class="button">
+                                </span>
 
                             </div>
 
                         </div>
-                        <?php
-                    endif;
-                    ?>
+
+                    </div>
+
                 </div>
                 <?php
                 //calculate shipping
@@ -307,8 +311,8 @@
                 <?php if ($review_status) { ?>
                     <div class="review">
                         <div><img src="catalog/view/theme/bt_medicalhealth/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
-                                    goToByScroll('tab-review');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
-                                            goToByScroll('review-title');"><?php echo $text_write; ?></a></div>
+                                goToByScroll('tab-review');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
+                                        goToByScroll('review-title');"><?php echo $text_write; ?></a></div>
                         <div class="share"><!-- AddThis Button BEGIN -->
                             <div class="addthis_default_style"><a class="addthis_button_compact"><?php echo $text_share; ?></a> <a class="addthis_button_email"></a><a class="addthis_button_print"></a> <a class="addthis_button_facebook"></a> <a class="addthis_button_twitter"></a></div>
                             <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js"></script> 
@@ -452,7 +456,7 @@
                                             <?php } ?>
                                         </div>
                                     <?php } ?>
-                                    <div class="cart"><a onclick="boss_addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a></div>
+                                    <div class="cart"><a onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button"><?php echo $button_cart; ?></a></div>
                                 </div></li>
                         <?php } ?>
                     </ul>
@@ -605,11 +609,11 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
 </script>
 <script type="text/javascript"><!--
     $(document).ready(function () {
-//        $('.colorbox').colorbox({
-//            overlayClose: true,
-//            opacity: 0.5,
-//            rel: "colorbox"
-//        });
+        $('.colorbox').colorbox({
+            overlayClose: true,
+            opacity: 0.5,
+            rel: "colorbox"
+        });
     });
     $('div.boss-image-add .colorbox').click(function () {
         $('.zoomContainer').remove();
@@ -627,6 +631,9 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
         });
         return false;
     })
+    $(document).ready(function () {
+        $('div.boss-image-add .colorbox').first().trigger("click");
+    });
 //--></script> 
 
 <?php if ($options) { ?>
@@ -769,6 +776,10 @@ $(document).ready(function () {
                 disable_touch: true
             });
         }
+    }
+
+    function boss_redirect(path) {
+        window.location = path;
     }
 
 //--></script> 
