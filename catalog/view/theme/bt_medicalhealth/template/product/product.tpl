@@ -260,7 +260,19 @@
                         <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
                         &nbsp;
                         <div class="minimum" style="display: none"><?php echo $text_minimum; ?></div>
-                        <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
+
+                        <?php
+                        if (isset($product_on_phone) && $product_on_phone == 1) {
+                            ?>
+                            <input style='cursor:default' disabled type="button" value="Compras pelo televendas 51-3029 0264" id="button-cart" class="button" />
+                            <?php
+                        } else {
+                            ?>
+                            <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
+                            <?php
+                        }
+                        ?>
+
                     </div>
 
                     <div>
@@ -275,7 +287,6 @@
                 if ($product_quantity <= 0 && $stock == $stock_statuses['out_of_stock']) {
                     $email_display = '';
                 }
-              
                 ?>
                 <div class="stock_email" style="<?php echo $email_display; ?>">
 
@@ -305,7 +316,7 @@
 
                 </div>
                 <?php
-                //calculate shipping
+//calculate shipping
                 include_once(DIR_TEMPLATE . "bt_medicalhealth/template/product/_calculate_shipping.php");
                 ?>
                 <?php if ($review_status) { ?>
@@ -456,7 +467,18 @@
                                             <?php } ?>
                                         </div>
                                     <?php } ?>
-                                    <div class="cart"><a onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button"><?php echo $button_cart; ?></a></div>
+                                    <?php
+                                    $button_cart_text = $button_cart;
+                                    $btn_class ='font-adjust';
+                                    if (isset($product['product_on_phone']) && $product['product_on_phone'] == 1) {
+                                        $button_cart_text = 'Compras pelo televendas';
+                                        $btn_class ='font-adjust';
+                                    } else {
+                                        $button_cart_text = $button_cart;
+                                        $btn_class ='';
+                                    }
+                                    ?>
+                                    <div class="cart"><a onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button <?php echo $btn_class; ?>"><?php echo  $button_cart_text; ?></a></div>
                                 </div></li>
                         <?php } ?>
                     </ul>
@@ -783,4 +805,9 @@ $(document).ready(function () {
     }
 
 //--></script> 
+<style>
+    .font-adjust {
+        font-size:10px !important;
+    }
+</style>
 <?php echo $footer; ?>

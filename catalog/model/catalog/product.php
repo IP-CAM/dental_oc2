@@ -58,7 +58,8 @@ class ModelCatalogProduct extends Model {
                 'date_added' => $query->row['date_added'],
                 'date_modified' => $query->row['date_modified'],
                 'viewed' => $query->row['viewed'],
-                'youtube' => $query->row['youtube']
+                'youtube' => $query->row['youtube'],
+                'product_on_phone' => $query->row['product_on_phone'],
             );
         } else {
             return false;

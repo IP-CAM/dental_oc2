@@ -362,6 +362,7 @@ class ControllerProductProduct extends Controller {
             }
 
             $this->data['youtube'] = $product_info['youtube'];
+            $this->data['product_on_phone'] = $product_info['product_on_phone'];
 
             $discounts = $this->model_catalog_product->getProductDiscounts($this->request->get['product_id']);
 
@@ -467,6 +468,7 @@ class ControllerProductProduct extends Controller {
                     'price' => $price,
                     'special' => $special,
                     'rating' => $rating,
+                    'product_on_phone' => $result['product_on_phone'],
                     'reviews' => sprintf($this->language->get('text_reviews'), (int) $result['reviews']),
                     'href' => $this->url->link('product/product', 'product_id=' . $result['product_id'])
                 );

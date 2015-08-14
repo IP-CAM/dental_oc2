@@ -95,7 +95,16 @@
                             </div>
         <?php } ?>
                         <div class="cart">
-                            <input type="button" value="<?php echo $button_cart; ?>" onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button" />
+                            <?php 
+                                $button_cart_text = $button_cart;
+                                if(isset($product['product_on_phone']) && $product['product_on_phone'] ==1){
+                                     $button_cart_text= 'Compras pelo televendas';
+                                }
+                                else {
+                                    $button_cart_text = $button_cart;
+                                }
+                            ?>
+                            <input type="button" value="<?php echo  $button_cart_text; ?>" onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button" />
                         </div>
                         <div class="compare"><a onclick="boss_addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>
                         <div class="wishlist"><a onclick="boss_addToWishList('<?php echo $product['product_id']; ?>');"><?php echo $button_wishlist; ?></a></div>
