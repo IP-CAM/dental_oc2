@@ -257,6 +257,8 @@
                     $this->add_custom_columns("quantitdy","product_config_options","int(11)");
                     $this->add_custom_columns("referenc_id","product","int(11)");
                
+                    $this->add_custom_columns("product_on_phone","product","int(11)");
+               
                 ]]>
             </add>
         </operation>
