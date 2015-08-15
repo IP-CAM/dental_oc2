@@ -72,6 +72,7 @@
   </select>
   <br />
 </div>
+
 <?php if ($shipping_required) { ?>
 <div style="clear: both; padding-top: 15px; border-bottom: 1px solid #DDDDDD; margin-bottom:20px">
   <?php if ($shipping_address) { ?>
@@ -85,6 +86,11 @@
   <br />
 </div>
 <?php } ?>
+<div>
+    <?php
+        include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");
+    ?>
+</div>
 <div class="buttons">
   <div class="left">
     <span class="orange_button"><input type="button" value="<?php echo $button_continue; ?>" id="button-guest" class="button" /></span>

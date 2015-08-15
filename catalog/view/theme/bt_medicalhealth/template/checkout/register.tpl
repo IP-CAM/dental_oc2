@@ -93,6 +93,11 @@
   <?php } ?>
   <br />
 </div>
+<div>
+    <?php
+        include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");
+    ?>
+</div>
 <?php if ($text_agree) { ?>
 <div class="buttons">
   <div class="left">

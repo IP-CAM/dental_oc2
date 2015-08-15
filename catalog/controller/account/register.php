@@ -64,6 +64,7 @@ class ControllerAccountRegister extends Controller {
         //end of mail chimp
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+
             $this->model_account_customer->addCustomer($this->request->post);
 
             $this->customer->login($this->request->post['email'], $this->request->post['password']);
@@ -431,7 +432,9 @@ class ControllerAccountRegister extends Controller {
 
         if ($customer_group) {
             // Company ID
+
             if ($customer_group['company_id_display'] && $customer_group['company_id_required'] && empty($this->request->post['company_id'])) {
+                print_r($customer_group);
                 $this->error['company_id'] = $this->language->get('error_company_id');
             }
 
