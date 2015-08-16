@@ -21,7 +21,7 @@ class ModelCatalogProductOptions extends Model {
         if ($this->config->get('config_language') != "en") {
             $column = "value_" . $this->config->get('config_language');
         }
-        $sql = "Select DISTINCT($option_type) as option_id,$column as value,t.product_id,prod.price,prod.model,prod.status as product_status,prod_desc.name,prod.quantity,ss.name as stock_status,prod.tax_class_id,prod_sp.price as special FROM " . DB_PREFIX . "product_config_options t INNER JOIN " .
+        $sql = "Select DISTINCT($option_type) as option_id,$column as value,t.product_id,prod.price,prod.model,prod.product_on_phone,prod.status as product_status,prod_desc.name,prod.quantity,ss.name as stock_status,prod.tax_class_id,prod_sp.price as special FROM " . DB_PREFIX . "product_config_options t INNER JOIN " .
                 " " . DB_PREFIX . "conf_product_" . $options_types[$option_type] . " op ON op.id = t." . $option_type .
                 " INNER JOIN " . DB_PREFIX . "product  as prod ON prod.product_id = t.product_id " .
                 " LEFT JOIN " . DB_PREFIX . "product_description  as prod_desc ON prod.product_id = prod_desc.product_id " .

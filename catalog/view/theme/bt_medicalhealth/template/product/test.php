@@ -260,18 +260,19 @@
                         <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
                         &nbsp;
                         <div class="minimum" style="display: none"><?php echo $text_minimum; ?></div>
-
+                       
                         <?php
+                        $btn_ph_style = 'display:none;';
+                        $btn_cart_style = '';
                         if (isset($product_on_phone) && $product_on_phone == 1) {
-                            ?>
-                            <input style='cursor:default' disabled type="button" value="Compras pelo televendas 51-3029 0264" id="button-cart" class="button" />
-                            <?php
-                        } else {
-                            ?>
-                            <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
-                            <?php
+                            $btn_ph_style = '';
+                            $btn_cart_style = 'display:none;';
                         }
                         ?>
+                        <input style="<?php echo $btn_ph_style; ?>" disabled type="button" value="Compras pelo televendas 51-3029 0264" id="button-cart-phone" class="button cart_over_phone" />
+                        <input  style="<?php echo $btn_cart_style; ?>" type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
+                         
+                        
 
                     </div>
 

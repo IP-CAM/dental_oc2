@@ -71,6 +71,7 @@ if ($arcade_count > 0) {
                        quantity="<?php echo $option_v['quantity']; ?>"
                        p_name="<?php echo $option_v['name']; ?>"
                        model="<?php echo $option_v['model']; ?>"
+                       product_on_phone="<?php echo $option_v['product_on_phone']; ?>"
                        id="option-value-<?php echo $option_v['option_id']; ?>" />
                 <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -148,6 +149,7 @@ if ($tamanho_count > 0) {
                                quantity="<?php echo $option_v['quantity']; ?>"
                                p_name="<?php echo $option_v['name']; ?>"
                                model="<?php echo $option_v['model']; ?>"
+                               product_on_phone="<?php echo $option_v['product_on_phone']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -226,6 +228,7 @@ if ($quantitdy_count > 0) {
                                quantity="<?php echo $option_v['quantity']; ?>"
                                p_name="<?php echo $option_v['name']; ?>"
                                model="<?php echo $option_v['model']; ?>"
+                               product_on_phone="<?php echo $option_v['product_on_phone']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -305,6 +308,7 @@ if ($cor_count > 0) {
                                quantity="<?php echo $option_v['quantity']; ?>"
                                p_name="<?php echo $option_v['name']; ?>"
                                model="<?php echo $option_v['model']; ?>"
+                               product_on_phone="<?php echo $option_v['product_on_phone']; ?>"
                                id="option-value-<?php echo $option_v['option_id']; ?>" />
                         <label for="option-value-<?php echo $option_v['option_id']; ?>"><?php echo $option_v['value']; ?>
 
@@ -408,6 +412,16 @@ if ($cor_count > 0) {
                         $(".stock_email").hide();
                     }
                     $("#availability_status").html($(ob).parent().attr("title"));
+
+                    if ($(ob).attr("product_on_phone") == '1') {
+                        $("#button-cart-phone").show();
+                        $("#button-cart").hide();
+                    }
+                    else {
+                        //
+                        $("#button-cart-phone").hide();
+                        $("#button-cart").show();
+                    }
                 }
                 loader_box.hide();
             });
@@ -454,6 +468,15 @@ if ($cor_count > 0) {
                         $(".stock_email").hide();
                     }
                     $("#availability_status").html($(ob).parent().attr("title"));
+                    if ($(ob).attr("product_on_phone") == '1') {
+                        $("#button-cart-phone").show();
+                        $("#button-cart").hide();
+                    }
+                    else {
+                        //
+                        $("#button-cart-phone").hide();
+                        $("#button-cart").show();
+                    }
                 }
 
                 loader_box.hide();
@@ -484,6 +507,16 @@ if ($cor_count > 0) {
                     $("span.product_tax").html($(ob).attr("tax"));
                     $("#title_heading").html($(ob).attr("p_name"));
                     $("#text_model").html($(ob).attr("model"));
+
+                    if ($(ob).attr("product_on_phone") == '1') {
+                        $("#button-cart-phone").show();
+                        $("#button-cart").hide();
+                    }
+                    else {
+                        //
+                        $("#button-cart-phone").hide();
+                        $("#button-cart").show();
+                    }
                 }
 
                 loader_box.hide();
@@ -508,6 +541,16 @@ if ($cor_count > 0) {
                 $(".stock_email").hide();
             }
             $("#availability_status").html($(this).parent().attr("title"));
+           
+            if ($(this).attr("product_on_phone") == '1') {
+                $("#button-cart-phone").show();
+                $("#button-cart").hide();
+            }
+            else {
+                //
+                $("#button-cart-phone").hide();
+                $("#button-cart").show();
+            }
 
         })
 
@@ -527,7 +570,7 @@ if ($cor_count > 0) {
                     stock_css = 'red_staric';
                 }
                 else {
-                    
+
                 }
 
             }
@@ -540,7 +583,7 @@ if ($cor_count > 0) {
         htm += "</select>";
         $.each(toms['data'], function (k, v) {
             index = 0;
-            
+
             title_alt = '';
             if (v['quantity'] <= 0) {
                 if (v['stock_status'] == 'Out Of Stock') {
@@ -565,6 +608,7 @@ if ($cor_count > 0) {
                     'quantity="' + v['quantity'] + '" ' +
                     'p_name="' + v['name'] + '" ' +
                     'model="' + v['model'] + '" ' +
+                    'product_on_phone="' + v['product_on_phone'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +
@@ -591,7 +635,7 @@ if ($cor_count > 0) {
                     stock_css = 'red_staric';
                 }
                 else {
-                    
+
                 }
 
             }
@@ -602,7 +646,7 @@ if ($cor_count > 0) {
         });
         htm += "</select>";
 
-       
+
 
         $.each(quantaties['data'], function (k, v) {
             title_alt = '';
@@ -627,6 +671,7 @@ if ($cor_count > 0) {
                     'special="' + v['special'] + '" ' + 'quantity="' + v['quantity'] + '" ' +
                     'p_name="' + v['name'] + '" ' +
                     'model="' + v['model'] + '" ' +
+                    'product_on_phone="' + v['product_on_phone'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +
@@ -644,7 +689,7 @@ if ($cor_count > 0) {
         htm += "<select id='option-cor-select'>";
         htm += '<option value=""></option>';
         $.each(cors['data'], function (k, v) {
-            
+
             stock_status_class = '';
             stock_css = '';
             if (v['quantity'] <= 0) {
@@ -653,7 +698,7 @@ if ($cor_count > 0) {
                     stock_css = 'red_staric';
                 }
                 else {
-                    
+
                 }
 
             }
@@ -687,6 +732,7 @@ if ($cor_count > 0) {
                     'quantity="' + v['quantity'] + '" ' +
                     'p_name="' + v['name'] + '" ' +
                     'model="' + v['model'] + '" ' +
+                    'product_on_phone="' + v['product_on_phone'] + '" ' +
                     'id="option-value-' + v['option_id'] + '" ' + disabled + ' ' + v['value'] + ' />' +
                     '<label for="option-value-' + v['option_id'] + '">' + v['value'] +
                     '</label>' +
@@ -743,5 +789,12 @@ if ($cor_count > 0) {
     .product-info .stock_email .orange_button{
         margin-top: 15px;
         margin-left: 35px;
+    }
+    .cart_over_phone {
+        cursor:default !important;;
+    }
+    .cart_over_phone:hover {
+        background:url("../image/cart_03.png") no-repeat scroll 15px center #FA7337 !important;
+
     }
 </style>    
