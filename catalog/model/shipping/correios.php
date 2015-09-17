@@ -473,7 +473,13 @@ class ModelShippingCorreios extends Model {
             $prod_copy['length'] = $this->getDimensaoEmCm($prod_copy['length_class_id'], $prod_copy['length']);
 
             // O peso do produto não é unitário como a dimensão. É multiplicado pela quantidade. Se quisermos o peso unitário, teremos que dividir pela quantidade.
-            $prod_copy['weight'] = $this->getPesoEmKg($prod_copy['weight_class_id'], $prod_copy['weight']) / $prod['quantity'];
+            if($prod['quantity']>0){
+                $prod_copy['weight'] = $this->getPesoEmKg($prod_copy['weight_class_id'], $prod_copy['weight']) / $prod['quantity'];
+            }
+            else {
+                $prod_copy['weight'] = 0;
+            }
+            
 
             $prod_copy['length_class_id'] = $this->config->get('config_length_class_id');
             $prod_copy['weight_class_id'] = $this->config->get('config_weight_class_id');

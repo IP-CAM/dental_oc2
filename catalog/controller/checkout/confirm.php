@@ -399,7 +399,7 @@ class ControllerCheckoutConfirm extends Controller {
                 if (count($option['conf_options']) > 0) {
                     //this variable will be used to insert in database as order 
                     // conf options
-                    $conf_options = [];
+                    $conf_options = array();
                     $conf_id = 0;
                     foreach ($product['conf_options'] as $key => $conf) {
                         $table = $key;

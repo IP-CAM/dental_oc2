@@ -236,7 +236,7 @@ class ControllerCheckoutCart extends Controller {
 
                     $opt_count++;
                 }
-                if (count($option['conf_options']) > 0) {
+                if (!empty($option) && count($option['conf_options']) > 0) {
 
                     foreach ($option['conf_options'] as $key => $conf) {
                         if ($key != 'conf_id') {
@@ -445,8 +445,8 @@ class ControllerCheckoutCart extends Controller {
 
             $this->data['checkout_buttons'] = array();
 
-            if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/cart.tpl')) {
-                $this->template = $this->config->get('config_template') . '/template/checkout/cart.tpl';
+            if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/cart.php')) {
+                $this->template = $this->config->get('config_template') . '/template/checkout/cart.php';
             } else {
                 $this->template = 'default/template/checkout/cart.tpl';
             }

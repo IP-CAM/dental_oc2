@@ -44,7 +44,7 @@
                         <?php endif; ?>
                         <tr>
                             <td class="image">
-                                
+
                                 <?php if ($product['thumb']) { ?>
                                     <a class="img_cart" href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
                                 <?php } ?></td>
@@ -65,13 +65,13 @@
                                     <small><?php echo $product['reward']; ?></small>
                                 <?php } ?></td>
                             <td class="model"><?php echo $product['model']; ?>
-                            
-                             <div class="remove"><a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/bt_medicalhealth/image/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a></div>
-                             
+
+                                <div class="remove"><a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/bt_medicalhealth/image/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a></div>
+
                             </td>
-                            
-                           
-                            
+
+
+
                             <td class="quantity"><input type="text" name="quantity[<?php echo $product['key']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" />
                                 &nbsp;
                                 <input type="image" src="catalog/view/theme/bt_medicalhealth/image/update.png" alt="<?php echo $button_update; ?>" title="<?php echo $button_update; ?>" />
@@ -95,83 +95,84 @@
         </div>
     </form>
     <?php if ($coupon_status || $voucher_status || $reward_status || $shipping_status) { ?>
-<!--      <h2 class="title_cart"><?php echo $text_next; ?></h2>
-        <div class="content shopping-module">
-            <p><?php echo $text_next_choice; ?></p>
-            <table class="radio">
-                <?php if ($coupon_status) { ?>
-                    <tr class="highlight">
-                        <td><?php if ($next == 'coupon') { ?>
-                                <input type="radio" name="next" value="coupon" id="use_coupon" checked="checked" />
-                            <?php } else { ?>
-                                <input type="radio" name="next" value="coupon" id="use_coupon" />
-                            <?php } ?></td>
-                        <td><label for="use_coupon"><?php echo $text_use_coupon; ?></label></td>
-                    </tr>
-                <?php } ?>
-                <?php if ($voucher_status) { ?>
-                    <tr class="highlight" style="display:none;">
-                        <td><?php if ($next == 'voucher') { ?>
-                                <input type="radio" name="next" value="voucher" id="use_voucher" checked="checked" />
-                            <?php } else { ?>
-                                <input type="radio" name="next" value="voucher" id="use_voucher" />
-                            <?php } ?></td>
-                        <td><label for="use_voucher"><?php echo $text_use_voucher; ?></label></td>
-                    </tr>
-                <?php } ?>
-                <?php if ($reward_status) { ?>
-                    <tr class="highlight">
-                        <td><?php if ($next == 'reward') { ?>
-                                <input type="radio" name="next" value="reward" id="use_reward" checked="checked" />
-                            <?php } else { ?>
-                                <input type="radio" name="next" value="reward" id="use_reward" />
-                            <?php } ?></td>
-                        <td><label for="use_reward"><?php echo $text_use_reward; ?></label></td>
-                    </tr>
-                <?php } ?>
-                <?php if ($shipping_status) { ?>
-                    <tr class="highlight">
-                        <td><?php if ($next == 'shipping') { ?>
-                                <input type="radio" name="next" value="shipping" id="shipping_estimate" checked="checked" />
-                            <?php } else { ?>
-                                <input type="radio" name="next" value="shipping" id="shipping_estimate" />
-                            <?php } ?></td>
-                        <td><label for="shipping_estimate"><?php echo $text_shipping_estimate; ?></label></td>
-                    </tr>
-                <?php } ?>
-            </table>
-        </div>
-        
-   -->
-        
-        
+                <!--      <h2 class="title_cart"><?php echo $text_next; ?></h2>
+                        <div class="content shopping-module">
+                            <p><?php echo $text_next_choice; ?></p>
+                            <table class="radio">
+        <?php if ($coupon_status) { ?>
+                                                    <tr class="highlight">
+                                                        <td><?php if ($next == 'coupon') { ?>
+                                                                                <input type="radio" name="next" value="coupon" id="use_coupon" checked="checked" />
+            <?php } else { ?>
+                                                                                <input type="radio" name="next" value="coupon" id="use_coupon" />
+            <?php } ?></td>
+                                                        <td><label for="use_coupon"><?php echo $text_use_coupon; ?></label></td>
+                                                    </tr>
+        <?php } ?>
+        <?php if ($voucher_status) { ?>
+                                                    <tr class="highlight" style="display:none;">
+                                                        <td><?php if ($next == 'voucher') { ?>
+                                                                                <input type="radio" name="next" value="voucher" id="use_voucher" checked="checked" />
+            <?php } else { ?>
+                                                                                <input type="radio" name="next" value="voucher" id="use_voucher" />
+            <?php } ?></td>
+                                                        <td><label for="use_voucher"><?php echo $text_use_voucher; ?></label></td>
+                                                    </tr>
+        <?php } ?>
+        <?php if ($reward_status) { ?>
+                                                    <tr class="highlight">
+                                                        <td><?php if ($next == 'reward') { ?>
+                                                                                <input type="radio" name="next" value="reward" id="use_reward" checked="checked" />
+            <?php } else { ?>
+                                                                                <input type="radio" name="next" value="reward" id="use_reward" />
+            <?php } ?></td>
+                                                        <td><label for="use_reward"><?php echo $text_use_reward; ?></label></td>
+                                                    </tr>
+        <?php } ?>
+        <?php if ($shipping_status) { ?>
+                                                    <tr class="highlight">
+                                                        <td><?php if ($next == 'shipping') { ?>
+                                                                                <input type="radio" name="next" value="shipping" id="shipping_estimate" checked="checked" />
+            <?php } else { ?>
+                                                                                <input type="radio" name="next" value="shipping" id="shipping_estimate" />
+            <?php } ?></td>
+                                                        <td><label for="shipping_estimate"><?php echo $text_shipping_estimate; ?></label></td>
+                                                    </tr>
+        <?php } ?>
+                            </table>
+                        </div>
+                        
+        -->
+
+
         <div class="cart-module">
             <?php //echo ($next == 'coupon' ? 'block' : 'none'); ?>
-            <div id="coupon" class="content" style="display:block">
+            <div id="coupon" class="content coupon" style="display:block">
                 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
-                    <?php echo $entry_coupon; ?><br/>
-                    <input type="text" name="coupon" value="<?php echo $coupon; ?>" />
+                    <div class="label"><?php echo $entry_coupon; ?></div>
+                    <div class="field"><input type="text" name="coupon" value="<?php echo $coupon; ?>" /></div>
                     <input type="hidden" name="next" value="coupon" />
-                    <br/>
-                    <span class="orange_button"><input type="submit" value="<?php echo $button_coupon; ?>" class="button" /></span>
+
+                    <div class="button"><span class="orange_button"><input type="submit" value="<?php echo $button_coupon; ?>" class="button" /></span></div>
                 </form>
             </div>
             <div id="voucher" class="content" style="display: <?php echo ($next == 'voucher' ? 'block' : 'none'); ?>;">
                 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
-                    <?php echo $entry_voucher; ?></br>
-                    <input type="text" name="voucher" value="<?php echo $voucher; ?>" />
+                    <div class="label"><?php echo $entry_voucher; ?></div>
+
+                    <div><input type="text" name="voucher" value="<?php echo $voucher; ?>" /></div>
                     <input type="hidden" name="next" value="voucher" />
-                    <br/>
-                    <span class="orange_button"><input type="submit" value="<?php echo $button_voucher; ?>" class="button" /></span>
+
+                    <div class="button"><span class="orange_button"><input type="submit" value="<?php echo $button_voucher; ?>" class="button" /></span></div>
                 </form>
             </div>
             <div id="reward" class="content" style="display: <?php echo ($next == 'reward' ? 'block' : 'none'); ?>;">
                 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
-                    <?php echo $entry_reward; ?><br/>
+                    <div class="label"><?php echo $entry_reward; ?></div>
                     <input type="text" name="reward" value="<?php echo $reward; ?>" />
-                    <input type="hidden" name="next" value="reward" />
-                    <br/>
-                    <span class="orange_button"><input type="submit" value="<?php echo $button_reward; ?>" class="button" /></span>
+                    <div><input type="hidden" name="next" value="reward" /></div>
+                  
+                    <div class="button"><span class="orange_button"><input type="submit" value="<?php echo $button_reward; ?>" class="button" /></span></div>
                 </form>
             </div>
             <?php //echo ($next == 'shipping' ? 'block' : 'none'); ?>
@@ -180,26 +181,31 @@
                 <table>
                     <tr>
                         <td><?php echo $entry_country; ?><span class="required">*</span> </td></tr>
+                    <!--                    <tr>
+                                            <td><select name="country_id">
+                                                    <option value=""><?php //echo $text_select;    ?></option>
+                    <?php foreach ($countries as $country) { ?>
+                        <?php if ($country['country_id'] == $country_id) { ?>
+                                                                                    <option value="<?php //echo $country['country_id'];    ?>" selected="selected"><?php //echo $country['name'];    ?></option>
+                        <?php } else { ?>
+                                                                                    <option value="<?php //echo $country['country_id'];    ?>"><?php //echo $country['name'];    ?></option>
+                        <?php } ?>
+                    <?php } ?>
+                                                </select>
+                                                <input type='hidden' name='country_id' value="<?php //echo $country_id;    ?>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><?php //echo $entry_zone;    ?><span class="required">*</span> </td></tr>
+                                        <tr>
+                                            <td><select name="zone_id">
+                                                </select></td>
+                                        </tr>-->
                     <tr>
-                        <td><select name="country_id">
-                                <option value=""><?php echo $text_select; ?></option>
-                                <?php foreach ($countries as $country) { ?>
-                                    <?php if ($country['country_id'] == $country_id) { ?>
-                                        <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
-                                    <?php } else { ?>
-                                        <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
-                                    <?php } ?>
-                                <?php } ?>
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $entry_zone; ?><span class="required">*</span> </td></tr>
-                    <tr>
-                        <td><select name="zone_id">
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $entry_postcode; ?><span id="postcode-required" class="required">*</span> </td></tr>
+                        <td>
+                            <input type='hidden' name='country_id' value="<?php echo $country_id; ?>" />
+                            <input type='hidden' name='zone_id' value="<?php echo $zone_id; ?>" />
+                            <?php echo $entry_postcode; ?><span id="postcode-required" class="required">*</span> </td></tr>
                     <tr>
                         <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" /></td>
                     </tr>
@@ -230,8 +236,16 @@
 //        $('#' + this.value).show();
 //    });
 //--></script>
+<?php
+$shipping_method_chck = 0;
+if (!empty($shipping_method)) {
+    $shipping_method_chck = 1;
+}
+?>
 <?php if ($shipping_status) { ?>
+
     <script type="text/javascript"><!--
+        var shipping_method_chk = "< ?php echo $shipping_method_chck; ? >";
         function get_Width_Height() {
             var array = new Array();
             if (getWidthBrowser() > 766) {
@@ -251,7 +265,7 @@
             $.ajax({
                 url: 'index.php?route=checkout/cart/quote',
                 type: 'post',
-                data: 'country_id=' + $('select[name=\'country_id\']').val() + '&zone_id=' + $('select[name=\'zone_id\']').val() + '&postcode=' + encodeURIComponent($('input[name=\'postcode\']').val()),
+                data: 'country_id=' + $('input[name=\'country_id\']').val() + '&zone_id=' + $('input[name=\'zone_id\']').val() + '&postcode=' + encodeURIComponent($('input[name=\'postcode\']').val()),
                 dataType: 'json',
                 beforeSend: function () {
                     $('#button-quote').attr('disabled', true);
@@ -274,11 +288,11 @@
                         }
 
                         if (json['error']['country']) {
-                            $('select[name=\'country_id\']').after('<span class="error">' + json['error']['country'] + '</span>');
+                            $('input[name=\'country_id\']').after('<span class="error">' + json['error']['country'] + '</span>');
                         }
 
                         if (json['error']['zone']) {
-                            $('select[name=\'zone_id\']').after('<span class="error">' + json['error']['zone'] + '</span>');
+                            $('input[name=\'zone_id\']').after('<span class="error">' + json['error']['zone'] + '</span>');
                         }
 
                         if (json['error']['postcode']) {
@@ -287,70 +301,70 @@
                     }
 
                     if (json['shipping_method']) {
-                    html = '<h2><?php echo $text_shipping_method; ?></h2>';
-                            html += '<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">';
-                            html += '  <table class="radio">';
-                            for (i in json['shipping_method']) {
-                    html += '<tr>';
+                        html = '<h2><?php echo $text_shipping_method; ?></h2>';
+                        html += '<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">';
+                        html += '  <table class="radio">';
+                        for (i in json['shipping_method']) {
+                            html += '<tr>';
                             html += '  <td colspan="3"><b>' + json['shipping_method'][i]['title'] + '</b></td>';
                             html += '</tr>';
                             if (!json['shipping_method'][i]['error']) {
-                    for (j in json['shipping_method'][i]['quote']) {
-                    html += '<tr class="highlight">';
-                            if (json['shipping_method'][i]['quote'][j]['code'] == '<?php echo $shipping_method; ?>') {
-                    html += '<td><input type="radio" name="shipping_method" value="' + json['shipping_method'][i]['quote'][j]['code'] + '" id="' + json['shipping_method'][i]['quote'][j]['code'] + '" checked="checked" /></td>';
-                    } else {
-                    html += '<td><input type="radio" name="shipping_method" value="' + json['shipping_method'][i]['quote'][j]['code'] + '" id="' + json['shipping_method'][i]['quote'][j]['code'] + '" /></td>';
-                    }
+                                for (j in json['shipping_method'][i]['quote']) {
+                                    html += '<tr class="highlight">';
+                                    if (json['shipping_method'][i]['quote'][j]['code'] == '<?php echo $shipping_method; ?>') {
+                                        html += '<td><input type="radio" name="shipping_method" value="' + json['shipping_method'][i]['quote'][j]['code'] + '" id="' + json['shipping_method'][i]['quote'][j]['code'] + '" checked="checked" /></td>';
+                                    } else {
+                                        html += '<td><input type="radio" name="shipping_method" value="' + json['shipping_method'][i]['quote'][j]['code'] + '" id="' + json['shipping_method'][i]['quote'][j]['code'] + '" /></td>';
+                                    }
 
-                    html += '  <td><label for="' + json['shipping_method'][i]['quote'][j]['code'] + '">' + json['shipping_method'][i]['quote'][j]['title'] + '</label></td>';
-                            html += '  <td style="text-align: left;"><label for="' + json['shipping_method'][i]['quote'][j]['code'] + '">' + json['shipping_method'][i]['quote'][j]['text'] + '</label></td>';
-                            html += '</tr>';
-                    }
-                    } else {
-                    html += '<tr>';
-                            html += '  <td colspan="3"><div class="error">' + json['shipping_method'][i]['error'] + '</div></td>';
-                            html += '</tr>';
-                    }
-                    }
+                                    html += '  <td><label for="' + json['shipping_method'][i]['quote'][j]['code'] + '">' + json['shipping_method'][i]['quote'][j]['title'] + '</label></td>';
+                                    html += '  <td style="text-align: left;"><label for="' + json['shipping_method'][i]['quote'][j]['code'] + '">' + json['shipping_method'][i]['quote'][j]['text'] + '</label></td>';
+                                    html += '</tr>';
+                                }
+                            } else {
+                                html += '<tr>';
+                                html += '  <td colspan="3"><div class="error">' + json['shipping_method'][i]['error'] + '</div></td>';
+                                html += '</tr>';
+                            }
+                        }
 
-                    html += '  </table>';
-                            html += '  <br />';
-                            html += '  <input type="hidden" name="next" value="shipping" />';
-                            < ?php if ($shipping_method) { ? >
+                        html += '  </table>';
+                        html += '  <br />';
+                        html += '  <input type="hidden" name="next" value="shipping" />';
+                        if (shipping_method_chk == '1') {
                             html += '  <span class="orange_button">';
-                    html += '  <input type="submit" value="<?php echo $button_shipping; ?>" id="button-shipping" class="button" />';
-                    html += '  </span>';
-                            < ?php } else { ? >
+                            html += '  <input type="submit" value="<?php echo $button_shipping; ?>" id="button-shipping" class="button" />';
+                            html += '  </span>';
+                        } else {
                             html += '  <span class="orange_button">';
-                    html += '  <input type="submit" value="<?php echo $button_shipping; ?>" id="button-shipping" class="button" disabled="disabled" />';
-                    html += '  </span>';
-                            < ?php } ? >
-                            html += '</form>';
-                    $.colorbox({
-                        overlayClose: true,
-                        opacity: 0.5,
-                        width: get_Width_Height()[0],
-                        height: get_Width_Height()[1],
-                        href: false,
-                        html: html
-                    });
+                            html += '  <input type="submit" value="<?php echo $button_shipping; ?>" id="button-shipping" class="button" disabled="disabled" />';
+                            html += '  </span>';
+                        }
+                        html += '</form>';
+                        $.colorbox({
+                            overlayClose: true,
+                            opacity: 0.5,
+                            width: get_Width_Height()[0],
+                            height: get_Width_Height()[1],
+                            href: false,
+                            html: html
+                        });
 
-                    $('input[name=\'shipping_method\']').bind('change', function () {
-                        $('#button-shipping').attr('disabled', false);
-                    });
-                }
+                        $('input[name=\'shipping_method\']').bind('change', function () {
+                            $('#button-shipping').attr('disabled', false);
+                        });
+                    }
                 }
             });
         });
-    //--></script> 
+        //--></script> 
     <script type="text/javascript"><!--
-        $('select[name=\'country_id\']').bind('change', function () {
+        $('input[name=\'country_id\']').bind('change', function () {
             $.ajax({
                 url: 'index.php?route=checkout/cart/country&country_id=' + this.value,
                 dataType: 'json',
                 beforeSend: function () {
-                    $('select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+                    $('input[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
                 },
                 complete: function () {
                     $('.wait').remove();
@@ -363,13 +377,14 @@
                     }
 
                     html = '<option value=""><?php echo $text_select; ?></option>';
-
+                    selected_zone = "0";
                     if (json['zone'] != '') {
                         for (i = 0; i < json['zone'].length; i++) {
                             html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
                             if (json['zone'][i]['zone_id'] == '<?php echo $zone_id; ?>') {
                                 html += ' selected="selected"';
+
                             }
 
                             html += '>' + json['zone'][i]['name'] + '</option>';
@@ -378,7 +393,8 @@
                         html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
                     }
 
-                    $('select[name=\'zone_id\']').html(html);
+                    //$('input[name=\'zone_id\']').html(html);
+                    //$('input[name=\'zone_id\']').val();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -386,7 +402,7 @@
             });
         });
 
-        $('select[name=\'country_id\']').trigger('change');
-    //--></script>
+        $('input[name=\'country_id\']').trigger('change');
+        //--></script>
 <?php } ?>
 <?php echo $footer; ?>
