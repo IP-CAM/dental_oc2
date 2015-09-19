@@ -25,6 +25,7 @@
         <link rel="stylesheet" type="text/css" href="catalog/view/theme/bt_medicalhealth/stylesheet/skeleton.css" />
         <link rel="stylesheet" type="text/css" href="catalog/view/theme/bt_medicalhealth/stylesheet/responsive.css" />
         <link rel="stylesheet" type="text/css" href="catalog/view/loader/jquery.loading-indicator.css" />
+        <link rel="stylesheet" type="text/css" href="catalog/view/confirm_box/sweetalert.css" />
         <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
         <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" />
@@ -32,6 +33,7 @@
         <script type="text/javascript" src="catalog/view/javascript/bossthemes/getwidthbrowser.js"></script>
         <script type="text/javascript" src="catalog/view/javascript/bossthemes/bossthemes.js"></script>
         <script type="text/javascript" src="catalog/view/javascript/bossthemes/notify.js"></script>
+        <script type="text/javascript" src="catalog/view/confirm_box/sweetalert.min.js"></script>
         <?php foreach ($scripts as $script) { ?>
             <script type="text/javascript" src="<?php echo $script; ?>"></script>
         <?php } ?>

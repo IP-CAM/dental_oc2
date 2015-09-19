@@ -3311,20 +3311,32 @@ div.tags {
 }
 
 /*Cart page setting*/
-#content .cart-module > div#coupon {
+#content .cart-module > div#coupon, 
+#content .cart-module > div#voucher, 
+#content .cart-module > div#reward, 
+#content .cart-module > div#shipping {
     background-color: #028590;
     
 } 
-#content .cart-module > div#coupon form>div{
+#content .cart-module > div#coupon div, 
+#content .cart-module > div#voucher div, 
+#content .cart-module > div#reward div, 
+#content .cart-module > div#shipping div{
     float:left;
 }
-#content .cart-module > div#coupon form>div.label {
-    width:15%;
+#content .cart-module > div#coupon div.label, 
+#content .cart-module > div#voucher div.label, 
+#content .cart-module > div#reward div.label, 
+#content .cart-module > div#shipping div.label{
+    width:20%;
     padding-left: 10px;
     color:white;
     font-weight: bold;
     padding-top:10px;
 }
-#content .cart-module > div#coupon form>div.button {
+#content .cart-module > div#coupon div.button, 
+#content .cart-module > div#voucher div.button, 
+#content .cart-module > div#reward div.button, 
+#content .cart-module > div#shipping div.button {
     margin-left: 10px;
 }

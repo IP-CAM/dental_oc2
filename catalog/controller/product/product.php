@@ -294,7 +294,9 @@ class ControllerProductProduct extends Controller {
 
             $this->data['product_config_options'] = $this->model_catalog_product->getProductConfigOptions($this->request->get['product_id']);
             $this->data['product_config_all'] = $this->model_catalog_product->getAllconfigurations();
-            $this->data['product_quantity'] = $product_info['quantity']; 
+            $this->data['product_quantity'] = $product_info['quantity'];
+
+            $this->data['shopping_cart'] = $this->url->link('checkout/cart');
 
             if ($product_info['quantity'] <= 0) {
                 if ($product_info['stock_status'] == 'Out Of Stock') {
@@ -302,11 +304,9 @@ class ControllerProductProduct extends Controller {
                 } else {
                     $this->data['stock'] = $product_info['stock_status'];
                 }
-            }
-            else if ($product_info['quantity'] > 0){
+            } else if ($product_info['quantity'] > 0) {
                 $this->data['stock'] = $this->language->get('text_instock');
-            }
-            elseif ($this->config->get('config_stock_display')) {
+            } elseif ($this->config->get('config_stock_display')) {
                 $this->data['stock'] = $product_info['quantity'];
             } else {
                 $this->data['stock'] = $this->language->get('text_instock');
@@ -574,6 +574,7 @@ class ControllerProductProduct extends Controller {
             $this->data['button_continue'] = $this->language->get('button_continue');
 
             $this->data['continue'] = $this->url->link('common/home');
+
 
             $this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
 

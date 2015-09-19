@@ -260,7 +260,7 @@
                         <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
                         &nbsp;
                         <div class="minimum" style="display: none"><?php echo $text_minimum; ?></div>
-                       
+
                         <?php
                         $btn_ph_style = 'display:none;';
                         $btn_cart_style = '';
@@ -271,8 +271,8 @@
                         ?>
                         <input style="<?php echo $btn_ph_style; ?>" disabled type="button" value="Compras pelo televendas 51-3029 0264" id="button-cart-phone" class="button cart_over_phone" />
                         <input  style="<?php echo $btn_cart_style; ?>" type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
-                         
-                        
+
+
 
                     </div>
 
@@ -323,8 +323,8 @@
                 <?php if ($review_status) { ?>
                     <div class="review">
                         <div><img src="catalog/view/theme/bt_medicalhealth/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
-                                goToByScroll('tab-review');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
-                                        goToByScroll('review-title');"><?php echo $text_write; ?></a></div>
+                                    goToByScroll('tab-review');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
+                                            goToByScroll('review-title');"><?php echo $text_write; ?></a></div>
                         <div class="share"><!-- AddThis Button BEGIN -->
                             <div class="addthis_default_style"><a class="addthis_button_compact"><?php echo $text_share; ?></a> <a class="addthis_button_email"></a><a class="addthis_button_print"></a> <a class="addthis_button_facebook"></a> <a class="addthis_button_twitter"></a></div>
                             <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js"></script> 
@@ -470,16 +470,16 @@
                                     <?php } ?>
                                     <?php
                                     $button_cart_text = $button_cart;
-                                    $btn_class ='font-adjust';
+                                    $btn_class = 'font-adjust';
                                     if (isset($product['product_on_phone']) && $product['product_on_phone'] == 1) {
                                         $button_cart_text = 'Compras pelo televendas';
-                                        $btn_class ='font-adjust';
+                                        $btn_class = 'font-adjust';
                                     } else {
                                         $button_cart_text = $button_cart;
-                                        $btn_class ='';
+                                        $btn_class = '';
                                     }
                                     ?>
-                                    <div class="cart"><a onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button <?php echo $btn_class; ?>"><?php echo  $button_cart_text; ?></a></div>
+                                    <div class="cart"><a onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button <?php echo $btn_class; ?>"><?php echo $button_cart_text; ?></a></div>
                                 </div></li>
                         <?php } ?>
                     </ul>
@@ -501,6 +501,9 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
 <script type="text/javascript" src="catalog/view/javascript/bossthemes/jquery.easing.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/bossthemes/jquery.elastislide.js"></script>
 
+<script>
+                                    var check_out_link = '<?php echo $shopping_cart; ?>';
+</script>
 
 <script type="text/javascript"><!--
 
@@ -561,6 +564,20 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
                     $('#cart_menu span.s_grand_total').html(json['total_sum']);
                     $('#cart_menu div.s_cart_holder').html(json['output']);
                     $('#cart-total').html(json['total']);
+
+                    swal({title: "<small>PRODUTO ADICIONADO COM SUCESSO AO CARRINHO!</small>",
+                        "confirmButtonText": "Ir Para Carrinho",
+                        "cancelButtonText": "Continuar Comprando",
+                        confirmButtonColor: "#FFA800",
+                        cancelButtonColor: "#333333",
+                        text: "", showCancelButton: true, html: true,
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+
+                            window.location = check_out_link;
+                        }
+
+                    });
                 }
             }
         });
@@ -620,13 +637,16 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
 //--></script>
 
 <script>
-    var img_zoom = $(".image.a_bossthemes_zoom img")
-    img_zoom.elevateZoom({
-        //zoomType: "inner",
-        cursor: "crosshair",
-        zoomWindowFadeIn: 500,
-        zoomWindowFadeOut: 750
-    });
+    var img_zoom = $(".image.a_bossthemes_zoom img");
+    if (typeof (img_zoom.elevateZoom) == "function") {
+        img_zoom.elevateZoom({
+            //zoomType: "inner",
+            cursor: "crosshair",
+            zoomWindowFadeIn: 500,
+            zoomWindowFadeOut: 750
+        });
+    }
+
 
 
 </script>

@@ -95,53 +95,53 @@
         </div>
     </form>
     <?php if ($coupon_status || $voucher_status || $reward_status || $shipping_status) { ?>
-                <!--      <h2 class="title_cart"><?php echo $text_next; ?></h2>
-                        <div class="content shopping-module">
-                            <p><?php echo $text_next_choice; ?></p>
-                            <table class="radio">
+                                <!--      <h2 class="title_cart"><?php echo $text_next; ?></h2>
+                                        <div class="content shopping-module">
+                                            <p><?php echo $text_next_choice; ?></p>
+                                            <table class="radio">
         <?php if ($coupon_status) { ?>
-                                                    <tr class="highlight">
-                                                        <td><?php if ($next == 'coupon') { ?>
-                                                                                <input type="radio" name="next" value="coupon" id="use_coupon" checked="checked" />
+                                                                                    <tr class="highlight">
+                                                                                        <td><?php if ($next == 'coupon') { ?>
+                                                                                                                                <input type="radio" name="next" value="coupon" id="use_coupon" checked="checked" />
             <?php } else { ?>
-                                                                                <input type="radio" name="next" value="coupon" id="use_coupon" />
+                                                                                                                                <input type="radio" name="next" value="coupon" id="use_coupon" />
             <?php } ?></td>
-                                                        <td><label for="use_coupon"><?php echo $text_use_coupon; ?></label></td>
-                                                    </tr>
+                                                                                        <td><label for="use_coupon"><?php echo $text_use_coupon; ?></label></td>
+                                                                                    </tr>
         <?php } ?>
         <?php if ($voucher_status) { ?>
-                                                    <tr class="highlight" style="display:none;">
-                                                        <td><?php if ($next == 'voucher') { ?>
-                                                                                <input type="radio" name="next" value="voucher" id="use_voucher" checked="checked" />
+                                                                                    <tr class="highlight" style="display:none;">
+                                                                                        <td><?php if ($next == 'voucher') { ?>
+                                                                                                                                <input type="radio" name="next" value="voucher" id="use_voucher" checked="checked" />
             <?php } else { ?>
-                                                                                <input type="radio" name="next" value="voucher" id="use_voucher" />
+                                                                                                                                <input type="radio" name="next" value="voucher" id="use_voucher" />
             <?php } ?></td>
-                                                        <td><label for="use_voucher"><?php echo $text_use_voucher; ?></label></td>
-                                                    </tr>
+                                                                                        <td><label for="use_voucher"><?php echo $text_use_voucher; ?></label></td>
+                                                                                    </tr>
         <?php } ?>
         <?php if ($reward_status) { ?>
-                                                    <tr class="highlight">
-                                                        <td><?php if ($next == 'reward') { ?>
-                                                                                <input type="radio" name="next" value="reward" id="use_reward" checked="checked" />
+                                                                                    <tr class="highlight">
+                                                                                        <td><?php if ($next == 'reward') { ?>
+                                                                                                                                <input type="radio" name="next" value="reward" id="use_reward" checked="checked" />
             <?php } else { ?>
-                                                                                <input type="radio" name="next" value="reward" id="use_reward" />
+                                                                                                                                <input type="radio" name="next" value="reward" id="use_reward" />
             <?php } ?></td>
-                                                        <td><label for="use_reward"><?php echo $text_use_reward; ?></label></td>
-                                                    </tr>
+                                                                                        <td><label for="use_reward"><?php echo $text_use_reward; ?></label></td>
+                                                                                    </tr>
         <?php } ?>
         <?php if ($shipping_status) { ?>
-                                                    <tr class="highlight">
-                                                        <td><?php if ($next == 'shipping') { ?>
-                                                                                <input type="radio" name="next" value="shipping" id="shipping_estimate" checked="checked" />
+                                                                                    <tr class="highlight">
+                                                                                        <td><?php if ($next == 'shipping') { ?>
+                                                                                                                                <input type="radio" name="next" value="shipping" id="shipping_estimate" checked="checked" />
             <?php } else { ?>
-                                                                                <input type="radio" name="next" value="shipping" id="shipping_estimate" />
+                                                                                                                                <input type="radio" name="next" value="shipping" id="shipping_estimate" />
             <?php } ?></td>
-                                                        <td><label for="shipping_estimate"><?php echo $text_shipping_estimate; ?></label></td>
-                                                    </tr>
+                                                                                        <td><label for="shipping_estimate"><?php echo $text_shipping_estimate; ?></label></td>
+                                                                                    </tr>
         <?php } ?>
-                            </table>
-                        </div>
-                        
+                                            </table>
+                                        </div>
+                                        
         -->
 
 
@@ -171,46 +171,24 @@
                     <div class="label"><?php echo $entry_reward; ?></div>
                     <input type="text" name="reward" value="<?php echo $reward; ?>" />
                     <div><input type="hidden" name="next" value="reward" /></div>
-                  
+
                     <div class="button"><span class="orange_button"><input type="submit" value="<?php echo $button_reward; ?>" class="button" /></span></div>
                 </form>
             </div>
             <?php //echo ($next == 'shipping' ? 'block' : 'none'); ?>
             <div id="shipping" class="content" style="display: block;">
-                <p><?php echo $text_shipping_detail; ?></p>
-                <table>
-                    <tr>
-                        <td><?php echo $entry_country; ?><span class="required">*</span> </td></tr>
-                    <!--                    <tr>
-                                            <td><select name="country_id">
-                                                    <option value=""><?php //echo $text_select;    ?></option>
-                    <?php foreach ($countries as $country) { ?>
-                        <?php if ($country['country_id'] == $country_id) { ?>
-                                                                                    <option value="<?php //echo $country['country_id'];    ?>" selected="selected"><?php //echo $country['name'];    ?></option>
-                        <?php } else { ?>
-                                                                                    <option value="<?php //echo $country['country_id'];    ?>"><?php //echo $country['name'];    ?></option>
-                        <?php } ?>
-                    <?php } ?>
-                                                </select>
-                                                <input type='hidden' name='country_id' value="<?php //echo $country_id;    ?>" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><?php //echo $entry_zone;    ?><span class="required">*</span> </td></tr>
-                                        <tr>
-                                            <td><select name="zone_id">
-                                                </select></td>
-                                        </tr>-->
-                    <tr>
-                        <td>
-                            <input type='hidden' name='country_id' value="<?php echo $country_id; ?>" />
-                            <input type='hidden' name='zone_id' value="<?php echo $zone_id; ?>" />
-                            <?php echo $entry_postcode; ?><span id="postcode-required" class="required">*</span> </td></tr>
-                    <tr>
-                        <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" /></td>
-                    </tr>
-                </table> 
-                <span class="orange_button"><input type="button" value="<?php echo $button_quote; ?>" id="button-quote" class="button" /></span>
+                <div class="label"><?php echo $text_shipping_detail; ?></div>
+
+                <div>
+                    <input type='hidden' name='country_id' value="<?php echo $country_id; ?>" />
+                    <input type='hidden' name='zone_id' value="<?php echo $zone_id; ?>" />
+                    <input type="text" name="postcode" value="<?php echo $postcode; ?>" />
+                </div>
+
+                <div class="button"><span class="orange_button"><input type="button" value="<?php echo $button_quote; ?>" id="button-quote" class="button" /></span></div>
+            </div>
+            <div style="display: block">
+                <div class="left"><a href="<?php echo $continue; ?>" class="orange_button"><span><?php echo $button_shopping; ?></span></a></div>
             </div>
         </div>
     <?php } ?>
@@ -226,7 +204,7 @@
     </div>
     <div class="buttons shopping_cart">
         <div class="right"><a href="<?php echo $checkout; ?>" class="orange_button"><span><?php echo $button_checkout; ?></span></a></div>
-        <div class="right"><a href="<?php echo $continue; ?>" class="orange_button"><span><?php echo $button_shopping; ?></span></a></div>
+
     </div>
     <?php echo $content_bottom; ?></div>
 <script type="text/javascript"><!--
@@ -401,7 +379,7 @@ if (!empty($shipping_method)) {
                 }
             });
         });
-
+         
         $('input[name=\'country_id\']').trigger('change');
         //--></script>
 <?php } ?>
