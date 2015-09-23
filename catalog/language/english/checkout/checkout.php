@@ -11,6 +11,15 @@ $_['text_checkout_shipping_address'] = 'Step 3: Delivery Details';
 $_['text_checkout_shipping_method']  = 'Step 4: Delivery Method';
 $_['text_checkout_payment_method']   = 'Step 5: Payment Method';
 $_['text_checkout_confirm']          = 'Step 6: Confirm Order';
+
+$_['text_checkout_option_step']           = '<span class="step_no">1</span>Checkout Options';
+$_['text_checkout_account_step']          = '<span class="step_no">2</span>Account &amp; Billing Details';
+$_['text_checkout_payment_address_step']  = '<span class="step_no">3</span>Billing Details';
+$_['text_checkout_shipping_address_step'] = '<span class="step_no">4</span>Delivery Details';
+$_['text_checkout_shipping_method_step']  = '<span class="step_no">5</span>Delivery Method';
+$_['text_checkout_payment_method_step']   = '<span class="step_no">6</span>Payment Method';
+$_['text_checkout_confirm_step']          = '<span class="step_no">7</span>Confirm Order';
+
 $_['text_modify']                    = 'Modify &raquo;';
 $_['text_new_customer']              = 'New Customer';
 $_['text_returning_customer']        = 'Returning Customer';

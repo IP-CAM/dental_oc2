@@ -3316,7 +3316,7 @@ div.tags {
 #content .cart-module > div#reward, 
 #content .cart-module > div#shipping {
     background-color: #028590;
-    
+
 } 
 #content .cart-module > div#coupon div, 
 #content .cart-module > div#voucher div, 
@@ -3339,4 +3339,33 @@ div.tags {
 #content .cart-module > div#reward div.button, 
 #content .cart-module > div#shipping div.button {
     margin-left: 10px;
+}
+
+/*Checkout page*/
+.step-title {
+    background: none repeat scroll 0 0 #95BD55;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bolder;
+    margin: -10px -10px 10px;
+    padding: 10px;
+    
+}
+.step-title .step_no{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 10px;
+    color: #51669F;
+    float: left;
+    font-size: 11px;
+    line-height: 20px;
+    margin: 0 6px 0 0;
+    padding: 0 7px;
+}
+.step_container {
+    float:left;
+    width:31%;
+    margin: 1%;
+}
+.step_container >div:not(:first-child) {
+    padding-top:10px;
 }

@@ -60,13 +60,25 @@ class ControllerCheckoutCheckout extends Controller {
         $this->data['text_checkout_shipping_method'] = $this->language->get('text_checkout_shipping_method');
         $this->data['text_checkout_payment_method'] = $this->language->get('text_checkout_payment_method');
         $this->data['text_checkout_confirm'] = $this->language->get('text_checkout_confirm');
+
+        $this->data['text_checkout_option_step'] = $this->language->get('text_checkout_option_step');
+
+        $this->data['text_checkout_account_step'] = $this->language->get('text_checkout_account_step');
+        $this->data['text_checkout_payment_address_step'] = $this->language->get('text_checkout_payment_address_step');
+        $this->data['text_checkout_shipping_address_step'] = $this->language->get('text_checkout_shipping_address_step');
+        $this->data['text_checkout_shipping_method_step'] = $this->language->get('text_checkout_shipping_method_step');
+        $this->data['text_checkout_payment_method_step'] = $this->language->get('text_checkout_payment_method_step');
+        $this->data['text_checkout_confirm_step'] = $this->language->get('text_checkout_confirm_step');
+
+       
+
         $this->data['text_modify'] = $this->language->get('text_modify');
 
         $this->data['logged'] = $this->customer->isLogged();
         $this->data['shipping_required'] = $this->cart->hasShipping();
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
-            $this->template = $this->config->get('config_template') . '/template/checkout/checkout.tpl';
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.php')) {
+            $this->template = $this->config->get('config_template') . '/template/checkout/checkout.php';
         } else {
             $this->template = 'default/template/checkout/checkout.tpl';
         }
