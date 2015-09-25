@@ -18,38 +18,38 @@
 </p>
 <?php } ?>
 <div id="shipping-new" style="display: <?php echo ($addresses ? 'none' : 'block'); ?>;">
-  <table class="form">
-    <tr>
-      <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-      <td><input type="text" name="firstname" value="" class="large-field" /></td>
-    </tr>
-    <tr>
-      <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-      <td><input type="text" name="lastname" value="" class="large-field" /></td>
-    </tr>
-    <tr>
-      <td><?php echo $entry_company; ?></td>
-      <td><input type="text" name="company" value="" class="large-field" /></td>
-    </tr>
-    <tr>
-      <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-      <td><input type="text" name="address_1" value="" class="large-field" /></td>
-    </tr>
-    <tr>
-      <td><?php echo $entry_address_2; ?></td>
-      <td><input type="text" name="address_2" value="" class="large-field" /></td>
-    </tr>
-    <tr>
-      <td><span class="required">*</span> <?php echo $entry_city; ?></td>
-      <td><input type="text" name="city" value="" class="large-field" /></td>
-    </tr>
-    <tr>
-      <td><span id="shipping-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
-      <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" class="large-field" /></td>
-    </tr>
-    <tr>
-      <td><span class="required">*</span> <?php echo $entry_country; ?></td>
-      <td><select name="country_id" class="large-field">
+  <div class="form">
+    <div>
+      <div><span class="required">*</span> <?php echo $entry_firstname; ?></div>
+      <div><input type="text" name="firstname" value="" class="large-field" /></div>
+    </div>
+    <div>
+      <div><span class="required">*</span> <?php echo $entry_lastname; ?></div>
+      <div><input type="text" name="lastname" value="" class="large-field" /></div>
+    </div>
+    <div>
+      <div><?php echo $entry_company; ?></div>
+      <div><input type="text" name="company" value="" class="large-field" /></div>
+    </div>
+    <div>
+      <div><span class="required">*</span> <?php echo $entry_address_1; ?></div>
+      <div><input type="text" name="address_1" value="" class="large-field" /></div>
+    </div>
+    <div>
+      <div><?php echo $entry_address_2; ?></div>
+      <div><input type="text" name="address_2" value="" class="large-field" /></div>
+    </div>
+    <div>
+      <div><span class="required">*</span> <?php echo $entry_city; ?></div>
+      <div><input type="text" name="city" value="" class="large-field" /></div>
+    </div>
+    <div>
+      <div><span id="shipping-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></div>
+      <div><input type="text" name="postcode" value="<?php echo $postcode; ?>" class="large-field" /></div>
+    </div>
+    <div>
+      <div><span class="required">*</span> <?php echo $entry_country; ?></div>
+      <div><select name="country_id" class="large-field">
           <option value=""><?php echo $text_select; ?></option>
           <?php foreach ($countries as $country) { ?>
           <?php if ($country['country_id'] == $country_id) { ?>
@@ -58,14 +58,14 @@
           <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
           <?php } ?>
           <?php } ?>
-        </select></td>
-    </tr>
-    <tr>
-      <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
-      <td><select name="zone_id" class="large-field">
-        </select></td>
-    </tr>
-  </table>
+        </select></div>
+    </div>
+    <div>
+      <div><span class="required">*</span> <?php echo $entry_zone; ?></div>
+      <div><select name="zone_id" class="large-field">
+        </select></div>
+    </div>
+  </div>
 </div>
 <br />
 <div class="buttons">
@@ -74,7 +74,7 @@
   </div>
 </div>
 <script type="text/javascript"><!--
-$('#shipping-address input[name=\'shipping_address\']').live('change', function() {
+$('.shipping-address-step input[name=\'shipping_address\']').live('change', function() {
 	if (this.value == 'new') {
 		$('#shipping-existing').hide();
 		$('#shipping-new').show();
@@ -85,13 +85,13 @@ $('#shipping-address input[name=\'shipping_address\']').live('change', function(
 });
 //--></script> 
 <script type="text/javascript"><!--
-$('#shipping-address select[name=\'country_id\']').bind('change', function() {
+$('.shipping-address-step select[name=\'country_id\']').bind('change', function() {
 	if (this.value == '') return;
 	$.ajax({
 		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
-			$('#shipping-address select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			$('.shipping-address-step select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
 		},
 		complete: function() {
 			$('.wait').remove();
@@ -119,7 +119,7 @@ $('#shipping-address select[name=\'country_id\']').bind('change', function() {
 				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
 			}
 			
-			$('#shipping-address select[name=\'zone_id\']').html(html);
+			$('.shipping-address-step select[name=\'zone_id\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -127,5 +127,5 @@ $('#shipping-address select[name=\'country_id\']').bind('change', function() {
 	});
 });
 
-$('#shipping-address select[name=\'country_id\']').trigger('change');
+$('.shipping-address-step select[name=\'country_id\']').trigger('change');
 //--></script>

@@ -3369,3 +3369,19 @@ div.tags {
 .step_container >div:not(:first-child) {
     padding-top:10px;
 }
+.step_container div#payment-new>div>div{
+    min-height: 20px;
+    margin-bottom: 10px;
+}
+div.od>div{
+    min-height: 20px;
+    margin-bottom: 10px;
+}
+div.area>div{
+    min-height: 20px;
+    margin-bottom: 10px;
+}
+.step_container .customer_section {
+       min-height: 20px;
+    margin-bottom: 10px;
+}
