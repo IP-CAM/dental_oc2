@@ -1,4 +1,4 @@
-<div class="left">
+<div >
   <h2><?php echo $text_your_details; ?></h2>
   <?php echo $entry_firstname; ?><span class="required">*</span> <br />
   <input type="text" name="firstname" value="<?php echo $firstname; ?>" class="large-field" />
@@ -16,7 +16,7 @@
   <input type="text" name="fax" value="<?php echo $fax; ?>" class="large-field" />
   <br />
 </div>
-<div class="right">
+<div >
   <h2><?php echo $text_your_address; ?></h2>
   <?php echo $entry_company; ?><br />
   <input type="text" name="company" value="<?php echo $company; ?>" class="large-field" />

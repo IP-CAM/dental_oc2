@@ -166,5 +166,5 @@ $('div.payment-address-step select[name=\'country_id\']').bind('change', functio
         });
     });
 
-    $('div.payment-address-step select[name=\'country_id\']').trigger('change');
+    //$('div.payment-address-step select[name=\'country_id\']').trigger('change');
 //--></script>

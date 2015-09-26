@@ -1,4 +1,4 @@
-<div class="left">
+<div >
   <h2><?php echo $text_new_customer; ?></h2>
   <p class="text_p"><?php echo $text_checkout; ?></p>
   <label for="register">
@@ -25,7 +25,7 @@
   <br />
   <span class="orange_button"><input type="button" value="<?php echo $button_continue; ?>" id="button-account" class="button" /></span>
 </div>
-<div id="login" class="right">
+<div id="login" >
   <h2><?php echo $text_returning_customer; ?></h2>
   <p class="text_p"><?php echo $text_i_am_returning_customer; ?></p>
   <b><?php echo $entry_email; ?></b><br />

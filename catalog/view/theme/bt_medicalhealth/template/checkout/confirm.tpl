@@ -58,7 +58,7 @@
     </tfoot>
   </table>
 </div>
-<div class="payment"><?php echo $payment; ?></div>
+<div class="payment"><?php echo isset($payment)?$payment:""; ?></div>
 <?php } else { ?>
 <script type="text/javascript"><!--
 location = '<?php echo $redirect; ?>';

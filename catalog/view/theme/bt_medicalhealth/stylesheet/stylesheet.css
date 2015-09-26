@@ -3385,3 +3385,6 @@ div.area>div{
        min-height: 20px;
     margin-bottom: 10px;
 }
+.step_container #checkout div.checkout-content>div {
+    margin-top:10px;
+}
