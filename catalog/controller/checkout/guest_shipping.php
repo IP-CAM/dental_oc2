@@ -188,8 +188,9 @@ class ControllerCheckoutGuestShipping extends Controller {
 			$this->session->data['shipping_zone_id'] = $this->request->post['zone_id'];
 			$this->session->data['shipping_postcode'] = $this->request->post['postcode'];	
 			
-			unset($this->session->data['shipping_method']);	
-			unset($this->session->data['shipping_methods']);
+//                        PCM:
+//			unset($this->session->data['shipping_method']);	
+//			unset($this->session->data['shipping_methods']);
 		}
 		
 		$this->response->setOutput(json_encode($json));		

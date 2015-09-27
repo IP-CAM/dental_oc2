@@ -51,7 +51,7 @@
       <?php foreach ($totals as $total) { ?>
       <tr>
 	<td class="model"></td>
-        <td colspan="3" class="price<?php echo ($total==end($totals) ? ' last' : ''); ?>"><b><?php echo $total['title']; ?>:</b></td>
+        <td colspan="2" class="price<?php echo ($total==end($totals) ? ' last' : ''); ?>"><b><?php echo $total['title']; ?>:</b></td>
         <td class="total<?php echo ($total==end($totals) ? ' last' : ''); ?>"><?php echo $total['text']; ?></td>
       </tr>
       <?php } ?>
@@ -59,8 +59,31 @@
   </table>
 </div>
 <div class="payment"><?php echo isset($payment)?$payment:""; ?></div>
+
+<div class="buttons">
+    
+    <div class="left">
+        <span class="orange_button"><input type="button" value="Finalizar agora" id="button_final_verify" class="button" /></span>
+        
+        
+    </div>
+    
+</div>
+
 <?php } else { ?>
 <script type="text/javascript"><!--
 location = '<?php echo $redirect; ?>';
 //--></script> 
 <?php } ?>
+
+<script type="text/javascript">
+    $("#button_final_verify").click(function(){
+        guest_validate(true);
+        //payment_address_checkout(true);
+        
+    })
+    $("#button_final_process").click(function(){
+        checkout_confirm(0)
+        
+    })
+</script>    

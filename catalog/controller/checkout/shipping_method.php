@@ -10,7 +10,7 @@ class ControllerCheckoutShippingMethod extends Controller {
 		} elseif (isset($this->session->data['guest'])) {
 			$shipping_address = $this->session->data['guest']['shipping'];
 		}
-
+               
 		if (!empty($shipping_address)) {
 			// Shipping Methods
 			$quote_data = array();
@@ -45,6 +45,8 @@ class ControllerCheckoutShippingMethod extends Controller {
 			array_multisort($sort_order, SORT_ASC, $quote_data);
 
 			$this->session->data['shipping_methods'] = $quote_data;
+                       
+                       
 		}
 
 		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
@@ -81,7 +83,7 @@ class ControllerCheckoutShippingMethod extends Controller {
 		} else {
 			$this->template = 'default/template/checkout/shipping_method.tpl';
 		}
-
+                
 		$this->response->setOutput($this->render());
 	}
 
@@ -133,14 +135,16 @@ class ControllerCheckoutShippingMethod extends Controller {
 		}
 
 		if (!$json) {
+                  
 			if (!isset($this->request->post['shipping_method'])) {
 				$json['error']['warning'] = $this->language->get('error_shipping');
 			} else {
 				$shipping = explode('.', $this->request->post['shipping_method']);
-
+                              
 				if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {			
 					$json['error']['warning'] = $this->language->get('error_shipping');
 				}
+                                 
 			}
 
 			if (!$json) {
@@ -151,7 +155,9 @@ class ControllerCheckoutShippingMethod extends Controller {
 				$this->session->data['comment'] = strip_tags($this->request->post['comment']);
 			}							
 		}
-
+                
+                
+                
 		$this->response->setOutput(json_encode($json));	
 	}
 }

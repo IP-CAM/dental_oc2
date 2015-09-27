@@ -3,7 +3,8 @@
 class ControllerCheckoutConfirminit extends Controller {
 
     public function index() {
-   
+        
+        
 
         // Validate if payment address has been set.
         $this->load->model('account/address');

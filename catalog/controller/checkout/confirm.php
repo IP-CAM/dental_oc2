@@ -69,8 +69,8 @@ class ControllerCheckoutConfirm extends Controller {
                 break;
             }
         }
-        
-        if($this->request->get["is_ajax"]=="1"){
+
+        if (isset($this->request->get["is_ajax"]) && $this->request->get["is_ajax"] == "1") {
             $redirect = "";
         }
 
@@ -131,10 +131,9 @@ class ControllerCheckoutConfirm extends Controller {
                 $data['fax'] = $this->customer->getFax();
 
                 $this->load->model('account/address');
-                $payment_address  = '';
-              
+                $payment_address = '';
+
                 $payment_address = $this->model_account_address->getAddress($this->session->data['payment_address_id']);
-                
             } elseif (isset($this->session->data['guest'])) {
                 $data['customer_id'] = 0;
                 $data['customer_group_id'] = $this->session->data['guest']['customer_group_id'];
@@ -161,7 +160,7 @@ class ControllerCheckoutConfirm extends Controller {
             $data['payment_country'] = $payment_address['country'];
             $data['payment_country_id'] = $payment_address['country_id'];
             $data['payment_address_format'] = $payment_address['address_format'];
-            
+
             //mail chimp code will help order to integrate with address
             $main_chimp_cols = array_keys($this->model_account_address->_mail_chimp_columns);
             foreach ($main_chimp_cols as $col) {
@@ -233,8 +232,8 @@ class ControllerCheckoutConfirm extends Controller {
             }
 
             $product_data = array();
-            
-           
+
+
             foreach ($this->cart->getProducts() as $product) {
                 $option_data = array();
 //                echo "<pre>";
@@ -261,23 +260,21 @@ class ControllerCheckoutConfirm extends Controller {
                 if (count($product['conf_options']) > 0) {
 
                     foreach ($product['conf_options'] as $key => $conf) {
-                            $table = $key;
-                            if($key == 'quantitdy'){
-                                $table = 'quantity';
-                               
-                            }
-     
-                            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $table . " WHERE id = " . (int) $conf);
-                            $option_data[] = array(
-                                'name' => ucfirst($key),
-                                'value' => $query->row['value'],
-                                'product_option_id' => $query->row['id'],
-                                'product_option_value_id' => $query->row['id'],
-                                'option_id' => $query->row['id'],
-                                'option_value_id' => $query->row['id'],
-                                'type' => $query->row['id']
-                            );
-                        
+                        $table = $key;
+                        if ($key == 'quantitdy') {
+                            $table = 'quantity';
+                        }
+
+                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $table . " WHERE id = " . (int) $conf);
+                        $option_data[] = array(
+                            'name' => ucfirst($key),
+                            'value' => $query->row['value'],
+                            'product_option_id' => $query->row['id'],
+                            'product_option_value_id' => $query->row['id'],
+                            'option_id' => $query->row['id'],
+                            'option_value_id' => $query->row['id'],
+                            'type' => $query->row['id']
+                        );
                     }
                 }
 
@@ -296,10 +293,8 @@ class ControllerCheckoutConfirm extends Controller {
                     'tax' => $this->tax->getTax($product['price'], $product['tax_class_id']),
                     'reward' => $product['reward']
                 );
-                
-                
             }
-            
+
 
             // Gift Voucher
             $voucher_data = array();
@@ -402,7 +397,7 @@ class ControllerCheckoutConfirm extends Controller {
                         'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
                     );
                 }
-               
+
                 if (isset($option['conf_options']) && count($option['conf_options']) > 0) {
                     //this variable will be used to insert in database as order 
                     // conf options
@@ -410,7 +405,7 @@ class ControllerCheckoutConfirm extends Controller {
                     $conf_id = 0;
                     foreach ($product['conf_options'] as $key => $conf) {
                         $table = $key;
-                        
+
                         if ($key == 'quantitdy') {
                             $table = 'quantity';
                         }
@@ -491,10 +486,25 @@ class ControllerCheckoutConfirm extends Controller {
         } else {
             $this->data['redirect'] = $redirect;
         }
-        
-        
-        if($this->request->get["is_ajax"]=="1"){
+
+
+        if (isset($this->request->get["is_ajax"]) && $this->request->get["is_ajax"] == "1") {
             unset($this->data['redirect']);
+        }
+        //unsetting shippig and payment variables
+        if (isset($this->session->data['payment_method'])) {
+            unset($this->session->data['payment_method']);
+        }
+        if (isset($this->session->data['payment_methods'])) {
+            unset($this->session->data['payment_methods']);
+        }
+
+        if (isset($this->session->data['payment_method'])) {
+            unset($this->session->data['shipping_method']);
+        }
+        if (isset($this->session->data['shipping_methods'])) {
+
+            unset($this->session->data['shipping_methods']);
         }
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/confirm.tpl')) {
@@ -510,7 +520,7 @@ class ControllerCheckoutConfirm extends Controller {
         $sql = "Select * FROM " . DB_PREFIX . "order_product_config_options WHERE product_id = " . (int) ($product['product_id']) . " AND order_id=" . (int) $this->session->data['order_id'] . " ";
 
         $query = $this->db->query($sql);
-        
+
         if (!$query->num_rows) {
             if (isset($conf_options['arcade'])) {
                 $columns [] = "arcade = '" . (int) $conf_options['arcade']['id'] . "'";

@@ -91,7 +91,7 @@
         include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");
     ?>
 </div>
-<div class="buttons">
+<div class="buttons hidden">
   <div class="left">
     <span class="orange_button"><input type="button" value="<?php echo $button_continue; ?>" id="button-guest" class="button" /></span>
   </div>

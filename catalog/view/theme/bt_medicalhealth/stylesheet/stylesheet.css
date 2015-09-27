@@ -3388,3 +3388,9 @@ div.area>div{
 .step_container #checkout div.checkout-content>div {
     margin-top:10px;
 }
+.checkout-content .buttons .left {
+     width: 40%;
+}
+.step_container div.hidden{
+    display:none;
+}

@@ -29,12 +29,18 @@
     <input type="checkbox" name="agree" value="1" checked="checked" />
     <?php } else { ?>
     <input type="checkbox" name="agree" value="1" />
-    <?php } ?>&nbsp;&nbsp;<?php echo $text_agree; ?> <br/></br></br>
+    <?php } ?>&nbsp;&nbsp;<?php echo $text_agree; ?> 
+
+  </div>
+</div>
+<div class="buttons hidden">
+  <div class="left">
+
     <span class="orange_button"><input type="button" value="<?php echo $button_continue; ?>" id="button-payment-method" class="button" /></span>
   </div>
 </div>
 <?php } else { ?>
-<div class="buttons">
+<div class="buttons hidden">
   <div class="left">
     <span class="orange_button"><input type="button" value="<?php echo $button_continue; ?>" id="button-payment-method" class="button" /></span>
   </div>

@@ -400,11 +400,14 @@ class ControllerCheckoutGuest extends Controller {
             }
 
             $this->session->data['account'] = 'guest';
-
-            unset($this->session->data['shipping_method']);
-            unset($this->session->data['shipping_methods']);
-            unset($this->session->data['payment_method']);
-            unset($this->session->data['payment_methods']);
+            
+            PCM:
+//            unset($this->session->data['shipping_method']);
+//            unset($this->session->data['shipping_methods']);
+//            unset($this->session->data['payment_method']);
+//            unset($this->session->data['payment_methods']);
+            
+            
         }
 
         $this->response->setOutput(json_encode($json));

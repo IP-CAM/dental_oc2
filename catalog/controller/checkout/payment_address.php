@@ -215,9 +215,13 @@ class ControllerCheckoutPaymentAddress extends Controller {
                         unset($this->session->data['payment_country_id']);
                         unset($this->session->data['payment_zone_id']);
                     }
-
-                    unset($this->session->data['payment_method']);
-                    unset($this->session->data['payment_methods']);
+                    //PCM:
+                    
+                    if (!isset($this->request->get['unset'])) {
+                        
+                        //unset($this->session->data['payment_method']);
+                        //unset($this->session->data['payment_methods']);
+                    }
                 }
             } else {
                 if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
@@ -323,9 +327,13 @@ class ControllerCheckoutPaymentAddress extends Controller {
                     $this->session->data['payment_address_id'] = $this->model_account_address->addAddress($this->request->post);
                     $this->session->data['payment_country_id'] = $this->request->post['country_id'];
                     $this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
-
-                    unset($this->session->data['payment_method']);
-                    unset($this->session->data['payment_methods']);
+                    //PCM:
+                   
+                    if (!isset($this->request->get['unset'])) {
+                        
+                        //unset($this->session->data['payment_method']);
+                        //unset($this->session->data['payment_methods']);
+                    }
                 }
             }
         }

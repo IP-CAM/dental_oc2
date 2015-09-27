@@ -35,7 +35,7 @@
 <br />
 <br />
 <br />
-<div class="buttons">
+<div class="buttons hidden">
   <div class="left">
     <span class="orange_button"><input type="button" value="<?php echo $button_continue; ?>" id="button-shipping-method" class="button" /></span>
   </div>
