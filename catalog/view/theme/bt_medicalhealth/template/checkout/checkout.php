@@ -97,6 +97,7 @@
             complete: function () {
                 $('#button-register').attr('disabled', false);
                 $('.wait').remove();
+                loader_box.hide();
             },
             success: function (json) {
 
@@ -259,6 +260,10 @@
                 $('.payment-method-step  .checkout-content').html(html);
 
                 $('.payment-method-step  .checkout-content').slideDown('slow');
+
+                if ($('input[name=\'account\']:checked') == "guest") {
+                    payment_method_checkout();
+                }
                 checkout_confirm('1');
 
             },
@@ -314,6 +319,8 @@
             complete: function () {
                 $('#button-guest-shipping').attr('disabled', false);
                 $('.wait').remove();
+
+
             },
             success: function (json) {
                 $('.warning, .error').remove();
@@ -592,7 +599,7 @@
             }
         });
     }
-
+    //Payment method validate
     function payment_method_checkout() {
         $.ajax({
             url: 'index.php?route=checkout/payment_method/validate',
@@ -625,7 +632,7 @@
             }
         });
     }
-
+    //Guest Validate
     function guest_validate(further) {
         $.ajax({
             url: 'index.php?route=checkout/guest/validate',
@@ -639,6 +646,7 @@
             complete: function () {
                 $('#button-guest').attr('disabled', false);
                 $('.wait').remove();
+
             },
             success: function (json) {
 
@@ -701,11 +709,11 @@
                     if (shipping_required_in == '1') {
                         var shipping_address = $('.payment-address-step input[name=\'shipping_address\']:checked').attr('value');
                         if (shipping_address) {
-                            if(further==true){
+                            if (further == true) {
                                 guest_shipping_checkout();
                             }
-                            
-                            
+
+
                             //No need to do load shipping method
 //                            $.ajax({
 //                                url: 'index.php?route=checkout/shipping_method',
@@ -773,7 +781,9 @@
                         $('.warning').fadeIn('slow');
                     }
                 } else {
+
                     payment_method_checkout();
+
                     //No Need this function
 //                    $.ajax({
 //                        url: 'index.php?route=checkout/payment_method',
@@ -805,6 +815,11 @@
             success: function (html) {
                 $('.shipping-method-step .checkout-content').html(html);
                 $('.shipping-method-step .checkout-content').slideDown('slow');
+
+                if ($('input[name=\'account\']:checked') == "guest") {
+                    guest_shipping_checkout();
+                }
+
 
                 checkout_payment_method();
 

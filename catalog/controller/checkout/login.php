@@ -23,7 +23,7 @@ class ControllerCheckoutLogin extends Controller {
 		if (isset($this->session->data['account'])) {
 			$this->data['account'] = $this->session->data['account'];
 		} else {
-			$this->data['account'] = 'register';
+			$this->data['account'] = 'guest';
 		}
 		
 		$this->data['forgotten'] = $this->url->link('account/forgotten', '', 'SSL');

@@ -78,8 +78,13 @@ location = '<?php echo $redirect; ?>';
 
 <script type="text/javascript">
     $("#button_final_verify").click(function(){
-        guest_validate(true);
-        //payment_address_checkout(true);
+        if ($('input[name=\'account\']').length>0 && $('input[name=\'account\']:checked')=="guest"){
+            //guest_validate(true);
+        }
+        else {
+            payment_address_checkout(true);
+        }
+
         
     })
     $("#button_final_process").click(function(){

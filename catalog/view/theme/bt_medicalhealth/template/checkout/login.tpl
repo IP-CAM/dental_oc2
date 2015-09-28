@@ -1,15 +1,6 @@
 <div class="checkout_login_tp">
   <h2><?php echo $text_new_customer; ?></h2>
   <p class="text_p"><?php echo $text_checkout; ?></p>
-  <label for="register">
-    <?php if ($account == 'register') { ?>
-    <input class="checkout_login_ck"  type="radio" name="account" value="register" id="register" checked="checked" />
-    <?php } else { ?>
-    <input class="checkout_login_ck" type="radio" name="account" value="register" id="register" />
-    <?php } ?>
-    <b><?php echo $text_register; ?></b></label>
-  <br />
-  <br />
   <?php if ($guest_checkout) { ?>
   <label for="guest">
     <?php if ($account == 'guest') { ?>
@@ -20,6 +11,17 @@
     <b><?php echo $text_guest; ?></b></label>
   <br />
   <?php } ?>
+  <br />
+  <label for="register">
+    <?php if ($account == 'register') { ?>
+    <input class="checkout_login_ck"  type="radio" name="account" value="register" id="register" checked="checked" />
+    <?php } else { ?>
+    <input class="checkout_login_ck" type="radio" name="account" value="register" id="register" />
+    <?php } ?>
+    <b><?php echo $text_register; ?></b></label>
+  <br />
+  
+
   <br />
   <p><?php echo $text_register_account; ?></p>
   <br />
