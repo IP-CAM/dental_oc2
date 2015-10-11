@@ -3,8 +3,8 @@
 class ControllerCheckoutConfirminit extends Controller {
 
     public function index() {
-        
-        
+
+
 
         // Validate if payment address has been set.
         $this->load->model('account/address');
@@ -28,8 +28,8 @@ class ControllerCheckoutConfirminit extends Controller {
                 break;
             }
         }
-        
-        if($this->request->get["is_ajax"]=="1"){
+
+        if ($this->request->get["is_ajax"] == "1") {
             $redirect = "";
         }
 
@@ -83,8 +83,8 @@ class ControllerCheckoutConfirminit extends Controller {
 
 
             $product_data = array();
-            
-           
+
+
             foreach ($this->cart->getProducts() as $product) {
                 $option_data = array();
 //                echo "<pre>";
@@ -111,23 +111,21 @@ class ControllerCheckoutConfirminit extends Controller {
                 if (count($product['conf_options']) > 0) {
 
                     foreach ($product['conf_options'] as $key => $conf) {
-                            $table = $key;
-                            if($key == 'quantitdy'){
-                                $table = 'quantity';
-                               
-                            }
-     
-                            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $table . " WHERE id = " . (int) $conf);
-                            $option_data[] = array(
-                                'name' => ucfirst($key),
-                                'value' => $query->row['value'],
-                                'product_option_id' => $query->row['id'],
-                                'product_option_value_id' => $query->row['id'],
-                                'option_id' => $query->row['id'],
-                                'option_value_id' => $query->row['id'],
-                                'type' => $query->row['id']
-                            );
-                        
+                        $table = $key;
+                        if ($key == 'quantitdy') {
+                            $table = 'quantity';
+                        }
+
+                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "conf_product_" . $table . " WHERE id = " . (int) $conf);
+                        $option_data[] = array(
+                            'name' => ucfirst($key),
+                            'value' => $query->row['value'],
+                            'product_option_id' => $query->row['id'],
+                            'product_option_value_id' => $query->row['id'],
+                            'option_id' => $query->row['id'],
+                            'option_value_id' => $query->row['id'],
+                            'type' => $query->row['id']
+                        );
                     }
                 }
 
@@ -146,10 +144,8 @@ class ControllerCheckoutConfirminit extends Controller {
                     'tax' => $this->tax->getTax($product['price'], $product['tax_class_id']),
                     'reward' => $product['reward']
                 );
-                
-                
             }
-            
+
 
             // Gift Voucher
             $voucher_data = array();
@@ -173,10 +169,10 @@ class ControllerCheckoutConfirminit extends Controller {
             $data['products'] = $product_data;
             $data['vouchers'] = $voucher_data;
             $data['totals'] = $total_data;
-          
+
             $data['total'] = $total;
 
-         
+
 
             $data['language_id'] = $this->config->get('config_language_id');
             $data['currency_id'] = $this->currency->getId();
@@ -206,7 +202,7 @@ class ControllerCheckoutConfirminit extends Controller {
 
             $this->load->model('checkout/order');
 
-           
+
 
             $this->data['column_name'] = $this->language->get('column_name');
             $this->data['column_model'] = $this->language->get('column_model');
@@ -236,7 +232,7 @@ class ControllerCheckoutConfirminit extends Controller {
                         'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
                     );
                 }
-               
+
                 if (isset($option['conf_options']) && count($option['conf_options']) > 0) {
                     //this variable will be used to insert in database as order 
                     // conf options
@@ -244,7 +240,7 @@ class ControllerCheckoutConfirminit extends Controller {
                     $conf_id = 0;
                     foreach ($product['conf_options'] as $key => $conf) {
                         $table = $key;
-                        
+
                         if ($key == 'quantitdy') {
                             $table = 'quantity';
                         }
@@ -320,14 +316,18 @@ class ControllerCheckoutConfirminit extends Controller {
             }
 
             $this->data['totals'] = $total_data;
-
-            
         } else {
             $this->data['redirect'] = $redirect;
         }
-        
-        
-        if($this->request->get["is_ajax"]=="1"){
+        $this->data['logged'] = '';
+        if ($this->customer->isLogged()) {
+            $this->data['logged'] = '1';
+        }
+
+
+
+
+        if ($this->request->get["is_ajax"] == "1") {
             unset($this->data['redirect']);
         }
 
@@ -344,7 +344,7 @@ class ControllerCheckoutConfirminit extends Controller {
         $sql = "Select * FROM " . DB_PREFIX . "order_product_config_options WHERE product_id = " . (int) ($product['product_id']) . " AND order_id=" . (int) $this->session->data['order_id'] . " ";
 
         $query = $this->db->query($sql);
-        
+
         if (!$query->num_rows) {
             if (isset($conf_options['arcade'])) {
                 $columns [] = "arcade = '" . (int) $conf_options['arcade']['id'] . "'";

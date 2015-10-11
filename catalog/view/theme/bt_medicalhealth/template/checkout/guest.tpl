@@ -91,7 +91,7 @@
         include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");
     ?>
 </div>
-<div class="buttons hidden">
+<div class="buttons">
   <div class="left">
     <span class="orange_button"><input type="button" value="<?php echo $button_continue; ?>" id="button-guest" class="button" /></span>
   </div>
@@ -182,3 +182,12 @@ $('#payment-address select[name=\'country_id\']').bind('change', function() {
 
 $('#payment-address select[name=\'country_id\']').trigger('change');
 //--></script>
+
+<style id="display_remove">
+    <?php
+    
+        if(isset($confirm_btn_hide)){
+            echo "input#button_final_verify{display:none;}";
+        }
+    ?>
+</style>    

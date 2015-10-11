@@ -487,6 +487,10 @@ class ControllerCheckoutConfirm extends Controller {
             $this->data['redirect'] = $redirect;
         }
 
+        if ($this->customer->isLogged()) {
+            $this->data['logged'] = '1';
+        }
+
 
         if (isset($this->request->get["is_ajax"]) && $this->request->get["is_ajax"] == "1") {
             unset($this->data['redirect']);

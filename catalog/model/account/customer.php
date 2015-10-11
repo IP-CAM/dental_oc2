@@ -237,6 +237,8 @@ class ModelAccountCustomer extends Model {
 
         return $query->num_rows;
     }
+    
+  
 
 }
 

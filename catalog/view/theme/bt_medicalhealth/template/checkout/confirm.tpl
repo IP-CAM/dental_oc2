@@ -61,14 +61,26 @@
 <div class="payment"><?php echo isset($payment)?$payment:""; ?></div>
 
 <div class="buttons">
-    
+    <?php
+        $final_btn_style="";
+        if(empty($logged)){
+            //$final_btn_style = "display:none";
+         
+        }
+    ?>
     <div class="left">
-        <span class="orange_button"><input type="button" value="Finalizar agora" id="button_final_verify" class="button" /></span>
+        <span class="orange_button"><input type="button" 
+                                           style="<?php echo $final_btn_style; ?>"
+                                           value="Finalizar agora" 
+                                           id="button_final_verify" 
+                                           class="button" /></span>
         
         
     </div>
     
 </div>
+
+
 
 <?php } else { ?>
 <script type="text/javascript"><!--
@@ -78,13 +90,13 @@ location = '<?php echo $redirect; ?>';
 
 <script type="text/javascript">
     $("#button_final_verify").click(function(){
-        if ($('input[name=\'account\']').length>0 && $('input[name=\'account\']:checked')=="guest"){
-            //guest_validate(true);
+        if ($('input[name=\'account\']').length>0 && $('input[name=\'account\']:checked').val()=="guest"){
+            guest_validate(true,false);
         }
         else {
-            payment_address_checkout(true);
+              payment_address_checkout(true);
         }
-
+      
         
     })
     $("#button_final_process").click(function(){

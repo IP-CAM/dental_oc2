@@ -94,4 +94,7 @@ $('#shipping-address select[name=\'country_id\']').bind('change', function() {
 });
 
 $('#shipping-address select[name=\'country_id\']').trigger('change');
+$('#shipping-address select[name=\'zone_id\']').bind('change', function() {
+    guest_shipping_checkout(true);
+})
 //--></script>

@@ -200,12 +200,15 @@ class ControllerCheckoutGuest extends Controller {
         } else {
             $this->data['shipping_address'] = true;
         }
-
+        $this->data['confirm_btn_hide'] = 1;
+        
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/guest.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/checkout/guest.tpl';
         } else {
             $this->template = 'default/template/checkout/guest.tpl';
         }
+
+       
 
         $this->response->setOutput($this->render());
     }
@@ -400,14 +403,12 @@ class ControllerCheckoutGuest extends Controller {
             }
 
             $this->session->data['account'] = 'guest';
-            
+
             PCM:
 //            unset($this->session->data['shipping_method']);
 //            unset($this->session->data['shipping_methods']);
 //            unset($this->session->data['payment_method']);
 //            unset($this->session->data['payment_methods']);
-            
-            
         }
 
         $this->response->setOutput(json_encode($json));

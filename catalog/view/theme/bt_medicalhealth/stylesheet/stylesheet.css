@@ -3362,9 +3362,9 @@ div.tags {
     padding: 0 7px;
 }
 .step_container {
-    float:left;
-    width:31%;
-    margin: 1%;
+/*    float:left;
+    width:31%;*/
+    margin: 1% !important;
 }
 .step_container >div:not(:first-child) {
     padding-top:10px;

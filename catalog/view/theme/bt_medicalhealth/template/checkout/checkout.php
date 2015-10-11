@@ -9,9 +9,9 @@
         <?php } ?>
     </div>
     <h1 class="checkout_title"><?php echo $heading_title; ?></h1>
-    <div class="checkout">
+    <div class="checkout row">
 
-        <div class="step_container" style="">
+        <div class="step_container six columns" style="">
             <div id="checkout">   
                 <div class="step-title">
                     <?php echo $text_checkout_option_step; ?>
@@ -35,7 +35,7 @@
         <?php
         if ($shipping_required) {
             ?>
-            <div class="step_container" style="">
+            <div class="step_container six columns" style="">
 
 
                 <div class="shipping-address-step" id="shipping-address">   
@@ -56,7 +56,7 @@
             <?php
         }
         ?>
-        <div class="step_container" style="">
+        <div class="step_container six columns" style="">
 
             <div class="payment-method-step">   
                 <div class="step-title">
@@ -83,7 +83,7 @@
     var quickconfirm_in = '<?php echo isset($quickconfirm) ? 1 : 0; ?>';
     var shipping_required_in = '<?php echo $shipping_required; ?>';
 
-    //checkout register
+    //checkout register validate
     function checkout_register() {
         $.ajax({
             url: 'index.php?route=checkout/register/validate',
@@ -306,7 +306,13 @@
 
     //=============Validates functions start==================================
     //Shipping address validate
-    function guest_shipping_checkout() {
+    function guest_shipping_checkout(loadShipping = false) {
+        //hide in process when it comes here
+        $("#button-guest").hide();
+        $("#button_final_verify").show();
+        $("style#display_remove").remove();
+
+        $(window).scrollTop(0);
         $.ajax({
             url: 'index.php?route=checkout/guest_shipping/validate',
             type: 'post',
@@ -360,6 +366,12 @@
                         $('.shipping-address-step select[name=\'zone_id\']').after('<span class="error">' + json['error']['zone'] + '</span>');
                     }
                 } else {
+                    if (loadShipping) {
+                        checkout_shipping_method();
+                    }
+                    else {
+                        shipping_method_checkout();
+                    }
                     //No Need now
 //                    $.ajax({
 //                        url: 'index.php?route=checkout/shipping_method',
@@ -373,7 +385,7 @@
 //                            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 //                        }
 //                    });
-                    shipping_method_checkout();
+
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -503,6 +515,10 @@
     function payment_address_checkout(further) {
         console.log("-=============-");
         ajaxUrl = 'index.php?route=checkout/payment_address/validate';
+
+        $("#button-guest").hide();
+        $("#button_final_verify").show();
+
         if (further == false) {
             ajaxUrl += '&unset=false';
         }
@@ -633,7 +649,8 @@
         });
     }
     //Guest Validate
-    function guest_validate(further) {
+    //load payment
+    function guest_validate(further, load_payment) {
         $.ajax({
             url: 'index.php?route=checkout/guest/validate',
             type: 'post',
@@ -705,13 +722,21 @@
                         $('.payment-address-step select[name=\'zone_id\'] + br').after('<span class="error">' + json['error']['zone'] + '</span>');
                     }
                 } else {
+                    //load payment method we need to load
+                    $("#button_final_verify").show();
+                    console.log($("#button_final_verify"));
+                    if (load_payment) {
+                        checkout_payment_method();
+                    }
+
 
                     if (shipping_required_in == '1') {
                         var shipping_address = $('.payment-address-step input[name=\'shipping_address\']:checked').attr('value');
                         if (shipping_address) {
                             if (further == true) {
-                                guest_shipping_checkout();
+                                guest_shipping_checkout(false);
                             }
+
 
 
                             //No need to do load shipping method
@@ -807,7 +832,10 @@
             }
         });
     }
-
+    /**
+     * lOAD sHIPPING METHODS
+     
+     * @returns {undefined}     */
     function checkout_shipping_method() {
         $.ajax({
             url: 'index.php?route=checkout/shipping_method',
@@ -817,7 +845,7 @@
                 $('.shipping-method-step .checkout-content').slideDown('slow');
 
                 if ($('input[name=\'account\']:checked') == "guest") {
-                    guest_shipping_checkout();
+                    guest_shipping_checkout(false);
                 }
 
 
@@ -856,9 +884,17 @@
                 $('#confirm .checkout-content').slideDown('slow');
                 if (is_ajax != '1') {
                     // $("#button-confirm").remove();
+
                     $("#button_final_verify").hide();
                 }
+                else {
+                    //$("#button_final_verify").show();
+                }
                 $(loader_box).hide();
+
+                if (is_ajax == '1') {
+                    $("span.error").remove();
+                }
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -891,7 +927,7 @@
 
                 if ($('input[name=\'account\']:checked').attr('value') == "guest") {
                     guest_shipping();
-                    guest_validate(false);
+                    guest_validate(false, false);
                 }
                 else {
                     //checkout_shipping();
@@ -999,7 +1035,7 @@
     });
     // Guest Process
     $('#button-guest').live('click', function () {
-        guest_validate(true);
+        guest_validate(true, true);
     });
 // Guest Shipping
     $('#button-guest-shipping').live('click', function () {
