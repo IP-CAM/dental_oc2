@@ -289,9 +289,6 @@ if($('#catalog ul li:not(:has(a.parent))').size() == 0) $('#catalog').css('displ
           
                         <?php if($this->user->hasPermission('access','sale/contact')) {  ?>
                         <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
-
-            <li><a href="<?php echo $newssubscribe; ?>"><?php echo $text_newssubscribe; ?></a></li>
-            
                         <?php } ?>
 			
         </ul>

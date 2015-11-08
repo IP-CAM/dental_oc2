@@ -38,7 +38,7 @@
 
             <div class="customer" style="display:none" >
                 <div>
-                    <div>
+                    <div >
                         <h2><?php echo $txt_payment_heading_customer; ?></h2>
 
                     </div>

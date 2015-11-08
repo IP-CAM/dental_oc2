@@ -23,9 +23,6 @@ class ControllerCommonHeader extends Controller {
 
         $this->data['heading_title'] = $this->language->get('heading_title');
 
-            $this->data['text_newssubscribe'] = $this->language->get('text_newssubscribe');
-            
-
         $this->data['text_affiliate'] = $this->language->get('text_affiliate');
         $this->data['text_attribute'] = $this->language->get('text_attribute');
         $this->data['text_attribute_group'] = $this->language->get('text_attribute_group');
@@ -241,9 +238,6 @@ class ControllerCommonHeader extends Controller {
             $this->data['conf_quantitdy_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=quantity', 'SSL');
 
 
-
-            $this->data['newssubscribe'] = $this->url->link('sale/newssubscribers', 'token=' . $this->session->data['token'], 'SSL');
-            
             $this->data['stores'] = array();
 
             $this->load->model('setting/store');
@@ -284,9 +278,6 @@ $this->load->model('user/user');
         $this->load->model('user/user');
         $this->language->load('user/user');
         $this->data['heading_title'] = $this->language->get('heading_title');
-
-            $this->data['text_newssubscribe'] = $this->language->get('text_newssubscribe');
-            
         $this->data['text_enabled'] = $this->language->get('text_enabled');
         $this->data['text_disabled'] = $this->language->get('text_disabled');
         $this->data['entry_username'] = $this->language->get('entry_username');

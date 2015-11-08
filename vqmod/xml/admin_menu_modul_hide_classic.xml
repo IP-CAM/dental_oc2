@@ -704,12 +704,12 @@ if($('#catalog ul li:not(:has(a.parent))').size() == 0) $('#catalog').css('displ
 			<add><![CDATA[if (!$this->user->hasPermission('access', 'shipping/'.$extension)) continue;]]></add>
 		</operation>
 	</file>
-	<file name="admin/controller/extension/payment.php">
+<!--	<file name="admin/controller/extension/payment.php">
 		<operation>
 			<search position="after" index="1" ><![CDATA[$extension = basename($file, '.php');]]></search>
 			<add><![CDATA[if (!$this->user->hasPermission('access', 'payment/'.$extension)) continue;]]></add>
 		</operation>
-	</file>
+	</file>-->
 	<file name="admin/controller/user/user_permission.php">
 		<operation>
 			<search position="before" index="1" ><![CDATA[if (isset($this->request->post['permission']['access'])) {]]></search>

@@ -94,7 +94,7 @@
 
 
 </div>
-<div id="payment-new-2" style="display: <?php echo ($addresses ? 'none' : 'block'); ?>;">
+<div id="payment-new-2">
     <div>
         <?php
         include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");

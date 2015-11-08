@@ -13,6 +13,7 @@ $bancodedados = "dental";
 $bdusuario = "root";
 $bdsenha = "admin"; 
 $db_prefix = 'oc_';
+$db_prefix = 'eworxes_';
 
 $conexao = mysqli_connect($bdservidor, $bdusuario, $bdsenha, $bancodedados) or die("Não foi possível se conectar ao Servidor!");
 

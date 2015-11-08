@@ -37,7 +37,7 @@ $_['text_logged']                      = 'Você está conectado como <span>%s</s
 $_['text_logout']                      = 'Sair';
 $_['text_contact']                     = 'Enviar Informativo';
 $_['text_manager']                     = 'Gerenciador de Extensões';
-$_['text_manufacturer']                = 'Marcas';
+$_['text_manufacturer']                = 'Fabricantes';
 $_['text_module']                      = 'Módulos';
 $_['text_option']                      = 'Opções';
 $_['text_order']                       = 'Pedidos';
@@ -91,8 +91,5 @@ $_['conf_product']           = 'Products Configurations';
 $_['conf_product_arcade']           = 'Arcades';
 $_['conf_product_cor']           = 'Cors';
 $_['conf_product_tamanho']           = 'Tamanhos';
-$_['conf_product_quantitdy']           = 'Voltagem';
-
-          $_['text_newssubscribe']     = 'Newsletter Subscribers';
-            
+$_['conf_product_quantitdy']           = 'Quantidade';
 ?>

@@ -1,3 +1,4 @@
+<?php //echo (extension_loaded('openssl')?'SSL loaded':'SSL not loaded')."\n"; ?>
 <?php
 error_reporting(E_ALL);
 // Version

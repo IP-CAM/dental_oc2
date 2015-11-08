@@ -279,7 +279,7 @@ for ($i = 0; $i < $count; $i++) {
         $row = mysqli_fetch_assoc($sql_res);
         $product_id_get = $row['product_id'];
         /* Realiza Update no Banco de Dados E-Commerce */
-        echo $sql = "UPDATE " . $db_prefix . "product SET model = '$product_model',sku = '$product_model', status = $prodsit, quantity = $prodsal, price = $prodpsd, date_modified = Now()"
+        echo $sql = "UPDATE " . $db_prefix . "product SET model = '$product_model',sku = '$product_model',  quantity = $prodsal, price = $prodpsd, date_modified = Now()"
         . " WHERE product_id = $product_id_get";
         if ($sql = mysqli_query($conexao, $sql)) {
             echo "<br/>";
@@ -301,6 +301,7 @@ for ($i = 0; $i < $count; $i++) {
         $_max = mysqli_fetch_array($res_max, MYSQLI_NUM);
 
         $product_cus_id = $_max[0] + 1;
+        
 
         //find reference_id 
 

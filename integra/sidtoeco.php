@@ -39,6 +39,8 @@ if (file_exists($logfilename)) {
 
 $filename = 'ecommerce/'.$filename;
 
+
+
 if (file_exists($filename)) {
    $lines = file($filename);
    foreach ($lines as $line_num => $line) {
@@ -59,7 +61,14 @@ if (file_exists($filename)) {
     }
     
 }
-
+//echo "<pre>";
+//    print_r($reg300);
+//    print_r($reg308);
+//    print_r($reg310);
+//echo "</pre>";
+//die;
+//echo count($lines);
+//die;
 ?>
 <html>
 <head>
@@ -181,7 +190,7 @@ $('.tablesorter').tablesorter({
         
         <?php
             $count = count($reg300);
-            if ($count > 2000) { $count = 2000;}
+            if ($count > 5000) { $count = 5000;}
             for($i=0;$i<$count;$i++)
             {
               $campos = explode(";", $reg300[$i]);
@@ -242,7 +251,7 @@ $('.tablesorter').tablesorter({
 
                         <?php
                             $count = count($reg308);
-                            if ($count > 2000) { $count = 2000; }
+                            if ($count > 5000) { $count = 5000; }
                             for($i=0;$i<$count;$i++)
                             {
                               $campos = explode(";", $reg308[$i]);
@@ -276,7 +285,7 @@ $('.tablesorter').tablesorter({
 
                         <?php
                             $count = count($reg310);
-                            if ($count > 2000) { $count = 2000; }
+                            if ($count > 5000) { $count = 5000; }
                             for($i=0;$i<$count;$i++)
                             {
                               $campos = explode(";", $reg310[$i]);

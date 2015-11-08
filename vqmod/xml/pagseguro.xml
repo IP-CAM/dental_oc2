@@ -1,0 +1,85 @@
+
+<modification>
+    <id>Arquivo que insere a segunda via do boleto ou eft do modulo pagseguro transparente</id>
+    <version>1.0</version>
+    <vqmver>2.1.5</vqmver>
+    <author>Santive Tecnologia contato@santive.com</author>
+
+    <file name="catalog/model/account/order.php">
+        <operation>
+            <search position="before">
+                <![CDATA[return array(]]>
+            </search>
+            <add>
+                <![CDATA[$this->load->model('payment/pagseguro_boleto');
+                $paymentLink = $this->model_payment_pagseguro_boleto->getPaymentLink($order_query->row['order_id']);]]>
+            </add>
+        </operation>
+
+        <operation>
+            <search position="after">
+                <![CDATA[return array(]]>
+            </search>
+            <add>
+                <![CDATA['payment_code' => $order_query->row['payment_code'],
+                'paymentLink' => $paymentLink,]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="catalog/controller/account/order.php">
+        <operation>
+            <search position="before">
+                <![CDATA[if ($order_info['invoice_no']) {]]>
+            </search>
+            <add>
+                <![CDATA[if(($order_info['payment_code'] == 'pagseguro_boleto' || $order_info['payment_code'] == 'pagseguro_eft') && ($this->config->get('pagseguro_boleto_order_aguardando_pagamento') == $order_info['order_status_id'] || $this->config->get('pagseguro_eft_order_aguardando_pagamento') == $order_info['order_status_id'])){
+                $this->data['payment_link'] = $order_info['paymentLink'];
+}else{
+$this->data['payment_link'] = false;
+}]]>
+            </add>
+        </operation>
+    </file>
+    <file name="catalog/view/theme/*/template/account/order_info.tpl">
+        <operation>
+            <search position="replace">
+                <![CDATA[<?php echo $payment_method; ?>]]>
+            </search>
+            <add>
+                <![CDATA[<?php echo $payment_method; ?><?php echo $payment_link ? ' <a target="_blank" href="' . $payment_link . '">Fazer pagamento</a>' : ''; ?>]]>
+            </add>
+        </operation>
+    </file>
+    <file name="catalog/view/theme/*/template/common/header.tpl">
+        <operation>
+            <search position="before">
+                <![CDATA[</head>]]>
+            </search>
+            <add>
+                <![CDATA[<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="catalog/model/checkout/order.php">
+        <operation>
+            <search position="before">
+                <![CDATA[return array(]]>
+            </search>
+            <add>
+                <![CDATA[$this->load->model('payment/pagseguro_boleto');
+                $paymentLink =  $this->model_payment_pagseguro_boleto->getPaymentLink($order_query->row['order_id']);]]>
+            </add>
+        </operation>
+
+        <operation>
+            <search position="after">
+                <![CDATA[return array(]]>
+            </search>
+            <add>
+                <![CDATA['paymentLink'                => $paymentLink,]]>
+            </add>
+        </operation>
+    </file>
+</modification>

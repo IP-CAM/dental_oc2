@@ -18,6 +18,31 @@
                 </div>
                 <div class="checkout-content"></div>
             </div>
+            <?php
+            if ($shipping_required) {
+                ?>
+                <div class="shipping-address-step" id="shipping-address">   
+                    <div class="step-title">
+                        <?php echo $text_checkout_shipping_address_step; ?>
+                    </div>
+                    <div class="checkout-content"></div>
+                </div>
+
+
+                <?php
+            }
+            ?>
+
+            <div id="confirm">   
+                <div class="step-title">
+                    <?php echo $text_checkout_confirm_step; ?>
+                </div>
+                <div class="checkout-content"></div>
+            </div>
+
+        </div>
+
+        <div class="step_container six columns" style="">
             <div class="payment-address-step" id="payment-address">   
                 <div class="step-title ">
                     <?php
@@ -30,33 +55,35 @@
                 </div>
                 <div class="checkout-content"></div>
             </div>
-
-        </div>
-        <?php
-        if ($shipping_required) {
-            ?>
-            <div class="step_container six columns" style="">
-
-
-                <div class="shipping-address-step" id="shipping-address">   
-                    <div class="step-title">
-                        <?php echo $text_checkout_shipping_address_step; ?>
-                    </div>
-                    <div class="checkout-content"></div>
-                </div>
+            <?php
+            if ($shipping_required) {
+                ?>
                 <div class="shipping-method-step">   
                     <div class="step-title">
                         <?php echo $text_checkout_shipping_method_step; ?>
                     </div>
                     <div class="checkout-content"></div>
                 </div>
+                <?php
+            }
+            ?>
 
 
-            </div>
-            <?php
-        }
-        ?>
+
+
+        </div>
+
         <div class="step_container six columns" style="">
+            <?php
+            if ($logged) {
+                ?>
+                <div class="payment-address-2-step" id="payment-address-2">   
+                    <div class="step-title ">
+                        <?php echo $txt_payment_heading_customer_step; ?>
+                    </div>
+                    <div class="checkout-content"></div>
+                </div>
+            <?php } ?>
 
             <div class="payment-method-step">   
                 <div class="step-title">
@@ -64,12 +91,8 @@
                 </div>
                 <div class="checkout-content"></div>
             </div>
-            <div id="confirm">   
-                <div class="step-title">
-                    <?php echo $text_checkout_confirm_step; ?>
-                </div>
-                <div class="checkout-content"></div>
-            </div>
+
+
         </div>
         <div class="clear"></div>
 
@@ -210,8 +233,18 @@
 
                 //$('.payment-address-step .checkout-content').html(html);
                 //$('.payment-address-step .checkout-content').slideDown('slow');
+                $(".payment-address-step").hide();
+
                 $(".payment-address-step").find("div.checkout-content").html(html);
+
+                $("#payment-address-2 div.checkout-content").html($(".payment-address-step div#payment-new-2").html());
+                $(".payment-address-step div#payment-new-2").remove();
+
+                $(".payment-address-step").show();
                 $(".payment-address-step").find("div.checkout-content").slideDown('slow');
+                $("#payment-address-2 div.checkout-content").slideDown('slow');
+
+                console.log($(".payment-address-step"));
 
                 payment_address_checkout(false);
                 if (shipping_required_in === '1') {
@@ -279,7 +312,17 @@
             url: 'index.php?route=checkout/payment_address',
             dataType: 'html',
             success: function (html) {
-                $('.payment-address-step .checkout-content').html(html);
+                $(".payment-address-step").hide();
+
+                $(".payment-address-step").find("div.checkout-content").html(html);
+
+                $("#payment-address-2 div.checkout-content").html($(".payment-address-step").find("div#payment-new").html());
+                $(".payment-address-step").find("div#payment-new").remove();
+
+
+
+                $(".payment-address-step").show();
+
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -306,7 +349,7 @@
 
     //=============Validates functions start==================================
     //Shipping address validate
-    function guest_shipping_checkout(loadShipping = false) {
+    function guest_shipping_checkout(loadShipping) {
         //hide in process when it comes here
         $("#button-guest").hide();
         $("#button_final_verify").show();
