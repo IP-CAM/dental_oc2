@@ -194,7 +194,7 @@ class ControllerCheckoutCart extends Controller {
             $this->data['products'] = array();
 
             $products = $this->cart->getProducts();
-
+          
 
             foreach ($products as $product) {
                 $product_total = 0;
@@ -290,6 +290,9 @@ class ControllerCheckoutCart extends Controller {
 
                 $this->data['products'][] = array(
                     'key' => $product['key'],
+                    'reference_id' => $product['reference_id'],
+                    'group_name' => $product['group_name'],
+                    'unique_name' => $product['unique_name'],
                     'thumb' => $image,
                     'name' => $product['name'],
                     'model' => $product['model'],

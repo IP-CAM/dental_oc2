@@ -3,7 +3,7 @@
 class ControllerBossthemesCart extends Controller {
 
     public function add() {
-        
+       
         $this->language->load('bossthemes/cart');
 
         $this->language->load('checkout/cart');
@@ -19,7 +19,7 @@ class ControllerBossthemesCart extends Controller {
         $this->load->model('catalog/product');
 
         $product_info = $this->model_catalog_product->getProduct($product_id);
-
+       
         if ($product_info) {
             if (isset($this->request->post['quantity'])) {
                 $quantity = $this->request->post['quantity'];
@@ -33,7 +33,7 @@ class ControllerBossthemesCart extends Controller {
                 $option = array();
             }
 
-            
+
             if (isset($this->request->post['profile_id'])) {
                 $profile_id = $this->request->post['profile_id'];
             } else {
@@ -63,14 +63,14 @@ class ControllerBossthemesCart extends Controller {
             }
 
             if (!$json) {
-               
+
                 $this->cart->add($this->request->post['product_id'], $quantity, $option, $profile_id);
- 
+
                 $this->load->model('tool/image');
                 $image = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
-             
+
                 $json['title'] = utf8_decode($this->language->get('text_title'));
-                
+
                 $json['thumb'] = sprintf($this->language->get('text_thumb'), $image);
                 $json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('checkout/cart'));
 
@@ -117,7 +117,7 @@ class ControllerBossthemesCart extends Controller {
                 $json['redirect'] = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']));
             }
         }
-      
+
         $this->response->setOutput(json_encode($json));
     }
 

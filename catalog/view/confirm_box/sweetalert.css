@@ -935,7 +935,9 @@ body.stop-scrolling {
 /**
 Its about minimize screen
 */
-
+#boss_menu {
+    position: fixed;
+}
 @media screen and (max-width: 749px) {
     #tobpar {
         position: relative !important;
@@ -943,6 +945,9 @@ Its about minimize screen
     }
     div#container {
         margin-top:10px !important; 
+    }
+    #boss_menu {
+        position: relative !important;
     }
 }
 @media screen and (max-width: 569px) {
@@ -952,6 +957,10 @@ Its about minimize screen
     div#container {
         margin-top:10px !important; 
     }
+    #boss_menu {
+        position: relative !important;
+    }
+
 }
 @media screen and  (max-width: 321px) {
     #tobpar {
@@ -959,5 +968,8 @@ Its about minimize screen
     }
     div#container {
         margin-top:10px !important; 
+    }
+    #boss_menu {
+        position: relative !important;
     }
 }

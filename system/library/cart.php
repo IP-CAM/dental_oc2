@@ -287,6 +287,9 @@ class Cart {
                     $this->data[$key] = array(
                         'key' => $key,
                         'product_id' => $product_query->row['product_id'],
+                        'unique_name' => $product_query->row['unique_name'],
+                        'group_name' => $product_query->row['group_name'],
+                        'reference_id' => $product_query->row['referenc_id'],
                         'name' => $product_query->row['name'],
                         'model' => $product_query->row['model'],
                         'shipping' => $product_query->row['shipping'],

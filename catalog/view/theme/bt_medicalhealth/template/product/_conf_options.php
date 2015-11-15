@@ -49,11 +49,13 @@ if ($arcade_count > 0) {
         foreach ($options_arcade as $option_v) {
             $title_alt = '';
             if ($option_v['quantity'] <= 0) {
-                if ($option_v['stock_status'] == 'Out Of Stock') {
-                    $title_alt = $stock_statuses['out_of_stock'];
-                } else {
-                    $title_alt = $option_v['stock_status'];
-                }
+//                if ($option_v['stock_status'] == 'Out Of Stock') {
+//                    $title_alt = $stock_statuses['out_of_stock'];
+//                } else {
+//                    $title_alt = $option_v['stock_status'];
+//                }
+                //When product quantiy in backend 0 = Fora de estoque in product option
+                $title_alt = $stock_statuses['out_of_stock'];
             } else if ($option_v['quantity'] > 0) {
                 $title_alt = $stock_statuses['in_stock'];
             } else {
@@ -128,11 +130,13 @@ if ($tamanho_count > 0) {
                 foreach ($options_tamanho as $option_v) {
                     $title_alt = '';
                     if ($option_v['quantity'] <= 0) {
-                        if ($option_v['stock_status'] == 'Out Of Stock') {
-                            $title_alt = $stock_statuses['out_of_stock'];
-                        } else {
-                            $title_alt = $option_v['stock_status'];
-                        }
+//                        if ($option_v['stock_status'] == 'Out Of Stock') {
+//                            $title_alt = $stock_statuses['out_of_stock'];
+//                        } else {
+//                            $title_alt = $option_v['stock_status'];
+//                        }
+                        //When product quantiy in backend 0 = Fora de estoque in product option
+                        $title_alt = $stock_statuses['out_of_stock'];
                     } else if ($option_v['quantity'] > 0) {
                         $title_alt = $stock_statuses['in_stock'];
                     } else {
@@ -207,11 +211,13 @@ if ($quantitdy_count > 0) {
                 foreach ($options_quantitdy as $option_v) {
                     $title_alt = '';
                     if ($option_v['quantity'] <= 0) {
-                        if ($option_v['stock_status'] == 'Out Of Stock') {
-                            $title_alt = $stock_statuses['out_of_stock'];
-                        } else {
-                            $title_alt = $option_v['stock_status'];
-                        }
+//                        if ($option_v['stock_status'] == 'Out Of Stock') {
+//                            $title_alt = $stock_statuses['out_of_stock'];
+//                        } else {
+//                            $title_alt = $option_v['stock_status'];
+//                        }
+                        //When product quantiy in backend 0 = Fora de estoque in product option
+                        $title_alt = $stock_statuses['out_of_stock'];
                     } else if ($option_v['quantity'] > 0) {
                         $title_alt = $stock_statuses['in_stock'];
                     } else {
@@ -287,11 +293,13 @@ if ($cor_count > 0) {
                 foreach ($options_cor as $option_v) {
                     $title_alt = '';
                     if ($option_v['quantity'] <= 0) {
-                        if ($option_v['stock_status'] == 'Out Of Stock') {
-                            $title_alt = $stock_statuses['out_of_stock'];
-                        } else {
-                            $title_alt = $option_v['stock_status'];
-                        }
+//                        if ($option_v['stock_status'] == 'Out Of Stock') {
+//                            $title_alt = $stock_statuses['out_of_stock'];
+//                        } else {
+//                            $title_alt = $option_v['stock_status'];
+//                        }
+                        //When product quantiy in backend 0 = Fora de estoque in product option
+                        $title_alt = $stock_statuses['out_of_stock'];
                     } else if ($option_v['quantity'] > 0) {
                         $title_alt = $stock_statuses['in_stock'];
                     } else {
@@ -541,7 +549,7 @@ if ($cor_count > 0) {
                 $(".stock_email").hide();
             }
             $("#availability_status").html($(this).parent().attr("title"));
-           
+
             if ($(this).attr("product_on_phone") == '1') {
                 $("#button-cart-phone").show();
                 $("#button-cart").hide();
@@ -586,12 +594,14 @@ if ($cor_count > 0) {
 
             title_alt = '';
             if (v['quantity'] <= 0) {
-                if (v['stock_status'] == 'Out Of Stock') {
-                    title_alt = stock_statuses['out_of_stock'];
-                }
-                else {
-                    title_alt = v['stock_status'];
-                }
+//                if (v['stock_status'] == 'Out Of Stock') {
+//                    title_alt = stock_statuses['out_of_stock'];
+//                }
+//                else {
+//                    title_alt = v['stock_status'];
+//                }
+                //When product quantiy in backend 0 = Fora de estoque in product option
+                title_alt = stock_statuses['out_of_stock'];
 
             } else if (v['quantity'] > 0) {
                 title_alt = stock_statuses['in_stock'];
@@ -652,12 +662,14 @@ if ($cor_count > 0) {
             title_alt = '';
 
             if (v['quantity'] <= 0) {
-                if (v['stock_status'] == 'Out Of Stock') {
-                    title_alt = stock_statuses['out_of_stock'];
-                }
-                else {
-                    title_alt = v['stock_status'];
-                }
+//                if (v['stock_status'] == 'Out Of Stock') {
+//                    title_alt = stock_statuses['out_of_stock'];
+//                }
+//                else {
+//                    title_alt = v['stock_status'];
+//                }
+//When product quantiy in backend 0 = Fora de estoque in product option
+                title_alt = stock_statuses['out_of_stock'];
 
             } else if (v['quantity'] > 0) {
                 title_alt = stock_statuses['in_stock'];
@@ -713,12 +725,15 @@ if ($cor_count > 0) {
         $.each(cors['data'], function (k, v) {
             title_alt = '';
             if (v['quantity'] <= 0) {
-                if (v['stock_status'] == 'Out Of Stock') {
-                    title_alt = stock_statuses['out_of_stock'];
-                }
-                else {
-                    title_alt = v['stock_status'];
-                }
+//                if (v['stock_status'] == 'Out Of Stock') {
+//                    title_alt = stock_statuses['out_of_stock'];
+//                }
+//                else {
+//                    title_alt = v['stock_status'];
+//                }
+
+//When product quantiy in backend 0 = Fora de estoque in product option
+                title_alt = stock_statuses['out_of_stock'];
 
             } else if (v['quantity'] > 0) {
                 title_alt = stock_statuses['in_stock'];

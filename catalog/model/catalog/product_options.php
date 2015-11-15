@@ -44,6 +44,8 @@ class ModelCatalogProductOptions extends Model {
                 $where = "AND " . implode(" AND ", $where);
             }
         }
+        //$where.= " t.status = 1";
+        
         $sql.= $where . ' group by   ' . $option_type;
 
 

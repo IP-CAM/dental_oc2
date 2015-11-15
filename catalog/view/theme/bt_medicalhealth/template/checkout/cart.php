@@ -48,7 +48,7 @@
                                 <?php if ($product['thumb']) { ?>
                                     <a class="img_cart" href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
                                 <?php } ?></td>
-                            <td class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+                            <td class="name"><a href="<?php echo $product['href']; ?>"><?php echo empty($product['reference_id'])?$product['unique_name']:$product['name']; ?></a>
                                 <?php if (!$product['stock']) { ?>
                                     <span class="stock">***</span>
                                 <?php } ?>

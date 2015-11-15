@@ -86,7 +86,7 @@
   <br />
 </div>
 <?php } ?>
-<div>
+<div id="payment-new-2-guest">
     <?php
         include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");
     ?>

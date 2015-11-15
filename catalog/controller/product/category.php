@@ -233,11 +233,11 @@ class ControllerProductCategory extends Controller {
             
             
 
-            $product_total = $this->model_catalog_product->getTotalProducts($data);
+            $product_total = $this->model_catalog_product->getTotalProducts($data,true);
             
         
             $results = $this->model_catalog_product->getProducts($data);
-
+           
             foreach ($results as $result) {
                 if ($result['image']) {
                     $image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));

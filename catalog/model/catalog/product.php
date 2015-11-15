@@ -15,7 +15,9 @@ class ModelCatalogProduct extends Model {
         $sql = "SELECT DISTINCT *, pd.name AS name, p.image, m.name AS manufacturer, (SELECT price FROM " . DB_PREFIX . "product_discount pd2 WHERE pd2.product_id = p.product_id AND pd2.customer_group_id = '" . (int) $customer_group_id . "' AND pd2.quantity = '1' AND ((pd2.date_start = '0000-00-00' OR pd2.date_start < NOW()) AND (pd2.date_end = '0000-00-00' OR pd2.date_end > NOW())) ORDER BY pd2.priority ASC, pd2.price ASC LIMIT 1) AS discount, (SELECT price FROM " . DB_PREFIX . "product_special ps WHERE ps.product_id = p.product_id AND ps.customer_group_id = '" . (int) $customer_group_id . "' AND ((ps.date_start = '0000-00-00' OR ps.date_start < NOW()) AND (ps.date_end = '0000-00-00' OR ps.date_end > NOW())) ORDER BY ps.priority ASC, ps.price ASC LIMIT 1) AS special, (SELECT points FROM " . DB_PREFIX . "product_reward pr WHERE pr.product_id = p.product_id AND customer_group_id = '" . (int) $customer_group_id . "') AS reward, (SELECT ss.name FROM " . DB_PREFIX . "stock_status ss WHERE ss.stock_status_id = p.stock_status_id AND ss.language_id = '" . (int) $this->config->get('config_language_id') . "') AS stock_status, (SELECT wcd.unit FROM " . DB_PREFIX . "weight_class_description wcd WHERE p.weight_class_id = wcd.weight_class_id AND wcd.language_id = '" . (int) $this->config->get('config_language_id') . "') AS weight_class, (SELECT lcd.unit FROM " . DB_PREFIX . "length_class_description lcd WHERE p.length_class_id = lcd.length_class_id AND lcd.language_id = '" . (int) $this->config->get('config_language_id') . "') AS length_class, (SELECT AVG(rating) AS total FROM " . DB_PREFIX . "review r1 WHERE r1.product_id = p.product_id AND r1.status = '1' GROUP BY r1.product_id) AS rating, (SELECT COUNT(*) AS total FROM " . DB_PREFIX . "review r2 WHERE r2.product_id = p.product_id AND r2.status = '1' GROUP BY r2.product_id) AS reviews, p.sort_order FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) LEFT JOIN " . DB_PREFIX . "manufacturer m ON (p.manufacturer_id = m.manufacturer_id) WHERE p.product_id = '" . (int) $product_id . "' AND pd.language_id = '" . (int) $this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int) $this->config->get('config_store_id') . "'";
 
         $query = $this->db->query($sql);
-
+        
+        
+       
         if ($query->num_rows) {
             return array(
                 'product_id' => $query->row['product_id'],
@@ -234,10 +236,10 @@ class ModelCatalogProduct extends Model {
         $sql.= " AND p.referenc_id IS NULL ";
 
         $sql .= " GROUP BY p.product_id";
-        
-        
 
-        
+
+
+
         $sort_data = array(
             'pd.name',
             'p.model',
@@ -333,8 +335,8 @@ class ModelCatalogProduct extends Model {
 
             $sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
         }
-        
-        
+
+
         $product_data = array();
 
         $query = $this->db->query($sql);
@@ -357,7 +359,7 @@ class ModelCatalogProduct extends Model {
 
         if (!$product_data) {
 
-            $sql = "SELECT p.product_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int) $this->config->get('config_store_id')."'";
+            $sql = "SELECT p.product_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int) $this->config->get('config_store_id') . "'";
             $sql.= " AND p.referenc_id IS NULL " . " ORDER BY p.date_added DESC LIMIT " . (int) $limit;
             ;
             $query = $this->db->query($sql);
@@ -373,7 +375,7 @@ class ModelCatalogProduct extends Model {
 
     public function getPopularProducts($limit) {
         $product_data = array();
-        $sql = "SELECT p.product_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int) $this->config->get('config_store_id')."'";
+        $sql = "SELECT p.product_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int) $this->config->get('config_store_id') . "'";
         $sql.= " AND p.referenc_id IS NULL ORDER BY p.viewed, p.date_added DESC LIMIT " . (int) $limit;
         $query = $this->db->query($sql);
 
@@ -397,7 +399,7 @@ class ModelCatalogProduct extends Model {
             $product_data = array();
             $sql = "SELECT op.product_id, COUNT(*) AS total FROM " . DB_PREFIX . "order_product op LEFT JOIN `" . DB_PREFIX . "order` o ON (op.order_id = o.order_id) LEFT JOIN `" . DB_PREFIX . "product` p ON (op.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE o.order_status_id > '0' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int) $this->config->get('config_store_id') . "'";
             $sql.= " AND p.referenc_id IS NULL " . " GROUP BY op.product_id ORDER BY total DESC LIMIT " . (int) $limit;
-            
+
             $query = $this->db->query($sql);
 
             foreach ($query->rows as $result) {
@@ -533,7 +535,7 @@ class ModelCatalogProduct extends Model {
         return $query->rows;
     }
 
-    public function getTotalProducts($data = array()) {
+    public function getTotalProducts($data = array(), $check = false) {
         if ($this->customer->isLogged()) {
             $customer_group_id = $this->customer->getCustomerGroupId();
         } else {
@@ -651,7 +653,12 @@ class ModelCatalogProduct extends Model {
             }
         }
 
-
+        $sql.= " AND p.referenc_id is NULL  ";
+        if($check){
+            
+          //testing purpose
+            
+        }
         $query = $this->db->query($sql);
 
         return $query->row['total'];
