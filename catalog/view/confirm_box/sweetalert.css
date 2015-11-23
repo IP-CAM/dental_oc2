@@ -938,6 +938,9 @@ Its about minimize screen
 #boss_menu {
     position: fixed;
 }
+.live-chat {
+    margin-top: 10px; 
+}
 @media screen and (max-width: 749px) {
     #tobpar {
         position: relative !important;
