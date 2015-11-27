@@ -210,7 +210,7 @@
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                //alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
         });
 
@@ -961,6 +961,17 @@
 //==========End payment address=============
 // Checkout
     function button_account_click() {
+        if ($(".checkout_login_ck").length == 1 && logged_in == '') {
+            $(".checkout_login_ck").prop("checked", true);
+            if ($('input[name=\'account\']:checked').attr("value") == "register") {
+                window.location = "?route=account/register&action=checkout";
+                return false;
+            }
+        }
+
+        
+
+
         $.ajax({
             url: 'index.php?route=checkout/' + $('input[name=\'account\']:checked').attr('value'),
             dataType: 'html',
@@ -976,7 +987,7 @@
                 $('.warning, .error').remove();
                 //making 3rd step here from js
                 $('.payment-address-step').hide();
-                
+
                 $('.payment-address-step .checkout-content').html(html);
                 $('.payment-address-step .checkout-content').slideDown('slow');
 

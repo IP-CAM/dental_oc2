@@ -169,6 +169,7 @@ p {
     min-height: 400px;
     padding-right: 25px;
     padding-left: 25px;
+    margin-top:58px;
 }
 
 #curso {
@@ -3349,7 +3350,7 @@ div.tags {
     font-weight: bolder;
     margin: -10px -10px 10px;
     padding: 10px;
-    
+
 }
 .step-title .step_no{
     background: none repeat scroll 0 0 #FFFFFF;
@@ -3362,8 +3363,8 @@ div.tags {
     padding: 0 7px;
 }
 .step_container {
-/*    float:left;
-    width:31%;*/
+    /*    float:left;
+        width:31%;*/
     margin: 1% !important;
 }
 .step_container >div:not(:first-child) {
@@ -3382,17 +3383,27 @@ div.area>div{
     margin-bottom: 10px;
 }
 .step_container .customer_section {
-       min-height: 20px;
+    min-height: 20px;
     margin-bottom: 10px;
 }
 .step_container #checkout div.checkout-content>div {
     margin-top:10px;
 }
 .checkout-content .buttons .left {
-     width: 40%;
+    width: 40%;
 }
 .step_container div.hidden{
     display:none;
 }
+.stock_danger {
+    color:red !important;
+}
 
-
+.ui-menu-item{
+    text-align:left;
+    z-index: 10000 !important;
+}
+.ui-autocomplete{
+    text-align:left;
+    z-index: 10000 !important;
+}

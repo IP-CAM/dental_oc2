@@ -40,11 +40,12 @@
         <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui.mask.js"></script>
         <script type="text/javascript" src="catalog/view/loader/jquery.loading-indicator.min.js"></script>
         <script>
-            var loader_box;
-            $(function(){
-                loader_box = $('#loader_box').loadingIndicator();
-            })
-        </script>    
+                    var loader_box;
+                    $(function(){
+                    loader_box = $('#loader_box').loadingIndicator();
+                    })
+        </script>
+         <script type="text/javascript" src="catalog/view/javascript/suggestion.js"></script>
         <!--[if IE 8]>
         <link rel="stylesheet" type="text/css" href="catalog/view/theme/bt_medicalhealth/stylesheet/ie8.css" />
         <![endif]-->
@@ -76,40 +77,40 @@
         <?php echo $google_analytics; ?>
     </head>
     <body>
-                <div id="loader_box"></div>
-                <div class="container" id="tobpar">
-                 <div id="header" class="sixteen columns alpha omega">
-                    <div class="boss_header_top">
-                        <?php if ($logo) { ?>
-                            <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
-                        <?php } ?>
-                        <div id="mobile_search"></div>
-                        <div id="custom_search_bar">
-                            <?php include_once("catalog/view/theme/bt_medicalhealth/template/common/_custom_search_bar.tpl"); ?>
-                        </div>
-                        <?php echo $cart; ?>
-                        <?php echo $header_top; ?>
+        <div id="loader_box"></div>
+        <div class="container" id="tobpar">
+            <div id="header" class="sixteen columns alpha omega">
+                <div class="boss_header_top">
+                    <?php if ($logo) { ?>
+                        <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
+                    <?php } ?>
+                    <div id="mobile_search"></div>
+                    <div id="custom_search_bar">
+                        <?php include_once("catalog/view/theme/bt_medicalhealth/template/common/_custom_search_bar.tpl"); ?>
                     </div>
-                    <div class="boss_header_buttom">
-                        <div id="welcome">
+                    <?php echo $cart; ?>
+                    <?php echo $header_top; ?>
+                </div>
+                <div class="boss_header_buttom">
+                    <div id="welcome">
 
-                            <?php if (!$logged) { ?>
-                                <?php echo $text_welcome; ?>
-                            <?php } else { ?>
-                                <?php echo $text_logged; ?>
-                            <?php } ?>
-                        </div>
-                        <div class="quick-access">                
-                            <?php //include_once("catalog/view/theme/bt_medicalhealth/template/common/_quick_search.tpl"); ?>
-                            <?php echo $boss_login; ?>          
-                        </div>
+                        <?php if (!$logged) { ?>
+                            <?php echo $text_welcome; ?>
+                        <?php } else { ?>
+                            <?php echo $text_logged; ?>
+                        <?php } ?>
+                    </div>
+                    <div class="quick-access">                
+                        <?php //include_once("catalog/view/theme/bt_medicalhealth/template/common/_quick_search.tpl"); ?>
+                        <?php echo $boss_login; ?>          
                     </div>
                 </div>
             </div>
+        </div>
         <div class="frame_container">
-    
+
             <div id="container" class="container">
-               
+
                 <?php echo $boss_megamenu; ?>
                 <?php echo $header_bottom; ?>
                 <?php if ($error) { ?>
@@ -121,7 +122,7 @@
                 <div class="sixteen columns alpha omega">
 
                     <script type="text/javascript"><!--
-                    //window.onload = boss_header_move_search;
+                        //window.onload = boss_header_move_search;
                                 //addLoadEvent(boss_header_move_search);
                                 $(document).ready(function() {
                         boss_header_move_search();
@@ -167,9 +168,9 @@
                                 }
                                 }
                         //--></script>
-                    
-<script>
-    $( window ).load(function() {
-        loader_box.hide();
-     });
-</script>    
+
+                    <script>
+                        $(window).load(function() {
+                        loader_box.hide();
+                        });
+                    </script>    

@@ -83,8 +83,11 @@ class ControllerAccountRegister extends Controller {
                 $this->session->data['payment_country_id'] = $this->request->post['country_id'];
                 $this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
             }
-
-            $this->redirect($this->url->link('account/success'));
+            if (!empty($this->request->get['action']) && $this->request->get['action'] == "checkout") {
+                $this->redirect($this->url->link('checkout/checkout'));
+            } else {
+                $this->redirect($this->url->link('account/success'));
+            }
         }
 
         $this->data['breadcrumbs'] = array();
@@ -223,8 +226,13 @@ class ControllerAccountRegister extends Controller {
         } else {
             $this->data['error_zone'] = '';
         }
+        if (!empty($this->request->get['action']) && $this->request->get['action'] == "checkout") {
+            $this->data['action'] = $this->url->link('account/register&action=checkout', '', 'SSL');
+        } else {
+            $this->data['action'] = $this->url->link('account/register', '', 'SSL');
+        }
 
-        $this->data['action'] = $this->url->link('account/register', '', 'SSL');
+
 
         if (isset($this->request->post['firstname'])) {
             $this->data['firstname'] = $this->request->post['firstname'];

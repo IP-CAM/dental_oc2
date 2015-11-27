@@ -24,6 +24,8 @@
         <?php } ?>
         <link rel="stylesheet" type="text/css" href="catalog/view/theme/bt_medicalhealth/stylesheet/skeleton.css" />
         <link rel="stylesheet" type="text/css" href="catalog/view/theme/bt_medicalhealth/stylesheet/responsive.css" />
+        <link rel="stylesheet" type="text/css" href="catalog/view/loader/jquery.loading-indicator.css" />
+        <link rel="stylesheet" type="text/css" href="catalog/view/confirm_box/sweetalert.css" />
         <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
         <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" />
@@ -31,10 +33,18 @@
         <script type="text/javascript" src="catalog/view/javascript/bossthemes/getwidthbrowser.js"></script>
         <script type="text/javascript" src="catalog/view/javascript/bossthemes/bossthemes.js"></script>
         <script type="text/javascript" src="catalog/view/javascript/bossthemes/notify.js"></script>
+        <script type="text/javascript" src="catalog/view/confirm_box/sweetalert.min.js"></script>
         <?php foreach ($scripts as $script) { ?>
             <script type="text/javascript" src="<?php echo $script; ?>"></script>
         <?php } ?>
-
+        <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui.mask.js"></script>
+        <script type="text/javascript" src="catalog/view/loader/jquery.loading-indicator.min.js"></script>
+        <script>
+                    var loader_box;
+                    $(function(){
+                    loader_box = $('#loader_box').loadingIndicator();
+                    })
+        </script>    
         <!--[if IE 8]>
         <link rel="stylesheet" type="text/css" href="catalog/view/theme/bt_medicalhealth/stylesheet/ie8.css" />
         <![endif]-->
@@ -66,35 +76,40 @@
         <?php echo $google_analytics; ?>
     </head>
     <body>
-        <div class="frame_container">
-            <div id="container" class="container">
-                <div id="header" class="sixteen columns alpha omega">
-                    <div class="boss_header_top">
-                        <?php if ($logo) { ?>
-                            <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
-                        <?php } ?>
-                        <div id="mobile_search"></div>
-                        <div id="custom_search_bar">
-                            <?php include_once("catalog/view/theme/bt_medicalhealth/template/common/_custom_search_bar.tpl"); ?>
-                        </div>
-                        <?php echo $cart; ?>
-                        <?php echo $header_top; ?>
+        <div id="loader_box"></div>
+        <div class="container" id="tobpar">
+            <div id="header" class="sixteen columns alpha omega">
+                <div class="boss_header_top">
+                    <?php if ($logo) { ?>
+                        <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
+                    <?php } ?>
+                    <div id="mobile_search"></div>
+                    <div id="custom_search_bar">
+                        <?php include_once("catalog/view/theme/bt_medicalhealth/template/common/_custom_search_bar.tpl"); ?>
                     </div>
-                    <div class="boss_header_buttom">
-                        <div id="welcome">
+                    <?php echo $cart; ?>
+                    <?php echo $header_top; ?>
+                </div>
+                <div class="boss_header_buttom">
+                    <div id="welcome">
 
-                            <?php if (!$logged) { ?>
-                                <?php echo $text_welcome; ?>
-                            <?php } else { ?>
-                                <?php echo $text_logged; ?>
-                            <?php } ?>
-                        </div>
-                        <div class="quick-access">                
-                            <?php include_once("catalog/view/theme/bt_medicalhealth/template/common/_quick_search.tpl"); ?>
-                            <?php echo $boss_login; ?>   		
-                        </div>
+                        <?php if (!$logged) { ?>
+                            <?php echo $text_welcome; ?>
+                        <?php } else { ?>
+                            <?php echo $text_logged; ?>
+                        <?php } ?>
+                    </div>
+                    <div class="quick-access">                
+                        <?php //include_once("catalog/view/theme/bt_medicalhealth/template/common/_quick_search.tpl"); ?>
+                        <?php echo $boss_login; ?>          
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="frame_container">
+
+            <div id="container" class="container">
+
                 <?php echo $boss_megamenu; ?>
                 <?php echo $header_bottom; ?>
                 <?php if ($error) { ?>
@@ -106,7 +121,7 @@
                 <div class="sixteen columns alpha omega">
 
                     <script type="text/javascript"><!--
-                    //window.onload = boss_header_move_search;
+                        //window.onload = boss_header_move_search;
                                 //addLoadEvent(boss_header_move_search);
                                 $(document).ready(function() {
                         boss_header_move_search();
@@ -114,7 +129,7 @@
                                 $(window).resize(function() {
                         boss_header_move_search();
                         });
-                                function boss_header_move_search()	{
+                                function boss_header_move_search()  {
                                 if (getWidthBrowser() < 767){
                                 if ($("#search-form-bot").html()) {
                                 $("#mobile_search").html($("#search-form-bot").html());
@@ -152,3 +167,9 @@
                                 }
                                 }
                         //--></script>
+
+                    <script>
+                        $(window).load(function() {
+                        loader_box.hide();
+                        });
+                    </script>    

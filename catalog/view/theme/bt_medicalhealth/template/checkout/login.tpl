@@ -20,7 +20,8 @@
     <?php } ?>
     <b><?php echo $text_register; ?></b></label>
   <br />
-  
+    
+
 
   <br />
   <p><?php echo $text_register_account; ?></p>
@@ -42,6 +43,9 @@
 </div>
 
 <script type="text/javascript">
+   if($(".checkout_login_ck").length==1){
+          $(".checkout_login_ck").prop("checked",true);
+   } 
    $('input[name=\'account\']').click(function(){
         button_account_click();
     })

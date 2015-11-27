@@ -20,9 +20,9 @@ $button_search = $this->language->get('button_search');
 ?>
 <div>
     <?php if ($search) { ?>
-    <input type="text" name="search" value="<?php echo $search; ?>" />
+    <input type="text" name="search" value="<?php echo $search; ?>" id="search_bar" />
     <?php } else { ?>
-    <input type="text" name="search" value="<?php echo $search; ?>" onclick="this.value = '';" onkeydown="this.style.color = '000000'" style="color: #999;" />
+    <input type="text" name="search" value="<?php echo $search; ?>" id="search_bar"  onclick="this.value = '';" onkeydown="this.style.color = '000000'" style="color: #999;" />
     <?php } ?>
 </div>
 <div>

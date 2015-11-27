@@ -9,13 +9,17 @@ class ControllerModuleCarousel extends Controller {
         $this->load->model('catalog/manufacturer');
         $this->load->model('tool/image');
 
-        $this->document->addScript('catalog/view/javascript/jquery/jquery.jcarousel.min.js');
+        $this->document->addScript('catalog/view/javascript/jcarousal/dist/jquery.jcarousel.min.js');
+        $this->document->addScript('catalog/view/javascript/jcarousal/jcarousel.responsive.js');
+        //$this->document->addScript('catalog/view/javascript/jquery/jquery.jcarousel.min.js');
 
         if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/carousel.css')) {
-            $this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/carousel.css');
+            //$this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/carousel.css');
         } else {
-            $this->document->addStyle('catalog/view/theme/default/stylesheet/carousel.css');
+            //$this->document->addStyle('catalog/view/theme/default/stylesheet/carousel.css');
         }
+        
+        $this->document->addStyle('catalog/view/javascript/jcarousal/jcarousel.responsive.css');
 
         $this->data['limit'] = $setting['limit'];
         $this->data['scroll'] = $setting['scroll'];
@@ -63,7 +67,7 @@ class ControllerModuleCarousel extends Controller {
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/carousel.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/module/carousel.tpl';
         } else {
-            $this->template = 'default/template/module/carousel.tpl';
+            $this->template = 'default/template/module/carousel.php';
         }
 
         $this->render();

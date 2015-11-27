@@ -6,7 +6,7 @@
                 <div id="search-form">
                     <div id="search-form-bot">
                         <span class="title-search"><?php echo $text_search; ?></span>
-                        <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />                                  
+                        <input type="text" name="search" id="search_bar" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />                                  
                         <div class="button-search"><span><?php echo $text_search; ?></span></div>
                     </div><!-- end #search-form-bot  -->
                 </div><!-- end #serach-form -->

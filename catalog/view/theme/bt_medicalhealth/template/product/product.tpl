@@ -47,7 +47,15 @@
                     <?php if ($reward) { ?>
                         <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
                     <?php } ?>
-                    <span><?php echo $text_stock; ?></span><b id="stock_status"><?php echo $stock; ?></b><br />
+                    <span><?php echo $text_stock; ?></span>
+                        <?php
+                            $stock_css = "";
+                            if($stock=="Fora de estoque"){
+                                $stock_css = "stock_danger";
+                            }
+                        ?>
+                        <b id="stock_status " class="<?php echo $stock_css; ?>" ><?php echo $stock; ?></b>
+                    <br />
 
                 </div>
                 <?php if ($price) { ?>

@@ -1,5 +1,5 @@
----------- Date: 2015-10-09 20:19:12 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /index.php?route=checkout/guest
+---------- Date: 2015-11-27 19:48:05 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /?route=account/register&amp;action=checkout
 MOD DETAILS:
    modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
    id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
@@ -7,13 +7,13 @@ MOD DETAILS:
    vqmver    : 2.3.2
    author    : Ibrahim Brumate
 
-File Name    : catalog/view/theme/*/template/checkout/guest.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-10-09 20:19:20 ~ IP : 127.0.0.1 ----------
+---------- Date: 2015-11-27 20:53:18 ~ IP : 127.0.0.1 ----------
 REQUEST URI : /index.php?route=checkout/register
 MOD DETAILS:
    modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
@@ -28,8 +28,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-dis
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-10-09 20:19:34 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /index.php?route=checkout/guest
+---------- Date: 2015-11-27 20:53:18 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /?route=account/register&amp;action=checkout
 MOD DETAILS:
    modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
    id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
@@ -37,58 +37,13 @@ MOD DETAILS:
    vqmver    : 2.3.2
    author    : Ibrahim Brumate
 
-File Name    : catalog/view/theme/*/template/checkout/guest.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-10-09 20:19:58 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /index.php?route=checkout/guest
-MOD DETAILS:
-   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
-   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
-   version   : 1.0.7
-   vqmver    : 2.3.2
-   author    : Ibrahim Brumate
-
-File Name    : catalog/view/theme/*/template/checkout/guest.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-10-09 20:20:15 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /index.php?route=checkout/guest
-MOD DETAILS:
-   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
-   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
-   version   : 1.0.7
-   vqmver    : 2.3.2
-   author    : Ibrahim Brumate
-
-File Name    : catalog/view/theme/*/template/checkout/guest.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-10-09 20:20:29 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /index.php?route=checkout/guest
-MOD DETAILS:
-   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
-   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
-   version   : 1.0.7
-   vqmver    : 2.3.2
-   author    : Ibrahim Brumate
-
-File Name    : catalog/view/theme/*/template/checkout/guest.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-10-09 20:20:56 ~ IP : 127.0.0.1 ----------
+---------- Date: 2015-11-27 20:53:21 ~ IP : 127.0.0.1 ----------
 REQUEST URI : /index.php?route=checkout/register
 MOD DETAILS:
    modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
@@ -99,6 +54,21 @@ MOD DETAILS:
 
 File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
 VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-11-27 20:53:21 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /?route=account/register&amp;action=checkout
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 

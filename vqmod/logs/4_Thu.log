@@ -1,149 +1,269 @@
----------- Date: 2015-03-19 19:25:06 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=42
+---------- Date: 2015-11-26 19:58:54 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/register
 MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
 
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-03-19 19:25:14 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=52
+---------- Date: 2015-11-26 20:09:23 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/register
 MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
 
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-03-19 19:31:32 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=52
+---------- Date: 2015-11-26 20:11:45 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
 MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
 
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-03-19 19:33:08 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=52
+---------- Date: 2015-11-26 20:12:02 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
 MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
 
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-03-19 19:40:26 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=52
+---------- Date: 2015-11-26 20:12:05 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /?route=account/register
 MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
 
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-03-19 19:41:42 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=52
+---------- Date: 2015-11-26 20:12:05 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/register
 MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
 
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-03-19 19:42:45 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=52
+---------- Date: 2015-11-26 20:13:40 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /?route=account/register&amp;action=checkout
 MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
 
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-03-19 19:46:29 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=52
+---------- Date: 2015-11-26 20:14:27 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
 MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
 
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-03-19 19:46:50 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=52
+---------- Date: 2015-11-26 20:14:46 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/register
 MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
 
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-03-19 19:48:55 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /brian/real_dental/Dental/index.php?route=product/product&amp;path=18&amp;product_id=52
+---------- Date: 2015-11-26 20:14:46 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/register
 MOD DETAILS:
-   modFile   : /var/www/html/brian/real_dental/Dental/vqmod/xml/yuotube.xml
-   id        : Adds Youtube videos to product pages
-   version   : 1.0]
-   vqmver    : 1.0
-   author    : Oleh Vasylyev  olehvasilyev@gmail.com
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
 
-File Name    : catalog/model/catalog/product.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 'tag'              => $query->row['tag'],
+File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-11-26 20:14:47 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-11-26 20:14:48 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-11-26 20:15:00 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-11-26 20:15:00 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-11-26 20:18:22 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /?route=account/register&amp;action=checkout
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-11-26 20:21:16 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /?route=account/register&amp;action=checkout
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-11-26 20:37:03 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-11-26 20:37:03 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /?route=account/register&amp;action=checkout
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 
