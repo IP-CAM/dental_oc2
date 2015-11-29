@@ -3,7 +3,7 @@
 require_once('chaveiro.php');
 
 /* Procurar por Arquivo de Log com dado da última exportação */
-$logfilename = "sidicom/log/ecotosid.log";
+$logfilename = "log/ecotosid.log";
 if (file_exists($logfilename)) {
     $lines = file($logfilename);
     foreach ($lines as $line_num => $line) {
@@ -46,7 +46,7 @@ $sql = mysqli_query($conexao, $sql);
 $num_rows = mysqli_num_rows($sql); /* Número de Pedidos Encontrados */
 
 if ($num_rows > 0 ) {
-    while ($dados = mysql_fetch_array($sql))  {
+    while ($dados = mysqli_fetch_array($sql))  {
        $numpedecom = $dados["order_id"]; //REG 01
        // REG 02 - 04
        $codcliente = $dados["customer_id"]; //REG 05

@@ -413,13 +413,16 @@ if ($cor_count > 0) {
 
                     if (stock_statuses['out_of_stock'] == $(ob).parent().attr("title")) {
                         $("#availability_status").attr("class", "red_color");
+                        $("#stock_status").addClass("stock_danger");
                         $(".stock_email").show();
                     }
                     else {
                         $("#availability_status").attr("class", "green_color");
+                        $("#stock_status").removeClass("stock_danger");
                         $(".stock_email").hide();
                     }
                     $("#availability_status").html($(ob).parent().attr("title"));
+                    $("#stock_status").html($(ob).parent().attr("title"));
 
                     if ($(ob).attr("product_on_phone") == '1') {
                         $("#button-cart-phone").show();
@@ -469,13 +472,17 @@ if ($cor_count > 0) {
                     $("#stock_status").html($(ob).parent().attr("title"));
                     if (stock_statuses['out_of_stock'] == $(ob).parent().attr("title")) {
                         $("#availability_status").attr("class", "red_color");
+                        $("#stock_status").addClass("stock_danger");
                         $(".stock_email").show();
                     }
                     else {
                         $("#availability_status").attr("class", "green_color");
+                        $("#stock_status").removeClass("stock_danger");
                         $(".stock_email").hide();
                     }
                     $("#availability_status").html($(ob).parent().attr("title"));
+                    $("#stock_status").html($(ob).parent().attr("title"));
+                    
                     if ($(ob).attr("product_on_phone") == '1') {
                         $("#button-cart-phone").show();
                         $("#button-cart").hide();
@@ -538,17 +545,24 @@ if ($cor_count > 0) {
             $("span.product_tax").html($(this).attr("tax"));
             $("#title_heading").html($(this).attr("p_name"));
             $("#text_model").html($(this).attr("model"));
-            $("#stock_status").html($(this).parent().attr("title"));
+            
+            console.log($(this).parent().attr("title"));
+            console.log(stock_statuses['out_of_stock']);
+            
+           
 
             if (stock_statuses['out_of_stock'] == $(this).parent().attr("title")) {
                 $("#availability_status").attr("class", "red_color");
+                $("#stock_status").addClass("stock_danger");
                 $(".stock_email").show();
             }
             else {
                 $("#availability_status").attr("class", "green_color");
+                $("#stock_status").removeClass("stock_danger");
                 $(".stock_email").hide();
             }
             $("#availability_status").html($(this).parent().attr("title"));
+            $("#stock_status").html($(this).parent().attr("title"));
 
             if ($(this).attr("product_on_phone") == '1') {
                 $("#button-cart-phone").show();

@@ -38,4 +38,10 @@
 </div>
 <div id="powered"><?php echo $powered; ?></div>
 </div>
+ <script>
+                        $(window).load(function() {
+                            
+                            $(loader_box).hide();
+                        });
+                    </script>  
 </body></html>

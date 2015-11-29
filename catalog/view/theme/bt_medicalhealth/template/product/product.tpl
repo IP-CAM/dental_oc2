@@ -54,7 +54,7 @@
                                 $stock_css = "stock_danger";
                             }
                         ?>
-                        <b id="stock_status " class="<?php echo $stock_css; ?>" ><?php echo $stock; ?></b>
+                        <b id="stock_status" class="<?php echo $stock_css; ?>" ><?php echo $stock; ?></b>
                     <br />
 
                 </div>
@@ -304,7 +304,8 @@
                         <h3>Produto fora de estoque</h3>
 
 
-                        <p>Não temos este produto em estoque agora. Mas deixe seu email abaixo e você será notificado(a) quando este produto estiver disponível.
+                        <p>Não temos este produto em estoque agora.  <br/> Mas deixe seu email abaixo e você será notificado(a)
+                            quando este produto estiver disponível.
                         </p>
                         <div style="clear:both"></div>
                         <span>E-mail</span>   

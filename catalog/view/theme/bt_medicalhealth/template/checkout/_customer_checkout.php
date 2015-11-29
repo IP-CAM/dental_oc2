@@ -6,13 +6,18 @@
             $customer_types = array(
                 "Pessoa Física", "Pessoa Jurídica"
             );
+          
             $i = 0;
             $checkd = '';
-
+            
             foreach ($customer_types as $type) {
                 if (!empty($payment_customer_type)) {
                     if ($payment_customer_type == $type) {
                         $checkd = 'checked="checked"';
+                        
+                    }
+                    else {
+                        $checkd = '';
                     }
                 } else {
                     $checkd = '';
@@ -47,7 +52,7 @@
                 <div>
 
                     <div>
-                        p<?php echo $txt_payment_cad_name; ?>
+                        <?php echo $txt_payment_cad_name; ?>
                     </div>
                     <div>
                         <input type="text" name="payment_cad_name" id="payment_cad_name" value="<?php echo isset($payment_cad_name) ? $payment_cad_name : ""; ?>" />
@@ -337,7 +342,10 @@
                             "Prótese", "Radiologia",
                         );
                         $checkd = '';
-
+                        if(!empty($payment_profession_atuacao)){
+                            $payment_profession_atuacao = explode(",",$payment_profession_atuacao);
+                        }
+                        
                         foreach ($options_atuaca as $opt) {
                             if (!empty($payment_profession_atuacao) && in_array($opt, $payment_profession_atuacao)) {
                                 $checkd = 'checked="checked"';

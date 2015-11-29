@@ -4,9 +4,9 @@
   <?php if ($guest_checkout) { ?>
   <label for="guest">
     <?php if ($account == 'guest') { ?>
-    <input class="checkout_login_ck" type="radio" name="account" value="guest" id="guest" checked="checked" />
+    <input class="checkout_login_ck checkout_login_guest" type="radio" name="account" value="guest" id="guest" checked="checked" />
     <?php } else { ?>
-    <input class="checkout_login_ck" type="radio" name="account" value="guest" id="guest" />
+    <input class="checkout_login_ck checkout_login_guest" type="radio" name="account" value="guest" id="guest" />
     <?php } ?>
     <b><?php echo $text_guest; ?></b></label>
   <br />
@@ -14,9 +14,9 @@
   <br />
   <label for="register">
     <?php if ($account == 'register') { ?>
-    <input class="checkout_login_ck"  type="radio" name="account" value="register" id="register" checked="checked" />
+    <input class="checkout_login_ck checkout_login_register"  type="radio" name="account" value="register" id="register" />
     <?php } else { ?>
-    <input class="checkout_login_ck" type="radio" name="account" value="register" id="register" />
+    <input class="checkout_login_ck checkout_login_register" type="radio" name="account" value="register" id="register" />
     <?php } ?>
     <b><?php echo $text_register; ?></b></label>
   <br />

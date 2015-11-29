@@ -82,6 +82,17 @@ class ControllerCheckoutPaymentAddress extends Controller {
         $this->load->model('account/address');
 
         $this->data['addresses'] = $this->model_account_address->getAddresses();
+        $last_index = array_keys($this->data['addresses']);
+        if (!empty($last_index)) {
+            print_r($last_index[count($last_index) - 1]);
+            foreach (array_keys($this->model_account_address->_mail_chimp_columns) as $field) {
+                 $this->data[$field] = $this->data['addresses'][$last_index[count($last_index) - 1]][$field];
+             
+                 
+            }
+        }
+
+    
 
         $this->load->model('account/customer_group');
 
@@ -216,9 +227,9 @@ class ControllerCheckoutPaymentAddress extends Controller {
                         unset($this->session->data['payment_zone_id']);
                     }
                     //PCM:
-                    
+
                     if (!isset($this->request->get['unset'])) {
-                        
+
                         //unset($this->session->data['payment_method']);
                         //unset($this->session->data['payment_methods']);
                     }
@@ -328,9 +339,9 @@ class ControllerCheckoutPaymentAddress extends Controller {
                     $this->session->data['payment_country_id'] = $this->request->post['country_id'];
                     $this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
                     //PCM:
-                   
+
                     if (!isset($this->request->get['unset'])) {
-                        
+
                         //unset($this->session->data['payment_method']);
                         //unset($this->session->data['payment_methods']);
                     }

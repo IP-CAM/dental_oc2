@@ -223,7 +223,9 @@
             success: function (html) {
                 $('#checkout .checkout-content').html(html);
                 $('#checkout .checkout-content').slideDown('slow');
-
+                
+                $(".checkout_login_register").prop("checked",false);
+                
                 button_account_click();
                 //checkout_shipping();
             },
@@ -234,6 +236,7 @@
     }
     //Load of checkout payment 
     function checkout_payment() {
+       
         $(loader_box).show();
         $.ajax({
             url: 'index.php?route=checkout/payment_address',
@@ -961,12 +964,20 @@
 //==========End payment address=============
 // Checkout
     function button_account_click() {
-        if ($(".checkout_login_ck").length == 1 && logged_in == '') {
-            $(".checkout_login_ck").prop("checked", true);
+        if (logged_in == '') {
+            //$(".checkout_login_ck").prop("checked", false);
             if ($('input[name=\'account\']:checked').attr("value") == "register") {
                 window.location = "?route=account/register&action=checkout";
+                $(loader_box).hide();
+                return false;
+
+            }
+            if($(".checkout_login_register").length>0 && $(".checkout_login_guest").length==0){
+                $(loader_box).hide();
                 return false;
             }
+            
+            
         }
 
         
@@ -1121,7 +1132,7 @@
 
     //============ Process of checkout ======================
     $(document).ready(function () {
-        if (logged_in !== "1") {
+        if (logged_in == "") {
             if (quickconfirm_in === "1") {
                 quickConfirm();
             }
@@ -1140,7 +1151,7 @@
         }
     });
     $(window).load(function () {
-        loader_box.show();
+        loader_box.hide();
     });
 //--></script> 
 <?php echo $footer; ?>

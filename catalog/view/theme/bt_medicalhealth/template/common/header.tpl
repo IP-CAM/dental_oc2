@@ -42,7 +42,7 @@
         <script>
                     var loader_box;
                     $(function(){
-                    loader_box = $('#loader_box').loadingIndicator();
+                        loader_box = $('#loader_box').loadingIndicator();
                     })
         </script>
          <script type="text/javascript" src="catalog/view/javascript/suggestion.js"></script>
@@ -169,8 +169,10 @@
                                 }
                         //--></script>
 
-                    <script>
+                   <script>
                         $(window).load(function() {
-                        loader_box.hide();
+                            
+                            $(loader_box).hide();
                         });
-                    </script>    
+                    </script>  
+  
