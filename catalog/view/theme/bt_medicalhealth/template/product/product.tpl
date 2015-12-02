@@ -58,8 +58,14 @@
                     <br />
 
                 </div>
+                <?php
+                    $price_css = "";
+                    if (isset($product_on_phone) && $product_on_phone == 1) {
+                        $price_css = "display:none";
+                    }
+                ?>
                 <?php if ($price) { ?>
-                    <div class="price">
+                    <div class="price" style="<?php echo $price_css; ?>">
                         <?php if (!$special) { ?>
                             <span class="price-text">
                                 <?php echo $price; ?>

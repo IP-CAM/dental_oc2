@@ -16,8 +16,8 @@
                 <?php } ?>
             </p>
             <?php foreach ($categories as $category) { ?>
-                <div class="manufacturer-list fifteen columns">
-                    
+                <div class="manufacturer-list ">
+                    <div class="ten columns">
                         <div class="manufacturer-heading"><?php echo $category['name']; ?><a id="<?php echo $category['name']; ?>"></a></div>
                         <div class="manufacturer-content">
                             <?php if ($category['manufacturer']) { ?>
@@ -26,32 +26,17 @@
                                         <?php $j = $i + ceil(count($category['manufacturer']) / 4); ?>
                                         <?php for (; $i < $j; $i++) { ?>
                                             <?php if (isset($category['manufacturer'][$i])) { ?>
-                                                <li style="float:left">
-                                                    <div>
-                                                        <a href="<?php echo $category['manufacturer'][$i]['href']; ?>"><?php echo $category['manufacturer'][$i]['name']; ?></a>
-                                                        
-                                                    </div>
-                                                 
-                                                    <div>
-                                                         <a href="<?php echo $category['manufacturer'][$i]['href']; ?>">
-                                                        <?php
-                                                            if(!empty($category['manufacturer'][$i]['image'])){
-                                                               echo "<img style='' src='".$category['manufacturer'][$i]['image']."' />";
-                                                            }
-                                                        ?>
-                                                         </a>
-                                                    </div>
-                                                   
-                                                    
-                                                </li>
-                                               
+                                                <li><a href="<?php echo $category['manufacturer'][$i]['href']; ?>"><?php echo $category['manufacturer'][$i]['name']; ?></a></li>
                                             <?php } ?>
                                         <?php } ?>
                                     </ul>
                                 <?php } ?>
                             <?php } ?>
 
-                          
+                        </div>   
+                        <div class="four columns">
+
+                        </div>   
                     </div>
                 </div>
             <?php } ?>
