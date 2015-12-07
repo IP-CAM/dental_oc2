@@ -84,13 +84,16 @@ class ControllerCheckoutPaymentAddress extends Controller {
         $this->data['addresses'] = $this->model_account_address->getAddresses();
         $last_index = array_keys($this->data['addresses']);
         if (!empty($last_index)) {
-            print_r($last_index[count($last_index) - 1]);
+            //print_r($last_index[count($last_index) - 1]);
             foreach (array_keys($this->model_account_address->_mail_chimp_columns) as $field) {
-                 $this->data[$field] = $this->data['addresses'][$last_index[count($last_index) - 1]][$field];
+                 $this->data[$field] = utf8_decode($this->data['addresses'][$last_index[count($last_index) - 1]][$field]);
              
                  
             }
         }
+        
+       
+        
 
     
 

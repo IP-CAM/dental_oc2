@@ -257,8 +257,9 @@
                 $("#payment-address-2 div.checkout-content").slideDown('slow');
 
                 console.log($(".payment-address-step"));
-
+                
                 payment_address_checkout(false);
+                customer_section_scripts();
                 if (shipping_required_in === '1') {
 
                     checkout_shipping();
@@ -1016,6 +1017,7 @@
                     $("#payment-address-2-guest div.checkout-content").slideDown('slow');
 
                     console.log($(".payment-address-step"));
+                    customer_information();
                 }
                 else {
                     //checkout_shipping();
