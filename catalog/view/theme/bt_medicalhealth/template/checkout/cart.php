@@ -19,6 +19,9 @@
     <div class="warning"><?php echo $error_warning; ?><img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>
 <?php } ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
+
+<?php
+?>
 <div id="content"><?php echo $content_top; ?>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
         <div class="cart-info">
@@ -48,7 +51,7 @@
                                 <?php if ($product['thumb']) { ?>
                                     <a class="img_cart" href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
                                 <?php } ?></td>
-                            <td class="name"><a href="<?php echo $product['href']; ?>"><?php echo empty($product['reference_id'])?$product['unique_name']:$product['name']; ?></a>
+                            <td class="name product_ids"  product_id = "<?php echo str_replace(":", "", $product['key']); ?>"><a href="<?php echo $product['href']; ?>"><?php echo empty($product['reference_id']) ? $product['unique_name'] : $product['name']; ?></a>
                                 <?php if (!$product['stock']) { ?>
                                     <span class="stock">***</span>
                                 <?php } ?>
@@ -95,58 +98,58 @@
         </div>
     </form>
     <?php if ($coupon_status || $voucher_status || $reward_status || $shipping_status) { ?>
-                                <!--      <h2 class="title_cart"><?php echo $text_next; ?></h2>
-                                        <div class="content shopping-module">
-                                            <p><?php echo $text_next_choice; ?></p>
-                                            <table class="radio">
+                                                <!--      <h2 class="title_cart"><?php echo $text_next; ?></h2>
+                                                        <div class="content shopping-module">
+                                                            <p><?php echo $text_next_choice; ?></p>
+                                                            <table class="radio">
         <?php if ($coupon_status) { ?>
-                                                                                    <tr class="highlight">
-                                                                                        <td><?php if ($next == 'coupon') { ?>
-                                                                                                                                <input type="radio" name="next" value="coupon" id="use_coupon" checked="checked" />
+                                                                                                                    <tr class="highlight">
+                                                                                                                        <td><?php if ($next == 'coupon') { ?>
+                                                                                                                                                                                <input type="radio" name="next" value="coupon" id="use_coupon" checked="checked" />
             <?php } else { ?>
-                                                                                                                                <input type="radio" name="next" value="coupon" id="use_coupon" />
+                                                                                                                                                                                <input type="radio" name="next" value="coupon" id="use_coupon" />
             <?php } ?></td>
-                                                                                        <td><label for="use_coupon"><?php echo $text_use_coupon; ?></label></td>
-                                                                                    </tr>
+                                                                                                                        <td><label for="use_coupon"><?php echo $text_use_coupon; ?></label></td>
+                                                                                                                    </tr>
         <?php } ?>
         <?php if ($voucher_status) { ?>
-                                                                                    <tr class="highlight" style="display:none;">
-                                                                                        <td><?php if ($next == 'voucher') { ?>
-                                                                                                                                <input type="radio" name="next" value="voucher" id="use_voucher" checked="checked" />
+                                                                                                                    <tr class="highlight" style="display:none;">
+                                                                                                                        <td><?php if ($next == 'voucher') { ?>
+                                                                                                                                                                                <input type="radio" name="next" value="voucher" id="use_voucher" checked="checked" />
             <?php } else { ?>
-                                                                                                                                <input type="radio" name="next" value="voucher" id="use_voucher" />
+                                                                                                                                                                                <input type="radio" name="next" value="voucher" id="use_voucher" />
             <?php } ?></td>
-                                                                                        <td><label for="use_voucher"><?php echo $text_use_voucher; ?></label></td>
-                                                                                    </tr>
+                                                                                                                        <td><label for="use_voucher"><?php echo $text_use_voucher; ?></label></td>
+                                                                                                                    </tr>
         <?php } ?>
         <?php if ($reward_status) { ?>
-                                                                                    <tr class="highlight">
-                                                                                        <td><?php if ($next == 'reward') { ?>
-                                                                                                                                <input type="radio" name="next" value="reward" id="use_reward" checked="checked" />
+                                                                                                                    <tr class="highlight">
+                                                                                                                        <td><?php if ($next == 'reward') { ?>
+                                                                                                                                                                                <input type="radio" name="next" value="reward" id="use_reward" checked="checked" />
             <?php } else { ?>
-                                                                                                                                <input type="radio" name="next" value="reward" id="use_reward" />
+                                                                                                                                                                                <input type="radio" name="next" value="reward" id="use_reward" />
             <?php } ?></td>
-                                                                                        <td><label for="use_reward"><?php echo $text_use_reward; ?></label></td>
-                                                                                    </tr>
+                                                                                                                        <td><label for="use_reward"><?php echo $text_use_reward; ?></label></td>
+                                                                                                                    </tr>
         <?php } ?>
         <?php if ($shipping_status) { ?>
-                                                                                    <tr class="highlight">
-                                                                                        <td><?php if ($next == 'shipping') { ?>
-                                                                                                                                <input type="radio" name="next" value="shipping" id="shipping_estimate" checked="checked" />
+                                                                                                                    <tr class="highlight">
+                                                                                                                        <td><?php if ($next == 'shipping') { ?>
+                                                                                                                                                                                <input type="radio" name="next" value="shipping" id="shipping_estimate" checked="checked" />
             <?php } else { ?>
-                                                                                                                                <input type="radio" name="next" value="shipping" id="shipping_estimate" />
+                                                                                                                                                                                <input type="radio" name="next" value="shipping" id="shipping_estimate" />
             <?php } ?></td>
-                                                                                        <td><label for="shipping_estimate"><?php echo $text_shipping_estimate; ?></label></td>
-                                                                                    </tr>
+                                                                                                                        <td><label for="shipping_estimate"><?php echo $text_shipping_estimate; ?></label></td>
+                                                                                                                    </tr>
         <?php } ?>
-                                            </table>
-                                        </div>
-                                        
+                                                            </table>
+                                                        </div>
+                                                        
         -->
 
 
         <div class="cart-module">
-            <?php //echo ($next == 'coupon' ? 'block' : 'none'); ?>
+            <?php //echo ($next == 'coupon' ? 'block' : 'none');  ?>
             <div id="coupon" class="content coupon" style="display:block">
                 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
                     <div class="label"><?php echo $entry_coupon; ?></div>
@@ -175,7 +178,7 @@
                     <div class="button"><span class="orange_button"><input type="submit" value="<?php echo $button_reward; ?>" class="button" /></span></div>
                 </form>
             </div>
-            <?php //echo ($next == 'shipping' ? 'block' : 'none'); ?>
+            <?php //echo ($next == 'shipping' ? 'block' : 'none');  ?>
             <div id="shipping" class="content" style="display: block;">
                 <div class="label"><?php echo $text_shipping_detail; ?></div>
 
@@ -239,9 +242,97 @@ if (!empty($shipping_method)) {
             return array;
         }
 
+        function calculate_shipping(zip_code, country_id, zone_id) {
+            products = [];
+            $("div.cart-info table td.product_ids").each(function () {
+                if(typeof($(this).attr("product_id"))!="undefined"){
+                    products.push($(this).attr("product_id"));
+                }
+                
+               
+            })
+            related_products = products.join(",");
+            var sendInfo = {
+                zip_code: zip_code,
+                country_id: country_id,
+                zone_id: zone_id,
+                products: related_products
+            };
+            
+            if (zip_code != '') {
+                $.ajax({
+                    type: "POST",
+                    url: "?route=checkout/shipping_calculator",
+                    dataType: "json",
+                    beforeSend: function () {
+                        $('#button-quote').attr('disabled', true);
+                        $('#button-quote').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+                    },
+                    complete: function () {
+                        $('#button-quote').attr('disabled', false);
+                        $('.wait').remove();
+                    },
+                    success: function (msg) {
+                        li_ht = "<table class='radio'>";
+                        if (typeof (msg['correios']) != "undefined" && typeof (msg['correios']['error']) != "undefined" && msg['correios']['error'] != false) {
+
+                           
+                            li_ht += '<tr class="highlight"><td>';
+                            li_ht += msg['correios']['error'];
+                            li_ht += "</td></tr>";
+                            //$("#error_box").hide("fade", {}, 30000)
+                        }
+                        else {
+                           
+                            if (typeof (msg['correios']) != "undefined") {
+                                for (ob in msg['correios']['quote']) {
+                                    qut = msg['correios']['quote'];
+                                    li_ht+= "<tr class='highlight'><td>" + qut[ob]['title'] + "</td>";
+                                  
+                                    li_ht += "<td>" + qut[ob]['code'] + "</td>";
+                                    li_ht += "<td>" + qut[ob]['text'] + "</td>";
+                                    li_ht += "</tr>";
+                                   
+                                }
+                            }
+                            else {
+                                li_ht+= "<tr class='highlight'><td>Not Found</td>";
+                                li_ht += "</tr>";
+
+                            }
+
+
+
+                            //$("#result_box").hide("fade", {}, 30000)
+                        }
+                        li_ht += "</table>";
+                        $.colorbox({
+                            overlayClose: true,
+                            opacity: 0.5,
+                            width: get_Width_Height()[0],
+                            height: get_Width_Height()[1],
+                            href: false,
+                            html: li_ht
+                        });
+
+
+                    },
+                    data: sendInfo
+                });
+            }
+            else {
+                alert(empty_error);
+                $("#loading_status").hide();
+            }
+
+        }
+
         $('#button-quote').live('click', function () {
+            calculate_shipping(encodeURIComponent($('input[name=\'postcode\']').val()), $('input[name=\'country_id\']').val(), $('input[name=\'zone_id\']').val());
+            return true;
             $.ajax({
-                url: 'index.php?route=checkout/cart/quote',
+                //url: 'index.php?route=checkout/cart/quote',
+                url: '?route=checkout/shipping_calculator',
                 type: 'post',
                 data: 'country_id=' + $('input[name=\'country_id\']').val() + '&zone_id=' + $('input[name=\'zone_id\']').val() + '&postcode=' + encodeURIComponent($('input[name=\'postcode\']').val()),
                 dataType: 'json',
@@ -379,7 +470,7 @@ if (!empty($shipping_method)) {
                 }
             });
         });
-         
+
         $('input[name=\'country_id\']').trigger('change');
         //--></script>
 <?php } ?>

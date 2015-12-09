@@ -6,7 +6,13 @@ class ControllerAccountRegister extends Controller {
 
     public function index() {
         if ($this->customer->isLogged()) {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
+            if (!empty($this->request->get['action']) && $this->request->get['action'] == "checkout") {
+                $this->redirect($this->url->link('checkout/checkout'));
+            } 
+            else {
+              $this->redirect($this->url->link('account/account', '', 'SSL'));  
+            }
+            
         }
 
         $this->language->load('account/register');
@@ -62,14 +68,19 @@ class ControllerAccountRegister extends Controller {
         $this->data['txt_payment_heading_customer_type'] = $this->language->get('txt_payment_heading_customer_type');
 
         //end of mail chimp
-
+       
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 
+         
+            
             $this->model_account_customer->addCustomer($this->request->post);
 
             $this->customer->login($this->request->post['email'], $this->request->post['password']);
 
-            unset($this->session->data['guest']);
+//            unset($this->session->data['guest']);
+//               echo $this->request->get['action'];
+//            echo "<br/>";
+//            die;
 
             // Default Shipping Address
             if ($this->config->get('config_tax_customer') == 'shipping') {
@@ -83,6 +94,7 @@ class ControllerAccountRegister extends Controller {
                 $this->session->data['payment_country_id'] = $this->request->post['country_id'];
                 $this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
             }
+
             if (!empty($this->request->get['action']) && $this->request->get['action'] == "checkout") {
                 $this->redirect($this->url->link('checkout/checkout'));
             } else {

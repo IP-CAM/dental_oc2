@@ -223,9 +223,9 @@
             success: function (html) {
                 $('#checkout .checkout-content').html(html);
                 $('#checkout .checkout-content').slideDown('slow');
-                
-                $(".checkout_login_register").prop("checked",false);
-                
+
+                $(".checkout_login_register").prop("checked", false);
+
                 button_account_click();
                 //checkout_shipping();
             },
@@ -236,7 +236,7 @@
     }
     //Load of checkout payment 
     function checkout_payment() {
-       
+
         $(loader_box).show();
         $.ajax({
             url: 'index.php?route=checkout/payment_address',
@@ -257,7 +257,7 @@
                 $("#payment-address-2 div.checkout-content").slideDown('slow');
 
                 console.log($(".payment-address-step"));
-                
+
                 payment_address_checkout(false);
                 customer_section_scripts();
                 if (shipping_required_in === '1') {
@@ -973,15 +973,15 @@
                 return false;
 
             }
-            if($(".checkout_login_register").length>0 && $(".checkout_login_guest").length==0){
+            if ($(".checkout_login_register").length > 0 && $(".checkout_login_guest").length == 0) {
                 $(loader_box).hide();
                 return false;
             }
-            
-            
+
+
         }
 
-        
+
 
 
         $.ajax({
@@ -1017,7 +1017,9 @@
                     $("#payment-address-2-guest div.checkout-content").slideDown('slow');
 
                     console.log($(".payment-address-step"));
-                    customer_information();
+                    if (logged_in != "") {
+                        customer_information();
+                    }
                 }
                 else {
                     //checkout_shipping();

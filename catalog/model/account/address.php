@@ -36,21 +36,29 @@ class ModelAccountAddress extends Model {
         $columns = array();
         foreach ($mail_chimp_columns as $column => $value) {
             if (is_array($value)) {
-                $value = implode(",", $value);
-            }
-            if ($column == "payment_corop_isento") {
-                $columns [] = $column . " = " . $value;
+
+                $new_arr = array();
+                foreach ($value as $valk) {
+                    $new_arr[] = utf8_encode($valk);
+                }
+                $value = implode(",", ($new_arr));
+
+                $columns [] = $column . " = '" . $this->db->escape($value) . "'";
             } else {
-                $columns [] = $column . " = '" . $value . "'";
+                if ($column == "payment_corop_isento") {
+                    $columns [] = $column . " = " . $this->db->escape(utf8_encode($value));
+                } else {
+                    $columns [] = $column . " = '" . $this->db->escape(utf8_encode($value)) . "'";
+                }
             }
         }
         $column_string = "";
         if (!empty($columns)) {
             $column_string = "," . implode($columns, ",");
         }
-        
-        
-        
+
+
+
 
         $sql = "INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int) $this->customer->getId() . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', company_id = '" . $this->db->escape(isset($data['company_id']) ? $data['company_id'] : '') . "', tax_id = '" . $this->db->escape(isset($data['tax_id']) ? $data['tax_id'] : '') . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', zone_id = '" . (int) $data['zone_id'] . "', country_id = '" . (int) $data['country_id'] . "'" . $column_string;
 
@@ -73,19 +81,27 @@ class ModelAccountAddress extends Model {
 
         foreach ($mail_chimp_columns as $column => $value) {
             if (is_array($value)) {
-                $value = implode(",", $value);
-            }
-            if ($column == "payment_corop_isento") {
-                $columns [] = $column . " = " . $value;
+
+                $new_arr = array();
+                foreach ($value as $valk) {
+                    $new_arr[] = utf8_encode($valk);
+                }
+                $value = implode(",", ($new_arr));
+
+                $columns [] = $column . " = '" . $this->db->escape($value) . "'";
             } else {
-                $columns [] = $column . " = '" . $value . "'";
+                if ($column == "payment_corop_isento") {
+                    $columns [] = $column . " = " . $this->db->escape(utf8_encode($value));
+                } else {
+                    $columns [] = $column . " = '" . $this->db->escape(utf8_encode($value)) . "'";
+                }
             }
         }
         $column_string = "";
         if (!empty($columns)) {
             $column_string = "," . implode($columns, ",");
         }
-        $this->db->query("UPDATE " . DB_PREFIX . "address SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', company_id = '" . $this->db->escape(isset($data['company_id']) ? $data['company_id'] : '') . "', tax_id = '" . $this->db->escape(isset($data['tax_id']) ? $data['tax_id'] : '') . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', zone_id = '" . (int) $data['zone_id'] . "', country_id = '" . (int) $data['country_id'] . $column_string . "' WHERE address_id  = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "address SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', company_id = '" . $this->db->escape(isset($data['company_id']) ? $data['company_id'] : '') . "', tax_id = '" . $this->db->escape(isset($data['tax_id']) ? $data['tax_id'] : '') . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', zone_id = '" . (int) $data['zone_id'] . "', country_id = '" . (int) $data['country_id'] . $column_string . " WHERE address_id  = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'");
 
         if (!empty($data['default'])) {
             $this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int) $address_id . "' WHERE customer_id = '" . (int) $this->customer->getId() . "'");
@@ -170,10 +186,10 @@ class ModelAccountAddress extends Model {
                 'iso_code_3' => $iso_code_3,
                 'address_format' => $address_format
             );
-            
+
             $columns = array_keys($this->_mail_chimp_columns);
-            foreach($columns as $col){
-                if(isset($address_query->row[$col])){
+            foreach ($columns as $col) {
+                if (isset($address_query->row[$col])) {
                     $address_data[$col] = $address_query->row[$col];
                 }
             }
@@ -234,9 +250,9 @@ class ModelAccountAddress extends Model {
                 'iso_code_3' => $iso_code_3,
                 'address_format' => $address_format
             );
-            
-            foreach(array_keys($this->_mail_chimp_columns) as $field){
-               $address_data[$result['address_id']][$field] = $result[$field];
+
+            foreach (array_keys($this->_mail_chimp_columns) as $field) {
+                $address_data[$result['address_id']][$field] = $result[$field];
             }
         }
 

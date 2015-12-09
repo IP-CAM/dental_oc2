@@ -10,10 +10,25 @@ class ControllerCheckoutShippingCalculator extends Controller {
 
         $this->load->model('catalog/product');
         $test_products = array();
-        $test_product = $this->model_catalog_product->getProduct($_POST['product_id']);
-        $test_products[0] = $test_product;
-        $test_products[0]['key'] = $test_product['product_id'];
-        $test_products[0]['total'] = $test_product['price'];
+        if (isset($_POST['products'])) {
+            $products = explode(",", $_POST['products']);
+            foreach ($products as $product) {
+                if (!empty($product)) {
+                    $test_product = $this->model_catalog_product->getProduct($product);
+                    $test_products[] = $test_product;
+                    $test_products[]['key'] = $test_product['product_id'];
+                    $test_products[]['total'] = $test_product['price'];
+                }
+            }
+        } else {
+            $test_product = $this->model_catalog_product->getProduct($_POST['product_id']);
+            $test_products[0] = $test_product;
+            $test_products[0]['key'] = $test_product['product_id'];
+            $test_products[0]['total'] = $test_product['price'];
+        }
+
+
+
 
         $shipping_address = $_POST['zip_code'];
         if (!empty($shipping_address)) {
