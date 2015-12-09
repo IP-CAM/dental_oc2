@@ -59,7 +59,7 @@ class ControllerAccountAddress extends Controller {
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->model_account_address->editAddress($this->request->get['address_id'], $this->request->post);
-
+            
             // Default Shipping Address
             if (isset($this->session->data['shipping_address_id']) && ($this->request->get['address_id'] == $this->session->data['shipping_address_id'])) {
                 $this->session->data['shipping_country_id'] = $this->request->post['country_id'];
@@ -69,6 +69,7 @@ class ControllerAccountAddress extends Controller {
                 unset($this->session->data['shipping_method']);
                 unset($this->session->data['shipping_methods']);
             }
+          
 
             // Default Payment Address
             if (isset($this->session->data['payment_address_id']) && ($this->request->get['address_id'] == $this->session->data['payment_address_id'])) {
@@ -78,10 +79,17 @@ class ControllerAccountAddress extends Controller {
                 unset($this->session->data['payment_method']);
                 unset($this->session->data['payment_methods']);
             }
+             
 
             $this->session->data['success'] = $this->language->get('text_update');
-
-            $this->redirect($this->url->link('account/address', '', 'SSL'));
+            $urlLoc = $this->url->link('account/address', '', 'SSL');
+           
+           
+            echo "<script>";
+            echo "window.location = '$urlLoc'";
+            echo "</script>";
+            $this->redirect($urlLoc);
+            
         }
 
         $this->getForm();
