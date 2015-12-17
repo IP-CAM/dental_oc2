@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     outline: 0 none;
@@ -150,13 +151,20 @@ p {
     text-align: left;
 }
 #column-left {
-    float: left; margin-bottom:78px
+    float: left; margin-bottom:78px;
+}
+
+div#column-left.four.columns {
+	margin-top: 35px;
 }
 .main-column-left {
     border-right: 1px solid #D9D9D9;
-    padding-right: 46px;
     margin-right: -1pxmargin-left: 2px;
-    margin-left: 25px;
+	margin-left: 1px;
+}
+
+div.box.category {
+	padding-left: 35px;
 }
 
 
@@ -247,7 +255,6 @@ div.ministrador {
 }
 .codespot-content {
     overflow:hidden;
-    max-width: 9;
     margin-right: auto;
     margin-left: auto;
     padding-right: 50px;
@@ -1155,9 +1162,11 @@ a.gray_button span{
 
 .success {
     background: url("../image/success.png") no-repeat scroll 0 center; color:#96be56;
+    margin-top: 49px;
 }
 .warning {
     background: url("../image/warning.png") no-repeat scroll 0 center;
+    margin-top: 49px;
 }
 .attention {
     background: url("../image/attention.png") no-repeat scroll 0 center;
@@ -1400,7 +1409,6 @@ div.newsletterbox {
 .category .box-content {
 }
 .box-category {
-    border-bottom: 1px solid #EBEBEB;
     padding-bottom: 35px;
     /*width: 192px;*/
 }
@@ -1799,12 +1807,11 @@ form.edit_affiliate select{width:51.2%; }
 }
 .product-grid .one-product-list {
     display: inline-block;
-    float:left;
     margin-bottom: 48px;
     padding-right: 36px;
     vertical-align: top;
-    width: 200px;
-    height:264px;
+    width: 250px;
+    height:auto;
 }
 .product-grid .one-product-list.last {
     padding-right: 0;
@@ -1871,6 +1878,36 @@ form.edit_affiliate select{width:51.2%; }
     text-shadow: 0 0 1px;
     border-radius: 3px;
     margin-left: -5px;
+	margin-bottom: 25px;
+}
+
+#button-cart-phone {
+    border: medium none;
+    color: #ffffff;
+    cursor: pointer;
+    font: 15px "MyriadProBold";
+    height: auto;
+    padding: 5px 20px 5px 45px;
+    text-transform: uppercase;
+    /*margin-bottom:10px;*/
+    text-shadow: 0 0 1px;
+    border-radius: 3px;
+    margin-left: -5px;
+	background-color: #95bd55;
+	margin-bottom: 25px;
+}
+
+input#button-postal.button {
+	margin-top: 5px;
+}
+
+div.banner_PagSeguro {
+	float: left;
+	margin-top: 5px;
+}
+
+div.banner_desconto {
+	margin-bottom: 25px;
 }
 
 
@@ -1987,7 +2024,11 @@ form.edit_affiliate select{width:51.2%; }
     margin-top:15px
 }
 .product-info .options {
+	margin-bottom: 25px;
+}
 
+div.cart-module {
+	margin-bottom: 25px;
 }
 .product-info .options h2{font-size:11px; font-weight:bold; text-transform:uppercase; margin-bottom:0; font-family:Arial}
 .product-info .options b{color:#565452; font-weight:normal}
@@ -2906,7 +2947,7 @@ div.footerwrap {
 }
 .footer-top-right {
     float: left;
-    /*width: 358px;*/ width:37.3%;
+    /*width: 358px;*/ width:36%;
 }
 .boss_facebook .code {
     border-left: 1px solid #E5E5E5;
@@ -3133,8 +3174,8 @@ div.boss-home-filter-product {
 }
 .boss_featured  .box-content .one-product-featured{
     width: 320px;
-    float:left;
     margin-bottom: 50px;
+	float: left;
 }
 .boss_featured .box-content .shop-now{}
 .boss_featured .box-content .shop-now a{
@@ -3230,6 +3271,7 @@ div.boss-home-filter-product {
 }
 
 .slideshow{
+	margin-top: 25px;
 }
 .boss_text a{
     color:#96be56;

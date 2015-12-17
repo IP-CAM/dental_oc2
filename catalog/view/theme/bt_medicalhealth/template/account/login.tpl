@@ -7,7 +7,7 @@
 <?php if ($success) { ?>
 <div class="success"><?php echo $success; ?></div>
 <?php } ?>
-<?php if ($error_warning) { ?>
+<?php if (!empty($error_warning)) { ?>
 <div class="warning"><?php echo $error_warning; ?></div>
 <?php } ?>
 <div id="content" class="sixteen columns clearfix">

@@ -149,6 +149,19 @@
 
 
         <div class="cart-module">
+            <?php //echo ($next == 'shipping' ? 'block' : 'none');  ?>
+            <div id="shipping" class="content" style="display: block;">
+                <div class="label"><?php echo $text_shipping_detail; ?></div>
+
+                <div>
+                    <input type='hidden' name='country_id' value="<?php echo $country_id; ?>" />
+                    <input type='hidden' name='zone_id' value="<?php echo $zone_id; ?>" />
+                    <input type="text" name="postcode" value="<?php echo $postcode; ?>" />
+                </div>
+
+                <div class="button"><span class="orange_button"><input type="button" value="<?php echo $button_quote; ?>" id="button-quote" class="button" /></span></div>
+            </div>
+            
             <?php //echo ($next == 'coupon' ? 'block' : 'none');  ?>
             <div id="coupon" class="content coupon" style="display:block">
                 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
@@ -178,18 +191,7 @@
                     <div class="button"><span class="orange_button"><input type="submit" value="<?php echo $button_reward; ?>" class="button" /></span></div>
                 </form>
             </div>
-            <?php //echo ($next == 'shipping' ? 'block' : 'none');  ?>
-            <div id="shipping" class="content" style="display: block;">
-                <div class="label"><?php echo $text_shipping_detail; ?></div>
-
-                <div>
-                    <input type='hidden' name='country_id' value="<?php echo $country_id; ?>" />
-                    <input type='hidden' name='zone_id' value="<?php echo $zone_id; ?>" />
-                    <input type="text" name="postcode" value="<?php echo $postcode; ?>" />
-                </div>
-
-                <div class="button"><span class="orange_button"><input type="button" value="<?php echo $button_quote; ?>" id="button-quote" class="button" /></span></div>
-            </div>
+            
             <div style="display: block">
                 <div class="left"><a href="<?php echo $continue; ?>" class="orange_button"><span><?php echo $button_shopping; ?></span></a></div>
             </div>

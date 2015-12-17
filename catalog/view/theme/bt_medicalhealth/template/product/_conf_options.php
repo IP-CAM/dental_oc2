@@ -172,7 +172,7 @@ if ($tamanho_count > 0) {
 <br/>
 <?php
 if ($quantitdy_count > 0) {
-    echo "<b class='label_quantitdy label_option'>Quantitdy</b><br /><br />";
+    echo "<b class='label_quantitdy label_option'>Voltagem</b><br /><br />";
     ?>
 
     <div id="option-quantitdy" class="option">

@@ -104,7 +104,7 @@
         </tr>
         <tr>
           <td><?php echo $entry_postcode; ?><span id="postcode-required" class="required">*</span> </td>
-          </tr><tr><td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
+        </tr><tr><td><input type="text" name="postcode" value="<?php echo $postcode; ?>" required="" />
             <?php if ($error_postcode) { ?>
             <span class="error"><?php echo $error_postcode; ?></span>
             <?php } ?></td>
@@ -261,12 +261,13 @@ $('select[name=\'country_id\']').bind('change', function() {
 			$('.wait').remove();
 		},			
 		success: function(json) {
-			if (json['postcode_required'] == '1') {
+			/*
+                        if (json['postcode_required'] == '1') {
 				$('#postcode-required').show();
 			} else {
 				$('#postcode-required').hide();
 			}
-			
+			*/
 			html = '<option value=""><?php echo $text_select; ?></option>';
 			
 			if (json['zone'] != '') {
@@ -313,6 +314,7 @@ $(document).ready(function() {
 		width: get_Width_Height()[0],
 		height: get_Width_Height()[1]
 	});
+        $('#postcode-required').show();
 });
 //--></script> 
 <?php echo $footer; ?>

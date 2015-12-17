@@ -1,4 +1,8 @@
 <?php echo $header; ?>
+<div class="banner_product">
+<a><img src="http://eunicesolucoes.web1129.kinghost.net/image/data/Banner Slide/banner_product.jpg" alt="Banner" title="Banner"/></a>
+</div>
+
 <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
         <a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
@@ -268,6 +272,11 @@
                     include_once(DIR_TEMPLATE . "bt_medicalhealth/template/product/_conf_options.php");
                     ?>
                 </div>
+                
+                <div class="banner_desconto">
+                <a><img src="http://eunicesolucoes.web1129.kinghost.net/image/data/Banner Slide/baner_desconto.png" alt="Banner Desconto" title="Banner Desconto"/></a>
+                </div>
+                
                 <div class="cart">
                     <div ><span class="qty" style="display: none"><?php echo $text_qty; ?></span>
                         <input type="hidden" name="quantity" size="2" value="<?php echo $minimum; ?>" />
@@ -289,9 +298,13 @@
 
 
                     </div>
+                    
+                    <div class="banner_PagSeguro">
+                    <a><img src="http://eunicesolucoes.web1129.kinghost.net/image/data/Banner Slide/PagSeguro.jpg" alt="PagSeguro" title="PagSeguro"/></a>
+                    </div>
 
                     <div>
-                        <div class="compare"><a onclick="boss_addToCompare('<?php echo $product_id; ?>');"><?php echo $button_compare; ?></a></div>
+                        <!--<div class="compare"><a onclick="boss_addToCompare('<?php echo $product_id; ?>');"><?php echo $button_compare; ?></a></div>-->
                         <div class="wishlist"><a onclick="boss_addToWishList('<?php echo $product_id; ?>');"><?php echo $button_wishlist; ?></a></div>
                     </div>  
                     <?php if ($minimum > 1) { ?>

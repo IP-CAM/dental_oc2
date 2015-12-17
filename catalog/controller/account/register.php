@@ -8,11 +8,9 @@ class ControllerAccountRegister extends Controller {
         if ($this->customer->isLogged()) {
             if (!empty($this->request->get['action']) && $this->request->get['action'] == "checkout") {
                 $this->redirect($this->url->link('checkout/checkout'));
-            } 
-            else {
-              $this->redirect($this->url->link('account/account', '', 'SSL'));  
+            } else {
+                $this->redirect($this->url->link('account/account', '', 'SSL'));
             }
-            
         }
 
         $this->language->load('account/register');
@@ -68,11 +66,11 @@ class ControllerAccountRegister extends Controller {
         $this->data['txt_payment_heading_customer_type'] = $this->language->get('txt_payment_heading_customer_type');
 
         //end of mail chimp
-       
+
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 
-         
-            
+
+
             $this->model_account_customer->addCustomer($this->request->post);
 
             $this->customer->login($this->request->post['email'], $this->request->post['password']);
@@ -81,7 +79,6 @@ class ControllerAccountRegister extends Controller {
 //               echo $this->request->get['action'];
 //            echo "<br/>";
 //            die;
-
             // Default Shipping Address
             if ($this->config->get('config_tax_customer') == 'shipping') {
                 $this->session->data['shipping_country_id'] = $this->request->post['country_id'];
@@ -96,7 +93,11 @@ class ControllerAccountRegister extends Controller {
             }
 
             if (!empty($this->request->get['action']) && $this->request->get['action'] == "checkout") {
-                $this->redirect($this->url->link('checkout/checkout'));
+                $urlLoc = $this->url->link('checkout/checkout');
+                echo "<script>";
+                echo "window.location = '$urlLoc'";
+                echo "</script>";
+                //$this->redirect($urlLoc);
             } else {
                 $this->redirect($this->url->link('account/success'));
             }
@@ -437,6 +438,9 @@ class ControllerAccountRegister extends Controller {
 
         if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
             $this->error['telephone'] = $this->language->get('error_telephone');
+        }
+        if ((utf8_strlen($this->request->post['postcode']) < 1)) {
+            $this->error['postcode'] = $this->language->get('error_postcode');
         }
 
         // Customer Group
