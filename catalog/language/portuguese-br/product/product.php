@@ -54,6 +54,6 @@ $_['error_filetype']    = 'Atenção: O tipo de arquivo é inválido!';
 
 //product configuration options
 $_['text_postal_code']          = 'código postal';
-$_['button_postal_code']          = 'Cálculo envio';
+$_['button_postal_code']          = 'Simular frete';
 $_['postal_error_empty']          = 'Nenhum código postal fornecida';
 ?>

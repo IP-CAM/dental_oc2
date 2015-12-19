@@ -49,7 +49,7 @@ $_['button_view']           = 'Ver';
 $_['button_voucher']        = 'Utilizar Vale Presentes';
 $_['button_upload']         = 'Enviar Arquivo';
 $_['button_reward']         = 'Utilizar Pontos de Fidelidade';
-$_['button_quote']          = 'Simular';
+$_['button_quote']          = 'Simular frete';
 
 // Error
 $_['error_upload_1']        = 'Atenção: O arquivo enviado excede o especificado na diretiva upload_max_filesize no php.ini!';

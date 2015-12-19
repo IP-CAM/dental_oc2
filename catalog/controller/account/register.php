@@ -239,6 +239,21 @@ class ControllerAccountRegister extends Controller {
         } else {
             $this->data['error_zone'] = '';
         }
+
+        //cpf fields
+
+        if (isset($this->error['payment_corop_cnpg'])) {
+            $this->data['error_payment_corop_cnpg'] = $this->error['payment_corop_cnpg'];
+        } else {
+            $this->data['error_payment_corop_cnpg'] = '';
+        }
+        if (isset($this->error['payment_cad_cpf'])) {
+            $this->data['error_payment_cad_cpf'] = $this->error['payment_cad_cpf'];
+        } else {
+            $this->data['error_payment_cad_cpf'] = '';
+        }
+
+
         if (!empty($this->request->get['action']) && $this->request->get['action'] == "checkout") {
             $this->data['action'] = $this->url->link('account/register&action=checkout', '', 'SSL');
         } else {
@@ -282,6 +297,14 @@ class ControllerAccountRegister extends Controller {
         } else {
             $this->data['company'] = '';
         }
+        
+        if (!empty($this->request->post['payment_customer_type'])){
+             $this->data['payment_customer_type'] = $this->request->post['payment_customer_type'];
+        }
+        else {
+            $this->data['payment_customer_type'] = "";
+        }
+     
 
         $this->load->model('account/customer_group');
 
@@ -442,6 +465,34 @@ class ControllerAccountRegister extends Controller {
         if ((utf8_strlen($this->request->post['postcode']) < 1)) {
             $this->error['postcode'] = $this->language->get('error_postcode');
         }
+
+        if (!empty($this->request->post['payment_customer_type'])) {
+
+            if (utf8_decode($this->request->post['payment_customer_type']) == "Pessoa Jurídica") {
+
+                if ((utf8_strlen($this->request->post['payment_corop_cnpg']) < 1)) {
+                    $this->error['payment_corop_cnpg'] = $this->language->get('errror_payment_corop_cnpg');
+                }
+            } else if (($this->request->post['payment_customer_type']) == "Pessoa Jurídica") {
+
+                if ((utf8_strlen($this->request->post['payment_corop_cnpg']) < 1)) {
+                    $this->error['payment_corop_cnpg'] = $this->language->get('errror_payment_corop_cnpg');
+                }
+            } else if (($this->request->post['payment_customer_type']) == "Pessoa Física") {
+
+                if ((utf8_strlen($this->request->post['payment_cad_cpf']) < 1)) {
+                    $this->error['payment_cad_cpf'] = $this->language->get('error_payment_cad_cpf');
+                }
+            } else if (utf8_decode($this->request->post['payment_customer_type']) == "Pessoa Física") {
+
+                if ((utf8_strlen($this->request->post['payment_cad_cpf']) < 1)) {
+                    $this->error['payment_cad_cpf'] = $this->language->get('error_payment_cad_cpf');
+                }
+            }
+        }
+
+
+
 
         // Customer Group
         $this->load->model('account/customer_group');

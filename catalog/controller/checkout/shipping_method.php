@@ -6,13 +6,17 @@ class ControllerCheckoutShippingMethod extends Controller {
         $this->language->load('checkout/checkout');
 
         $this->load->model('account/address');
-
+        $shipping_address = array();
+        
         if ($this->customer->isLogged() && isset($this->session->data['shipping_address_id'])) {
             $shipping_address = $this->model_account_address->getAddress($this->session->data['shipping_address_id']);
+        
         } elseif (isset($this->session->data['guest'])) {
             $shipping_address = $this->session->data['guest']['shipping'];
         }
-        $shipping_address = array();
+       
+        
+        
         if (empty($shipping_address)) {
             $shipping_address = array();
             $shipping_address['country'] = 'Brazil';
@@ -22,6 +26,8 @@ class ControllerCheckoutShippingMethod extends Controller {
             $shipping_address['zone_id'] = '457';
             $shipping_address['postcode'] = '';
         }
+        
+     
 
         if (!empty($shipping_address)) {
             // Shipping Methods
@@ -75,6 +81,8 @@ class ControllerCheckoutShippingMethod extends Controller {
         } else {
             $this->data['shipping_methods'] = array();
         }
+        
+      
 
         if (isset($this->session->data['shipping_method']['code'])) {
             $this->data['code'] = $this->session->data['shipping_method']['code'];
@@ -89,7 +97,7 @@ class ControllerCheckoutShippingMethod extends Controller {
         }
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/shipping_method.tpl')) {
-            $this->template = $this->config->get('config_template') . '/template/checkout/shipping_method.tpl';
+            $this->template = $this->config->get('config_template') . '/template/checkout/shipping_method.php';
         } else {
             $this->template = 'default/template/checkout/shipping_method.tpl';
         }

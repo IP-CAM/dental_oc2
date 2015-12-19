@@ -66,9 +66,13 @@
 
                     <div>
                         <?php echo $txt_payment_cad_cpf; ?>
+                        <span class="required">*</span>
                     </div>
                     <div>
                         <input type="text" name="payment_cad_cpf" id="payment_cad_cpf" value="<?php echo isset($payment_cad_cpf) ? $payment_cad_cpf : ""; ?>"  />
+                        <?php if (!empty($error_payment_cad_cpf)) { ?>
+                            <span class="error"><?php echo $error_payment_cad_cpf; ?></span>
+                        <?php } ?>
                     </div>
                     <div>
                         <?php echo $txt_payment_cad_rg; ?>
@@ -144,9 +148,13 @@
 
                     <div>
                         <?php echo $txt_payment_corop_cnpg; ?>
+                        <span class="required">*</span>
                     </div>
                     <div>
                         <input type="text" name="payment_corop_cnpg" id="payment_corop_cnpg" value="<?php echo isset($payment_corop_cnpg) ? $payment_corop_cnpg : ""; ?>"  />
+                        <?php if (!empty($error_payment_corop_cnpg)) { ?>
+                            <span class="error"><?php echo $error_payment_corop_cnpg; ?></span>
+                        <?php } ?>
                     </div>
                     <div> 
                         <?php echo $txt_payment_corop_responsible_name; ?>
