@@ -141,15 +141,25 @@ class ModelAccountAddress extends Model {
         $this->db->query("DELETE FROM " . DB_PREFIX . "address WHERE address_id = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'");
     }
 
+    /**
+     * get Current user Max id
+     * @return type
+     */
+    public function getMaxAddressId() {
+        $sql = "SELECT MAX(address_id) as id FROM  " . DB_PREFIX . "address WHERE customer_id = " . $this->customer->getId();
+        $address_query = $this->db->query($sql);
+        return $address_query->row;
+    }
+
     public function getAddress($address_id) {
         $sql = "SELECT DISTINCT * FROM " . DB_PREFIX . "address WHERE address_id = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'";
 
         $address_query = $this->db->query($sql);
 
         if ($address_query->num_rows) {
-           
+
             $sub_sql = "SELECT * FROM `" . DB_PREFIX . "country` WHERE country_id = '" . (int) $address_query->row['country_id'] . "'";
-           
+
             $country_query = $this->db->query($sub_sql);
 
             if ($country_query->num_rows) {
@@ -200,7 +210,7 @@ class ModelAccountAddress extends Model {
                     $address_data[$col] = $address_query->row[$col];
                 }
             }
-          
+
             return $address_data;
         } else {
             return false;

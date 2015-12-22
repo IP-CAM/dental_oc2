@@ -8,13 +8,21 @@ class ControllerCheckoutShippingMethod extends Controller {
         $this->load->model('account/address');
         $shipping_address = array();
         
-        if ($this->customer->isLogged() && isset($this->session->data['shipping_address_id'])) {
-            $shipping_address = $this->model_account_address->getAddress($this->session->data['shipping_address_id']);
+        if ($this->customer->isLogged()) {
+            if(isset($this->session->data['shipping_address_id'])){
+                $shipping_address = $this->model_account_address->getAddress($this->session->data['shipping_address_id']);
+            }
+            else {
+                $shipping_addess_arr  = $this->model_account_address->getMaxAddressId();
+                $shipping_addess_id= $shipping_addess_arr['id'];
+                $shipping_address = $this->model_account_address->getAddress($shipping_addess_id);
+            }
+            
         
         } elseif (isset($this->session->data['guest'])) {
             $shipping_address = $this->session->data['guest']['shipping'];
         }
-       
+     
         
         
         if (empty($shipping_address)) {

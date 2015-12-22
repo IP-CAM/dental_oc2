@@ -99,9 +99,17 @@ class ControllerAccountLogin extends Controller {
 
             // Added strpos check to pass McAfee PCI compliance test
             if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) !== false || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) !== false)) {
-                $this->redirect(str_replace('&amp;', '&', $this->request->post['redirect']));
+                $urlLoc = str_replace('&amp;', '&', $this->request->post['redirect']);
+                //$this->redirect(str_replace('&amp;', '&', $this->request->post['redirect']));
+                echo "<script>";
+                echo "window.location = '$urlLoc'";
+                echo "</script>";
             } else {
-                $this->redirect($this->url->link('account/account', '', 'SSL'));
+                $urlLoc = $this->url->link('account/account', '', 'SSL');
+                echo "<script>";
+                echo "window.location = '$urlLoc'";
+                echo "</script>";
+                //$this->redirect($this->url->link('account/account', '', 'SSL'));
             }
         }
 
@@ -145,8 +153,8 @@ class ControllerAccountLogin extends Controller {
         } else {
             $this->data['error_warning'] = '';
         }
-        
-     
+
+
 
         $this->data['action'] = $this->url->link('account/login', '', 'SSL');
         $this->data['register'] = $this->url->link('account/register', '', 'SSL');
@@ -207,13 +215,13 @@ class ControllerAccountLogin extends Controller {
         }
 
         $customer_info = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
-        
-       
-        
+
+
+
         if ($customer_info && !$customer_info['approved']) {
             $this->error['warning'] = $this->language->get('error_approved');
         }
-        
+
 
         if (!$this->error) {
             return true;
