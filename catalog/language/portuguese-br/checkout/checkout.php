@@ -21,6 +21,13 @@ $_['text_checkout_shipping_method_step']  = '<span class="step_no">5</span>Forma
 $_['text_checkout_payment_method_step']   = '<span class="step_no">6</span>Forma de pagamento';
 $_['text_checkout_confirm_step']          = '<span class="step_no">7</span>Confirmar pedido';
 
+//for login user customziation
+$_['txt_payment_heading_customer_step_login']  = '<span class="step_no">1</span>Dados da Empresa';
+$_['text_checkout_shipping_address_step_login'] = '<span class="step_no">2</span>Endereço para entrega';
+$_['text_checkout_shipping_method_step_login']  = '<span class="step_no">3</span>Forma de entrega';
+$_['text_checkout_payment_method_step_login']   = '<span class="step_no">4</span>Forma de pagamento';
+
+//for login user
 
 $_['text_modify']                    = 'Editar &raquo;';
 $_['text_new_customer']              = 'Novo cliente';

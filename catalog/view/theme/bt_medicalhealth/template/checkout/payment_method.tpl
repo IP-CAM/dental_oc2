@@ -46,6 +46,7 @@
   </div>
 </div>
 <?php } ?>
+
 <script type="text/javascript"><!--
 function get_Width_Height() {
 	var array = new Array();

@@ -13,13 +13,13 @@
 
         <div class="step_container six columns" style="">
 
-            <div id="checkout">   
+            <div id="checkout" style="<?php echo ($logged) ? "display:none" : ""; ?>">   
                 <div class="step-title">
                     <?php echo $text_checkout_option_step; ?>
                 </div>
                 <div class="checkout-content"></div>
             </div>
-            <div class="payment-address-step" id="payment-address">   
+            <div class="payment-address-step" id="payment-address" style="<?php echo ($logged) ? "display:none" : ""; ?>">   
                 <div class="step-title ">
                     <?php
                     if (!$logged) {
@@ -34,7 +34,7 @@
             <?php
             if ($logged) {
                 ?>
-                <div class="payment-address-2-step" id="payment-address-2">   
+                <div class="payment-address-2-step" id="payment-address-2" >   
                     <div class="step-title ">
                         <?php echo $txt_payment_heading_customer_step; ?>
                     </div>
@@ -252,8 +252,13 @@
                 $("#payment-address-2 div.checkout-content").html($(".payment-address-step div#payment-new-2").html());
                 $(".payment-address-step div#payment-new-2").remove();
 
-                $(".payment-address-step").show();
-                $(".payment-address-step").find("div.checkout-content").slideDown('slow');
+                //for login user this box will be disabled 
+                if (loggin_in != "1") {
+
+                    $(".payment-address-step").show();
+                    $(".payment-address-step").find("div.checkout-content").slideDown('slow');
+                }
+
                 $("#payment-address-2 div.checkout-content").slideDown('slow');
 
                 console.log($(".payment-address-step"));
@@ -333,8 +338,10 @@
                 $(".payment-address-step").find("div#payment-new").remove();
 
 
-
-                $(".payment-address-step").show();
+                //for login user this box will be disabled 
+                if (loggin_in != "1") {
+                    $(".payment-address-step").show();
+                }
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -1011,9 +1018,11 @@
 
                     $("#payment-address-2-guest div.checkout-content").html($(".payment-address-step div#payment-new-2-guest").html());
                     $(".payment-address-step div#payment-new-2-guest").remove();
-
-                    $(".payment-address-step").show();
-                    $(".payment-address-step").find("div.checkout-content").slideDown('slow');
+                    //for login user this box will be disabled 
+                    if (loggin_in != "1") {
+                        $(".payment-address-step").show();
+                        $(".payment-address-step").find("div.checkout-content").slideDown('slow');
+                    }
                     $("#payment-address-2-guest div.checkout-content").slideDown('slow');
 
                     console.log($(".payment-address-step"));

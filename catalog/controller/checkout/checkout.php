@@ -71,7 +71,15 @@ class ControllerCheckoutCheckout extends Controller {
         $this->data['text_checkout_payment_method_step'] = $this->language->get('text_checkout_payment_method_step');
         $this->data['text_checkout_confirm_step'] = $this->language->get('text_checkout_confirm_step');
 
-       
+        // if the customer is login then hide first and 2nd step
+        if ($this->customer->isLogged()) {
+
+            $this->data['txt_payment_heading_customer_step'] = $this->language->get('txt_payment_heading_customer_step_login');
+            $this->data['text_checkout_shipping_address_step'] = $this->language->get('text_checkout_shipping_address_step_login');
+            $this->data['text_checkout_shipping_method_step'] = $this->language->get('text_checkout_shipping_method_step_login');
+            $this->data['text_checkout_payment_method_step'] = $this->language->get('text_checkout_payment_method_step_login');
+        }
+
 
         $this->data['text_modify'] = $this->language->get('text_modify');
 

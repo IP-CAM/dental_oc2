@@ -99,7 +99,11 @@ class ControllerAccountRegister extends Controller {
                 echo "</script>";
                 //$this->redirect($urlLoc);
             } else {
-                $this->redirect($this->url->link('account/success'));
+                $urlLoc = $this->url->link('account/success');
+                echo "<script>";
+                echo "window.location = '$urlLoc'";
+                echo "</script>";
+                //$this->redirect($this->url->link('account/success'));
             }
         }
 
@@ -297,14 +301,13 @@ class ControllerAccountRegister extends Controller {
         } else {
             $this->data['company'] = '';
         }
-        
-        if (!empty($this->request->post['payment_customer_type'])){
-             $this->data['payment_customer_type'] = $this->request->post['payment_customer_type'];
-        }
-        else {
+
+        if (!empty($this->request->post['payment_customer_type'])) {
+            $this->data['payment_customer_type'] = $this->request->post['payment_customer_type'];
+        } else {
             $this->data['payment_customer_type'] = "";
         }
-     
+
 
         $this->load->model('account/customer_group');
 
