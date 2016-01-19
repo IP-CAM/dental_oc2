@@ -13,13 +13,13 @@
 
         <div class="step_container six columns" style="">
 
-            <div id="checkout" style="<?php echo ($logged) ? "display:none" : ""; ?>">   
+            <div id="checkout" style="<?php echo (!empty($logged)) ? "display:none" : ""; ?>">   
                 <div class="step-title">
                     <?php echo $text_checkout_option_step; ?>
                 </div>
                 <div class="checkout-content"></div>
             </div>
-            <div class="payment-address-step" id="payment-address" style="<?php echo ($logged) ? "display:none" : ""; ?>">   
+            <div class="payment-address-step" id="payment-address" style="<?php echo (!empty($logged)) ? "display:none" : ""; ?>">   
                 <div class="step-title ">
                     <?php
                     if (!$logged) {
@@ -253,7 +253,7 @@
                 $(".payment-address-step div#payment-new-2").remove();
 
                 //for login user this box will be disabled 
-                if (loggin_in != "1") {
+                if (loggin_in == "") {
 
                     $(".payment-address-step").show();
                     $(".payment-address-step").find("div.checkout-content").slideDown('slow');
@@ -339,7 +339,7 @@
 
 
                 //for login user this box will be disabled 
-                if (loggin_in != "1") {
+                if (loggin_in == "") {
                     $(".payment-address-step").show();
                 }
 
@@ -1019,7 +1019,7 @@
                     $("#payment-address-2-guest div.checkout-content").html($(".payment-address-step div#payment-new-2-guest").html());
                     $(".payment-address-step div#payment-new-2-guest").remove();
                     //for login user this box will be disabled 
-                    if (loggin_in != "1") {
+                    if (loggin_in == "") {
                         $(".payment-address-step").show();
                         $(".payment-address-step").find("div.checkout-content").slideDown('slow');
                     }

@@ -331,8 +331,8 @@ class ControllerCheckoutConfirminit extends Controller {
             unset($this->data['redirect']);
         }
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/confirm.tpl')) {
-            $this->template = $this->config->get('config_template') . '/template/checkout/confirm.tpl';
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/confirm.php')) {
+            $this->template = $this->config->get('config_template') . '/template/checkout/confirm.php';
         } else {
             $this->template = 'default/template/checkout/confirm.tpl';
         }
