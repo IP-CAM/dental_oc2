@@ -680,8 +680,9 @@
     }
     //Payment method validate
     function payment_method_checkout() {
+        
         $.ajax({
-            url: 'index.php?route=checkout/payment_method/validate',
+            url: 'index.php?route=checkout/payment_method/validate&boleto_methods=',
             type: 'post',
             data: $('.payment-method-step  input[type=\'radio\']:checked, .payment-method-step  input[type=\'checkbox\']:checked, .payment-method-step  textarea'),
             dataType: 'json',
@@ -938,6 +939,7 @@
         else {
             url_checkout = 'index.php?route=checkout/confirm';
         }
+   
 
         $.ajax({
             url: url_checkout,
@@ -945,6 +947,8 @@
             success: function (html) {
                 $('#confirm .checkout-content').html(html);
                 $('#confirm .checkout-content').slideDown('slow');
+                fill_cpfField();
+                
                 if (is_ajax != '1') {
                     // $("#button-confirm").remove();
 
@@ -1078,6 +1082,7 @@
             success: function (html) {
                 $('#confirm .checkout-content').html(html);
                 $('#confirm .checkout-content').slideDown('slow');
+                fill_cpfField();
                 $('.checkout-heading a').remove();
                 $('#checkout .checkout-heading a').remove();
                 $('#checkout .checkout-heading').append('<a><?php echo $text_modify; ?></a>');
@@ -1094,6 +1099,16 @@
                 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
         });
+    }
+    
+    function fill_cpfField(){
+        if($('#confirm .checkout-content #creditCardHolderCPF').length>0){
+            $('#confirm .checkout-content #creditCardHolderCPF').val($("#payment_cad_cpf").val());
+        }
+        else if($('#confirm .checkout-content #senderCPF').length>0){
+            $('#confirm .checkout-content #senderCPF').val($("#payment_cad_cpf").val());
+        }
+        
     }
 
     $('#checkout .checkout-content input[name=\'account\']').live('change', function () {

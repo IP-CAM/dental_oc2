@@ -496,10 +496,12 @@ class ControllerCheckoutConfirm extends Controller {
             unset($this->data['redirect']);
         }
         //unsetting shippig and payment variables
-        if (isset($this->session->data['payment_method'])) {
+        
+        if ( isset($this->session->data['payment_method'])) {
             unset($this->session->data['payment_method']);
         }
-        if (isset($this->session->data['payment_methods'])) {
+        
+        if (!isset($this->request->get["boleto"]) && isset($this->session->data['payment_methods'])) {
             unset($this->session->data['payment_methods']);
         }
 

@@ -4,7 +4,7 @@
 <?php } ?>
 <div class="payment-information">
     <label for="senderCPF">CPF: </label>
-    <input type="text" name="senderCPF" value="">
+    <input type="text" id="senderCPF" name="senderCPF" value="">
 </div>
 <div class="buttons">
     <div class="right"><a id="button-confirm" class="button"><span><?php echo $button_confirm; ?></span></a><span id="aguardando">Gerando boleto...</span></div>

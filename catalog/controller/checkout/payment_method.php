@@ -180,14 +180,21 @@ class ControllerCheckoutPaymentMethod extends Controller {
                 break;
             }
         }
-
+   
         if (!$json) {
+            
             if (!isset($this->request->post['payment_method'])) {
+                 
                 $json['error']['warning'] = $this->language->get('error_payment');
+           
+                
             } elseif (!isset($this->session->data['payment_methods'][$this->request->post['payment_method']])) {
+            
                 $json['error']['warning'] = $this->language->get('error_payment');
+               
             }
-
+           
+    
             if ($this->config->get('config_checkout_id')) {
                 $this->load->model('catalog/information');
 
