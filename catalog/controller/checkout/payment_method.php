@@ -216,6 +216,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
     }
 
     public function fillCartProducts() {
+        $redirect = "";
         $products = $this->cart->getProducts();
 
         foreach ($products as $product) {
@@ -234,7 +235,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
             }
         }
 
-        if ($this->request->get["is_ajax"] == "1") {
+        if (isset($this->request->get["is_ajax"]) && $this->request->get["is_ajax"] == "1") {
             $redirect = "";
         }
 
