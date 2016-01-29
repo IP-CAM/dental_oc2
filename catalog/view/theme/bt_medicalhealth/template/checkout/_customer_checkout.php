@@ -49,10 +49,10 @@
                 </div>
                 <div>
 
-                    <div>
+                    <div style="display:none">
                         <?php echo $txt_payment_cad_name; ?>
                     </div>
-                    <div>
+                    <div style="display:none">
                         <input type="text" name="payment_cad_name" id="payment_cad_name" value="<?php echo isset($payment_cad_name) ? $payment_cad_name : ""; ?>" />
                     </div>
                     <div>
@@ -83,10 +83,10 @@
                 </div>
                 <div>
 
-                    <div>
+                    <div style="display:none">
                         <?php echo $txt_payment_cad_telefone; ?>
                     </div>
-                    <div>
+                    <div style="display:none">
                         <input type="text" name="payment_cad_telefone" id="payment_cad_telefone" value="<?php echo isset($payment_cad_telefone) ? $payment_cad_telefone : ""; ?>"/>
                     </div>
                     <div>
