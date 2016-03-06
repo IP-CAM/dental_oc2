@@ -1,3 +1,4 @@
+
 .content{
 	z-index: 10;
 }
@@ -58,7 +59,7 @@
 		#header{
 			width: 100%;
 			margin-left: -1px;
-		}
+}
 		
 		#boss_menu > ul > li > a{
 		font-size: 11px;
@@ -139,7 +140,8 @@
 		.main-column-left{padding-right:10px}
 		.box-product .image{float:left; margin-right:0; text-align:center; margin-bottom:8px}
 		#column-left + #column-right + #content, #column-left + #content{width:556px;}
-		#boss_menu{margin-left:10px; margin-right:10px}
+		
+		
 		#boss_menu > ul > li{padding:0; margin-right:12px}
 		#boss_menu > ul > li:first-child{padding-left:10px}
 		#boss_menu > ul > li > div.dropdown{margin-top:1px}
@@ -153,16 +155,7 @@
 		#header #cart .heading{margin-right:0;border:none;padding-right:0;}
 		#header #logo{position:relative;width:auto;float:left;}
 		.boss_column{width:124px;}
-		.boss_header_buttom{
-			background:#96be56;
-			-webkit-border-top-left-radius: 5px;
-			-webkit-border-top-right-radius: 5px;
-			-moz-border-radius-topleft: 5px;
-			-moz-border-radius-topright: 5px;
-			border-top-left-radius: 5px;
-			border-top-right-radius: 5px;
-			width:100%;
-		}
+		
 		.acount .login-frame input[type='password']{line-height:27px}
 		.wishlist-info tbody .name{width:25%; padding-right:10px}
 		.wishlist-info tbody .image{padding-left:10px}
@@ -338,7 +331,7 @@
 	#header-top{display:none}
 	.boss_header_top{height:193px}
 	.quick-access{display:none}
-	#header{height:227px}
+	#header{height: 227px}
 	#header #logo{float:none; height:89px;margin-top:0; text-align:center}
 	#header #logo img{margin-top: 21px
 	}
@@ -504,7 +497,7 @@
 	 #header-top{display:none}
 	.boss_header_top{height:193px}
 	.quick-access{display:none}
-	#header{height:227px}
+	#header{height: 227px}
 	#header #logo{float:none; height:89px;margin-top:0; text-align:center}
 	#header #logo img{
 		margin-top: 21px;
@@ -512,7 +505,7 @@
 	#header #cart{float:none; margin-top:27px; margin-left:0}
 	#header #cart .content{right:0}
 	#header #cart .heading a span{background:none; font-size:16px; /* color:#fff; */ line-height:35px}
-	.boss_header_buttom{background:none}
+	.boss_header_buttom{background:none;}
 	#header #welcome{color:#828282; font-size:12px; padding:6px 0}
 	#header #welcome a{color:#414040; font-size:12px}
 	div.button-search{background:url(../image/search.png) no-repeat; height:20px; width:21px; padding-left:0; position:absolute; right:0; top:5px}
@@ -627,19 +620,29 @@ h2.ta-header span:hover{color:#08BCD2}
 
 @media screen and (min-width:1204px) and (max-width: 1254px) {
 	
-	#custom_search_bar { margin-left:50px; }
+	#custom_search_bar {
+	margin-left: 50px;
+}
 	
 }
 
 @media screen and (max-width:1204px) {
 	
-	#custom_search_bar { margin-left:50px; }
+	#custom_search_bar {
+	width: 100%;
+}
+
 	
 	#tobpar { min-height: 115px; height:auto; }
 	
 	#header { min-height: 115px; height:auto; }
 	
-	#container { margin-top: 162px; }
+	#container { margin-top: 264px; }
+		#header #cart { padding-bottom:20px; }
+		#boss_menu{
+	padding-top: 10px;
+}
+	
 	
 }
 
@@ -647,7 +650,7 @@ h2.ta-header span:hover{color:#08BCD2}
 	
 	#header #cart { padding-bottom:20px; }
 	
-	#custom_search_bar { float:right; }
+	
 	
 }
 

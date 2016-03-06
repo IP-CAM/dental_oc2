@@ -5,11 +5,9 @@ require_once DIR_SYSTEM . 'library/PagSeguro/PagSeguroData.class.php';
 require_once DIR_SYSTEM . 'library/PagSeguro/XmlParser.class.php';
 require_once DIR_SYSTEM . 'library/PagSeguroLibrary/PagSeguroLibrary.php';
 
-class ControllerPaymentPagseguroBoleto extends Controller
-{
+class ControllerPaymentPagseguroBoleto extends Controller {
 
-    protected function index()
-    {
+    protected function index() {
 
         $this->language->load('payment/pagseguro_boleto');
 
@@ -34,8 +32,7 @@ class ControllerPaymentPagseguroBoleto extends Controller
         $this->render();
     }
 
-    public function confirm()
-    {
+    public function confirm() {
 
         $this->load->model('checkout/order');
 
@@ -58,13 +55,12 @@ class ControllerPaymentPagseguroBoleto extends Controller
         $this->redirect($this->url->link('checkout/success'));
     }
 
-    public function callback()
-    {
+    public function callback() {
 
         $code = (isset($_POST['notificationCode']) && trim($_POST['notificationCode']) !== "" ?
-            trim($_POST['notificationCode']) : null);
+                        trim($_POST['notificationCode']) : null);
         $type = (isset($_POST['notificationType']) && trim($_POST['notificationType']) !== "" ?
-            trim($_POST['notificationType']) : null);
+                        trim($_POST['notificationType']) : null);
 
         if ($code && $type) {
 
@@ -126,8 +122,7 @@ class ControllerPaymentPagseguroBoleto extends Controller
         }
     }
 
-    private function getPesoEmGramas($weight_class_id, $peso)
-    {
+    private function getPesoEmGramas($weight_class_id, $peso) {
 
         if ($this->weight->getUnit($weight_class_id) == 'g') {
             return $peso;
@@ -135,8 +130,7 @@ class ControllerPaymentPagseguroBoleto extends Controller
         return $peso * 1000;
     }
 
-    private function getSessionId(PagSeguroData $pagSeguroData)
-    {
+    private function getSessionId(PagSeguroData $pagSeguroData) {
 
         // Creating a http connection (CURL abstraction)
         $httpConnection = new HttpConnection();
@@ -158,8 +152,7 @@ class ControllerPaymentPagseguroBoleto extends Controller
         }
     }
 
-    private function parseSessionIdFromXml($data)
-    {
+    private function parseSessionIdFromXml($data) {
 
         // Creating an xml parser
         $xmlParser = new XmlParser($data);
@@ -174,8 +167,7 @@ class ControllerPaymentPagseguroBoleto extends Controller
         }
     }
 
-    private function getDDDNumero($telefone)
-    {
+    private function getDDDNumero($telefone) {
         $telefone = str_replace(array('(', ')', '-', '.', '/'), '', $telefone);
 
         $telefone = explode(' ', $telefone);
@@ -184,8 +176,7 @@ class ControllerPaymentPagseguroBoleto extends Controller
         return $telefone;
     }
 
-    public function payment()
-    {
+    public function payment() {
         $senderHash = $_POST['senderHash'];
 
         $mb_substr = (function_exists("mb_substr")) ? true : false;
@@ -216,8 +207,12 @@ class ControllerPaymentPagseguroBoleto extends Controller
             $customer_name = utf8_encode(substr(utf8_decode($customer_name), 0, 50));
         }
 
-        $params['senderCPF'] = preg_replace( '/[^0-9]/', '', $_POST['senderCPF']);
-        $params['senderName'] = preg_replace('/\s+/', ' ',$customer_name);
+        $postalCode = $order_info['payment_postcode'];
+        //makding error
+//        $params['senderCPF'] = preg_replace('/[^0-9]/', '', $_POST['senderCPF']);
+        $params['senderCPF'] = preg_replace('/[^0-9]/', '', $postalCode);
+
+        $params['senderName'] = preg_replace('/\s+/', ' ', $customer_name);
         $params['senderEmail'] = $order_info['email'];
 
         $params['senderAreaCode'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2);
@@ -231,9 +226,9 @@ class ControllerPaymentPagseguroBoleto extends Controller
             $estado = $this->model_localisation_zone->getZone($order_info['shipping_zone_id']);
             $params['shippingAddressPostalCode'] = $cep[0];
             $params['shippingAddressStreet'] = $order_info['shipping_address_1'];
-            if($this->config->get('dados_status')) {
+            if ($this->config->get('dados_status')) {
                 $params['shippingAddressNumber'] = $order_info['shipping_numero'];
-            }else{
+            } else {
                 $params['shippingAddressNumber'] = false;
             }
             $params['shippingAddressComplement'] = $order_info['shipping_company'];
@@ -245,9 +240,9 @@ class ControllerPaymentPagseguroBoleto extends Controller
             $estado = $this->model_localisation_zone->getZone($order_info['payment_zone_id']);
             $params['shippingAddressPostalCode'] = $cep[0];
             $params['shippingAddressStreet'] = $order_info['payment_address_1'];
-            if($this->config->get('dados_status')) {
+            if ($this->config->get('dados_status')) {
                 $params['shippingAddressNumber'] = $order_info['payment_numero'];
-            }else{
+            } else {
                 $params['shippingAddressNumber'] = false;
             }
             $params['shippingAddressComplement'] = $order_info['payment_company'];
@@ -308,6 +303,10 @@ class ControllerPaymentPagseguroBoleto extends Controller
         $params['paymentMode'] = 'default'; // paymentMode
         $params['currency'] = 'BRL'; // Currency (only BRL)
         $params['reference'] = $order_info['order_id']; // Setting the Application Order to Reference on PagSeguro
+//        echo "<pre>";    
+//        print_r($order_info);
+        //$params['senderCPF'] = 93448651087;
+        //print_r($params);
 //        var_dump($params);
 //        exit;
         // treat parameters here!
@@ -334,12 +333,13 @@ class ControllerPaymentPagseguroBoleto extends Controller
             $json['success'] = $xmlArray['transaction']['paymentLink'];
             $json['order_id'] = $this->session->data['order_id'];
         }
+//        print_r($json);
+//        die;
 
         $this->response->setOutput(json_encode($json));
     }
 
-    private function paymentResultXml($data)
-    {
+    private function paymentResultXml($data) {
 
         // Creating an xml parser
         $xmlParser = new XmlParser($data);
@@ -352,8 +352,7 @@ class ControllerPaymentPagseguroBoleto extends Controller
         }
     }
 
-    private function notificationResultXml($data)
-    {
+    private function notificationResultXml($data) {
 
         // Creating an xml parser
         $xmlParser = new XmlParser($data);
@@ -366,8 +365,7 @@ class ControllerPaymentPagseguroBoleto extends Controller
         }
     }
 
-    public function open()
-    {
+    public function open() {
         $order_id = $_GET['order_id'];
 
         $this->load->model('checkout/order');

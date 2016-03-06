@@ -585,10 +585,11 @@
         if (further == false) {
             ajaxUrl += '&unset=false';
         }
+        
         $.ajax({
             url: ajaxUrl,
             type: 'post',
-            data: $('.payment-address-step input[type=\'text\'], .payment-address-step input[type=\'password\'], .payment-address-step input[type=\'checkbox\']:checked, .payment-address-step input[type=\'radio\']:checked, .payment-address-step input[type=\'hidden\'], .payment-address-step select'),
+            data: $('.payment-address-step input[type=\'text\'], .payment-address-step input[type=\'password\'], .payment-address-step input[type=\'checkbox\']:checked, .payment-address-step input[type=\'radio\']:checked, .payment-address-step input[type=\'hidden\'], .payment-address-step select,#payment-address-2 input[type=\'text\'], #payment-address-2 input[type=\'password\'], #payment-address-2 input[type=\'checkbox\']:checked, #payment-address-2 input[type=\'radio\']:checked, #payment-address-2 input[type=\'hidden\'], #payment-address-2 select'),
             dataType: 'json',
             beforeSend: function () {
                 $('#button-payment-address').attr('disabled', true);

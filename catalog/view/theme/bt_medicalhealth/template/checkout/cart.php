@@ -232,8 +232,8 @@ if (!empty($shipping_method)) {
         function get_Width_Height() {
             var array = new Array();
             if (getWidthBrowser() > 766) {
-                array[0] = 640;
-                array[1] = 480;
+                array[0] = 450;
+                array[1] = 350;
             } else if (getWidthBrowser() < 767 && getWidthBrowser() > 480) {
                 array[0] = 450;
                 array[1] = 350;
@@ -298,7 +298,7 @@ if (!empty($shipping_method)) {
                                 }
                             }
                             else {
-                                li_ht+= "<tr class='highlight'><td>Not Found</td>";
+                                li_ht+= "<tr class='highlight'><td>N‹o Encontrado</td>";
                                 li_ht += "</tr>";
 
                             }

@@ -97,12 +97,25 @@
 .dados_cartao input, .dados_cartao select{
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	padding: 10px;
 	display: inline-block;
 	border-radius: 5px;
 	background: #fff;
 	outline: none;
 	cursor: pointer;
+	padding: 10px;
+	max-width: 310px;
+}
+
+
+#button-confirm {
+	color: #fff;
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#button-confirm span {
+	color: #fff;
 }
 
 #tool-tip-cvc{

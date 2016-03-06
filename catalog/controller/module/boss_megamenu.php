@@ -142,6 +142,7 @@ class ControllerModuleBossMegaMenu extends Controller {
                                     foreach ($option['opt_product_ids'] as $product_id) {
                                         $product_info = $this->model_catalog_product->getProduct($product_id);
 
+
                                         if ($product_info) {
                                             if ($option['opt_product_show_img'] && $product_info['image']) {
                                                 $image = $this->model_tool_image->resize($product_info['image'], isset($option['opt_product_img_w']) ? $option['opt_product_img_w'] : 45, isset($option['opt_product_img_h']) ? $option['opt_product_img_h'] : 45);
@@ -154,11 +155,26 @@ class ControllerModuleBossMegaMenu extends Controller {
                                             } else {
                                                 $price = false;
                                             }
+                                            $discounts = $this->model_catalog_product->getProductDiscounts($product_id);
 
+                                            if ((float) $product_info['special']) {
+                                                $special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+                                            } else {
+                                                $special = false;
+                                            }
+                                            $discount_arr = array();
+                                            foreach ($discounts as $discount) {
+                                                $discount_arr[] = array(
+                                                    'quantity' => $discount['quantity'],
+                                                    'price' => $this->currency->format($this->tax->calculate($discount['price'], $product_info['tax_class_id'], $this->config->get('config_tax')))
+                                                );
+                                            }
                                             $products[] = array(
                                                 'thumb' => $image,
                                                 'name' => $product_info['name'],
                                                 'price' => $price,
+                                                'discount_arr' => $discount_arr,
+                                                'special' => $special,
                                                 'href' => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
                                             );
                                         }
@@ -191,11 +207,15 @@ class ControllerModuleBossMegaMenu extends Controller {
                 }
             }
         }
+
+//        echo "<pre>";
+//            print_r( $this->data['menus']);
+//        echo "</pre>";
 //        die;
         // end menu
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/boss_megamenu.tpl')) {
-            $this->template = $this->config->get('config_template') . '/template/module/boss_megamenu.tpl';
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/boss_megamenu.php')) {
+            $this->template = $this->config->get('config_template') . '/template/module/boss_megamenu.php';
         } else {
             $this->template = 'default/template/module/boss_megamenu.tpl';
         }

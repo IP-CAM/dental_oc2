@@ -86,16 +86,10 @@ class ControllerCheckoutPaymentAddress extends Controller {
         if (!empty($last_index)) {
             //print_r($last_index[count($last_index) - 1]);
             foreach (array_keys($this->model_account_address->_mail_chimp_columns) as $field) {
-                 $this->data[$field] = utf8_decode($this->data['addresses'][$last_index[count($last_index) - 1]][$field]);
-             
-                 
+                $this->data[$field] = utf8_decode($this->data['addresses'][$last_index[count($last_index) - 1]][$field]);
             }
         }
-        
-       
-        
 
-    
 
         $this->load->model('account/customer_group');
 
@@ -155,6 +149,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 //        print_r($_POST);
 //        echo "</pre>";
 //        die;
+
         $this->language->load('checkout/checkout');
 
         $json = array();
@@ -189,6 +184,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
         }
 
         if (!$json) {
+
             if (isset($this->request->post['payment_address']) && $this->request->post['payment_address'] == 'existing') {
                 $this->load->model('account/address');
 
@@ -197,6 +193,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
                 } elseif (!in_array($this->request->post['address_id'], array_keys($this->model_account_address->getAddresses()))) {
                     $json['error']['warning'] = $this->language->get('error_address');
                 } else {
+
                     // Default Payment Address
                     $this->load->model('account/address');
 
@@ -237,6 +234,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
                         //unset($this->session->data['payment_methods']);
                     }
                 }
+               
             } else {
                 if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
                     $json['error']['firstname'] = $this->language->get('error_firstname');
@@ -333,22 +331,22 @@ class ControllerCheckoutPaymentAddress extends Controller {
                 if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
                     $json['error']['zone'] = $this->language->get('error_zone');
                 }
+            }
+        }
+    
+        if (!$json) {
+            // Default Payment Address
+            $this->load->model('account/address');
 
-                if (!$json) {
-                    // Default Payment Address
-                    $this->load->model('account/address');
+            $this->session->data['payment_address_id'] = $this->model_account_address->addAddress($this->request->post);
+            $this->session->data['payment_country_id'] = $this->request->post['country_id'];
+            $this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
+            //PCM:
 
-                    $this->session->data['payment_address_id'] = $this->model_account_address->addAddress($this->request->post);
-                    $this->session->data['payment_country_id'] = $this->request->post['country_id'];
-                    $this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
-                    //PCM:
+            if (!isset($this->request->get['unset'])) {
 
-                    if (!isset($this->request->get['unset'])) {
-
-                        //unset($this->session->data['payment_method']);
-                        //unset($this->session->data['payment_methods']);
-                    }
-                }
+                //unset($this->session->data['payment_method']);
+                //unset($this->session->data['payment_methods']);
             }
         }
 

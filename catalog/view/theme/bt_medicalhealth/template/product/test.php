@@ -1,4 +1,8 @@
 <?php echo $header; ?>
+<div class="banner_product">
+    <a><img src="http://eunicesolucoes.web1129.kinghost.net/image/data/Banner Slide/banner_product.jpg" alt="Banner" title="Banner"/></a>
+</div>
+
 <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
         <a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
@@ -47,11 +51,25 @@
                     <?php if ($reward) { ?>
                         <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
                     <?php } ?>
-                    <span><?php echo $text_stock; ?></span><b id="stock_status"><?php echo $stock; ?></b><br />
+                    <span><?php echo $text_stock; ?></span>
+                    <?php
+                    $stock_css = "";
+                    if ($stock == "Fora de Estoque") {
+                        $stock_css = "stock_danger";
+                    }
+                    ?>
+                    <b id="stock_status" class="<?php echo $stock_css; ?>" ><?php echo $stock; ?></b>
+                    <br />
 
                 </div>
+                <?php
+                $price_css = "";
+                if (isset($product_on_phone) && $product_on_phone == 1) {
+                    $price_css = "display:none";
+                }
+                ?>
                 <?php if ($price) { ?>
-                    <div class="price">
+                    <div class="price" style="<?php echo $price_css; ?>">
                         <?php if (!$special) { ?>
                             <span class="price-text">
                                 <?php echo $price; ?>
@@ -254,6 +272,11 @@
                     include_once(DIR_TEMPLATE . "bt_medicalhealth/template/product/_conf_options.php");
                     ?>
                 </div>
+
+                <div class="banner_desconto">
+                    <a><img src="http://eunicesolucoes.web1129.kinghost.net/image/data/Banner Slide/baner_desconto.png" alt="Banner Desconto" title="Banner Desconto"/></a>
+                </div>
+
                 <div class="cart">
                     <div ><span class="qty" style="display: none"><?php echo $text_qty; ?></span>
                         <input type="hidden" name="quantity" size="2" value="<?php echo $minimum; ?>" />
@@ -272,12 +295,18 @@
                         <input style="<?php echo $btn_ph_style; ?>" disabled type="button" value="Compras pelo televendas 51-3029 0264" id="button-cart-phone" class="button cart_over_phone" />
                         <input  style="<?php echo $btn_cart_style; ?>" type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
 
+                        <div class="banner_PagSeguro">
+                            <a><img src="http://eunicesolucoes.web1129.kinghost.net/image/data/Banner Slide/PagSeguro.jpg" alt="PagSeguro" title="PagSeguro"/></a>
+                        </div>
+
 
 
                     </div>
 
+
+
                     <div>
-                        <div class="compare"><a onclick="boss_addToCompare('<?php echo $product_id; ?>');"><?php echo $button_compare; ?></a></div>
+                        <!--<div class="compare"><a onclick="boss_addToCompare('<?php echo $product_id; ?>');"><?php echo $button_compare; ?></a></div>-->
                         <div class="wishlist"><a onclick="boss_addToWishList('<?php echo $product_id; ?>');"><?php echo $button_wishlist; ?></a></div>
                     </div>  
                     <?php if ($minimum > 1) { ?>
@@ -296,7 +325,8 @@
                         <h3>Produto fora de estoque</h3>
 
 
-                        <p>Não temos este produto em estoque agora. Mas deixe seu email abaixo e você será notificado(a) quando este produto estiver disponível.
+                        <p>Não temos este produto em estoque agora.  <br/> Mas deixe seu email abaixo e você será notificado(a)
+                            quando este produto estiver disponível.
                         </p>
                         <div style="clear:both"></div>
                         <span>E-mail</span>   

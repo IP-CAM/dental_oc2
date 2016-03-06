@@ -41,7 +41,7 @@ if (!empty($options_arcade)) {
 }
 
 if ($arcade_count > 0) {
-    echo "<b class='label_arcade label_option'>Arcade</b><br /><br />";
+    echo "<b class='label_arcade label_option'>Arcada</b><br /><br />";
     ?>
     <div id="option-arcade" class="option">
         <?php
@@ -105,7 +105,7 @@ if ($tamanho_count > 0) {
                     $stock_status_class = '';
                     $stoc_css = '';
                     if ($option_v['quantity'] <= 0) {
-                        if ($option_v['stock_status'] == 'Out Of Stock') {
+                        if ($option_v['stock_status'] == 'Fora de Estoque') {
                             //$stock_status_class = ' **não disponível';
                             $stoc_css = 'red_staric';
                         } else {
@@ -117,7 +117,7 @@ if ($tamanho_count > 0) {
                         
                     }
 
-                    if ($option_v['stock_status'] != "In Stock") {
+                    if ($option_v['stock_status'] != "Em Estoque") {
                         //$stock_status_class = ' **não disponível';
                         $stoc_css = 'red_staric';
                     }

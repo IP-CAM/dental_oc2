@@ -43,7 +43,7 @@
             </div>
         <?php } ?>
         <?php if ($products) { ?>
-            <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>
+            <!--<div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>-->
             <div class="product-filter row">
                 <div class="display"><b><?php echo $text_display; ?></b> <?php echo $text_list; ?> <b>/</b> <a onclick="display('grid');"><?php echo $text_grid; ?></a></div>
                 <div class="limit"><b><?php echo $text_limit; ?></b>
@@ -106,8 +106,9 @@
                             ?>
                             <input type="button" value="<?php echo  $button_cart_text; ?>" onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button" />
                         </div>
-                        <div class="compare"><a onclick="boss_addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>
                         <div class="wishlist"><a onclick="boss_addToWishList('<?php echo $product['product_id']; ?>');"><?php echo $button_wishlist; ?></a></div>
+                        <div class="compare"><a onclick="boss_addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>
+                        
                     </div>
     <?php } ?>
             </div>
@@ -146,8 +147,8 @@ function display(view) {
                 }
 
                 html += '  <div class="cart">' + $(element).find('.cart').html() + '</div>';
-                html += '  <div class="wishlist">' + $(element).find('.wishlist').html() + '</div>';
                 html += '  <div class="compare">' + $(element).find('.compare').html() + '</div>';
+                html += '  <div class="wishlist">' + $(element).find('.wishlist').html() + '</div>';
                 html += '</div>';
 
                 html += '<div class="left">';

@@ -1,4 +1,5 @@
 
+
 * {
     margin: 0;
     outline: 0 none;
@@ -6,6 +7,11 @@
 }
 ul, ol {
     list-style-type: none;
+}
+
+td.name {
+	padding-bottom: 100px;
+	margin-bottom: 100px;
 }
 
 
@@ -59,8 +65,7 @@ a img {
     width: 100%;
 }
 
-.banner_product {
-}
+
 
 form {
     display: inline;
@@ -71,6 +76,13 @@ form {
     margin-top: 25px;
     font-family:"MyriadProBold"; font-size:14px; font-weight:400; text-transform:uppercase; color:#20201f;margin-left: 2px;
 }
+
+#payment-address-2 div.checkout-content div div.customer_information div div div div.area div.area_checkboxes label {
+	position: relative;
+	line-height: 25px;
+	top: 2px;
+}
+
 
 p.text_register {
     margin-left: 25px;
@@ -122,14 +134,14 @@ a#button-filter.button {
 }
 
 span#filter-group3 {
-    text-transform: uppercase;
-    font-size: 13px;
     font-weight: bold;
+    font-size: 1.2em;
+    color: #028590;
 }
 
 #column-left div.main-column-left div.box div.box-content ul.box-filter li ul {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 p {
@@ -145,10 +157,16 @@ p {
 .frame_container {
     background: url("../image/bg_bottom.jpg") repeat-x scroll center bottom transparent;
 }
+
+.pagfooter img {
+    width: 350px;
+    margin-top: 10px;
+}
+
 #container {
-    margin: 0 auto;
     /* min-width: 960px;*/
     text-align: left;
+	margin: 124px auto 0;
 }
 #column-left {
     float: left; margin-bottom:78px;
@@ -167,7 +185,9 @@ div.box.category {
 	padding-left: 35px;
 }
 
-
+#cboxLoadedContent {
+    padding: 25px;
+}
 
 #column-right {
     float: right;
@@ -177,7 +197,6 @@ div.box.category {
     min-height: 400px;
     padding-right: 25px;
     padding-left: 25px;
-    margin-top:58px;
 }
 
 #curso {
@@ -276,13 +295,11 @@ div.ministrador {
     background: white;
     height: 115px;
 }
-#container {
-    margin-top:115px;
-}
+
 #header {
-    height: 115px;
     /*    position: fixed;*/
     z-index: 99;
+	float: none;
 }
 #header #logo {
     float: left;
@@ -924,7 +941,6 @@ a.gray_button span{
     padding:0px; 
     margin-bottom: 30px; 
     z-index:5;
-    margin-top: 10px;
     float: left;
     width: 100%;
     background-color: #028590;
@@ -1324,8 +1340,9 @@ table.radio tr.highlight:hover td {
 
 
 .buttons .right {
-    float: right;
-    text-align: right;
+	background-color: #028590;
+	padding: 10px;
+	text-align: center;
 }
 .buttons .center {
     margin-left: auto;
@@ -1366,7 +1383,7 @@ div.newsletterbox {
     float: left;
     clear: left;
     position: absolute;
-    bottom: 55px;
+    bottom: 147px;
     left: 800px;
 }
 
@@ -1413,8 +1430,14 @@ div.newsletterbox {
     /*width: 192px;*/
 }
 .box-category > ul > li {
-    line-height: 24px;
+    font-size: 11px;
+    text-transform: none;
+    color: #868585;
+	line-height: 24px;
 }
+
+
+
 .box-category > ul > li a {
     color: #868585;
 }
@@ -1791,6 +1814,16 @@ form.edit_affiliate select{width:51.2%; }
 .product-list .wishlist, .product-list .compare {
     float: right; margin-top:3px;
 }
+
+.product-list .compare {
+	visibility: hidden;
+}
+
+a.jcarousel-control-prev, a.jcarousel-control-next {
+	visibility: hidden;
+}
+
+
 .product-list .wishlist {
     background: url("../image/line_wishlist.jpg") no-repeat scroll left center transparent;
     margin-left: 9px;
@@ -1825,7 +1858,8 @@ form.edit_affiliate select{width:51.2%; }
     margin-right:10px;
     text-align: left;
 }
-.product-grid .image img {
+.product-list .image img {
+	width: 100px;
 }
 .product-grid .name {
     margin-bottom: 5px;
@@ -1858,9 +1892,14 @@ form.edit_affiliate select{width:51.2%; }
 .product-grid .cart {
     margin-bottom: 7px;
 }
-.product-grid .wishlist, .product-grid .compare {
-    margin-bottom: 1px;
+.product-grid .wishlist{
+	margin-top: -30px;
 }
+
+.product-grid .compare {
+	visibility: hidden;
+}
+
 .product-grid .wishlist a, .product-grid .compare a {
     color: #868585;
     font-size: 11px;
@@ -1902,8 +1941,8 @@ input#button-postal.button {
 }
 
 div.banner_PagSeguro {
-	float: left;
-	margin-top: 5px;
+	float: right;
+	margin-top: 18px;
 }
 
 div.banner_desconto {
@@ -2074,9 +2113,7 @@ div.cart-module {
     padding-bottom:15px;
 }
 .product-info .cart .wishlist {
-    background: url("../image/line_wishlist.jpg") no-repeat scroll left center transparent;
-    margin-left: 9px;
-    padding-left: 12px;
+	text-align: left;
 }
 .product-info .cart .wishlist, .product-info .cart .compare {float:left; clear:none; margin-top:10px}
 .product-info .cart .wishlist a, .product-info .cart .compare a {
@@ -2669,7 +2706,7 @@ h1.checkout_title{margin-bottom:27px}
     display: none;
     overflow: hidden;
     padding: 16px 0 30px;
-    color:#868585
+    color:#868585;    
 }
 .checkout-content input[type='text'], .checkout-content input[type='password'], .checkout-content select{margin:6px 0}
 .checkout-content #payment-new input[type='text'], .checkout-content #payment-new  input[type='password'], .checkout-content #payment-new  select{margin:0}
@@ -2684,7 +2721,9 @@ h1.checkout_title{margin-bottom:27px}
 .checkout-content .buttons {
     clear: both; margin-bottom:0
 }
-.checkout-content h2{font-family:"MyriadProBold"; color:#20201f; font-size:14px; text-transform:uppercase; font-weight:400; margin-bottom:15px}
+.checkout-content h2{font-family:"MyriadProBold"; color:#20201f; font-size:14px; text-transform:uppercase; font-weight:400; margin-bottom:15px; margin-top: 25px;}
+
+
 p.text_p{font-weight:bold; color:#201f1f}
 .checkout-content b{font-weight:normal}
 .checkout-content #login input[type='text'], .checkout-content #login input[type='password']{margin-top:6px; width:211px}
@@ -2696,20 +2735,24 @@ p.text_p{font-weight:bold; color:#201f1f}
 .select-payment-address{clear: both; border-bottom: 1px solid #EEEEEE; margin-bottom:20px; padding-top:9px}
 .select-payment-address input[type="checkbox"]{margin-bottom:10px}
 a.forgotten{color:#868585; font-size:11px; margin-left:17px}
-.checkout-product{background:url("../image/bgbottom_footer_top.png") no-repeat scroll center bottom transparent; padding-bottom:5px; margin-bottom: 20px;}
+.checkout-product{background:url("../image/bgbottom_footer_top.png") no-repeat scroll center bottom transparent; padding-bottom:5px; margin-bottom: 20px;
+border: 1px solid #DDDDDD;
+	padding: 10px;
+}
+
 .checkout-product table {
     border-collapse: collapse;
-    border-left: 1px solid #DDDDDD;
-    border-right: 1px solid #DDDDDD;
-    border-top: 1px solid #DDDDDD;
-    width: 100%;
 }
+
 .checkout-product tbody td {
-    padding: 7px 20px 20px;
+    padding: 0;
 }
+
+
 .checkout-product tfoot td {
     padding: 7px 20px;
     border-top: 1px solid #DDDDDD;
+    width: 100%;
 }
 .checkout-product thead td {
     color: #342c23;
@@ -2717,14 +2760,48 @@ a.forgotten{color:#868585; font-size:11px; margin-left:17px}
     font-size:14px;
     text-transform:uppercase;
     font-weight: 400;
-    padding:20px
+	padding: 20px;
 }
+
+#confirm div.checkout-content div.checkout-product table thead tr td.quantity {
+	padding: 0;
+}
+
+#confirm div.checkout-content div.checkout-product table thead tr td.model {
+	padding: 0;
+	text-align: center;
+}
+
+
 .checkout-product thead .name, .checkout-product thead .model {
-    text-align: left;
+    text-align: center;
 }
-.checkout-product thead .quantity, .checkout-product thead .price{text-align:center} 
+
+
+.checkout-product thead .quantity, .checkout-product thead .price, #content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table tbody tr td.name, #content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table thead tr td.model, #content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table thead tr td.price, #content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table tbody tr td.price{
+	text-align:center;
+	max-width: 10px;
+}
+
+
+
+
+
+
+#content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table tbody tr td.name a {
+	font-size: 11px;
+	float: left;
+	margin-bottom: 20px;
+}
+
+
+#content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table thead tr td.name {
+	padding: 0;
+}
+
 .checkout-product thead .total {
-    text-align: right;
+    text-align: center;
+    padding: 0;
 }
 .checkout-product tbody td {
     vertical-align: top;
@@ -2733,7 +2810,7 @@ a.forgotten{color:#868585; font-size:11px; margin-left:17px}
 .checkout-product tbody td.price{color:#868585; font-weight:bold;}
 .checkout-product tbody td.total{color:#20201f; font-weight:bold;}
 .checkout-product tbody .name, .checkout-product tbody .model {
-    text-align: left;
+    text-align: center;
 }
 .checkout-product tbody .quantity, .checkout-product tbody .price{text-align:center}
 .checkout-product tbody .total {
@@ -3271,8 +3348,22 @@ div.boss-home-filter-product {
 }
 
 .slideshow{
-	margin-top: 25px;
 }
+
+#column-left div.main-column-left div.box {
+	padding-left: 25px;
+}
+
+span#filter-group15, span#filter-group16 {
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #028590;
+}
+
+#column-left div.main-column-left div.box div.box-content ul.box-filter li ul li {
+	margin-bottom: 10px;
+}
+
 .boss_text a{
     color:#96be56;
 }
@@ -3409,8 +3500,17 @@ div.tags {
         width:31%;*/
     margin: 1% !important;
 }
+
+
 .step_container >div:not(:first-child) {
-    padding-top:10px;
+    padding-top:0px;
+}
+
+#payment-address-2 div.checkout-content div div.customer_information div div div div.customer_section h3 {
+	margin-top: 25px;
+	color: #20201f;
+	text-transform: uppercase;
+	font-size: 14px;
 }
 .step_container div#payment-new>div>div{
     min-height: 20px;
@@ -3432,7 +3532,7 @@ div.area>div{
     margin-top:10px;
 }
 .checkout-content .buttons .left {
-    width: 40%;
+    width: 90%;
 }
 .step_container div.hidden{
     display:none;

@@ -54,7 +54,7 @@
                     <span><?php echo $text_stock; ?></span>
                         <?php
                             $stock_css = "";
-                            if($stock=="Fora de estoque"){
+                            if($stock=="Fora de Estoque"){
                                 $stock_css = "stock_danger";
                             }
                         ?>
@@ -294,14 +294,16 @@
                         ?>
                         <input style="<?php echo $btn_ph_style; ?>" disabled type="button" value="Compras pelo televendas 51-3029 0264" id="button-cart-phone" class="button cart_over_phone" />
                         <input  style="<?php echo $btn_cart_style; ?>" type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
+                        
+                        <div class="banner_PagSeguro">
+                    <a><img src="http://eunicesolucoes.web1129.kinghost.net/image/data/Banner Slide/PagSeguro.jpg" alt="PagSeguro" title="PagSeguro"/></a>
+                    </div>
 
 
 
                     </div>
                     
-                    <div class="banner_PagSeguro">
-                    <a><img src="http://eunicesolucoes.web1129.kinghost.net/image/data/Banner Slide/PagSeguro.jpg" alt="PagSeguro" title="PagSeguro"/></a>
-                    </div>
+                    
 
                     <div>
                         <!--<div class="compare"><a onclick="boss_addToCompare('<?php echo $product_id; ?>');"><?php echo $button_compare; ?></a></div>-->
@@ -350,8 +352,8 @@
                 ?>
                 <?php if ($review_status) { ?>
                     <div class="review">
-                        <div><img src="catalog/view/theme/bt_medicalhealth/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
-                                    goToByScroll('tab-review');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');
+                        <div><img src="catalog/view/theme/bt_medicalhealth/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;<a onclick="$('#review').show('slow');$('a[href=\'#tab-review\']').trigger('click');
+                                    goToByScroll('ta-review');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#review-form').show('slow');$('a[href=\'#tab-review\']').trigger('click');
                                             goToByScroll('review-title');"><?php echo $text_write; ?></a></div>
                         <div class="share"><!-- AddThis Button BEGIN -->
                             <div class="addthis_default_style"><a class="addthis_button_compact"><?php echo $text_share; ?></a> <a class="addthis_button_email"></a><a class="addthis_button_print"></a> <a class="addthis_button_facebook"></a> <a class="addthis_button_twitter"></a></div>
@@ -438,7 +440,7 @@
             </div>
         <?php } ?>
         <?php if ($review_status) { ?>
-            <h2 class="ta-review"><span><?php echo $tab_review; ?></span></h2>
+            <h2 id="ta-review" class="ta-review"><span><?php echo $tab_review; ?></span></h2>
             <div id="tab-review" class="tab-content">
                 <div id="review" style="display:none"></div>
 
@@ -547,7 +549,7 @@ if (file_exists('catalog/view/theme/bt_medicalhealth/stylesheet/boss_carousel_pr
         })
     })
     function goToByScroll(id) {
-        $('html,body').animate({scrollTop: $("#" + id).offset().top}, 'slow');
+        $('html,body').animate({scrollTop: $("#" + id).offset().top - 145}, 'slow');
     }
 //--></script>    
 <script type="text/javascript"><!--
@@ -810,6 +812,10 @@ $(document).ready(function () {
 <script type="text/javascript"><!--
     $(document).ready(function () {
         product_resize();
+        /*
+        $('html, body').animate({
+            scrollTop: $("h2.ta-review").offset().top -139
+        }, 2000); */
     });
     $(window).resize(function () {
         product_resize();

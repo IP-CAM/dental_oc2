@@ -5,7 +5,7 @@
 <?php } ?>
 <div class="payment-information">
     <label for="senderCPF">CPF: </label>
-    <input type="text" name="senderCPF" value="">
+    <input type="text" name="senderCPF" value="" id="senderCPF">
 </div>
 <div class="bancos"></div>
 <div class="buttons">

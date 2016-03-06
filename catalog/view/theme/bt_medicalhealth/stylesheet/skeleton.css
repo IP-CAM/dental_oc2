@@ -1,3 +1,4 @@
+
 /* Table of Contents
 ==================================================
 #Base 960 Grid
@@ -39,7 +40,7 @@
     .container .thirteen.columns { width: 780px; }
     .container .fourteen.columns { width: 840px; }
     .container .fifteen.columns { width: 900px; }
-    .container .sixteen.columns { width: 100%; }
+    .container .sixteen.columns { width: 100%; margin-top: 45px; }
 
     .container .one-third.column { width: 320px; }
     .container .two-thirds.column { width: 640px; }
@@ -71,7 +72,7 @@
     @media only screen and (min-width: 768px) and (max-width: 959px) {
         .container { 
         width: 100%;
-		}
+}
 		
         .container .column,
         .container .columns { margin-left: 0; margin-right: 0; }
@@ -129,7 +130,7 @@
     @media only screen and (max-width: 767px) {
         .container {
 			width: 90%;
-		}
+}
         .container .columns,
         .container .column { margin: 0; }
 
@@ -179,7 +180,9 @@
     /* Note: Design for a width of 480px */
 
     @media only screen and (min-width: 480px) and (max-width: 767px) {
-        .container { width: 90%; }
+        .container { width: 90%;
+	
+}
         .container .columns,
         .container .column { margin: 0; }
 

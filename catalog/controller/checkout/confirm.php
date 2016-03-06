@@ -366,6 +366,8 @@ class ControllerCheckoutConfirm extends Controller {
             }
 
             $this->load->model('checkout/order');
+            
+           
 
             $this->session->data['order_id'] = $this->model_checkout_order->addOrder($data);
 
