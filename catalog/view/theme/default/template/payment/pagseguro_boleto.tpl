@@ -15,7 +15,7 @@
 <script type="text/javascript"><!--
 $('#button-confirm').bind('click', function (e) {
         e.preventDefault();
-        payment_address_checkout(true);
+        //payment_address_checkout(true);
         if ($('input[name=senderCPF]').val().trim() == '') {
             alert('Digite seu CPF')
         } else {

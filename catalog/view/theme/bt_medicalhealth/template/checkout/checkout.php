@@ -585,7 +585,7 @@
         if (further == false) {
             ajaxUrl += '&unset=false';
         }
-        
+        console.log(ajaxUrl);
         $.ajax({
             url: ajaxUrl,
             type: 'post',
@@ -600,77 +600,80 @@
                 $('.wait').remove();
             },
             success: function (json) {
+                console.log(_.size(json));
+
                 $('.warning, .error').remove();
-                if (json['redirect']) {
-                    location = json['redirect'];
-                } else if (json['error']) {
-                    console.log(json['error']);
-                    console.log("-----------");
-                    if (json['error']['warning']) {
-                        $('.payment-address-step .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
-                        $('.warning').fadeIn('slow');
-                    }
+                if (_.size(json) > 0) {
+                    if (typeof(json['redirect'])!= "undefined") {
+                        location = json['redirect'];
+                    } else if (_.size(json) > 0 && typeof(json['error']) != "undefined") {
+                        console.log(json['error']);
+                        console.log("-----------");
+                        if (json['error']['warning']) {
+                            $('.payment-address-step .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+                            $('.warning').fadeIn('slow');
+                        }
 
-                    if (json['error']['firstname']) {
-                        console.log(json['error']['firstname']);
-                        $('.payment-address-step input[name=\'firstname\']').after('<span class="error">' + json['error']['firstname'] + '</span>');
-                    }
+                        if (json['error']['firstname']) {
+                            console.log(json['error']['firstname']);
+                            $('.payment-address-step input[name=\'firstname\']').after('<span class="error">' + json['error']['firstname'] + '</span>');
+                        }
 
-                    if (json['error']['lastname']) {
-                        $('.payment-address-step input[name=\'lastname\']').after('<span class="error">' + json['error']['lastname'] + '</span>');
-                    }
+                        if (json['error']['lastname']) {
+                            $('.payment-address-step input[name=\'lastname\']').after('<span class="error">' + json['error']['lastname'] + '</span>');
+                        }
 
-                    if (json['error']['telephone']) {
-                        $('.payment-address-step input[name=\'telephone\']').after('<span class="error">' + json['error']['telephone'] + '</span>');
-                    }
+                        if (json['error']['telephone']) {
+                            $('.payment-address-step input[name=\'telephone\']').after('<span class="error">' + json['error']['telephone'] + '</span>');
+                        }
 
-                    if (json['error']['company_id']) {
-                        $('.payment-address-step input[name=\'company_id\']').after('<span class="error">' + json['error']['company_id'] + '</span>');
-                    }
+                        if (json['error']['company_id']) {
+                            $('.payment-address-step input[name=\'company_id\']').after('<span class="error">' + json['error']['company_id'] + '</span>');
+                        }
 
-                    if (json['error']['tax_id']) {
-                        $('.payment-address-step input[name=\'tax_id\']').after('<span class="error">' + json['error']['tax_id'] + '</span>');
-                    }
+                        if (json['error']['tax_id']) {
+                            $('.payment-address-step input[name=\'tax_id\']').after('<span class="error">' + json['error']['tax_id'] + '</span>');
+                        }
 
-                    if (json['error']['address_1']) {
-                        $('.payment-address-step input[name=\'address_1\']').after('<span class="error">' + json['error']['address_1'] + '</span>');
-                    }
+                        if (json['error']['address_1']) {
+                            $('.payment-address-step input[name=\'address_1\']').after('<span class="error">' + json['error']['address_1'] + '</span>');
+                        }
 
-                    if (json['error']['city']) {
-                        $('.payment-address-step input[name=\'city\']').after('<span class="error">' + json['error']['city'] + '</span>');
-                    }
+                        if (json['error']['city']) {
+                            $('.payment-address-step input[name=\'city\']').after('<span class="error">' + json['error']['city'] + '</span>');
+                        }
 
-                    if (json['error']['postcode']) {
-                        $('.payment-address-step input[name=\'postcode\']').after('<span class="error">' + json['error']['postcode'] + '</span>');
-                    }
+                        if (json['error']['postcode']) {
+                            $('.payment-address-step input[name=\'postcode\']').after('<span class="error">' + json['error']['postcode'] + '</span>');
+                        }
 
-                    if (json['error']['country']) {
-                        $('.payment-address-step select[name=\'country_id\']').after('<span class="error">' + json['error']['country'] + '</span>');
-                    }
+                        if (json['error']['country']) {
+                            $('.payment-address-step select[name=\'country_id\']').after('<span class="error">' + json['error']['country'] + '</span>');
+                        }
 
-                    if (json['error']['zone']) {
-                        $('.payment-address-step select[name=\'zone_id\']').after('<span class="error">' + json['error']['zone'] + '</span>');
-                    }
-                    if (typeof manage_custom_field_errors == 'function') {
-                        manage_custom_field_errors(json['error']);
-                    }
-                } else {
-                    if (further == false) {
+                        if (json['error']['zone']) {
+                            $('.payment-address-step select[name=\'zone_id\']').after('<span class="error">' + json['error']['zone'] + '</span>');
+                        }
+                        if (typeof manage_custom_field_errors == 'function') {
+                            manage_custom_field_errors(json['error']);
+                        }
+                    } else {
+                        if (further == false) {
 
-                    }
-                    else {
-                        if (shipping_required_in === '1') {
-                            //checkout_shipping();
-                            shipping_address_checkout(true);
                         }
                         else {
-                            //checkout_payment_method();
+                            if (shipping_required_in === '1') {
+                                //checkout_shipping();
+                                shipping_address_checkout(true);
+                            }
+                            else {
+                                //checkout_payment_method();
+                            }
                         }
+
                     }
-
-
-
                 }
+
 
 
             },
@@ -681,7 +684,7 @@
     }
     //Payment method validate
     function payment_method_checkout() {
-        
+
         $.ajax({
             url: 'index.php?route=checkout/payment_method/validate&boleto_methods=',
             type: 'post',
@@ -940,7 +943,7 @@
         else {
             url_checkout = 'index.php?route=checkout/confirm';
         }
-   
+
 
         $.ajax({
             url: url_checkout,
@@ -949,7 +952,7 @@
                 $('#confirm .checkout-content').html(html);
                 $('#confirm .checkout-content').slideDown('slow');
                 fill_cpfField();
-                
+
                 if (is_ajax != '1') {
                     // $("#button-confirm").remove();
 
@@ -1101,15 +1104,15 @@
             }
         });
     }
-    
-    function fill_cpfField(){
-        if($('#confirm .checkout-content #creditCardHolderCPF').length>0){
+
+    function fill_cpfField() {
+        if ($('#confirm .checkout-content #creditCardHolderCPF').length > 0) {
             $('#confirm .checkout-content #creditCardHolderCPF').val($("#payment_cad_cpf").val());
         }
-        else if($('#confirm .checkout-content #senderCPF').length>0){
+        else if ($('#confirm .checkout-content #senderCPF').length > 0) {
             $('#confirm .checkout-content #senderCPF').val($("#payment_cad_cpf").val());
         }
-        
+
     }
 
     $('#checkout .checkout-content input[name=\'account\']').live('change', function () {

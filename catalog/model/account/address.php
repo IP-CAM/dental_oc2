@@ -109,6 +109,46 @@ class ModelAccountAddress extends Model {
             $this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int) $address_id . "' WHERE customer_id = '" . (int) $this->customer->getId() . "'");
         }
     }
+    /**
+     * 
+     * @param type $address_id
+     * @param type $data
+     */
+    public function editMailChimpAddress($address_id, $data) {
+        $columns = array();
+        $mail_chimp_columns = $this->getMailChimpFields($data);
+
+        foreach ($mail_chimp_columns as $column => $value) {
+            if (is_array($value)) {
+
+                $new_arr = array();
+                foreach ($value as $valk) {
+                    $new_arr[] = utf8_encode($valk);
+                }
+                $value = implode(",", ($new_arr));
+
+                $columns [] = $column . " = '" . $this->db->escape($value) . "'";
+            } else {
+                if ($column == "payment_corop_isento") {
+                    $columns [] = $column . " = " . $this->db->escape(utf8_encode($value));
+                } else {
+                    $columns [] = $column . " = '" . $this->db->escape(utf8_encode($value)) . "'";
+                }
+            }
+        }
+        $column_string = "";
+        if (!empty($columns)) {
+            $column_string =  implode($columns, ",");
+        }
+        $queryUp = "UPDATE " . DB_PREFIX . "address SET ". $column_string . " WHERE address_id  = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'";
+
+        $this->db->query($queryUp);
+
+        if (!empty($data['default'])) {
+            $this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int) $address_id . "' WHERE customer_id = '" . (int) $this->customer->getId() . "'");
+        }
+        return $address_id;
+    }
 
     /*
      * get mail chimp fields 

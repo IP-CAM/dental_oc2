@@ -333,12 +333,17 @@ class ControllerCheckoutPaymentAddress extends Controller {
                 }
             }
         }
-    
+        
         if (!$json) {
             // Default Payment Address
             $this->load->model('account/address');
-
-            $this->session->data['payment_address_id'] = $this->model_account_address->addAddress($this->request->post);
+            //now only selected address will be updated
+               
+            if(!empty($this->request->post["address_id"])){
+                $this->session->data['payment_address_id'] = $this->model_account_address->editMailChimpAddress($this->request->post["address_id"],$this->request->post);
+            }
+         
+            
             $this->session->data['payment_country_id'] = $this->request->post['country_id'];
             $this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
             //PCM:
@@ -349,7 +354,11 @@ class ControllerCheckoutPaymentAddress extends Controller {
                 //unset($this->session->data['payment_methods']);
             }
         }
-
+        
+        if(empty($json)){
+            $json['no_error'] = 1;
+        }
+       
         $this->response->setOutput(json_encode($json));
     }
 

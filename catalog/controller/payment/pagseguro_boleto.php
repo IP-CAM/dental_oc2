@@ -208,14 +208,16 @@ class ControllerPaymentPagseguroBoleto extends Controller {
         }
 
         $postalCode = $order_info['payment_postcode'];
+//        $postalCode = "91350-240";
+//        $postalCode = "934486510-87";
         //makding error
-//        $params['senderCPF'] = preg_replace('/[^0-9]/', '', $_POST['senderCPF']);
-        $params['senderCPF'] = preg_replace('/[^0-9]/', '', $postalCode);
+        $params['senderCPF'] = preg_replace('/[^0-9]/', '', $_POST['senderCPF']);
+        //$params['senderCPF'] = preg_replace('/[^0-9]/', '', $postalCode);
 
         $params['senderName'] = preg_replace('/\s+/', ' ', $customer_name);
         $params['senderEmail'] = $order_info['email'];
 
-        $params['senderAreaCode'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2);
+        $params['senderAreaCode'] = substr(preg_replace('/[^0-9]/', '', $postalCode), 0, 2);
         $params['senderPhone'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2);
         $params['senderHash'] = $senderHash;
 
@@ -322,6 +324,11 @@ class ControllerPaymentPagseguroBoleto extends Controller {
 //        var_dump($xmlArray); exit;
 
         $json = array();
+//        echo "<pre>";
+//        print_r($xmlArray);
+//        print_r($params);
+//        print_r($order_info);
+//        echo $this->session->data['order_id'];
 
         if (array_key_exists('errors', $xmlArray)) {
             foreach ($xmlArray['errors'] as $error) {

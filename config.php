@@ -22,6 +22,6 @@ define('DB_DRIVER', 'mysqli');
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'admin');
-define('DB_DATABASE', 'dental');
+define('DB_DATABASE', 'dental2');
 define('DB_PREFIX', 'eworxes_');
 ?>

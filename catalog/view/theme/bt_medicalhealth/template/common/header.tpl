@@ -34,6 +34,7 @@
         <script type="text/javascript" src="catalog/view/javascript/bossthemes/bossthemes.js"></script>
         <script type="text/javascript" src="catalog/view/javascript/bossthemes/notify.js"></script>
         <script type="text/javascript" src="catalog/view/confirm_box/sweetalert.min.js"></script>
+        <script type="text/javascript" src="catalog/view/javascript/underscore-min.js"></script>
         <?php foreach ($scripts as $script) { ?>
             <script type="text/javascript" src="<?php echo $script; ?>"></script>
         <?php } ?>
