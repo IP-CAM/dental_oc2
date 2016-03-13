@@ -218,6 +218,8 @@ class ControllerPaymentPagseguroBoleto extends Controller {
         $params['senderEmail'] = $order_info['email'];
 
         $params['senderAreaCode'] = substr(preg_replace('/[^0-9]/', '', $postalCode), 0, 2);
+        //asked by Brian to override it because he needs full postal code 
+        $params['senderAreaCode'] = $postalCode;
         $params['senderPhone'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2);
         $params['senderHash'] = $senderHash;
 
@@ -342,6 +344,32 @@ class ControllerPaymentPagseguroBoleto extends Controller {
         }
 //        print_r($json);
 //        die;
+        //storing boleto log
+        $log_file = getcwd() . DIRECTORY_SEPARATOR . "shopping_log.txt";
+        if (!file_exists($log_file)) {
+            
+        }
+        $myfile = fopen("boleto_log.txt", "w") or die("Unable to open file!");
+
+
+        $txt = "---------Order Info ------- \n";
+        fwrite($myfile, $txt);
+        $txt = print_r($order_info, true);
+        fwrite($myfile, $txt);
+
+        $txt = "\n---------Post Parameter Info ------- \n";
+        fwrite($myfile, $txt);
+
+        $txt = print_r($params, true);
+        fwrite($myfile, $txt);
+
+        $txt = "\n---------Boleto Response ------- \n";
+        fwrite($myfile, $txt);
+
+        $txt = print_r($json, true);
+        fwrite($myfile, $txt);
+
+        fclose($myfile);
 
         $this->response->setOutput(json_encode($json));
     }
