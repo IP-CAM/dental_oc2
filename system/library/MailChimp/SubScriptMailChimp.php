@@ -119,11 +119,16 @@ class SubScriptMailChimp {
      */
     public function find_group_by_($list_id, $group_name, $by_name = true) {
         $groups = $this->getListGroups($list_id);
-        
-        
+        /*
+        echo "<pre>";
+        echo "<br>- Groups List------<br>";
+        print_r($groups);
+        echo "</pre>";
+        echo "<br>- Emd Groups List------<br>";
+        */
         if (!empty($groups['data'])) {
             foreach ($groups['data'] as $group) {
-
+                $group['name'] = utf8_decode($group['name']);
                 if ($by_name == true && $group['name'] == $group_name) {
                     return $group;
                     break;
@@ -144,12 +149,12 @@ class SubScriptMailChimp {
         try {
             $batch[] = array('email' => array('email' => $email));
             self::$mc->lists->batchSubscribe($list_id, $batch);
-            
+
             $sub_groups = array();
-            foreach($group['groups'] as $sub_group){
-                $sub_groups[] = $sub_group['name'];
+            foreach ($group['groups'] as $sub_group) {
+                $sub_groups[] = utf8_decode($sub_group['name']);
             }
-            
+
             $emails = array('email' => $email);
             $merge_vars = array(
                 'GROUPINGS' => array(
@@ -159,10 +164,16 @@ class SubScriptMailChimp {
                     )
                 )
             );
-        
+            /*
+              echo "<pre>";
+              print_r($merge_vars);
+              print_r($emails);
+             */
             $result = self::$mc->lists->subscribe($list_id, $emails, $merge_vars, 'html', true, true);
-         
-            
+            /*
+              print_r($result);
+              echo "</pre>";
+             */
             $res['code'] = '200';
             $res['msg'] = 'success';
         } catch (Exception $ex) {

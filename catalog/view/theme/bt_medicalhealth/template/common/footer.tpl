@@ -9,7 +9,7 @@
       <?php foreach ($informations as $information) { ?>
       <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
       <?php } ?>
-      <li><a class="pagfooter"><img src="http://eunicesolucoes.web1129.kinghost.net/image/data/Banner Slide/PagSeguro_Footer.jpg" alt="Banner" title="Banner"/></a></li>
+      <li><a class="pagfooter"><img src="<?php echo HTTP_SERVER; ?>image/data/Banner Slide/PagSeguro_Footer.jpg" alt="Banner" title="Banner"/></a></li>
 
     </ul>
   </div>
