@@ -124,6 +124,7 @@ $_['txt_payment_cad_dob'] = 'Data de Nascimento';
 $_['txt_payment_cad_cpf'] = 'CPF';
 $_['txt_payment_cad_rg'] = 'RG';
 $_['txt_payment_cad_telefone'] = 'Telefone';
+$_['txt_payment_area_code'] = 'Area Code';
 $_['txt_payment_cad_celular'] = 'Celular';
 $_['txt_payment_cad_gender'] = 'gênero';
 $_['txt_payment_corop_name'] = ' Razão Social';

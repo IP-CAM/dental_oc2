@@ -35,6 +35,7 @@ class ControllerAccountRegister extends Controller {
         $this->data['txt_payment_corop_cnpg'] = $this->language->get('txt_payment_corop_cnpg');
         $this->data['txt_payment_corop_responsible_name'] = $this->language->get('txt_payment_corop_responsible_name');
         $this->data['txt_payment_corop_telefone'] = $this->language->get('txt_payment_corop_telefone');
+        $this->data['txt_payment_area_code'] = $this->language->get('txt_payment_area_code');
         $this->data['txt_payment_corop_responsible_cell'] = $this->language->get('txt_payment_corop_responsible_cell');
         $this->data['txt_payment_corop_state_registration'] = $this->language->get('txt_payment_corop_state_registration');
         $this->data['txt_payment_corop_isento'] = $this->language->get('txt_payment_corop_isento');
@@ -65,7 +66,10 @@ class ControllerAccountRegister extends Controller {
 
         $this->data['txt_payment_heading_customer_type'] = $this->language->get('txt_payment_heading_customer_type');
 
+        //get area codes
+        $this->data['area_codes'] = $this->model_account_customer->getAreaCodes();
         //end of mail chimp
+        
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 

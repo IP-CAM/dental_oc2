@@ -68,6 +68,7 @@ $_['txt_payment_corop_trade_name'] = 'Nome Fantasia';
 $_['txt_payment_corop_cnpg'] = 'CNPJ';
 $_['txt_payment_corop_responsible_name'] = 'Nome do Responsável';
 $_['txt_payment_corop_telefone'] = 'Telefone';
+$_['txt_payment_area_code'] = 'Area Code';
 $_['txt_payment_corop_responsible_cell'] = 'Celular do Responsável';
 $_['txt_payment_corop_state_registration'] = 'Inscrição Estadual';
 $_['txt_payment_corop_isento'] = 'Isento';

@@ -258,6 +258,11 @@ class ModelAccountCustomer extends Model {
 
         return $query->num_rows;
     }
+    
+    public function getAreaCodes(){
+        $this->load->model('account/address');
+        return json_decode($this->model_account_address->area_codes,true);
+    }
 
 }
 

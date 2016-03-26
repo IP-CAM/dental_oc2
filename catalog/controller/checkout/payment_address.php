@@ -29,6 +29,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
         $this->data['txt_payment_cad_cpf'] = $this->language->get('txt_payment_cad_cpf');
         $this->data['txt_payment_cad_rg'] = $this->language->get('txt_payment_cad_rg');
         $this->data['txt_payment_cad_telefone'] = $this->language->get('txt_payment_cad_telefone');
+        $this->data['txt_payment_area_code'] = $this->language->get('txt_payment_area_code');
         $this->data['txt_payment_cad_celular'] = $this->language->get('txt_payment_cad_celular');
         $this->data['txt_payment_cad_gender'] = $this->language->get('txt_payment_cad_gender');
         $this->data['txt_payment_corop_name'] = $this->language->get('txt_payment_corop_name');
@@ -69,6 +70,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 
 
 
+
         $this->data['button_continue'] = $this->language->get('button_continue');
 
         if (isset($this->session->data['payment_address_id'])) {
@@ -80,6 +82,11 @@ class ControllerCheckoutPaymentAddress extends Controller {
         $this->data['addresses'] = array();
 
         $this->load->model('account/address');
+
+        //define area codes
+        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes,true);
+        
+      
 
         $this->data['addresses'] = $this->model_account_address->getAddresses();
         $last_index = array_keys($this->data['addresses']);
@@ -234,7 +241,6 @@ class ControllerCheckoutPaymentAddress extends Controller {
                         //unset($this->session->data['payment_methods']);
                     }
                 }
-               
             } else {
                 if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
                     $json['error']['firstname'] = $this->language->get('error_firstname');
@@ -333,17 +339,17 @@ class ControllerCheckoutPaymentAddress extends Controller {
                 }
             }
         }
-        
+
         if (!$json) {
             // Default Payment Address
             $this->load->model('account/address');
             //now only selected address will be updated
-               
-            if(!empty($this->request->post["address_id"])){
-                $this->session->data['payment_address_id'] = $this->model_account_address->editMailChimpAddress($this->request->post["address_id"],$this->request->post);
+
+            if (!empty($this->request->post["address_id"])) {
+                $this->session->data['payment_address_id'] = $this->model_account_address->editMailChimpAddress($this->request->post["address_id"], $this->request->post);
             }
-         
-            
+
+
             $this->session->data['payment_country_id'] = $this->request->post['country_id'];
             $this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
             //PCM:
@@ -354,11 +360,11 @@ class ControllerCheckoutPaymentAddress extends Controller {
                 //unset($this->session->data['payment_methods']);
             }
         }
-        
-        if(empty($json)){
+
+        if (empty($json)) {
             $json['no_error'] = 1;
         }
-       
+
         $this->response->setOutput(json_encode($json));
     }
 

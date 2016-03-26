@@ -9,6 +9,7 @@ class ModelAccountAddress extends Model {
         "payment_cad_cpf" => "varchar",
         "payment_cad_rg" => "varchar",
         "payment_cad_telefone" => "varchar",
+        "payment_cad_area_code" => "varchar",
         "payment_cad_celular" => "varchar",
         "payment_cad_gender" => "varchar",
         "payment_corop_name" => "varchar",
@@ -29,6 +30,87 @@ class ModelAccountAddress extends Model {
         "payment_profession_atuacao" => "varchar",
         "payment_news_letter" => "boolean",
     );
+    public $area_codes = '{
+    "Ananindeua": "91",
+    "Ilheus": "73",
+    "Rio de Janeiro": "21",
+    "Anapolis": "62",
+    "Itaquaquecetuba": "11",
+    "Salvador": "71",
+    "Aparecida de Goiania": "62",
+    "Joinville": "47",
+    "Santa Maria": "55",
+    "Aracaju": "79",
+    "Joao Pessoa": "83",
+    " Santarem": "91",
+    "Bauru": "14",
+    "Juiz de Fora": "32",
+    "Santo Andre": "11",
+    "Belem": "91",
+    "Limeira": "19",
+    "Santos": "13",
+    "Belo Horizonte": "31",
+    "Londrina": "43",
+    "Sao Bernardo Campo": "11",
+    "Boa Vista": "95",
+    "Macapa": "96",
+    "Sao Goncalo": "21",
+    "Brasilia": "61",
+    "Maceio": "82",
+    "Sao Joao de Meriti": "21",
+    "Campinas": "19",
+    "Manaus": "92",
+    "Sao Jose Campos": "12",
+    "Campo Grande": "67",
+    "Maringa": "44",
+    "Sao Jose de Rio Preto": "17",
+    "Canoas": "51",
+    "Maua": "11",
+    "Sao Luis": "98",
+    "Carapicuiba": "11",
+    "Montes Claros": "38",
+    "Sao Paulo": "11",
+    "Cariacica": "27",
+    "Mogi das Cruzes": "11",
+    "Sao Vicente": "13",
+    "Caxias do Soul": "54",
+    "Natal": "84",
+    "Serra": "27",
+    "Contagem": "31",
+    "Niteroi": "21",
+    "Sorocaba": "15",
+    "Cuiaba": "65",
+    "Nova Iguacu": "21",
+    "Taubate": "12",
+    "Curitiba": "41",
+    "Olinda": "81",
+    "Teresina": "86",
+    "Diadema": "11",
+    "Paulista": "81",
+    "Uberlandia": "34",
+    "Duque de Caxias": "21",
+    "Pelotas": "53",
+    "Uberaba": "34",
+    "Feira de Santana": "75",
+    "Petropolis": "24",
+    "Varzea Grande": "65",
+    "Florianopolis": "48",
+    "Piracicaba": "19",
+    "Vila Velha": "27",
+    "Fortaleza": "85",
+    "Porto Alegre": "51",
+    "Vitoria": "27",
+    "Foz do Iguacu": "45",
+    "Porto Velho": "69",
+    "Vitoria da Conquista": "77",
+    "Franca": "16",
+    "Recife": "81",
+    "Volta Redonda": "24",
+    "Goiania": "62",
+    "Ribeirao Preto": "16",
+    "Guarulhos": "11",
+    "Rio Branco": "68"
+}';
 
     public function addAddress($data) {
         $mail_chimp_columns = $this->getMailChimpFields($data);
@@ -109,6 +191,7 @@ class ModelAccountAddress extends Model {
             $this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int) $address_id . "' WHERE customer_id = '" . (int) $this->customer->getId() . "'");
         }
     }
+
     /**
      * 
      * @param type $address_id
@@ -138,9 +221,9 @@ class ModelAccountAddress extends Model {
         }
         $column_string = "";
         if (!empty($columns)) {
-            $column_string =  implode($columns, ",");
+            $column_string = implode($columns, ",");
         }
-        $queryUp = "UPDATE " . DB_PREFIX . "address SET ". $column_string . " WHERE address_id  = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'";
+        $queryUp = "UPDATE " . DB_PREFIX . "address SET " . $column_string . " WHERE address_id  = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'";
 
         $this->db->query($queryUp);
 

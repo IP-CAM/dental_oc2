@@ -4,6 +4,8 @@ class ControllerCheckoutGuest extends Controller {
 
     public function index() {
         $this->language->load('checkout/checkout');
+        
+        $this->load->model('account/address');
 
         $this->data['text_select'] = $this->language->get('text_select');
         $this->data['text_none'] = $this->language->get('text_none');
@@ -37,6 +39,7 @@ class ControllerCheckoutGuest extends Controller {
         $this->data['txt_payment_cad_cpf'] = $this->language->get('txt_payment_cad_cpf');
         $this->data['txt_payment_cad_rg'] = $this->language->get('txt_payment_cad_rg');
         $this->data['txt_payment_cad_telefone'] = $this->language->get('txt_payment_cad_telefone');
+        $this->data['txt_payment_area_code'] = $this->language->get('txt_payment_area_code');
         $this->data['txt_payment_cad_celular'] = $this->language->get('txt_payment_cad_celular');
         $this->data['txt_payment_cad_gender'] = $this->language->get('txt_payment_cad_gender');
         $this->data['txt_payment_corop_name'] = $this->language->get('txt_payment_corop_name');
@@ -74,6 +77,7 @@ class ControllerCheckoutGuest extends Controller {
 
         $this->data['txt_payment_heading_customer_type'] = $this->language->get('txt_payment_heading_customer_type');
 
+        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes,true);
         //end of mail chimp
 
 

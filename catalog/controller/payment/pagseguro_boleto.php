@@ -10,13 +10,18 @@ class ControllerPaymentPagseguroBoleto extends Controller {
     protected function index() {
 
         $this->language->load('payment/pagseguro_boleto');
+        $this->load->model('account/address');
 
         $this->data['button_confirm'] = $this->language->get('button_confirm');
         $this->data['text_information'] = $this->language->get('text_information');
         $this->data['text_wait'] = $this->language->get('text_wait');
+        $this->data['txt_payment_area_code'] = $this->language->get('txt_payment_area_code');
         $this->data['text_information'] = $this->config->get('pagseguro_boleto_text_information');
+        
         $this->data['url'] = $this->url->link('payment/pagseguro_boleto/confirm', '', 'SSL');
-
+        //define area codes
+        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes,true);
+        
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagseguro_boleto.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/payment/pagseguro_boleto.tpl';
         } else {
@@ -217,9 +222,11 @@ class ControllerPaymentPagseguroBoleto extends Controller {
         $params['senderName'] = preg_replace('/\s+/', ' ', $customer_name);
         $params['senderEmail'] = $order_info['email'];
 
-        $params['senderAreaCode'] = substr(preg_replace('/[^0-9]/', '', $postalCode), 0, 2);
-        //asked by Brian to override it because he needs full postal code 
-        $params['senderAreaCode'] = $postalCode;
+//        $params['senderAreaCode'] = substr(preg_replace('/[^0-9]/', '', $postalCode), 0, 2);
+//        //asked by Brian to override it because he needs full postal code 
+//        $params['senderAreaCode'] = $postalCode;
+//        $params['senderAreaCode'] = 51;
+//        $params['senderAreaCode'] = "";
         $params['senderPhone'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2);
         $params['senderHash'] = $senderHash;
 
@@ -316,6 +323,9 @@ class ControllerPaymentPagseguroBoleto extends Controller {
         // treat parameters here!
         $httpConnection = new HttpConnection();
         $httpConnection->post($pagSeguroObject->getTransactionsURL(), $params);
+        
+        echo $pagSeguroObject->getTransactionsURL();
+        die;
 
         // Get Xml From response body
         $xmlArray = $this->paymentResultXml($httpConnection->getResponse());
