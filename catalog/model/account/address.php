@@ -5,6 +5,8 @@ class ModelAccountAddress extends Model {
     public $_mail_chimp_columns = array(
         "payment_customer_type" => "varchar",
         "payment_cad_name" => "varchar",
+        "payment_numero" => "varchar",
+        "payment_complemento" => "varchar",
         "payment_cad_dob" => "date",
         "payment_cad_cpf" => "varchar",
         "payment_cad_rg" => "varchar",

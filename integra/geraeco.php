@@ -204,11 +204,11 @@ for ($i = 0; $i < $count; $i++) {
     $g = 0;
     foreach ($group_split as $group) {
         if ($g > 1) {
-          unset($group_split[$g]);  
+            unset($group_split[$g]);
         }
         $g++;
     }
-    $group_name = implode(" ",$group_split);
+    $group_name = implode(" ", $group_split);
     //implementing new algo
 //    if (substr($proddes, strlen($proddes) - 1, 1) == ")") {
 //        $product_arr = explode(" ", $proddes);
@@ -242,12 +242,12 @@ for ($i = 0; $i < $count; $i++) {
 
     $product_model = '';
     if (isset($campos[2])) {
-        $product_model = mysql_escape_string($campos[2]);        
+        $product_model = mysql_escape_string($campos[2]);
     }
 
 
     $test[$proddes] = $proddes;
-   
+
     /* outros campos advindos necessários */
     $prodstk = 7;
 
@@ -301,7 +301,7 @@ for ($i = 0; $i < $count; $i++) {
         $_max = mysqli_fetch_array($res_max, MYSQLI_NUM);
 
         $product_cus_id = $_max[0] + 1;
-        
+
 
         //find reference_id 
 
@@ -373,6 +373,29 @@ for ($i = 0; $i < $count; $i++) {
     echo "============----------------===============";
     echo $i;
     echo "============----------------===============";
+    //inserting numero and complemento
+    if (!empty($campos[40])) {
+        $numero = mysql_escape_string(utf8_encode($campos[40]));
+        $sqlNum = "Select count(*) as num_count FROM " . $db_prefix . "customer_options WHERE numero_complemento = '$numero' AND field_type = 'numero'";
+        $res_num = mysqli_query($conexao, $sqlNum);
+        $numCount = mysqli_fetch_array($res_num, MYSQLI_NUM);
+        if ($numCount == 0) {
+            $sqlNumInsert = "INSERT INTO " . $db_prefix . "customer_options SET ";
+            $sqlNumInsert.= "numero_complemento = '$numero' , field_type = 'numero'";
+            mysqli_query($conexao, $sqlNumInsert);
+        }
+    }
+    if (!empty($campos[41])) {
+        $complemento = mysql_escape_string(utf8_encode($campos[41]));
+        $sqlcomplemento = "Select count(*) as num_count FROM " . $db_prefix . "customer_options WHERE numero_complemento = '$complemento' AND field_type = 'complemento'";
+        $res_complemento = mysqli_query($conexao, $sqlcomplemento);
+        $compCount = mysqli_fetch_array($res_complemento, MYSQLI_NUM);
+        if ($compCount == 0) {
+            $sqlCompInsert = "INSERT INTO " . $db_prefix . "customer_options SET ";
+            $sqlCompInsert.= "numero_complemento = '$complemento' , field_type = 'complemento'";
+            mysqli_query($conexao, $sqlCompInsert);
+        }
+    }
 }
 echo "<br/>";
 echo "============--------[]--------===============";

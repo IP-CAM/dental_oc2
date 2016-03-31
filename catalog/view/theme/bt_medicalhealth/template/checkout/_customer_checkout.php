@@ -1,6 +1,44 @@
 <div class="customer_information">
     <div>
 
+        <div>
+
+            <div>
+                <?php echo $txt_payment_numero; ?>
+            </div>
+            <div>
+                <select id="payment_numero" name="payment_numero">
+                    <?php
+                    foreach ($numero_options as $numero) {
+                        $selected = "";
+                        if(isset($payment_numero) && $payment_numero==$numero){
+                            $selected = "selected = 'selected'";
+                        }
+                        ?>
+                        <option <?php echo $selected; ?> value="<?php echo $numero; ?>"><?php echo $numero; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                
+            </div>
+            <div>
+                <select id="payment_complemento" name="payment_complemento">
+                    <?php
+                    foreach ($complemento_options as $complemento) {
+                        $selected = "";
+                        if(isset($payment_complemento) && $payment_complemento==$complemento){
+                            $selected = "selected = 'selected'";
+                        }
+                        ?>
+                        <option <?php echo $selected; ?> value="<?php echo $complemento; ?>"><?php echo $complemento; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                
+            </div>
+        </div>
         <div colspan="4">
             <?php
             $customer_types = array(
@@ -89,12 +127,32 @@
                     <div style="display:none">
                         <input type="text" name="payment_cad_telefone" id="payment_cad_telefone" value="<?php echo isset($payment_cad_telefone) ? $payment_cad_telefone : ""; ?>"/>
                     </div>
+                    <label><?php echo $txt_payment_area_code; ?></label>
+                    <div>
+                        <select id="payment_cad_area_code" name="payment_cad_area_code" style="width:80px">
+
+
+                            <?php
+                            foreach ($area_codes as $area_code) {
+                                $selected = "";
+                                if (!empty($payment_cad_area_code) && $area_code == $payment_cad_area_code) {
+                                    $selected = "checked='checked';";
+                                }
+                                ?>
+                                <option value="<?php echo $area_code; ?>"><?php echo $area_code; ?></option>
+
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
                     <div>
                         <?php echo $txt_payment_cad_celular; ?>
                     </div>
                     <div>
                         <input type="text" name="payment_cad_celular" id="payment_cad_celular" value="<?php echo isset($payment_cad_celular) ? $payment_cad_celular : ""; ?>" />
                     </div>
+
                 </div>
                 <div>
 
