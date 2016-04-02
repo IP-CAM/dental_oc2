@@ -1112,6 +1112,10 @@
         else if ($('#confirm .checkout-content #senderCPF').length > 0) {
             $('#confirm .checkout-content #senderCPF').val($("#payment_cad_cpf").val());
         }
+        //fill area code
+        if ($('#confirm .checkout-content #area_code').length > 0) {
+            $('#confirm .checkout-content #area_code').val($("#payment_cad_area_code").val());
+        }
 
     }
 

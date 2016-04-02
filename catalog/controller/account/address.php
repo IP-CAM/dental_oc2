@@ -45,6 +45,7 @@ class ControllerAccountAddress extends Controller {
     }
 
     public function update() {
+
         if (!$this->customer->isLogged()) {
             $this->session->data['redirect'] = $this->url->link('account/address', '', 'SSL');
 
@@ -59,7 +60,7 @@ class ControllerAccountAddress extends Controller {
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->model_account_address->editAddress($this->request->get['address_id'], $this->request->post);
-            
+
             // Default Shipping Address
             if (isset($this->session->data['shipping_address_id']) && ($this->request->get['address_id'] == $this->session->data['shipping_address_id'])) {
                 $this->session->data['shipping_country_id'] = $this->request->post['country_id'];
@@ -69,7 +70,7 @@ class ControllerAccountAddress extends Controller {
                 unset($this->session->data['shipping_method']);
                 unset($this->session->data['shipping_methods']);
             }
-          
+
 
             // Default Payment Address
             if (isset($this->session->data['payment_address_id']) && ($this->request->get['address_id'] == $this->session->data['payment_address_id'])) {
@@ -79,17 +80,16 @@ class ControllerAccountAddress extends Controller {
                 unset($this->session->data['payment_method']);
                 unset($this->session->data['payment_methods']);
             }
-             
+
 
             $this->session->data['success'] = $this->language->get('text_update');
             $urlLoc = $this->url->link('account/address', '', 'SSL');
-           
-           
+
+
             echo "<script>";
             echo "window.location = '$urlLoc'";
             echo "</script>";
             $this->redirect($urlLoc);
-            
         }
 
         $this->getForm();
@@ -305,6 +305,9 @@ class ControllerAccountAddress extends Controller {
         $this->data['button_continue'] = $this->language->get('button_continue');
         $this->data['button_back'] = $this->language->get('button_back');
 
+        $this->data['txt_payment_numero'] = $this->language->get('txt_payment_numero');
+        $this->data['txt_payment_complemento'] = $this->language->get('txt_payment_complemento');
+
         if (isset($this->error['firstname'])) {
             $this->data['error_firstname'] = $this->error['firstname'];
         } else {
@@ -408,6 +411,22 @@ class ControllerAccountAddress extends Controller {
         } else {
             $this->data['tax_id'] = '';
         }
+        
+        //numero and complemento
+        if (isset($this->request->post['payment_complemento'])) {
+            $this->data['payment_complemento'] = $this->request->post['payment_complemento'];
+        } elseif (!empty($address_info)) {
+            $this->data['payment_complemento'] = $address_info['payment_complemento'];
+        } else {
+            $this->data['payment_complemento'] = '';
+        }
+        if (isset($this->request->post['payment_numero'])) {
+            $this->data['payment_numero'] = $this->request->post['payment_numero'];
+        } elseif (!empty($address_info)) {
+            $this->data['payment_numero'] = $address_info['payment_numero'];
+        } else {
+            $this->data['payment_numero'] = '';
+        }
 
         $this->load->model('account/customer_group');
 
@@ -486,6 +505,10 @@ class ControllerAccountAddress extends Controller {
         }
 
         $this->data['back'] = $this->url->link('account/address', '', 'SSL');
+
+        $this->data['numero_options'] = $this->model_account_address->getNumeroOrComplemento("numero");
+        $this->data['complemento_options'] = $this->model_account_address->getNumeroOrComplemento("numero");
+
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/address_form.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/account/address_form.tpl';

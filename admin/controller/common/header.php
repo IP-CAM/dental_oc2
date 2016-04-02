@@ -32,6 +32,10 @@ class ControllerCommonHeader extends Controller {
         $this->data['conf_product_cor'] = $this->language->get('conf_product_cor');
         $this->data['conf_product_tamanho'] = $this->language->get('conf_product_tamanho');
         $this->data['conf_product_quantitdy'] = $this->language->get('conf_product_quantitdy');
+        $this->data['conf_customer_numero_option'] = $this->language->get('conf_customer_numero_option');
+        $this->data['conf_customer_complemento_option'] = $this->language->get('conf_customer_complemento_option');
+
+        
 
 
         $this->data['text_backup'] = $this->language->get('text_backup');
@@ -234,6 +238,8 @@ class ControllerCommonHeader extends Controller {
             $this->data['conf_cor_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=cor', 'SSL');
             $this->data['conf_tamanho_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=tamanho', 'SSL');
             $this->data['conf_quantitdy_link'] = $this->url->link('catalog/conf_product', 'token=' . $this->session->data['token'] . '&model=quantity', 'SSL');
+            $this->data['conf_customer_link_numero'] = $this->url->link('catalog/conf_customer_option', 'token=' . $this->session->data['token'] . '&type=numero', 'SSL');
+            $this->data['conf_customer_link_complemento'] = $this->url->link('catalog/conf_customer_option', 'token=' . $this->session->data['token'] . '&type=complemento', 'SSL');
 
 
             $this->data['stores'] = array();

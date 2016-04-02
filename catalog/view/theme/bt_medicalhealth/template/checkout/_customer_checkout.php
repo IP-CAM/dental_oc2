@@ -10,6 +10,7 @@
                 <select id="payment_numero" name="payment_numero">
                     <?php
                     foreach ($numero_options as $numero) {
+                        $numero = $numero['numero_complemento'];
                         $selected = "";
                         if(isset($payment_numero) && $payment_numero==$numero){
                             $selected = "selected = 'selected'";
@@ -23,9 +24,13 @@
                 
             </div>
             <div>
+                <?php echo $txt_payment_complemento; ?>
+            </div>
+            <div>
                 <select id="payment_complemento" name="payment_complemento">
                     <?php
                     foreach ($complemento_options as $complemento) {
+                        $complemento = $complemento['numero_complemento'];
                         $selected = "";
                         if(isset($payment_complemento) && $payment_complemento==$complemento){
                             $selected = "selected = 'selected'";

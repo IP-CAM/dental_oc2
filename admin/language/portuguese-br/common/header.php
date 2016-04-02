@@ -91,4 +91,6 @@ $_['conf_product_arcade']           = 'Arcades';
 $_['conf_product_cor']           = 'Cors';
 $_['conf_product_tamanho']           = 'Tamanhos';
 $_['conf_product_quantitdy']           = 'Quantidade';
+$_['conf_customer_numero_option']           = 'Numero Options';
+$_['conf_customer_complemento_option']           = 'Complemento Options';
 ?>

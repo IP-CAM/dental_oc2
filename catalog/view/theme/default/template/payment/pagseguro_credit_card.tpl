@@ -2,7 +2,26 @@
 <?php if ($text_information) { ?>
 <div class="payment-information"><?php echo $text_information; ?></div>
 <?php } ?>
+<div class="payment-information">
+    <label><?php echo $txt_payment_area_code; ?></label>
 
+    <select id="area_code" name="area_code" style="width:80px">
+        <option value="">--</option>
+
+        <?php
+        foreach ($area_codes as $area_code) {
+            $selected = "";
+            if (!empty($payment_cad_area_code) && $area_code == $payment_cad_area_code) {
+                $selected = "checked='checked';";
+            }
+        ?>
+        <option value="<?php echo $area_code; ?>"><?php echo $area_code; ?></option>
+
+        <?php
+        }
+        ?>
+    </select>
+</div>
 <div class="dados_cartao">
 
     <!-- Total do pedido -->
@@ -294,10 +313,14 @@
     });
 
     $('#button-confirm').bind('click', function () {
-        if (creditCardValidate()) {
+        if ($("select[name='area_code']").val().trim()==''){
+             alert('Digite seu Area code')
+        }
+        else if (creditCardValidate()) {
 
             var params = 'creditCardToken=' + $("#creditCardToken").val() + '&installmentQuantity=' + $("#installmentQuantity").val() + '&installmentValue=' + $("#installmentValue").val() + '&creditCardHolderName=' + $("#creditCardHolderName").val() + '&creditCardHolderCPF=' + $("#creditCardHolderCPF").val() + '&creditCardHolderBirthDate=' + $("#creditCardHolderBirthDate").val() + '&creditCardHolderPhone=' + $("#telefone").val() + '&shippingAddressStreet=' + $("#shippingAddressStreet").val() + '&shippingAddressNumber=' + $("#shippingAddressNumber").val() + '&shippingAddressComplement=' + $("#shippingAddressComplement").val() + '&shippingAddressDistrict=' + $("#shippingAddressDistrict").val() + '&shippingAddressPostalCode=' + $("#shippingAddressPostalCode").val() + '&shippingAddressCity=' + $("#shippingAddressCity").val() + '&shippingAddressState=' + $("#shippingAddressState").val();
-
+            params+="&areaCode="+$("select[name='area_code']").val();
+            
             $('#button-confirm').hide();
             $('#aguardando').show();
             $.ajax({

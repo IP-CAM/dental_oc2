@@ -2,15 +2,19 @@
 <input type="radio" name="payment_address" value="existing" id="payment-address-existing" checked="checked" />
 <label for="payment-address-existing"><?php echo $text_address_existing; ?></label>
 <div id="payment-existing">
-    <select name="address_id" style="width: 100%; margin-bottom: 15px;" size="5">
-        <?php foreach ($addresses as $address) { ?>
-        <?php if ($address['address_id'] == $address_id) { ?>
-        <option value="<?php echo $address['address_id']; ?>" selected="selected"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
-        <?php } else { ?>
-        <option value="<?php echo $address['address_id']; ?>"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
-        <?php } ?>
-        <?php } ?>
-    </select>
+     <select name="address_id" style="width: 100%; margin-bottom: 15px;" size="5">
+    <?php $count = 1; foreach ($addresses as $address) { ?>
+    <?php if ($address['address_id'] == $address_id) { ?>
+    <option value="<?php echo $address['address_id']; ?>" selected="selected"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
+    <?php } 
+     else if ($count==1) { ?>
+    <option value="<?php echo $address['address_id']; ?>" selected="selected"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
+    <?php } 
+    else { ?>
+    <option value="<?php echo $address['address_id']; ?>"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
+    <?php } ?>
+    <?php } $count++; ?>
+  </select>
 </div>
 <p>
     <input type="radio" name="payment_address" value="new" id="payment-address-new" />

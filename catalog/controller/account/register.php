@@ -66,10 +66,16 @@ class ControllerAccountRegister extends Controller {
 
         $this->data['txt_payment_heading_customer_type'] = $this->language->get('txt_payment_heading_customer_type');
 
+        $this->data['txt_payment_numero'] = $this->language->get('txt_payment_numero');
+        $this->data['txt_payment_complemento'] = $this->language->get('txt_payment_complemento');
+        
         //get area codes
         $this->data['area_codes'] = $this->model_account_customer->getAreaCodes();
         //end of mail chimp
-        
+        //Numero and Complemento
+        $this->data['numero_options'] = $this->model_account_customer->getAddressInstance()->getNumeroOrComplemento("numero");
+        $this->data['complemento_options'] = $this->model_account_customer->getAddressInstance()->getNumeroOrComplemento("numero");
+
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 

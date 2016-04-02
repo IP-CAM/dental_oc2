@@ -17,11 +17,11 @@ class ControllerPaymentPagseguroBoleto extends Controller {
         $this->data['text_wait'] = $this->language->get('text_wait');
         $this->data['txt_payment_area_code'] = $this->language->get('txt_payment_area_code');
         $this->data['text_information'] = $this->config->get('pagseguro_boleto_text_information');
-        
+
         $this->data['url'] = $this->url->link('payment/pagseguro_boleto/confirm', '', 'SSL');
         //define area codes
-        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes,true);
-        
+        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes, true);
+
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagseguro_boleto.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/payment/pagseguro_boleto.tpl';
         } else {
@@ -230,6 +230,10 @@ class ControllerPaymentPagseguroBoleto extends Controller {
         $params['senderPhone'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2);
         $params['senderHash'] = $senderHash;
 
+        if (!empty($_POST['areaCode'])) {
+            $params['senderAreaCode'] = $_POST['areaCode'];
+        }
+
         /* Frete */
 
         if ($this->cart->hasShipping()) {
@@ -323,9 +327,8 @@ class ControllerPaymentPagseguroBoleto extends Controller {
         // treat parameters here!
         $httpConnection = new HttpConnection();
         $httpConnection->post($pagSeguroObject->getTransactionsURL(), $params);
-        
-        echo $pagSeguroObject->getTransactionsURL();
-        die;
+
+
 
         // Get Xml From response body
         $xmlArray = $this->paymentResultXml($httpConnection->getResponse());
@@ -352,8 +355,7 @@ class ControllerPaymentPagseguroBoleto extends Controller {
             $json['success'] = $xmlArray['transaction']['paymentLink'];
             $json['order_id'] = $this->session->data['order_id'];
         }
-//        print_r($json);
-//        die;
+     
         //storing boleto log
         $log_file = getcwd() . DIRECTORY_SEPARATOR . "shopping_log.txt";
         if (!file_exists($log_file)) {

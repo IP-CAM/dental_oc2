@@ -35,4 +35,7 @@ $_['error_postcode']    = 'O CEP deve ter 8 caracteres!';
 $_['error_city']        = 'A cidade deve ter entre 2 e 128 caracteres!';
 $_['error_country']     = 'Por favor, selecione um país!';
 $_['error_zone']        = 'Por favor, selecione um estado!';
+
+$_['txt_payment_numero'] = 'Numero';
+$_['txt_payment_complemento'] = 'Complemento';
 ?>

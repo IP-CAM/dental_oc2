@@ -6,9 +6,29 @@
     <label for="senderCPF">CPF: </label>
     <input type="text" name="senderCPF"  id="senderCPF" value="">
 </div>
+<div class="payment-information">
+    <label><?php echo $txt_payment_area_code; ?></label>
+
+    <select id="area_code" name="area_code" style="width:80px">
+        <option value="">--</option>
+
+        <?php
+        foreach ($area_codes as $area_code) {
+            $selected = "";
+            if (!empty($payment_cad_area_code) && $area_code == $payment_cad_area_code) {
+                $selected = "checked='checked';";
+            }
+        ?>
+        <option value="<?php echo $area_code; ?>"><?php echo $area_code; ?></option>
+
+        <?php
+        }
+        ?>
+    </select>
+</div>
 <div class="buttons">
     <div class="right">
-       
+
 
         <a id="button-confirm" class="button"><span><?php echo $button_confirm; ?></span></a><span id="aguardando">Gerando boleto...</span></div>
 </div>
@@ -18,7 +38,11 @@ $('#button-confirm').bind('click', function (e) {
         //payment_address_checkout(true);
         if ($('input[name=senderCPF]').val().trim() == '') {
             alert('Digite seu CPF')
-        } else {
+        }
+        else if ($("select[name='area_code']").val().trim()==''){
+             alert('Digite seu Area code')
+        }
+        else {
             var w = window.open('', 'janelaBoleto', 'height=600,width=800,channelmode=0,dependent=0,directories=0,fullscreen=0,location=0,menubar=0,resizable=1,scrollbars=1,status=0,toolbar=0')
             w.document.body.innerHTML = "<h1>Por favor aguarde...</h1>";
             $('#button-confirm').hide();
@@ -27,7 +51,7 @@ $('#button-confirm').bind('click', function (e) {
                 type: 'POST',
                 url: 'index.php?route=payment/pagseguro_boleto/payment',
                 async: false,
-                data: {senderHash: PagSeguroDirectPayment.getSenderHash(), senderCPF: $('input[name=senderCPF]').val()},
+                data: {senderHash: PagSeguroDirectPayment.getSenderHash(), senderCPF: $('input[name=senderCPF]').val(),'areaCode': $("select[name='area_code']").val()},
                 dataType: 'json',
                 beforeSend: function () {
                     $('#button-confirm').attr('disabled', true);

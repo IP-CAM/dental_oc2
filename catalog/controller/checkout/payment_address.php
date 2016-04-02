@@ -68,6 +68,8 @@ class ControllerCheckoutPaymentAddress extends Controller {
         $this->data['txt_payment_heading_customer_type'] = $this->language->get('txt_payment_heading_customer_type');
 
 
+        $this->data['txt_payment_numero'] = $this->language->get('txt_payment_numero');
+        $this->data['txt_payment_complemento'] = $this->language->get('txt_payment_complemento');
 
 
 
@@ -84,9 +86,13 @@ class ControllerCheckoutPaymentAddress extends Controller {
         $this->load->model('account/address');
 
         //define area codes
-        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes,true);
-        
-      
+        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes, true);
+
+        //Numero and Complemento
+        $this->data['numero_options'] = $this->model_account_address->getNumeroOrComplemento("numero");
+        $this->data['complemento_options'] = $this->model_account_address->getNumeroOrComplemento("numero");
+
+
 
         $this->data['addresses'] = $this->model_account_address->getAddresses();
         $last_index = array_keys($this->data['addresses']);
@@ -96,6 +102,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
                 $this->data[$field] = utf8_decode($this->data['addresses'][$last_index[count($last_index) - 1]][$field]);
             }
         }
+       
 
 
         $this->load->model('account/customer_group');
@@ -142,8 +149,8 @@ class ControllerCheckoutPaymentAddress extends Controller {
 
         $this->data['countries'] = $this->model_localisation_country->getCountries();
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/payment_address.tpl')) {
-            $this->template = $this->config->get('config_template') . '/template/checkout/payment_address.tpl';
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/payment_address.php')) {
+            $this->template = $this->config->get('config_template') . '/template/checkout/payment_address.php';
         } else {
             $this->template = 'default/template/checkout/payment_address.tpl';
         }
@@ -348,6 +355,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
             if (!empty($this->request->post["address_id"])) {
                 $this->session->data['payment_address_id'] = $this->model_account_address->editMailChimpAddress($this->request->post["address_id"], $this->request->post);
             }
+            
 
 
             $this->session->data['payment_country_id'] = $this->request->post['country_id'];

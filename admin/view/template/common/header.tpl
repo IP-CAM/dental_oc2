@@ -84,6 +84,15 @@ $(document).ready(function(){
               <li><a href="<?php echo $conf_quantitdy_link; ?>"><?php echo $conf_product_quantitdy; ?></a></li>
             </ul>
           </li>
+          <li>
+              <a 
+                href="<?php echo $conf_customer_link_numero; ?>">
+                  <?php echo $conf_customer_numero_option;?>
+                </a>
+          </li>
+          <li><a href="<?php echo $conf_customer_link_complemento; ?>">
+              <?php echo $conf_customer_complemento_option; ?></a>
+          </li>
           <li><a href="<?php echo $option; ?>"><?php echo $text_option; ?></a></li>
           <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
           <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>

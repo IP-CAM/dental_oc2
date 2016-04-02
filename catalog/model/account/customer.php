@@ -26,10 +26,10 @@ class ModelAccountCustomer extends Model {
 
                 $new_arr = array();
                 foreach ($value as $valk) {
-                    $new_arr[] =utf8_encode($valk);
+                    $new_arr[] = utf8_encode($valk);
                 }
                 $value = implode(",", ($new_arr));
-                
+
                 $columns [] = $column . " = '" . $this->db->escape($value) . "'";
             } else {
                 if ($column == "payment_corop_isento") {
@@ -60,7 +60,7 @@ class ModelAccountCustomer extends Model {
 
         $customer_id = $this->db->getLastId();
         $address_qurey = "INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int) $customer_id . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', company_id = '" . $this->db->escape($data['company_id']) . "', tax_id = '" . $this->db->escape($data['tax_id']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int) $data['country_id'] . "', zone_id = '" . (int) $data['zone_id'] . "'" . $column_string;
-        
+
 
         $this->db->query($address_qurey);
 //echo $address_qurey;
@@ -258,10 +258,18 @@ class ModelAccountCustomer extends Model {
 
         return $query->num_rows;
     }
-    
-    public function getAreaCodes(){
+
+    public function getAreaCodes() {
         $this->load->model('account/address');
-        return json_decode($this->model_account_address->area_codes,true);
+        return json_decode($this->model_account_address->area_codes, true);
+    }
+    /**
+     * 
+     * @return type
+     */
+    public function getAddressInstance() {
+        $this->load->model('account/address');
+        return $this->model_account_address;
     }
 
 }

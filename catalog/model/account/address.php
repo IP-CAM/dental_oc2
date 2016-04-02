@@ -225,7 +225,7 @@ class ModelAccountAddress extends Model {
         if (!empty($columns)) {
             $column_string = implode($columns, ",");
         }
-        $queryUp = "UPDATE " . DB_PREFIX . "address SET " . $column_string . " WHERE address_id  = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'";
+         $queryUp = "UPDATE " . DB_PREFIX . "address SET " . $column_string . " WHERE address_id  = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'";
 
         $this->db->query($queryUp);
 
@@ -399,6 +399,15 @@ class ModelAccountAddress extends Model {
         }
 
         return $address_data;
+    }
+
+    /**
+     * 
+     */
+    public function getNumeroOrComplemento($type = "") {
+        $sql = "SELECT 	numero_complemento FROM " . DB_PREFIX . "customer_options WHERE field_type = '$type'";
+        $query = $this->db->query($sql);
+        return $query->rows;
     }
 
     public function getTotalAddresses() {
