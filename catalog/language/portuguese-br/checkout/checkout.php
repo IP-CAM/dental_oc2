@@ -98,6 +98,7 @@ $_['error_country']                  = 'Atenção: Por favor, selecione um país
 $_['error_zone']                     = 'Atenção: Por favor, selecione um estado!';
 $_['error_agree']                    = 'Atenção: Você deve concordar com os %s!';
 $_['error_address']                  = 'Atenção: Você deve selecionar um endereço!';
+$_['error_address_code']             = 'Atenção: Você deve selecionar DDD!';
 $_['error_shipping']                 = 'Atenção: Escolha uma forma de entrega!';
 $_['error_no_shipping']              = 'Atenção: Não há opções de entrega disponíveis. Por favor, <a href="%s">contate-nos</a> para assistência.';
 $_['error_payment']                  = 'Atenção: Escolha uma forma de pagamento!';
@@ -110,7 +111,7 @@ $_['txt_payment_cad_dob'] = 'Data de Nascimento';
 $_['txt_payment_cad_cpf'] = 'CPF';
 $_['txt_payment_cad_rg'] = 'RG';
 $_['txt_payment_cad_telefone'] = 'Telefone';
-$_['txt_payment_area_code'] = 'Area Code';
+$_['txt_payment_area_code'] = 'DDD';
 $_['txt_payment_cad_celular'] = 'Celular';
 $_['txt_payment_cad_gender'] = 'gênero';
 $_['txt_payment_corop_name'] = ' Razão Social';
