@@ -132,7 +132,9 @@
                     <div style="display:none">
                         <input type="text" name="payment_cad_telefone" id="payment_cad_telefone" value="<?php echo isset($payment_cad_telefone) ? $payment_cad_telefone : ""; ?>"/>
                     </div>
-                    <label><?php echo $txt_payment_area_code; ?></label>
+                    <label><?php echo $txt_payment_area_code; ?>
+                        <span class="required">*</span>
+                    </label>
                     <div>
                         <select id="payment_cad_area_code" name="payment_cad_area_code" style="width:80px">
 
@@ -277,7 +279,7 @@
                     <div colspan="4">
                         <?php
                         $profession_types = array(
-                            "Odontologista", "Protético",
+                            "Dentista", "Técnico em Prótese",
                             "Acadêmico",
                         );
                         $i = 0;
@@ -355,10 +357,10 @@
                 </div>
                 <div>
 
-                    <div>
+                    <div style="display:none">
                         <?php echo $txt_payment_profession_graduacao; ?>
                     </div>
-                    <div>
+                    <div style="display:none">
                         <?php
                         $prof_inst = array(
                             'Selecione',
@@ -404,31 +406,71 @@
                     </div>
                     <div class="area_checkboxes">
                         <?php
-                        $options_atuaca = array(
+                        $options_atuaca_dentista = array(
                             "Clínica", "Dentística",
                             "Endodontia", "Estética",
                             "Ortodondia", "Periodontia",
                             "Prótese", "Radiologia",
                         );
+                        $options_atuaca_técnico = array(
+                            "Metalocerâmica", "Cerâmica sobre Zircônia",
+                            "Cerâmica Prensada – Metal Free", "Fundição",
+                            "Fresagem em CAD/CAM", "Trabalhos em Resina",
+                            "PPR – Prótese Parcial Removível", "Prótese Total",
+                            "Placas (Bruxismo ou Injetada)", "Implantes",
+                            "Encaixes (ERA, ORING ou TRILHO)",
+                        );
                         $checkd = '';
+
                         if (!empty($payment_profession_atuacao)) {
                             $payment_profession_atuacao = explode(",", $payment_profession_atuacao);
                         }
-
-                        foreach ($options_atuaca as $opt) {
-                            if (!empty($payment_profession_atuacao) && in_array($opt, $payment_profession_atuacao)) {
-                                $checkd = 'checked="checked"';
-                            } else {
-                                $checkd = '';
-                            }
-                            ?>
-                            <label><?php echo $opt; ?></label>    
-                            <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
-                            <?php
+                        else {
+                            $payment_profession_atuacao = array();
                         }
-                        ?>
 
+                        $display_dentista_reference_box = "display:none";
+                        $display_tec_reference_box = "display:none";
+
+                        if(empty($payment_profession_type) || $payment_profession_type == "Dentista"){
+                            $display_dentista_reference_box = "";
+                        }
+                        else if($payment_profession_type == "Técnico em Prótese"){
+                            $display_tec_reference_box = "";
+                        }
+
+                            echo "<div reference='Dentista' style='".$display_dentista_reference_box."'>";
+
+                                foreach ($options_atuaca_dentista as $opt) {
+                                    if (!empty($payment_profession_atuacao) && in_array($opt, $payment_profession_atuacao)) {
+                                        $checkd = 'checked="checked"';
+                                    } else {
+                                        $checkd = '';
+                                    }
+                                    ?>
+                                    <label><?php echo $opt; ?></label>    
+                                    <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
+                                    <?php
+                                }
+                            echo "</div>";
+
+                            echo "<div reference='Técnico em Prótese' style='".$display_tec_reference_box."'>";
+
+                                foreach ($options_atuaca_técnico as $opt) {
+                                    if (!empty($payment_profession_atuacao) && in_array($opt, $payment_profession_atuacao)) {
+                                        $checkd = 'checked="checked"';
+                                    } else {
+                                        $checkd = '';
+                                    }
+                                    ?>
+                                    <label><?php echo $opt; ?></label>    
+                                    <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
+                                    <?php
+                                }
+                            echo "</div>";
+                        ?>
                     </div>
+              
 
                 </div>
                 <div class="">
@@ -464,20 +506,28 @@
             $(".od").hide();
             $(".pr").hide();
             $(".ac").hide();
-            $(".area").show();
+            
+            $(".area>div.area_checkboxes>div").hide();
+            if($(".area>div.area_checkboxes>div[reference='"+$(this).val()+"']").length>0){
+                $(".area>div.area_checkboxes>div[reference='"+$(this).val()+"']").show();
+            }
+            
+
             if ($(this).is(':checked')) {
-                if ($(this).val() == 'Odontologista') {
+                if ($(this).val() == 'Dentista') {
                     $(".od").show();
+                    $(".area").show();
                 }
-                else if ($(this).val() == 'Protético') {
+                else if ($(this).val() == 'Técnico em Prótese') {
                     $(".pr").show();
+                    $(".area").show();
                 }
                 else if ($(this).val() == 'Acadêmico') {
                     $(".ac").show();
                     $(".area").hide();
                 }
             }
-            console.log($(this));
+            console.log($(this).val());
         })
         $("input[name='payment_profession_type'][checked='checked'] ").trigger("click");
 

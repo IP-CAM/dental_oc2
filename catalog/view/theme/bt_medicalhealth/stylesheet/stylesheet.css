@@ -10,8 +10,8 @@ ul, ol {
 }
 
 td.name {
-	padding-bottom: 100px;
-	margin-bottom: 100px;
+    padding-bottom: 100px;
+    margin-bottom: 100px;
 }
 
 
@@ -78,9 +78,9 @@ form {
 }
 
 #payment-address-2 div.checkout-content div div.customer_information div div div div.area div.area_checkboxes label {
-	position: relative;
-	line-height: 25px;
-	top: 2px;
+    position: relative;
+    line-height: 25px;
+    top: 2px;
 }
 
 
@@ -166,23 +166,23 @@ p {
 #container {
     /* min-width: 960px;*/
     text-align: left;
-	margin: 124px auto 0;
+    margin: 124px auto 0;
 }
 #column-left {
     float: left; margin-bottom:78px;
 }
 
 div#column-left.four.columns {
-	margin-top: 35px;
+    margin-top: 35px;
 }
 .main-column-left {
     border-right: 1px solid #D9D9D9;
     margin-right: -1pxmargin-left: 2px;
-	margin-left: 1px;
+    margin-left: 1px;
 }
 
 div.box.category {
-	padding-left: 35px;
+    padding-left: 35px;
 }
 
 #cboxLoadedContent {
@@ -299,7 +299,7 @@ div.ministrador {
 #header {
     /*    position: fixed;*/
     z-index: 99;
-	float: none;
+    float: none;
 }
 #header #logo {
     float: left;
@@ -1340,9 +1340,9 @@ table.radio tr.highlight:hover td {
 
 
 .buttons .right {
-	background-color: #028590;
-	padding: 10px;
-	text-align: center;
+    background-color: #028590;
+    padding: 10px;
+    text-align: center;
 }
 .buttons .center {
     margin-left: auto;
@@ -1433,7 +1433,7 @@ div.newsletterbox {
     font-size: 11px;
     text-transform: none;
     color: #868585;
-	line-height: 24px;
+    line-height: 24px;
 }
 
 
@@ -1816,11 +1816,11 @@ form.edit_affiliate select{width:51.2%; }
 }
 
 .product-list .compare {
-	visibility: hidden;
+    visibility: hidden;
 }
 
 a.jcarousel-control-prev, a.jcarousel-control-next {
-	visibility: hidden;
+    visibility: hidden;
 }
 
 
@@ -1859,7 +1859,7 @@ a.jcarousel-control-prev, a.jcarousel-control-next {
     text-align: left;
 }
 .product-list .image img {
-	width: 100px;
+    width: 100px;
 }
 .product-grid .name {
     margin-bottom: 5px;
@@ -1893,11 +1893,11 @@ a.jcarousel-control-prev, a.jcarousel-control-next {
     margin-bottom: 7px;
 }
 .product-grid .wishlist{
-	margin-top: -30px;
+    margin-top: -30px;
 }
 
 .product-grid .compare {
-	visibility: hidden;
+    visibility: hidden;
 }
 
 .product-grid .wishlist a, .product-grid .compare a {
@@ -1917,7 +1917,7 @@ a.jcarousel-control-prev, a.jcarousel-control-next {
     text-shadow: 0 0 1px;
     border-radius: 3px;
     margin-left: -5px;
-	margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 #button-cart-phone {
@@ -1932,21 +1932,21 @@ a.jcarousel-control-prev, a.jcarousel-control-next {
     text-shadow: 0 0 1px;
     border-radius: 3px;
     margin-left: -5px;
-	background-color: #95bd55;
-	margin-bottom: 25px;
+    background-color: #95bd55;
+    margin-bottom: 25px;
 }
 
 input#button-postal.button {
-	margin-top: 5px;
+    margin-top: 5px;
 }
 
 div.banner_PagSeguro {
-	float: right;
-	margin-top: 18px;
+    float: right;
+    margin-top: 18px;
 }
 
 div.banner_desconto {
-	margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 
@@ -2063,11 +2063,11 @@ div.banner_desconto {
     margin-top:15px
 }
 .product-info .options {
-	margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 div.cart-module {
-	margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 .product-info .options h2{font-size:11px; font-weight:bold; text-transform:uppercase; margin-bottom:0; font-family:Arial}
 .product-info .options b{color:#565452; font-weight:normal}
@@ -2113,7 +2113,7 @@ div.cart-module {
     padding-bottom:15px;
 }
 .product-info .cart .wishlist {
-	text-align: left;
+    text-align: left;
 }
 .product-info .cart .wishlist, .product-info .cart .compare {float:left; clear:none; margin-top:10px}
 .product-info .cart .wishlist a, .product-info .cart .compare a {
@@ -2736,8 +2736,8 @@ p.text_p{font-weight:bold; color:#201f1f}
 .select-payment-address input[type="checkbox"]{margin-bottom:10px}
 a.forgotten{color:#868585; font-size:11px; margin-left:17px}
 .checkout-product{background:url("../image/bgbottom_footer_top.png") no-repeat scroll center bottom transparent; padding-bottom:5px; margin-bottom: 20px;
-border: 1px solid #DDDDDD;
-	padding: 10px;
+                  border: 1px solid #DDDDDD;
+                  padding: 10px;
 }
 
 .checkout-product table {
@@ -2757,19 +2757,22 @@ border: 1px solid #DDDDDD;
 .checkout-product thead td {
     color: #342c23;
     font-family:"MyriadProBold";
-    font-size:14px;
+    font-size:10.5px;
     text-transform:uppercase;
     font-weight: 400;
-	padding: 20px;
+    padding: 20px;
+    padding-right:10px;
+    padding-left:10px;
+
 }
 
 #confirm div.checkout-content div.checkout-product table thead tr td.quantity {
-	padding: 0;
+    padding: 0;
 }
 
 #confirm div.checkout-content div.checkout-product table thead tr td.model {
-	padding: 0;
-	text-align: center;
+    padding: 0;
+    text-align: center;
 }
 
 
@@ -2779,8 +2782,8 @@ border: 1px solid #DDDDDD;
 
 
 .checkout-product thead .quantity, .checkout-product thead .price, #content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table tbody tr td.name, #content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table thead tr td.model, #content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table thead tr td.price, #content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table tbody tr td.price{
-	text-align:center;
-	max-width: 10px;
+    text-align:center;
+    max-width: 10px;
 }
 
 
@@ -2789,14 +2792,14 @@ border: 1px solid #DDDDDD;
 
 
 #content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table tbody tr td.name a {
-	font-size: 11px;
-	float: left;
-	margin-bottom: 20px;
+    font-size: 11px;
+    float: left;
+    margin-bottom: 20px;
 }
 
 
 #content div.checkout.row div.step_container.six.columns div.payment-method-step div.checkout-content div.checkout-product table thead tr td.name {
-	padding: 0;
+    padding: 0;
 }
 
 .checkout-product thead .total {
@@ -3252,7 +3255,7 @@ div.boss-home-filter-product {
 .boss_featured  .box-content .one-product-featured{
     width: 320px;
     margin-bottom: 50px;
-	float: left;
+    float: left;
 }
 .boss_featured .box-content .shop-now{}
 .boss_featured .box-content .shop-now a{
@@ -3351,17 +3354,17 @@ div.boss-home-filter-product {
 }
 
 #column-left div.main-column-left div.box {
-	padding-left: 25px;
+    padding-left: 25px;
 }
 
 span#filter-group15, span#filter-group16 {
-	font-weight: bold;
-	font-size: 1.2em;
-	color: #028590;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #028590;
 }
 
 #column-left div.main-column-left div.box div.box-content ul.box-filter li ul li {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .boss_text a{
@@ -3507,10 +3510,10 @@ div.tags {
 }
 
 #payment-address-2 div.checkout-content div div.customer_information div div div div.customer_section h3 {
-	margin-top: 25px;
-	color: #20201f;
-	text-transform: uppercase;
-	font-size: 14px;
+    margin-top: 25px;
+    color: #20201f;
+    text-transform: uppercase;
+    font-size: 14px;
 }
 .step_container div#payment-new>div>div{
     min-height: 20px;
