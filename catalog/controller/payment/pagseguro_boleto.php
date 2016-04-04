@@ -20,7 +20,7 @@ class ControllerPaymentPagseguroBoleto extends Controller {
 
         $this->data['url'] = $this->url->link('payment/pagseguro_boleto/confirm', '', 'SSL');
         //define area codes
-        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes, true);
+        $this->data['area_codes'] = array_unique(json_decode($this->model_account_address->area_codes, true));
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagseguro_boleto.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/payment/pagseguro_boleto.tpl';

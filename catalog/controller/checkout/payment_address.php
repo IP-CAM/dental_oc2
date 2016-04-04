@@ -84,9 +84,9 @@ class ControllerCheckoutPaymentAddress extends Controller {
         $this->data['addresses'] = array();
 
         $this->load->model('account/address');
-
+        
         //define area codes
-        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes, true);
+        $this->data['area_codes'] = array_unique(json_decode($this->model_account_address->area_codes, true));
 
         //Numero and Complemento
         $this->data['numero_options'] = $this->model_account_address->getNumeroOrComplemento("numero");
@@ -206,6 +206,9 @@ class ControllerCheckoutPaymentAddress extends Controller {
                     $json['error']['warning'] = $this->language->get('error_address');
                 } elseif (!in_array($this->request->post['address_id'], array_keys($this->model_account_address->getAddresses()))) {
                     $json['error']['warning'] = $this->language->get('error_address');
+                
+                } elseif (empty($this->request->post['payment_cad_area_code'])) {
+                    $json['error']['warning'] = $this->language->get('error_address_code');
                 } else {
 
                     // Default Payment Address

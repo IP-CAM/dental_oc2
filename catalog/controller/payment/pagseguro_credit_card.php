@@ -40,7 +40,7 @@ class ControllerPaymentPagseguroCreditCard extends Controller {
         $this->data['text_information'] = $this->config->get('pagseguro_credit_card_text_information');
         $this->data['url'] = $this->url->link('payment/pagseguro_credit_card/confirm', '', 'SSL');
 
-        $this->data['area_codes'] = $this->model_account_customer->getAreaCodes();
+        $this->data['area_codes'] = array_unique($this->model_account_customer->getAreaCodes());
 
         /* PagSeguro objetc to view to get the js address */
         $pagSeguroObject = new PagSeguroData(false, $this->config->get('pagseguro_credit_card_email'), $this->config->get('pagseguro_credit_card_token'));
