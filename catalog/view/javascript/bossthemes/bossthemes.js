@@ -1,3 +1,31 @@
+function boss_addToCartForSpecial(product_id) {
+  $.ajax({
+      url: 'index.php?route=bossthemes/cart/add',
+      type: 'post',
+      data: 'product_id=' + product_id,
+      dataType: 'json',
+      success: function(json) {
+
+          if (json['redirect']) {
+              location = json['redirect'];
+          }
+
+          if (json['error']) {
+              if (json['error']['warning']) {
+                  addProductNotice(json['title'], json['thumb'], json['error']['warning'], 'failure');
+              }
+          }
+
+          if (json['success']) {
+              addProductNotice(json['title'], json['thumb'], json['success'], 'success');
+              $('#cart_menu span.s_grand_total').html(json['total_sum']);
+              $('#cart_menu div.s_cart_holder').html(json['output']);
+			  $('#cart-total').html(json['total']);
+              window.location = 'index.php?route=checkout/cart'            
+          }
+      }
+  });
+}
 function boss_addToCart(product_id) {
   $.ajax({
       url: 'index.php?route=bossthemes/cart/add',

@@ -88,7 +88,7 @@
         </select></td>
     </tr>
     <tr>
-      <td colspan="2">Extra Customer Information</td>
+      <td colspan="2" style="display:none" title="Extra Customer Information">Informações do cliente extra</td>
       
     </tr>
     <tr>

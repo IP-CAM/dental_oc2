@@ -92,6 +92,20 @@
             <?php } ?></td>
         </tr>
         <tr>
+          <td><?php echo $txt_payment_numero; ?> </td>
+          </tr><tr><td><input type="text" id="payment_numero" name="payment_numero" value="<?php echo isset($payment_numero)?$payment_numero:''; ?>" />
+            <?php if (isset($error_payment_numero)) { ?>
+            <span class="error"><?php echo $error_payment_numero; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><?php echo $txt_payment_complemento; ?> </td>
+          </tr><tr><td><input type="text" id='payment_complemento' name="payment_complemento" value="<?php echo isset($payment_complemento)?$payment_complemento:''; ?>" />
+            <?php if (isset($error_payment_complemento)) { ?>
+            <span class="error"><?php echo $error_payment_complemento; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
           <td><?php echo $entry_address_2; ?></td>
           </tr><tr><td><input type="text" name="address_2" value="<?php echo $address_2; ?>" /></td>
         </tr>
@@ -176,7 +190,7 @@
     </div>
     <table class="form">
     <tr>
-      <td colspan="2">Extra Customer Information</td>
+      <td colspan="2" style="display:none" title="Extra Customer Information">Informações do cliente extra</td>
       
     </tr>
     <tr>

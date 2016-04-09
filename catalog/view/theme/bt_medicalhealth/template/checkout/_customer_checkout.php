@@ -1,7 +1,7 @@
 <div class="customer_information">
     <div>
 
-        <div>
+<!--        <div>
 
             <div>
                 <?php echo $txt_payment_numero; ?>
@@ -43,7 +43,7 @@
                 </select>
                 
             </div>
-        </div>
+        </div>-->
         <div colspan="4">
             <?php
             $customer_types = array(
@@ -575,3 +575,14 @@
     }
 
 </script>    
+<style>
+    div.area_checkboxes {
+         width: 521px;
+    }
+    div.checkout-content div.area_checkboxes {
+         width: 330px;
+    }
+    div.area_checkboxes input[type="checkbox"] {
+        margin-bottom: 10px;
+    }
+</style>

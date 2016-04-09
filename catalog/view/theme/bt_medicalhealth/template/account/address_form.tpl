@@ -69,6 +69,26 @@
                             <?php } ?></td>
                     </tr>
                     <tr>
+                        <td>
+                            <?php echo $txt_payment_numero; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type='text' id="payment_numero" name="payment_numero" value='<?php echo isset($payment_numero)? $payment_numero:"" ?>' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php echo $txt_payment_complemento; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="payment_complemento" name="payment_complemento" value='<?php echo  isset($payment_complemento)? $payment_complemento:"" ?>' />
+                        </td>
+                    </tr>
+                    <tr>
                         <td><?php echo $entry_address_2; ?></td>
                     </tr>
                     <tr>
@@ -136,54 +156,8 @@
                             <?php echo $text_no; ?>
                             <?php } ?></td>
                     </tr>
-                    <tr>
-                        <td>
-                            <?php echo $txt_payment_numero; ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select id="payment_numero" name="payment_numero">
-                                <?php
-                                foreach ($numero_options as $numero) {
-                                $numero = $numero['numero_complemento'];
-                                $selected = "";
-                                if (isset($payment_numero) && $payment_numero == $numero) {
-                                $selected = "selected = 'selected'";
-                                }
-                                ?>
-                                <option <?php echo $selected; ?> value="<?php echo $numero; ?>"><?php echo $numero; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <?php echo $txt_payment_complemento; ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select id="payment_complemento" name="payment_complemento">
-                                <?php
-                                foreach ($complemento_options as $complemento) {
-                                $complemento = $complemento['numero_complemento'];
-                                $selected = "";
-                                if (isset($payment_complemento) && $payment_complemento == $complemento) {
-                                $selected = "selected = 'selected'";
-                                }
-                                ?>
-                                <option <?php echo $selected; ?> value="<?php echo $complemento; ?>"><?php echo $complemento; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-
-                        </td>
-                    </tr>
+                 
+               
                 </table>
             </div>
             <div class="buttons">
