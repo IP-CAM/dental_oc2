@@ -56,8 +56,11 @@ class ControllerPaymentPagseguroBoleto extends Controller {
 //        unset($this->session->data['coupon']);
 //        unset($this->session->data['voucher']);
 //        unset($this->session->data['vouchers']);
-
-        $this->redirect($this->url->link('checkout/success'));
+        $urlLoc = $this->url->link('checkout/success');
+        $this->redirect($urlLoc);
+        echo "<script>";
+        echo "window.location = '$urlLoc'";
+        echo "</script>";
     }
 
     public function callback() {
@@ -355,7 +358,7 @@ class ControllerPaymentPagseguroBoleto extends Controller {
             $json['success'] = $xmlArray['transaction']['paymentLink'];
             $json['order_id'] = $this->session->data['order_id'];
         }
-     
+
         //storing boleto log
         $log_file = getcwd() . DIRECTORY_SEPARATOR . "shopping_log.txt";
         if (!file_exists($log_file)) {
