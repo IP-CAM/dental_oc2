@@ -95,6 +95,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 
 
         $this->data['addresses'] = $this->model_account_address->getAddresses();
+       
         $last_index = array_keys($this->data['addresses']);
         if (!empty($last_index)) {
             //print_r($last_index[count($last_index) - 1]);

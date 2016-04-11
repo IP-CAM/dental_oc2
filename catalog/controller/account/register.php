@@ -68,7 +68,7 @@ class ControllerAccountRegister extends Controller {
 
         $this->data['txt_payment_numero'] = $this->language->get('txt_payment_numero');
         $this->data['txt_payment_complemento'] = $this->language->get('txt_payment_complemento');
-        
+
         //get area codes
         $this->data['area_codes'] = $this->model_account_customer->getAreaCodes();
         //end of mail chimp
@@ -458,6 +458,15 @@ class ControllerAccountRegister extends Controller {
     protected function validate() {
         if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
             $this->error['firstname'] = $this->language->get('error_firstname');
+        }
+        if ((utf8_strlen($this->request->post['payment_numero']) < 1)) {
+            $this->error['payment_numero'] = $this->language->get('error_payment_numero');
+        }
+        if ((utf8_strlen($this->request->post['payment_complemento']) < 1)) {
+            $this->error['payment_complemento'] = $this->language->get('error_payment_complemento');
+        }
+        if ((utf8_strlen($this->request->post['address_2']) < 1)) {
+            $this->error['address_2'] = $this->language->get('error_address_2');
         }
 
         if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {

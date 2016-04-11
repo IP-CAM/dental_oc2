@@ -225,8 +225,9 @@ class ModelAccountAddress extends Model {
         if (!empty($columns)) {
             $column_string = implode($columns, ",");
         }
+       
          $queryUp = "UPDATE " . DB_PREFIX . "address SET " . $column_string . " WHERE address_id  = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'";
-
+        
         $this->db->query($queryUp);
 
         if (!empty($data['default'])) {

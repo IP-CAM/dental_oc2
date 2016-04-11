@@ -86,28 +86,28 @@
         </tr>
         <tr>
           <td><?php echo $entry_address_1; ?><span class="required">*</span> </td>
-          </tr><tr><td><input type="text" name="address_1" value="<?php echo $address_1; ?>" />
+          </tr><tr><td><input required="" type="text" name="address_1" value="<?php echo $address_1; ?>" />
             <?php if ($error_address_1) { ?>
             <span class="error"><?php echo $error_address_1; ?></span>
             <?php } ?></td>
         </tr>
         <tr>
-          <td><?php echo $txt_payment_numero; ?> </td>
-          </tr><tr><td><input type="text" id="payment_numero" name="payment_numero" value="<?php echo isset($payment_numero)?$payment_numero:''; ?>" />
+          <td><?php echo $txt_payment_numero; ?> <span class="required">*</span> </td>
+          </tr><tr><td><input required="" type="text" id="payment_numero" name="payment_numero" value="<?php echo isset($payment_numero)?$payment_numero:''; ?>" />
             <?php if (isset($error_payment_numero)) { ?>
             <span class="error"><?php echo $error_payment_numero; ?></span>
             <?php } ?></td>
         </tr>
         <tr>
-          <td><?php echo $txt_payment_complemento; ?> </td>
-          </tr><tr><td><input type="text" id='payment_complemento' name="payment_complemento" value="<?php echo isset($payment_complemento)?$payment_complemento:''; ?>" />
+          <td><?php echo $txt_payment_complemento; ?><span class="required">*</span>  </td>
+          </tr><tr><td><input required="" type="text" id='payment_complemento' name="payment_complemento" value="<?php echo isset($payment_complemento)?$payment_complemento:''; ?>" />
             <?php if (isset($error_payment_complemento)) { ?>
             <span class="error"><?php echo $error_payment_complemento; ?></span>
             <?php } ?></td>
         </tr>
         <tr>
-          <td><?php echo $entry_address_2; ?></td>
-          </tr><tr><td><input type="text" name="address_2" value="<?php echo $address_2; ?>" /></td>
+          <td><?php echo $entry_address_2; ?><span class="required">*</span> </td>
+        </tr><tr><td><input required="" type="text" name="address_2" value="<?php echo $address_2; ?>" /></td>
         </tr>
         <tr>
           <td><?php echo $entry_city; ?><span class="required">*</span> </td>

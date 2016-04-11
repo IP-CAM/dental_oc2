@@ -1,49 +1,49 @@
 <div class="customer_information">
     <div>
 
-<!--        <div>
-
-            <div>
-                <?php echo $txt_payment_numero; ?>
-            </div>
-            <div>
-                <select id="payment_numero" name="payment_numero">
-                    <?php
-                    foreach ($numero_options as $numero) {
-                        $numero = $numero['numero_complemento'];
-                        $selected = "";
-                        if(isset($payment_numero) && $payment_numero==$numero){
-                            $selected = "selected = 'selected'";
-                        }
-                        ?>
-                        <option <?php echo $selected; ?> value="<?php echo $numero; ?>"><?php echo $numero; ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
-                
-            </div>
-            <div>
-                <?php echo $txt_payment_complemento; ?>
-            </div>
-            <div>
-                <select id="payment_complemento" name="payment_complemento">
-                    <?php
-                    foreach ($complemento_options as $complemento) {
-                        $complemento = $complemento['numero_complemento'];
-                        $selected = "";
-                        if(isset($payment_complemento) && $payment_complemento==$complemento){
-                            $selected = "selected = 'selected'";
-                        }
-                        ?>
-                        <option <?php echo $selected; ?> value="<?php echo $complemento; ?>"><?php echo $complemento; ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
-                
-            </div>
-        </div>-->
+        <!--        <div>
+        
+                    <div>
+        <?php echo $txt_payment_numero; ?>
+                    </div>
+                    <div>
+                        <select id="payment_numero" name="payment_numero">
+        <?php
+        foreach ($numero_options as $numero) {
+            $numero = $numero['numero_complemento'];
+            $selected = "";
+            if (isset($payment_numero) && $payment_numero == $numero) {
+                $selected = "selected = 'selected'";
+            }
+            ?>
+                                    <option <?php echo $selected; ?> value="<?php echo $numero; ?>"><?php echo $numero; ?></option>
+            <?php
+        }
+        ?>
+                        </select>
+                        
+                    </div>
+                    <div>
+        <?php echo $txt_payment_complemento; ?>
+                    </div>
+                    <div>
+                        <select id="payment_complemento" name="payment_complemento">
+        <?php
+        foreach ($complemento_options as $complemento) {
+            $complemento = $complemento['numero_complemento'];
+            $selected = "";
+            if (isset($payment_complemento) && $payment_complemento == $complemento) {
+                $selected = "selected = 'selected'";
+            }
+            ?>
+                                    <option <?php echo $selected; ?> value="<?php echo $complemento; ?>"><?php echo $complemento; ?></option>
+            <?php
+        }
+        ?>
+                        </select>
+                        
+                    </div>
+                </div>-->
         <div colspan="4">
             <?php
             $customer_types = array(
@@ -143,10 +143,10 @@
                             foreach ($area_codes as $area_code) {
                                 $selected = "";
                                 if (!empty($payment_cad_area_code) && $area_code == $payment_cad_area_code) {
-                                    $selected = "checked='checked';";
+                                    $selected = "selected='selected' ";
                                 }
                                 ?>
-                                <option value="<?php echo $area_code; ?>"><?php echo $area_code; ?></option>
+                                <option <?php echo $selected; ?> value="<?php echo $area_code; ?>"><?php echo $area_code; ?></option>
 
                                 <?php
                             }
@@ -389,15 +389,18 @@
                         </select>
 
                     </div>
-                    <div>
-                        <?php echo $txt_payment_profession_instituica; ?>
+                    <div class="deleted_by_brian" style="display: none">
+                        <div>
+                            <?php echo $txt_payment_profession_instituica; ?>
+                        </div>
+                        <div>
+                            <input type="text" id="payment_profession_instituica" 
+                                   name="payment_profession_instituica"
+                                   value="<?php echo isset($payment_profession_instituica) ? $payment_profession_instituica : ""; ?>"
+                                   />
+                        </div>
                     </div>
-                    <div>
-                        <input type="text" id="payment_profession_instituica" 
-                               name="payment_profession_instituica"
-                               value="<?php echo isset($payment_profession_instituica) ? $payment_profession_instituica : ""; ?>"
-                               />
-                    </div>
+
                 </div>
                 <div class="area">
 
@@ -424,58 +427,56 @@
 
                         if (!empty($payment_profession_atuacao)) {
                             $payment_profession_atuacao = explode(",", $payment_profession_atuacao);
-                        }
-                        else {
+                        } else {
                             $payment_profession_atuacao = array();
                         }
 
                         $display_dentista_reference_box = "display:none";
                         $display_tec_reference_box = "display:none";
 
-                        if(empty($payment_profession_type) || $payment_profession_type == "Dentista"){
+                        if (empty($payment_profession_type) || $payment_profession_type == "Dentista") {
                             $display_dentista_reference_box = "";
-                        }
-                        else if($payment_profession_type == "Técnico em Prótese"){
+                        } else if ($payment_profession_type == "Técnico em Prótese") {
                             $display_tec_reference_box = "";
                         }
 
-                            echo "<div reference='Dentista' style='".$display_dentista_reference_box."'>";
+                        echo "<div reference='Dentista' style='" . $display_dentista_reference_box . "'>";
 
-                                foreach ($options_atuaca_dentista as $opt) {
-                                    if (!empty($payment_profession_atuacao) && in_array($opt, $payment_profession_atuacao)) {
-                                        $checkd = 'checked="checked"';
-                                    } else {
-                                        $checkd = '';
-                                    }
-                                    ?>
-                                    <label><?php echo $opt; ?></label>    
-                                    <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
-                                    <?php
-                                }
-                            echo "</div>";
+                        foreach ($options_atuaca_dentista as $opt) {
+                            if (!empty($payment_profession_atuacao) && in_array($opt, $payment_profession_atuacao)) {
+                                $checkd = 'checked="checked"';
+                            } else {
+                                $checkd = '';
+                            }
+                            ?>
+                            <label><?php echo $opt; ?></label>    
+                            <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
+    <?php
+}
+echo "</div>";
 
-                            echo "<div reference='Técnico em Prótese' style='".$display_tec_reference_box."'>";
+echo "<div reference='Técnico em Prótese' style='" . $display_tec_reference_box . "'>";
 
-                                foreach ($options_atuaca_técnico as $opt) {
-                                    if (!empty($payment_profession_atuacao) && in_array($opt, $payment_profession_atuacao)) {
-                                        $checkd = 'checked="checked"';
-                                    } else {
-                                        $checkd = '';
-                                    }
-                                    ?>
-                                    <label><?php echo $opt; ?></label>    
-                                    <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
-                                    <?php
-                                }
-                            echo "</div>";
-                        ?>
+foreach ($options_atuaca_técnico as $opt) {
+    if (!empty($payment_profession_atuacao) && in_array($opt, $payment_profession_atuacao)) {
+        $checkd = 'checked="checked"';
+    } else {
+        $checkd = '';
+    }
+    ?>
+                            <label><?php echo $opt; ?></label>    
+                            <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
+    <?php
+}
+echo "</div>";
+?>
                     </div>
-              
+
 
                 </div>
                 <div class="">
                     <div>
-                        <?php echo $txt_payment_news_letter; ?>
+<?php echo $txt_payment_news_letter; ?>
                     </div>
                     <div colspan="3">
                         <input type="checkbox" name="payment_news_letter" id="payment_news_letter" checked="checked" />
@@ -506,12 +507,12 @@
             $(".od").hide();
             $(".pr").hide();
             $(".ac").hide();
-            
+
             $(".area>div.area_checkboxes>div").hide();
-            if($(".area>div.area_checkboxes>div[reference='"+$(this).val()+"']").length>0){
-                $(".area>div.area_checkboxes>div[reference='"+$(this).val()+"']").show();
+            if ($(".area>div.area_checkboxes>div[reference='" + $(this).val() + "']").length > 0) {
+                $(".area>div.area_checkboxes>div[reference='" + $(this).val() + "']").show();
             }
-            
+
 
             if ($(this).is(':checked')) {
                 if ($(this).val() == 'Dentista') {
@@ -577,10 +578,10 @@
 </script>    
 <style>
     div.area_checkboxes {
-         width: 521px;
+        width: 521px;
     }
     div.checkout-content div.area_checkboxes {
-         width: 330px;
+        width: 330px;
     }
     div.area_checkboxes input[type="checkbox"] {
         margin-bottom: 10px;

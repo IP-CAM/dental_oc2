@@ -196,6 +196,7 @@ function get_Width_Height() {
     $("#pagseguro_boleto,#pagseguro_credit_card,#pagseguro_eft").change(function () {
         if ($(this).is(':checked')) {
             $("#agree_to").prop("checked", true);
+            payment_address_checkout(false);
             payment_method_checkout_boleto();
         }
     })
