@@ -52,6 +52,9 @@ $_['error_payment_cad_cpf'] = 'Não deve estar vazio';
 $_['error_country'] = 'Atenção: Por favor, selecione um país!';
 $_['error_zone'] = 'Atenção: Por favor, selecione um estado!';
 $_['error_agree'] = 'Atenção: Você deve aceitar os %s!';
+$_['error_payment_numero'] = 'Por favor, preencha os campos obligatorios';
+$_['error_payment_complemento'] = 'Por favor, preencha os campos obligatorios';
+$_['error_address_2'] = 'Por favor, preencha os campos obligatorios';
 
 //mail_chimp_labels
 

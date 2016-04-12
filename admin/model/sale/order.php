@@ -5,10 +5,13 @@ class ModelSaleOrder extends Model {
     public $_mail_chimp_columns = array(
         "payment_customer_type" => "varchar",
         "payment_cad_name" => "varchar",
+        "payment_numero" => "varchar",
+        "payment_complemento" => "varchar",
         "payment_cad_dob" => "date",
         "payment_cad_cpf" => "varchar",
         "payment_cad_rg" => "varchar",
         "payment_cad_telefone" => "varchar",
+        "payment_cad_area_code" => "varchar",
         "payment_cad_celular" => "varchar",
         "payment_cad_gender" => "varchar",
         "payment_corop_name" => "varchar",
@@ -552,17 +555,15 @@ class ModelSaleOrder extends Model {
                 'accept_language' => $order_query->row['accept_language'],
                 'date_added' => $order_query->row['date_added'],
                 'date_modified' => $order_query->row['date_modified'],
-                //mail chimp 
-                
+                    //mail chimp 
             );
-            
+
             //mail chimp columns
             $columns = array_keys($this->_mail_chimp_columns);
-            foreach($columns as $col){
-                if(isset($order_query->row[$col])){
+            foreach ($columns as $col) {
+                if (isset($order_query->row[$col])) {
                     $data[$col] = $order_query->row[$col];
-                }
-                else {
+                } else {
                     $data[$col] = 'NULL';
                 }
             }

@@ -86,28 +86,32 @@
         </tr>
         <tr>
           <td><?php echo $entry_address_1; ?><span class="required">*</span> </td>
-          </tr><tr><td><input required="" type="text" name="address_1" value="<?php echo $address_1; ?>" />
+          </tr><tr><td><input  type="text" name="address_1" value="<?php echo $address_1; ?>" />
             <?php if ($error_address_1) { ?>
             <span class="error"><?php echo $error_address_1; ?></span>
             <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $txt_payment_numero; ?> <span class="required">*</span> </td>
-          </tr><tr><td><input required="" type="text" id="payment_numero" name="payment_numero" value="<?php echo isset($payment_numero)?$payment_numero:''; ?>" />
+          </tr><tr><td><input  type="text" id="payment_numero" name="payment_numero" value="<?php echo isset($payment_numero)?$payment_numero:''; ?>" />
             <?php if (isset($error_payment_numero)) { ?>
             <span class="error"><?php echo $error_payment_numero; ?></span>
             <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $txt_payment_complemento; ?><span class="required">*</span>  </td>
-          </tr><tr><td><input required="" type="text" id='payment_complemento' name="payment_complemento" value="<?php echo isset($payment_complemento)?$payment_complemento:''; ?>" />
+          </tr><tr><td><input type="text" id='payment_complemento' name="payment_complemento" value="<?php echo isset($payment_complemento)?$payment_complemento:''; ?>" />
             <?php if (isset($error_payment_complemento)) { ?>
             <span class="error"><?php echo $error_payment_complemento; ?></span>
             <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_address_2; ?><span class="required">*</span> </td>
-        </tr><tr><td><input required="" type="text" name="address_2" value="<?php echo $address_2; ?>" /></td>
+        </tr><tr><td><input  type="text" name="address_2" value="<?php echo $address_2; ?>" />
+             <?php if ($error_address_2) { ?>
+            <span class="error"><?php echo $error_address_2; ?></span>
+            <?php } ?>
+            </td>
         </tr>
         <tr>
           <td><?php echo $entry_city; ?><span class="required">*</span> </td>
@@ -118,7 +122,7 @@
         </tr>
         <tr>
           <td><?php echo $entry_postcode; ?><span id="postcode-required" class="required">*</span> </td>
-        </tr><tr><td><input type="text" name="postcode" value="<?php echo $postcode; ?>" required="" />
+        </tr><tr><td><input type="text" name="postcode" value="<?php echo $postcode; ?>"  />
             <?php if ($error_postcode) { ?>
             <span class="error"><?php echo $error_postcode; ?></span>
             <?php } ?></td>

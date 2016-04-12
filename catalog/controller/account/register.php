@@ -182,6 +182,22 @@ class ControllerAccountRegister extends Controller {
             $this->data['error_firstname'] = '';
         }
 
+        if (isset($this->error['payment_numero'])) {
+            $this->data['error_payment_numero'] = $this->error['payment_numero'];
+        } else {
+            $this->data['error_payment_numero'] = '';
+        }
+        if (isset($this->error['payment_complemento'])) {
+            $this->data['error_payment_complemento'] = $this->error['payment_complemento'];
+        } else {
+            $this->data['error_payment_complemento'] = '';
+        }
+        if (isset($this->error['address_2'])) {
+            $this->data['error_address_2'] = $this->error['address_2'];
+        } else {
+            $this->data['error_address_2'] = '';
+        }
+
         if (isset($this->error['lastname'])) {
             $this->data['error_lastname'] = $this->error['lastname'];
         } else {
@@ -316,6 +332,14 @@ class ControllerAccountRegister extends Controller {
             $this->data['payment_customer_type'] = $this->request->post['payment_customer_type'];
         } else {
             $this->data['payment_customer_type'] = "";
+        }
+        //setting mail chimp fields as post values
+        foreach (array_keys($this->model_account_customer->getAddressInstance()->_mail_chimp_columns) as $field) {
+            if (!empty($this->request->post[$field])) {
+                $this->data[$field] = $this->request->post[$field];
+            } else {
+                $this->data[$field] = "";
+            }
         }
 
 

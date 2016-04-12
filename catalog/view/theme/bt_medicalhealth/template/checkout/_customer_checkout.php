@@ -425,8 +425,11 @@
                         );
                         $checkd = '';
 
-                        if (!empty($payment_profession_atuacao)) {
+                        if (!empty($payment_profession_atuacao) && is_string($payment_profession_atuacao)) {
                             $payment_profession_atuacao = explode(",", $payment_profession_atuacao);
+                        } 
+                        else if (!empty($payment_profession_atuacao) && is_array($payment_profession_atuacao)) {
+                           
                         } else {
                             $payment_profession_atuacao = array();
                         }

@@ -171,6 +171,21 @@
                 <td><input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" /></td>
               </tr>
               <tr>
+                <td><span id="postcode-required<?php echo $address_row; ?>" class="required">*</span> <?php echo $entry_payment_numero; ?></td>
+                <td><input type="text" name="address[<?php echo $address_row; ?>][payment_numero]" value="<?php echo $address['payment_numero']; ?>" /></td>
+              </tr>
+              <tr>
+                <td><span id="postcode-required<?php echo $address_row; ?>" class="required">*</span> <?php echo $entry_payment_complemento; ?></td>
+                <td><input type="text" name="address[<?php echo $address_row; ?>][payment_complemento]" value="<?php echo $address['payment_complemento']; ?>" /></td>
+              </tr>
+              <tr>
+                <td><span id="postcode-required<?php echo $address_row; ?>" class="required">*</span> <?php echo $entry_payment_cad_cpf; ?></td>
+                <td><input type="text" name="address[<?php echo $address_row; ?>][payment_cad_cpf]" value="<?php echo $address['payment_cad_cpf']; ?>" /></td>
+              </tr>
+                <td><span id="postcode-required<?php echo $address_row; ?>" class="required">*</span> <?php echo "DDD"; ?></td>
+                <td><input type="text" name="address[<?php echo $address_row; ?>][payment_cad_area_code]" value="<?php echo $address['payment_cad_area_code']; ?>" /></td>
+              </tr>
+              <tr>
                 <td><span class="required">*</span> <?php echo $entry_country; ?></td>
                 <td><select name="address[<?php echo $address_row; ?>][country_id]" onchange="country(this, '<?php echo $address_row; ?>', '<?php echo $address['zone_id']; ?>');">
                     <option value=""><?php echo $text_select; ?></option>

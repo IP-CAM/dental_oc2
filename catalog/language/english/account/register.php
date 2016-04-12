@@ -52,6 +52,9 @@ $_['error_postcode'] = 'Postcode must be between 2 and 10 characters!';
 $_['error_country'] = 'Please select a country!';
 $_['error_zone'] = 'Please select a region / state!';
 $_['error_agree'] = 'Warning: You must agree to the %s!';
+$_['error_payment_numero'] = 'Please fill in the fields obligatorios';
+$_['error_payment_complemento'] = 'Please fill in the fields obligatorios';
+$_['error_address_2'] = 'Please fill in the fields obligatorios';
 
 
 //mail_chimp_labels

@@ -627,7 +627,12 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['entry_address_2'] = $this->language->get('entry_address_2');
 		$this->data['entry_city'] = $this->language->get('entry_city');
 		$this->data['entry_postcode'] = $this->language->get('entry_postcode');
-		$this->data['entry_zone'] = $this->language->get('entry_zone');
+		//mail chimp fields
+                $this->data['entry_payment_numero'] = $this->language->get('entry_payment_numero');
+		$this->data['entry_payment_complemento'] = $this->language->get('entry_payment_complemento');
+		$this->data['entry_payment_cad_cpf'] = $this->language->get('entry_payment_cad_cpf');
+		
+                $this->data['entry_zone'] = $this->language->get('entry_zone');
 		$this->data['entry_country'] = $this->language->get('entry_country');
 		$this->data['entry_default'] = $this->language->get('entry_default');
 		$this->data['entry_comment'] = $this->language->get('entry_comment');
@@ -903,6 +908,8 @@ class ControllerSaleCustomer extends Controller {
 		} else {
 			$this->data['addresses'] = array();
 		}
+                
+                
 
 		if (isset($this->request->post['address_id'])) {
 			$this->data['address_id'] = $this->request->post['address_id'];
@@ -930,7 +937,7 @@ class ControllerSaleCustomer extends Controller {
 			}
 		}		
 
-		$this->template = 'sale/customer_form.tpl';
+		$this->template = 'sale/customer_form.php';
 		$this->children = array(
 			'common/header',
 			'common/footer'
