@@ -227,8 +227,10 @@ class ModelCheckoutOrder extends Model {
     public function confirm($order_id, $order_status_id, $comment = '', $notify = false) {
         $order_info = $this->getOrder($order_id);
 
-        if ($order_info && !$order_info['order_status_id']) {
+
+        if (isset($order_info) && !($order_info['order_status_id'])) {
             // Fraud Detection
+
             if ($this->config->get('config_fraud_detection')) {
                 $this->load->model('checkout/fraud');
 
@@ -303,6 +305,8 @@ class ModelCheckoutOrder extends Model {
             if ($this->config->get('config_complete_status_id') == $order_status_id) {
                 $this->model_checkout_voucher->confirm($order_id);
             }
+
+
 
             // Order Totals			
             $order_total_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE order_id = '" . (int) $order_id . "' ORDER BY sort_order ASC");
@@ -559,6 +563,8 @@ class ModelCheckoutOrder extends Model {
 
                 $text .= $language->get('text_new_footer') . "\n\n";
 
+
+
                 $mail = new Mail();
                 $mail->protocol = $this->config->get('config_mail_protocol');
                 $mail->parameter = $this->config->get('config_mail_parameter');
@@ -573,78 +579,106 @@ class ModelCheckoutOrder extends Model {
                 $mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
                 $mail->setHtml($html);
                 $mail->setText(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
-                $mail->send();
+
+                try {
+                    try {
+                        //comment for purpose of smtp error
+                    
+                          $mail->send();
+                       
+                    } catch (MyException $e) {
+                        // rethrow it
+                    }
+                } catch (Exception $e) {
+                    
+                }
             }
 
             // Admin Alert Mail
-            if ($this->config->get('config_alert_mail')) {
-                $subject = sprintf($language->get('text_new_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'), $order_id);
+            $config_alert_mail = $this->config->get('config_alert_mail');
+            if (!empty($config_alert_mail)) {
 
-                // Text 
-                $text = $language->get('text_new_received') . "\n\n";
-                $text .= $language->get('text_new_order_id') . ' ' . $order_id . "\n";
-                $text .= $language->get('text_new_date_added') . ' ' . date($language->get('date_format_short'), strtotime($order_info['date_added'])) . "\n";
-                $text .= $language->get('text_new_order_status') . ' ' . $order_status . "\n\n";
-                $text .= $language->get('text_new_products') . "\n";
+                try {
+                    try {
+                        $subject = sprintf($language->get('text_new_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'), $order_id);
 
-                foreach ($order_product_query->rows as $product) {
-                    $text .= $product['quantity'] . 'x ' . $product['name'] . ' (' . $product['model'] . ') ' . html_entity_decode($this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']), ENT_NOQUOTES, 'UTF-8') . "\n";
+                        // Text 
+                        $text = $language->get('text_new_received') . "\n\n";
+                        $text .= $language->get('text_new_order_id') . ' ' . $order_id . "\n";
+                        $text .= $language->get('text_new_date_added') . ' ' . date($language->get('date_format_short'), strtotime($order_info['date_added'])) . "\n";
+                        $text .= $language->get('text_new_order_status') . ' ' . $order_status . "\n\n";
+                        $text .= $language->get('text_new_products') . "\n";
 
-                    $order_option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int) $order_id . "' AND order_product_id = '" . $product['order_product_id'] . "'");
+                        foreach ($order_product_query->rows as $product) {
+                            $text .= $product['quantity'] . 'x ' . $product['name'] . ' (' . $product['model'] . ') ' . html_entity_decode($this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']), ENT_NOQUOTES, 'UTF-8') . "\n";
 
-                    foreach ($order_option_query->rows as $option) {
-                        if ($option['type'] != 'file') {
-                            $value = $option['value'];
-                        } else {
-                            $value = utf8_substr($option['value'], 0, utf8_strrpos($option['value'], '.'));
+                            $order_option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int) $order_id . "' AND order_product_id = '" . $product['order_product_id'] . "'");
+
+                            foreach ($order_option_query->rows as $option) {
+                                if ($option['type'] != 'file') {
+                                    $value = $option['value'];
+                                } else {
+                                    $value = utf8_substr($option['value'], 0, utf8_strrpos($option['value'], '.'));
+                                }
+
+                                $text .= chr(9) . '-' . $option['name'] . ' ' . (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value) . "\n";
+                            }
                         }
 
-                        $text .= chr(9) . '-' . $option['name'] . ' ' . (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value) . "\n";
+                        foreach ($order_voucher_query->rows as $voucher) {
+                            $text .= '1x ' . $voucher['description'] . ' ' . $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value']);
+                        }
+
+                        $text .= "\n";
+
+                        $text .= $language->get('text_new_order_total') . "\n";
+
+                        foreach ($order_total_query->rows as $total) {
+                            $text .= $total['title'] . ': ' . html_entity_decode($total['text'], ENT_NOQUOTES, 'UTF-8') . "\n";
+                        }
+
+                        $text .= "\n";
+
+                        if ($order_info['comment']) {
+                            $text .= $language->get('text_new_comment') . "\n\n";
+                            $text .= $order_info['comment'] . "\n\n";
+                        }
+
+                        $mail = new Mail();
+                        $mail->protocol = $this->config->get('config_mail_protocol');
+                        $mail->parameter = $this->config->get('config_mail_parameter');
+                        $mail->hostname = $this->config->get('config_smtp_host');
+                        $mail->username = $this->config->get('config_smtp_username');
+                        $mail->password = $this->config->get('config_smtp_password');
+                        $mail->port = $this->config->get('config_smtp_port');
+                        $mail->timeout = $this->config->get('config_smtp_timeout');
+                        $mail->setTo($this->config->get('config_email'));
+                        $mail->setFrom($this->config->get('config_email'));
+                        $mail->setSender($order_info['store_name']);
+                        $mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
+                        $mail->setText(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
+                        //comment for purpose of smtp error
+                        
+                          $mail->send();
+                        
+                        // Send to additional alert emails
+                        $emails = explode(',', $this->config->get('config_alert_emails'));
+
+                        foreach ($emails as $email) {
+                            if ($email && preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $email)) {
+                                $mail->setTo($email);
+                                //comment for purpose of smtp error
+                                
+                                  $mail->send();
+
+                                
+                            }
+                        }
+                    } catch (MyException $e) {
+                        // rethrow it
                     }
-                }
-
-                foreach ($order_voucher_query->rows as $voucher) {
-                    $text .= '1x ' . $voucher['description'] . ' ' . $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value']);
-                }
-
-                $text .= "\n";
-
-                $text .= $language->get('text_new_order_total') . "\n";
-
-                foreach ($order_total_query->rows as $total) {
-                    $text .= $total['title'] . ': ' . html_entity_decode($total['text'], ENT_NOQUOTES, 'UTF-8') . "\n";
-                }
-
-                $text .= "\n";
-
-                if ($order_info['comment']) {
-                    $text .= $language->get('text_new_comment') . "\n\n";
-                    $text .= $order_info['comment'] . "\n\n";
-                }
-
-                $mail = new Mail();
-                $mail->protocol = $this->config->get('config_mail_protocol');
-                $mail->parameter = $this->config->get('config_mail_parameter');
-                $mail->hostname = $this->config->get('config_smtp_host');
-                $mail->username = $this->config->get('config_smtp_username');
-                $mail->password = $this->config->get('config_smtp_password');
-                $mail->port = $this->config->get('config_smtp_port');
-                $mail->timeout = $this->config->get('config_smtp_timeout');
-                $mail->setTo($this->config->get('config_email'));
-                $mail->setFrom($this->config->get('config_email'));
-                $mail->setSender($order_info['store_name']);
-                $mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
-                $mail->setText(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
-                $mail->send();
-
-                // Send to additional alert emails
-                $emails = explode(',', $this->config->get('config_alert_emails'));
-
-                foreach ($emails as $email) {
-                    if ($email && preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $email)) {
-                        $mail->setTo($email);
-                        $mail->send();
-                    }
+                } catch (Exception $e) {
+                    
                 }
             }
         }

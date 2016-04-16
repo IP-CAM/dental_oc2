@@ -39,8 +39,14 @@ class ControllerPaymentPagseguroBoleto extends Controller {
 
     public function confirm() {
 
+//        echo "HERE";
+        
         $this->load->model('checkout/order');
-
+//        echo "<pre>";
+//        print_r($this->session);
+//        print_r( $this->config->get('pagseguro_boleto_order_aguardando_pagamento'));
+//        echo "</pre>";
+        
         $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagseguro_boleto_order_aguardando_pagamento'));
 
 
@@ -57,10 +63,15 @@ class ControllerPaymentPagseguroBoleto extends Controller {
 //        unset($this->session->data['voucher']);
 //        unset($this->session->data['vouchers']);
         $urlLoc = $this->url->link('checkout/success');
-        $this->redirect($urlLoc);
+        
+//        echo $urlLoc;
+//        die;
+        
+        
         echo "<script>";
         echo "window.location = '$urlLoc'";
         echo "</script>";
+        $this->redirect($urlLoc);
     }
 
     public function callback() {
