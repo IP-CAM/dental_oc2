@@ -91,6 +91,7 @@ class ModelShippingCorreios extends Model {
             $status = true;
         }
 
+       
         $method_data = array();
 
         if ($status) {
@@ -127,6 +128,7 @@ class ModelShippingCorreios extends Model {
             if ($this->config->get('correios_' . $this->correios['SEDEX Hoje'])) {
                 $this->nCdServico[$this->peso_max_sedex10_hoje][] = $this->correios['SEDEX Hoje'];
             }
+          
             // serviços com contrato			
             if (trim($this->config->get('correios_contrato_codigo')) != "" && trim($this->config->get('correios_contrato_senha')) != "") {
                 $this->contrato_codigo = $this->config->get('correios_contrato_codigo');
@@ -209,6 +211,8 @@ class ModelShippingCorreios extends Model {
                     'sort_order' => $this->config->get('correios_sort_order'),
                     'error' => false
                 );
+                
+         
             } else if (!empty($this->mensagem_erro)) {
                 $method_data = array(
                     'code' => 'correios',
@@ -219,6 +223,7 @@ class ModelShippingCorreios extends Model {
                 );
             }
         }
+         
         return $method_data;
     }
 
@@ -514,7 +519,7 @@ class ModelShippingCorreios extends Model {
                     if (($cabe_do_lado || $cabe_no_fundo || $cabe_em_cima) && $peso_dentro_limite) {
 
                         // já existe o mesmo produto na caixa, assim incrementa-se a sua quantidade
-                        if (isset($caixas[$cx_num]['produtos'][$prod_copy['key']])) {
+                        if (isset($prod_copy['key']) && isset($caixas[$cx_num]['produtos'][$prod_copy['key']])) {
                             $caixas[$cx_num]['produtos'][$prod_copy['key']]['quantity'] ++;
                         }
                         // adiciona o novo produto

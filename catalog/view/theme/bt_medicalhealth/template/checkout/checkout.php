@@ -315,7 +315,15 @@
                 if ($('input[name=\'account\']:checked') == "guest") {
                     payment_method_checkout();
                 }
-                checkout_confirm('1');
+                if($("input.shipping_method").length>0){
+                    $("input.shipping_method").eq(0).trigger("click");
+                }
+                else {
+                    checkout_confirm('1');
+                }
+                
+                
+                
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -604,9 +612,9 @@
 
                 $('.warning, .error').remove();
                 if (_.size(json) > 0) {
-                    if (typeof(json['redirect'])!= "undefined") {
+                    if (typeof (json['redirect']) != "undefined") {
                         location = json['redirect'];
-                    } else if (_.size(json) > 0 && typeof(json['error']) != "undefined") {
+                    } else if (_.size(json) > 0 && typeof (json['error']) != "undefined") {
                         console.log(json['error']);
                         console.log("-----------");
                         if (json['error']['warning']) {
@@ -1117,6 +1125,35 @@
             $('#confirm .checkout-content #area_code').val($("#payment_cad_area_code").val());
         }
 
+    }
+
+    function shipping_amount() {
+        $("input.shipping_method").click(function () {
+            loader_box.show();
+            var current_shipping_method = $(this).val();
+            $.ajax({
+                url: 'index.php?route=checkout/shipping_amount/index',
+                type: 'post',
+                data: {
+                    shpping_address_id: $("#shipping-address select[name='address_id']").val(),
+                    shipping_method: current_shipping_method,
+                    shipping_comment: $(".shipping_comment").val(),
+                },
+                dataType: 'json',
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                    loader_box.hide();
+
+                },
+                success: function () {
+                    ccheckout_confirm('1');
+                }
+            })
+
+        })
     }
 
     $('#checkout .checkout-content input[name=\'account\']').live('change', function () {

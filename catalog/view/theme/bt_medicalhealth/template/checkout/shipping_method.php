@@ -13,9 +13,9 @@
                     <tr class="highlight">
                         <td><?php if ($quote['code'] == $code || !$code) { ?>
                                 <?php $code = $quote['code']; ?>
-                                <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" checked="checked" />
+                                <input class="shipping_method" type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" checked="checked" />
                             <?php } else { ?>
-                                <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" />
+                                <input class="shipping_method" type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" />
                             <?php } ?></td>
                         <td style="width:200px;"><label for="<?php echo $quote['code']; ?>"><?php echo $quote['title']; ?></label></td>
                         <td style="text-align: left;"><label for="<?php echo $quote['code']; ?>"><?php echo $quote['text']; ?></label></td>
@@ -31,7 +31,7 @@
     <br />
 <?php } ?>
 <b><?php echo $text_comments; ?></b>
-<textarea name="comment" rows="8" style="width: 94%;"><?php echo $comment; ?></textarea>
+<textarea class="shipping_comment" name="comment" rows="8" style="width: 94%;"><?php echo $comment; ?></textarea>
 <br />
 <br />
 <br />
@@ -40,3 +40,6 @@
         <span class="orange_button"><input type="button" value="<?php echo $button_continue; ?>" id="button-shipping-method" class="button" /></span>
     </div>
 </div>
+<script>
+  shipping_amount();
+</script>    

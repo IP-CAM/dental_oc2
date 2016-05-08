@@ -38,16 +38,19 @@ class ControllerCheckoutShippingCalculator extends Controller {
             $this->load->model('setting/extension');
 
             $results = $this->model_setting_extension->getExtensions('shipping');
+            
+            
 
             foreach ($results as $result) {
+                
                 if ($this->config->get($result['code'] . '_status')) {
 
 
                     if ($result['code'] != "flat") {
                         $this->load->model('shipping/' . $result['code']);
                         $quote = $this->{'model_shipping_' . $result['code']}->getQuote($shipping_address, $test_products);
-
-                        if ($quote) {
+                        
+                        if (isset($quote)) {
                             $quote_data[$result['code']] = array(
                                 'title' => $quote['title'],
                                 'quote' => $quote['quote'],

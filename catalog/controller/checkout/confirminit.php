@@ -9,6 +9,20 @@ class ControllerCheckoutConfirminit extends Controller {
         // Validate if payment address has been set.
         $this->load->model('account/address');
 
+        if ($this->cart->hasShipping()) {
+            // Validate if shipping address has been set.		
+            $this->load->model('account/address');
+
+            if ($this->customer->isLogged() && isset($this->session->data['shipping_address_id'])) {
+                $shipping_address = $this->model_account_address->getAddress($this->session->data['shipping_address_id']);
+            } 
+
+            
+        } else {
+            unset($this->session->data['shipping_method']);
+            unset($this->session->data['shipping_methods']);
+        }
+
 
         // Validate minimum quantity requirments.			
         $products = $this->cart->getProducts();
