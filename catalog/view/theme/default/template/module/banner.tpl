@@ -1,4 +1,4 @@
-<div id="banner<?php echo $module; ?>" class="banner">
+<div id="banner<?php echo $module; ?>" class="banner banner_left">
   <?php foreach ($banners as $banner) { ?>
   <?php if ($banner['link']) { ?>
   <div><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" title="<?php echo $banner['title']; ?>" /></a></div>
@@ -22,3 +22,8 @@ var banner = function() {
 
 setTimeout(banner, 2000);
 //--></script>
+<style>
+    .banner_left {
+        margin-top:50px;
+    }
+</style>    

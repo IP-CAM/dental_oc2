@@ -1,9 +1,11 @@
-<?php echo $header; ?>
+<?php echo $header;  ?>
 <div class="breadcrumb bc_category">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
         <a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
 </div>
+
+
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content" class="twelve columns">
     <div class="codespot-content main-column-content">
@@ -72,18 +74,30 @@
 
             <div class="product-list">
                 <?php foreach ($products as $key => $product) { ?>
-                    <div class="<?php echo (($key + 1) % 3 == 0 ? 'one-product-list last' : 'one-product-list' );
-            echo ($product == end($products) ? ' lastest' : ''); ?>">
-                        <?php if ($product['thumb']) { ?>
+                    <?php
+                    $price_display = "";
+                    $button_cart_text = $button_cart;
+                    if (isset($product['product_on_phone']) && $product['product_on_phone'] == 1) {
+                        $button_cart_text = 'Compras pelo televendas';
+                        $price_display  = "display:none;;";
+                    } else {
+                        $button_cart_text = $button_cart;
+                    }
+                    ?>
+                    <div class="<?php
+                    echo (($key + 1) % 3 == 0 ? 'one-product-list last' : 'one-product-list' );
+                    echo ($product == end($products) ? ' lastest' : '');
+                    ?>">
+                             <?php if ($product['thumb']) { ?>
                             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
-        <?php } ?>
+                        <?php } ?>
                         <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
                         <div class="description"><?php echo $product['description']; ?></div>
                         <?php if ($product['rating']) { ?>
                             <div class="rating"><img src="catalog/view/theme/bt_medicalhealth/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
                         <?php } ?>
-                            <?php if ($product['price']) { ?>
-                            <div class="price">
+                        <?php if ($product['price']) { ?>
+                            <div class="price" style="<?php echo $price_display; ?>">
                                 <?php if (!$product['special']) { ?>
                                     <?php echo $product['price']; ?>
                                 <?php } else { ?>
@@ -91,36 +105,28 @@
                                 <?php } ?>
                                 <?php if ($product['tax']) { ?>
                                     <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
-                            <?php } ?>
+                                <?php } ?>
                             </div>
-        <?php } ?>
+                        <?php } ?>
                         <div class="cart">
-                            <?php 
-                                $button_cart_text = $button_cart;
-                                if(isset($product['product_on_phone']) && $product['product_on_phone'] ==1){
-                                     $button_cart_text= 'Compras pelo televendas';
-                                }
-                                else {
-                                    $button_cart_text = $button_cart;
-                                }
-                            ?>
-                            <input type="button" value="<?php echo  $button_cart_text; ?>" onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button" />
+
+                            <input type="button" value="<?php echo $button_cart_text; ?>" onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button" />
                         </div>
                         <div class="wishlist"><a onclick="boss_addToWishList('<?php echo $product['product_id']; ?>');"><?php echo $button_wishlist; ?></a></div>
                         <div class="compare"><a onclick="boss_addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>
-                        
+
                     </div>
-    <?php } ?>
+                <?php } ?>
             </div>
             <div class="pagination"><?php echo $pagination; ?></div>
         <?php } ?>
-<?php if (!$categories && !$products) { ?>
+        <?php if (!$categories && !$products) { ?>
             <div class="content"><?php echo $text_empty; ?></div>
             <div class="buttons">
                 <div class="left"><a href="<?php echo $continue; ?>" class="orange_button"><span><?php echo $button_continue; ?></span></a></div>
             </div>
         <?php } ?>
-<?php echo $content_bottom; ?>
+        <?php echo $content_bottom; ?>
     </div>
 </div>
 <script type="text/javascript"><!--
@@ -141,9 +147,10 @@ function display(view) {
                 }
 
                 var price = $(element).find('.price').html();
+                var price_style = $(element).find('.price').attr("style");
 
                 if (price != null) {
-                    html += '<div class="price">' + price + '</div>';
+                    html += '<div class="price" style="'+price_style+'">' + price + '</div>';
                 }
 
                 html += '  <div class="cart">' + $(element).find('.cart').html() + '</div>';

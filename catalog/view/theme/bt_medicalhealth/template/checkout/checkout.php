@@ -1149,7 +1149,7 @@
 
                 },
                 success: function () {
-                    ccheckout_confirm('1');
+                    checkout_confirm('1');
                 }
             })
 

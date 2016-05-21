@@ -413,9 +413,9 @@ class ControllerProductCategory extends Controller {
 
             $this->data['continue'] = $this->url->link('common/home');
            
-            if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.tpl')) {
+            if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.php')) {
                
-                $this->template = $this->config->get('config_template') . '/template/product/category.tpl';
+                $this->template = $this->config->get('config_template') . '/template/product/category.php';
             } else {
                 $this->template = 'default/template/product/category.tpl';
             }

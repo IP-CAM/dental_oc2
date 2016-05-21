@@ -8,8 +8,10 @@ class ControllerModuleBossMegaMenu extends Controller {
 
         $menus = array();
         $menus = $this->config->get('boss_megamenu_menu');
+        
+   
 
-        if (isset($menus)) {
+        if (isset($menus) && is_array($menus)) {
             $sort_order = array();
             foreach ($menus as $key => $value) {
                 $sort_order[$key] = $value['order'];
