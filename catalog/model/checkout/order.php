@@ -37,18 +37,22 @@ class ModelCheckoutOrder extends Model {
             if (!empty($list['data'])) {
                 if (!empty($data['payment_profession_type'])) {
                     $add_group = array("name" => $data['payment_profession_type']);
-                    if (!empty($data['payment_profession_atuacao'])) {
-                        $children = explode(',', $data['payment_profession_atuacao']);
-                        foreach ($children as $child) {
-                            $add_group['children'] = utf8_decode($child);
-                        }
-                    } else {
-                        $add_group['children'] = array(utf8_decode($data['payment_profession_type']));
-                    }
 
                     $groups = $mailchimp->addGroup($list['data']['id'], $add_group);
+                    $sytem_child_groups = array();
+                    $notes = '';
+                    if (!empty($data['payment_profession_atuacao'])) {
+                        $notes = utf8_decode($data['payment_profession_atuacao']);
+                        $children = explode(',', $data['payment_profession_atuacao']);
+                        foreach ($children as $child) {
 
-                    $mailchimp->add_batch_subscribers($list['data']['id'], $this->customer->getEmail(), $groups['data']);
+                            $add_group = array("name" => $child);
+                            $child_group = $mailchimp->addGroup($list['data']['id'], $add_group);
+                            $sytem_child_groups[] = $child_group;
+                        }
+                    }
+                    //$mailchimp->add_batch_subscribers($list['data']['id'], $this->customer->getEmail(), $groups['data'], $this->customer);
+                    $res = $mailchimp->add_batch_subscribers($list['data']['id'], $this->customer->getEmail(), $groups['data'], $this->customer, $notes, $sytem_child_groups);
                 }
             }
             /*
@@ -583,9 +587,8 @@ class ModelCheckoutOrder extends Model {
                 try {
                     try {
                         //comment for purpose of smtp error
-                    
-                          $mail->send();
-                       
+
+                        $mail->send();
                     } catch (MyException $e) {
                         // rethrow it
                     }
@@ -658,9 +661,9 @@ class ModelCheckoutOrder extends Model {
                         $mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
                         $mail->setText(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
                         //comment for purpose of smtp error
-                        
-                          $mail->send();
-                        
+
+                        $mail->send();
+
                         // Send to additional alert emails
                         $emails = explode(',', $this->config->get('config_alert_emails'));
 
@@ -668,10 +671,8 @@ class ModelCheckoutOrder extends Model {
                             if ($email && preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $email)) {
                                 $mail->setTo($email);
                                 //comment for purpose of smtp error
-                                
-                                  $mail->send();
 
-                                
+                                $mail->send();
                             }
                         }
                     } catch (MyException $e) {
