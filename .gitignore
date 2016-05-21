@@ -4,3 +4,14 @@ vqmod/vqcache/*
 config.php
 admin/config.php
 system/cache/
+download/*
+image/cache/*
+LandingPage/*
+pagsegurocheckouttransparente/*
+database_dumps/*
+treinamentos/*
+temp/*
+boleto_*
+eunicesolucoes_97814_*
+vqmod/log/*
+area_code.*
