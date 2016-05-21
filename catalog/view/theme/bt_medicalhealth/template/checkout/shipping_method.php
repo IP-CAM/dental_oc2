@@ -41,5 +41,5 @@
     </div>
 </div>
 <script>
-  shipping_amount();
+  shipping_amount_click();
 </script>    

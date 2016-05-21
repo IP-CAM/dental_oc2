@@ -315,15 +315,13 @@
                 if ($('input[name=\'account\']:checked') == "guest") {
                     payment_method_checkout();
                 }
-                if($("input.shipping_method").length>0){
-                    $("input.shipping_method").eq(0).trigger("click");
-                }
+               
                 else {
                     checkout_confirm('1');
                 }
-                
-                
-                
+
+
+
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -924,8 +922,9 @@
                     guest_shipping_checkout(false);
                 }
 
-
-                checkout_payment_method();
+                console.log("-----Loading Payment method FROM SHIPPING METHOD------");
+                set_shipping_amount('','checkout_payment_method');
+                
 
 //                $.ajax({
 //                    url: 'index.php?route=checkout/shipping_address',
@@ -1126,34 +1125,67 @@
         }
 
     }
-
-    function shipping_amount() {
+    //SET SHIPPING AMOUNT FUNCTION THAT LOAD CLICK EVENT 
+    function shipping_amount_click() {
         $("input.shipping_method").click(function () {
             loader_box.show();
-            var current_shipping_method = $(this).val();
-            $.ajax({
-                url: 'index.php?route=checkout/shipping_amount/index',
-                type: 'post',
-                data: {
-                    shpping_address_id: $("#shipping-address select[name='address_id']").val(),
-                    shipping_method: current_shipping_method,
-                    shipping_comment: $(".shipping_comment").val(),
-                },
-                dataType: 'json',
-                beforeSend: function () {
+            set_shipping_amount(this,'set_total');    
+        })
+    }
+    //set the shipping amount
+    function set_shipping_amount(current_object,call_back_method) {
+        
+        if(current_object==""){
+             var current_shipping_method = $("input.shipping_method:checked").val();
+        }
+        else {
+             var current_shipping_method = $(current_object).val();
+        }
+       
+        $.ajax({
+            url: 'index.php?route=checkout/shipping_amount/index',
+            type: 'post',
+            data: {
+                shpping_address_id: $("#shipping-address select[name='address_id']").val(),
+                shipping_method: current_shipping_method,
+                shipping_comment: $(".shipping_comment").val(),
+                call_back: call_back_method,
+            },
+            //dataType: 'json',
+            beforeSend: function () {
 
-                },
-                complete: function () {
-
-                    loader_box.hide();
-
-                },
-                success: function () {
+            },
+            complete: function () {
+                if(loader_box.is(":visible") || call_back_method==''){
+                    //loader_box.hide();
+                }
+                //load payment methods
+                if(call_back_method=='checkout_payment_method'){
+                    checkout_payment_method();
+                }
+                else if(call_back_method=='set_total'){
+                     loader_box.hide();
+                }
+            },
+            success: function (html) {
+                console.log("-----------Call Back SHipping -----------");
+                console.log(call_back_method);
+              
+                //only the case of shipping
+                if(call_back_method=='set_total'){
+                     $(".payment-method-step .payment_method_total").html(html);
+                     loader_box.hide();
+                }
+                else {
                     checkout_confirm('1');
                 }
-            })
-
+                
+            }
         })
+    }
+    
+    function calculate_shipping_total(){
+        
     }
 
     $('#checkout .checkout-content input[name=\'account\']').live('change', function () {

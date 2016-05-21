@@ -107,13 +107,13 @@ class ControllerAccountRegister extends Controller {
                 echo "<script>";
                 echo "window.location = '$urlLoc'";
                 echo "</script>";
-                //$this->redirect($urlLoc);
+                $this->redirect($urlLoc);
             } else {
                 $urlLoc = $this->url->link('account/success');
                 echo "<script>";
                 echo "window.location = '$urlLoc'";
                 echo "</script>";
-                //$this->redirect($this->url->link('account/success'));
+                $this->redirect($this->url->link('account/success'));
             }
         }
 
