@@ -1,5 +1,5 @@
----------- Date: 2015-10-06 19:22:39 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /index.php?route=checkout/guest
+---------- Date: 2016-04-12 17:55:28 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
 MOD DETAILS:
    modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
    id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
@@ -7,14 +7,14 @@ MOD DETAILS:
    vqmver    : 2.3.2
    author    : Ibrahim Brumate
 
-File Name    : catalog/view/theme/*/template/checkout/guest.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-10-06 19:23:29 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /index.php?route=checkout/register
+---------- Date: 2016-04-12 18:06:31 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
 MOD DETAILS:
    modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
    id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
@@ -22,14 +22,14 @@ MOD DETAILS:
    vqmver    : 2.3.2
    author    : Ibrahim Brumate
 
-File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-10-06 19:23:30 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /index.php?route=checkout/guest
+---------- Date: 2016-04-12 18:07:05 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
 MOD DETAILS:
    modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
    id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
@@ -37,8 +37,293 @@ MOD DETAILS:
    vqmver    : 2.3.2
    author    : Ibrahim Brumate
 
-File Name    : catalog/view/theme/*/template/checkout/guest.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:07:16 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:08:51 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:09:03 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:14:46 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:14:58 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:15:06 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:15:15 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:15:53 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:16:31 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:17:07 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:17:16 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:19:15 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:19:49 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:21:07 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:21:08 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:21:08 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 18:22:21 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 19:00:45 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-12 19:30:12 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
 
 ----------------------------------------------------------------------
 

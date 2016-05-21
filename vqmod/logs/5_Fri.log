@@ -1,5 +1,11 @@
----------- Date: 2015-11-27 19:48:05 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /?route=account/register&amp;action=checkout
+---------- Date: 2016-04-01 19:35:52 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/
+VQMod::_parseMods - DOM UNABLE TO LOAD: /home/ali/php/brian/oc/dental_oc2/vqmod/xml/yuotube.xml
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 19:38:29 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
 MOD DETAILS:
    modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
    id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
@@ -13,23 +19,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']     
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-11-27 20:53:18 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /index.php?route=checkout/register
-MOD DETAILS:
-   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
-   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
-   version   : 1.0.7
-   vqmver    : 2.3.2
-   author    : Ibrahim Brumate
-
-File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-11-27 20:53:18 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /?route=account/register&amp;action=checkout
+---------- Date: 2016-04-01 19:51:12 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
 MOD DETAILS:
    modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
    id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
@@ -43,23 +34,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']     
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-11-27 20:53:21 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /index.php?route=checkout/register
-MOD DETAILS:
-   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
-   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
-   version   : 1.0.7
-   vqmver    : 2.3.2
-   author    : Ibrahim Brumate
-
-File Name    : catalog/view/theme/*/template/checkout/register.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-11-27 20:53:21 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /?route=account/register&amp;action=checkout
+---------- Date: 2016-04-01 19:52:10 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
 MOD DETAILS:
    modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
    id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
@@ -69,6 +45,156 @@ MOD DETAILS:
 
 File Name    : catalog/language/portuguese-br/account/register.php(0)
 VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 19:55:27 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 19:56:34 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/register
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/language/portuguese-br/account/register.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['error_exists']         = 'Atenção: Este e-mail já está cadastrado!';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 20:10:08 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/address/insert
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/account/address_form.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 20:10:14 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/address/insert
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/account/address_form.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 20:10:48 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/address/update&amp;address_id=33
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/account/address_form.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 20:14:35 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/address/update&amp;address_id=33
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/account/address_form.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 20:20:28 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/address/update&amp;address_id=33
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/account/address_form.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 20:22:17 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/address/update&amp;address_id=33
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/account/address_form.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 20:22:39 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/address/update&amp;address_id=33
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/account/address_form.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-04-01 20:22:50 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=account/address/update&amp;address_id=33
+MOD DETAILS:
+   modFile   : /home/ali/php/brian/oc/dental_oc2/vqmod/xml/mvrgiecpfcnpj.xml
+   id        : Modificar posição dos campos RG|IE / CNPJ|CPF para área de dados pessoais, validação de CPF, CNPJ e CEP e Máscara de Tels, CPF, CNPJ e CEP
+   version   : 1.0.7
+   vqmver    : 2.3.2
+   author    : Ibrahim Brumate
+
+File Name    : catalog/view/theme/*/template/account/address_form.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
 
 ----------------------------------------------------------------------
 
