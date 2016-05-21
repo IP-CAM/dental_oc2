@@ -138,6 +138,13 @@ $inseridos = 0;
 
 $test = array();
 
+//$camposTT = explode(";", $reg300[0]);
+//
+//echo "<pre>";
+//print_r($camposTT);
+//echo "</pre>";
+//die;
+
 for ($i = 0; $i < $count; $i++) {
     $linha = "";
     $campos = explode(";", $reg300[$i]);
@@ -374,11 +381,15 @@ for ($i = 0; $i < $count; $i++) {
     echo $i;
     echo "============----------------===============";
     //inserting numero and complemento
+    echo "<br/>-----compoo---------<br/>";
+    echo $campos[40];
+     echo "<br/>-----compoo---------<br/>";
     if (!empty($campos[40])) {
         $numero = mysql_escape_string(utf8_encode($campos[40]));
-        $sqlNum = "Select count(*) as num_count FROM " . $db_prefix . "customer_options WHERE numero_complemento = '$numero' AND field_type = 'numero'";
+        echo $sqlNum = "Select count(*) as num_count FROM " . $db_prefix . "customer_options WHERE numero_complemento = '$numero' AND field_type = 'numero'";
         $res_num = mysqli_query($conexao, $sqlNum);
-        $numCount = mysqli_fetch_array($res_num, MYSQLI_NUM);
+        $numCount = mysqli_fetch_row($res_num, MYSQLI_NUM);
+        print($numCount);
         if ($numCount == 0) {
             $sqlNumInsert = "INSERT INTO " . $db_prefix . "customer_options SET ";
             $sqlNumInsert.= "numero_complemento = '$numero' , field_type = 'numero'";
@@ -389,7 +400,7 @@ for ($i = 0; $i < $count; $i++) {
         $complemento = mysql_escape_string(utf8_encode($campos[41]));
         $sqlcomplemento = "Select count(*) as num_count FROM " . $db_prefix . "customer_options WHERE numero_complemento = '$complemento' AND field_type = 'complemento'";
         $res_complemento = mysqli_query($conexao, $sqlcomplemento);
-        $compCount = mysqli_fetch_array($res_complemento, MYSQLI_NUM);
+        $compCount = mysqli_fetch_row($res_complemento, MYSQLI_NUM);
         if ($compCount == 0) {
             $sqlCompInsert = "INSERT INTO " . $db_prefix . "customer_options SET ";
             $sqlCompInsert.= "numero_complemento = '$complemento' , field_type = 'complemento'";

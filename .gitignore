@@ -15,3 +15,11 @@ boleto_*
 eunicesolucoes_97814_*
 vqmod/log/*
 area_code.*
+/vqmod/
+/temps/
+/image/email_cache/
+/image/data/
+/system/logs/
+/integra/ecommerce/
+/integra/sidicom/log/
+/integra/sidicom/RET_20160402150402.txt

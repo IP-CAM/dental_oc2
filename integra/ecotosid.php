@@ -15,6 +15,8 @@ if (file_exists($logfilename)) {
     $lastexport = "2014-01-01 00:00:00"; //Caso não encontre arquivo de log com dado de última exportação
 }
 
+
+
 $quebralinha = "\r\n";
 $nomearq = "";
 
@@ -155,10 +157,11 @@ if ($num_rows > 0 ) {
        }      
     }
     /* BUSCAR DADOS DE CLIENTES DOS PEDIDOS ADICIONADOS/MODIFICADOS */
+    echo 
     $count = count($reg160);
     for($i=0;$i<$count;$i++) {
-        $sql3 = "SELECT ".$db_prefix."customer.customer_id, ".$db_prefix."customer.firstname, ".$db_prefix."customer.lastname, ".$db_prefix."address.address_1,
-                 ".$db_prefix."address.address_2, ".$db_prefix."address.city, ".$db_prefix."address.postcode, telephone, email, ".$db_prefix."country.iso_code_3 
+         $sql3 = "SELECT ".$db_prefix."customer.customer_id, ".$db_prefix."customer.firstname, ".$db_prefix."customer.lastname, ".$db_prefix."address.address_1,
+                 ".$db_prefix."address.address_2,".$db_prefix."address.payment_numero, ".$db_prefix."address.payment_complemento, ".$db_prefix."address.city, ".$db_prefix."address.postcode, telephone, email, ".$db_prefix."country.iso_code_3 
                  FROM ".$db_prefix."customer, ".$db_prefix."address
                  LEFT JOIN ".$db_prefix."country on (".$db_prefix."country.country_id = ".$db_prefix."address.country_id) 
                  WHERE (".$db_prefix."customer.customer_id = $reg160[$i]) and (".$db_prefix."address.address_id = ".$db_prefix."customer.address_id)";
@@ -207,6 +210,13 @@ if ($num_rows > 0 ) {
                 
                 $result .= ";"; // 34 Vazio - Código região do cliente
                 $result .= ";"; // 35 Vazio - Código sub-região do cliente
+                $result .= ";"; // 36 
+                $result .= ";"; // 37 
+                $result .= ";"; // 38 
+                $result .= ";"; // 39 
+                $result .= $dados3["payment_numero"].";"; /// 40 Numero
+                $result .= $dados3["payment_complemento"].";"; /// 41 Complemento
+                
                 
                 $result .= $quebralinha; 
             } 
