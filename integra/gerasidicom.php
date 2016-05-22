@@ -15,6 +15,8 @@ if (file_exists($logfilename)) {
     $lastexport = "2014-01-01 00:00:00"; //Caso não encontre arquivo de log com dado de última exportação
 }
 
+
+
 $quebralinha = "\r\n";
 $nomearq = "";
 
@@ -36,11 +38,12 @@ $result .= $quebralinha;
 
 
 //Select do Pedido no Banco de Dados do e-commerce
-$sql = "select order_id, customer_id, shipping_code, total, comment, date_added, shipping_address_1, shipping_address_2
+ $sql = "select order_id, customer_id, shipping_code, total, comment, date_added, shipping_address_1, shipping_address_2
         shipping_city, shipping_postcode, shipping_country_id, iso_code_3 
         from ".$db_prefix."order 
         left join ".$db_prefix."country on (".$db_prefix."order.shipping_country_id = ".$db_prefix."country.country_id) 
         where (date_added > '$lastexport')  or (date_modified > '$lastexport')";
+
 $sql = mysqli_query($conexao, $sql);
 
 $num_rows = mysqli_num_rows($sql); /* Número de Pedidos Encontrados */
@@ -116,7 +119,7 @@ if ($num_rows > 0 ) {
        }
        
        //REGISTRO 151 : PRODUTOS DO PEDIDO
-       $sql2 = "select ".$db_prefix."order_product.order_id, ".$db_prefix."order_product.product_id, quantity, ".$db_prefix."product.price as p1,
+       $sql2 = "select ".$db_prefix."order_product.order_id, ".$db_prefix."order_product.product_id, ".$db_prefix."order_product.quantity, ".$db_prefix."product.price as p1,
                 ".$db_prefix."order_product.price as p2, total
                 from ".$db_prefix."order_product
                 left join ".$db_prefix."product on (".$db_prefix."product.product_id = ".$db_prefix."order_product.product_id) 
@@ -124,6 +127,7 @@ if ($num_rows > 0 ) {
        $sql2 = mysqli_query($conexao, $sql2);
        
        $num_rows2 = mysqli_num_rows($sql2); /* Número de Pedidos Encontrados */
+     
        
        if ($num_rows2 > 0) {
             while ($dados2 = mysql_fetch_array($sql2)) {
