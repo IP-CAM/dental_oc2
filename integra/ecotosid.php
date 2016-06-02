@@ -38,17 +38,20 @@ $result .= $quebralinha;
 
 
 //Select do Pedido no Banco de Dados do e-commerce
-$sql = "select order_id, customer_id, shipping_code, total, comment, date_added, shipping_address_1, shipping_address_2
+ $sql = "select order_id,payment_corop_cnpg,payment_cad_cpf, customer_id, shipping_code, total, comment, date_added, shipping_address_1, shipping_address_2
         shipping_city, shipping_postcode, shipping_country_id, iso_code_3 
         from ".$db_prefix."order 
         left join ".$db_prefix."country on (".$db_prefix."order.shipping_country_id = ".$db_prefix."country.country_id) 
-        where (date_added > '$lastexport')  or (date_modified > '$lastexport')";
+        ";
+$sql.= " where (date_added > '$lastexport')  or (date_modified > '$lastexport') ";  
+//$sql.= " where order_id = 428";
 $sql = mysqli_query($conexao, $sql);
 
-$num_rows = mysqli_num_rows($sql); /* Número de Pedidos Encontrados */
+ $num_rows = mysqli_num_rows($sql); /* Número de Pedidos Encontrados */
 
 if ($num_rows > 0 ) {
-    while ($dados = mysql_fetch_array($sql))  {
+    while ($dados = mysqli_fetch_array($sql))  {
+      
        $numpedecom = $dados["order_id"]; //REG 01
        // REG 02 - 04
        $codcliente = $dados["customer_id"]; //REG 05
@@ -68,7 +71,10 @@ if ($num_rows > 0 ) {
        $datacriini = date("Ymd", strtotime($dados["date_added"])); /* converter AAAAMMDD */ //REG 31 e 33
        $horacriini = date("Hms", strtotime($dados["date_added"])); /* converter HHMMSS */   //REG 32 e 34
        //REG 35 - 37
-       $cpfcnpj    = ""; /* campo não identificado no database; */ //REG 38
+       $cpf = $dados["payment_cad_cpf"];
+       $cnpj = $dados["payment_corop_cnpg"];
+       $cpfcnpj    = !empty($cpf)?$cpf:$cnpj; /* campo não identificado no database; */ //REG 38
+
        $logentrega = $dados["shipping_address_1"]; //REG 39
        $numentrega = $dados["shipping_address_2"]; //REG 40
        $comentrega = ""; /* campo não identificado no database; */ //REG 41
@@ -83,7 +89,8 @@ if ($num_rows > 0 ) {
        $result .= "$numpedecom;"; //01
        $result .= ";;;"; // 02 - 04 : VAZIOS
        $result .= "$codcliente;"; //05
-       $result .= ";;;"; // 06 - 08 : VAZIOS
+       $result .= "001";  //6
+       $result .= ";;;"; // 07 - 08 : VAZIOS
        $result .= "$codtransp;"; //09
        $result .= ";;;;"; // 10 - 13 : VAZIOS
        $result .= "$vlrtotal;"; //14
@@ -111,6 +118,8 @@ if ($num_rows > 0 ) {
        $result .= "$paisentrega;"; //46
        $result .= $quebralinha;
        
+       
+       
        //Verifica se Cliente já está armazenado, senão armazena
        $key = array_search($codcliente, $reg160);
        if ($key == FALSE) {
@@ -118,17 +127,20 @@ if ($num_rows > 0 ) {
        }
        
        //REGISTRO 151 : PRODUTOS DO PEDIDO
-       $sql2 = "select ".$db_prefix."order_product.order_id, ".$db_prefix."order_product.product_id, quantity, ".$db_prefix."product.price as p1,
+      $sql2 = "select ".$db_prefix."order_product.order_id, ".$db_prefix."order_product.product_id,".$db_prefix."order_product.quantity, ".$db_prefix."product.price as p1,
                 ".$db_prefix."order_product.price as p2, total
                 from ".$db_prefix."order_product
                 left join ".$db_prefix."product on (".$db_prefix."product.product_id = ".$db_prefix."order_product.product_id) 
-                where ".$db_prefix."order_product.order_id = $numpedecom";
-       $sql2 = mysqli_query($conexao, $sql2);
+                ";
+      $sql2.="where ".$db_prefix."order_product.order_id = $numpedecom ";
+      $sql2 = mysqli_query($conexao, $sql2);
        
-       $num_rows2 = mysqli_num_rows($sql2); /* Número de Pedidos Encontrados */
+      $num_rows2 = mysqli_num_rows($sql2); /* Número de Pedidos Encontrados */
+
+
        
        if ($num_rows2 > 0) {
-            while ($dados2 = mysql_fetch_array($sql2)) {
+            while ($dados2 = mysqli_fetch_array($sql2)) {
                 //REG 01 : $numpedecom
                 $codproduto = $dados2["product_id"]; //REG 02
                 //REG 03 - 04: 0 E 1
@@ -146,7 +158,9 @@ if ($num_rows > 0 ) {
                 $result .= "$codproduto;"; //02
                 $result .= "0;1;"; //03 E 04 
                 $result .= "$quantidade;"; //05
-                $result .= ";"; //06
+                $result .= "001;"; //06
+
+              
                 $result .= "$precotab;"; //07
                 $result .= "0;"; //08
                 $result .= "$precoliq;"; //09
@@ -157,7 +171,7 @@ if ($num_rows > 0 ) {
        }      
     }
     /* BUSCAR DADOS DE CLIENTES DOS PEDIDOS ADICIONADOS/MODIFICADOS */
-    echo 
+     
     $count = count($reg160);
     for($i=0;$i<$count;$i++) {
          $sql3 = "SELECT ".$db_prefix."customer.customer_id, ".$db_prefix."customer.firstname, ".$db_prefix."customer.lastname, ".$db_prefix."address.address_1,
@@ -225,10 +239,13 @@ if ($num_rows > 0 ) {
     
     $result .= "999".$quebralinha; 
     
+    
     //SALVAR ARQUIVO GERADO
     $datahora = date("YmdHms");
     $nomearq = "RET_".$datahora.".txt";
     $result2 = mb_convert_encoding($result, "UTF-8");
+//    echo $result2;
+//    echo "sidicom/".$nomearq;
 
     $fp = fopen("sidicom/".$nomearq, "a");
 

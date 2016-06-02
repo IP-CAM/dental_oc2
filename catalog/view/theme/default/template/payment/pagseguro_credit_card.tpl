@@ -193,7 +193,7 @@
     }
 
     #installmentsWrapper {
-        display: none;
+        
     }
 </style>
 
@@ -236,6 +236,7 @@
     PagSeguroDirectPayment.setSessionId('<?php echo $pagseguro_session; ?>');
     /* Pega bandeira */
     $('#cardNumber').keydown(function () {
+        
         verifyBrand();
     });
     /* Máscaras dos inputs do cartão */

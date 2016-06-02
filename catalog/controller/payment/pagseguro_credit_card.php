@@ -381,6 +381,10 @@ class ControllerPaymentPagseguroCreditCard extends Controller {
         $telefone2 = $this->getDDDNumero($_POST['creditCardHolderPhone']);
         $params['creditCardHolderAreaCode'] = $telefone2[0];
         $params['creditCardHolderPhone'] = $telefone2[1];
+        //credit card area code 
+        if (!empty($_POST['areaCode'])) {
+            $params['creditCardHolderAreaCode'] = $_POST['areaCode'];
+        }
 
 
         if ($params['shippingAddressDistrict'] == '' || $params['shippingAddressDistrict'] == false) {
@@ -401,6 +405,35 @@ class ControllerPaymentPagseguroCreditCard extends Controller {
 //        var_dump($xmlArray); exit;
 
         $json = array();
+
+        $myfile = fopen("credit_card_log.txt", "w") or die("Unable to open file!");
+
+
+        $txt = "---------Order Info ------- \n";
+        fwrite($myfile, $txt);
+        $txt = print_r($order_info, true);
+        fwrite($myfile, $txt);
+
+
+        $txt = "\n---------Posted Parameter Info ------- \n";
+        fwrite($myfile, $txt);
+        $txt = print_r($_POST, true);
+        fwrite($myfile, $txt);
+        
+
+        $txt = "\n---------Post Parameter Info ------- \n";
+        fwrite($myfile, $txt);
+
+        $txt = print_r($params, true);
+        fwrite($myfile, $txt);
+
+        $txt = "\n---------Credit Card Response ------- \n";
+        fwrite($myfile, $txt);
+
+        $txt = print_r($xmlArray, true);
+        fwrite($myfile, $txt);
+
+        fclose($myfile);
 
         if (array_key_exists('errors', $xmlArray)) {
             foreach ($xmlArray['errors'] as $error) {

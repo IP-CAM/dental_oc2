@@ -8,7 +8,7 @@ var verifyBrand = function () {
     if (String(cardBin).length >= 6) {
 
         //console.log(cardBin);
-
+        console.log("-------start update card brand--------");
         // Atualizar Brand
         updateCardBrand(cardBin);
 
@@ -26,7 +26,7 @@ var updateCardBrand = function (cardBin) {
     PagSeguroDirectPayment.getBrand({
         cardBin: cardBin,
         success: function (response) {
-
+            console.log("-------processing card brand--------");
             var brand = response.brand.name;
 
             $("#cardBrand").html();
@@ -57,7 +57,7 @@ var updateInstallments = function (brand) {
         amount: amount,
         brand: brand,
         success: function (response) {
-
+            console.log("-------processing getInstallments--------");
             // Para obter o array de parcelamento use a bandeira como "chave" da lista "installments"
             var installments = response.installments[brand];
 
@@ -97,7 +97,7 @@ var updateInstallments = function (brand) {
 
 };
 
-var updateTotal = function (quantity, value) {    
+var updateTotal = function (quantity, value) {
     $("#installmentTotal").val(formatMoney(quantity * value));
     $("#installmentValue").val(Number(value).toMoney(2, '.', ''));
 };
