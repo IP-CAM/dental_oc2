@@ -3,14 +3,18 @@
 require_once('chaveiro.php');
 
 /* Procurar por Arquivo de Log com dado da última exportação */
-$logfilename = "log/ecotosid.log";
+$logfilename = "sidicom/log/ecotosid.log";
 if (file_exists($logfilename)) {
     $lines = file($logfilename);
     foreach ($lines as $line_num => $line) {
         $pos = strpos($line, ';');
         $sub = substr($line, 0, $pos);
-        $lastexport = $sub;        
+        $lastexport = $sub;  
+        
+        
     }
+    
+    
 } else {
     $lastexport = "2014-01-01 00:00:00"; //Caso não encontre arquivo de log com dado de última exportação
 }
@@ -38,12 +42,13 @@ $result .= $quebralinha;
 
 
 //Select do Pedido no Banco de Dados do e-commerce
- $sql = "select order_id, customer_id, shipping_code, total, comment, date_added, shipping_address_1, shipping_address_2
+ $sql = "select order_id, customer_id,payment_corop_cnpg,payment_cad_cpf, shipping_code, total, comment, date_added, shipping_address_1, shipping_address_2
         shipping_city, shipping_postcode, shipping_country_id, iso_code_3 
         from ".$db_prefix."order 
         left join ".$db_prefix."country on (".$db_prefix."order.shipping_country_id = ".$db_prefix."country.country_id) 
         where (date_added > '$lastexport')  or (date_modified > '$lastexport')";
 
+ 
 $sql = mysqli_query($conexao, $sql);
 
 $num_rows = mysqli_num_rows($sql); /* Número de Pedidos Encontrados */
@@ -79,12 +84,18 @@ if ($num_rows > 0 ) {
        $cepentrega = $dados["shipping_postcode"]; //REG 45
        $paisentrega = $dados["iso_code_3"]; //REG 46
        
+       
+       $cpf = $dados["payment_cad_cpf"];
+       $cnpj = $dados["payment_corop_cnpg"];
+       $cpfcnpj    = !empty($cpf)?$cpf:$cnpj;
+       
        /* ESCREVER REGISTRO 150 */
        $result .= "150;"; // Fixo
        $result .= "$numpedecom;"; //01
        $result .= ";;;"; // 02 - 04 : VAZIOS
+       $result .= "001;"; // 06 - 08 : VAZIOS
        $result .= "$codcliente;"; //05
-       $result .= ";;;"; // 06 - 08 : VAZIOS
+       $result .= ";;"; // 06 - 08 : VAZIOS
        $result .= "$codtransp;"; //09
        $result .= ";;;;"; // 10 - 13 : VAZIOS
        $result .= "$vlrtotal;"; //14

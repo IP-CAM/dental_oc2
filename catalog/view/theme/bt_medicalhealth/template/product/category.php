@@ -76,10 +76,12 @@
                 <?php foreach ($products as $key => $product) { ?>
                     <?php
                     $price_display = "";
+                    $price_display_class = " product_container ";
                     $button_cart_text = $button_cart;
                     if (isset($product['product_on_phone']) && $product['product_on_phone'] == 1) {
                         $button_cart_text = 'Compras pelo televendas';
                         $price_display  = "display:none;;";
+                        $price_display_class = " product_container telephone";
                     } else {
                         $button_cart_text = $button_cart;
                     }
@@ -87,6 +89,7 @@
                     <div class="<?php
                     echo (($key + 1) % 3 == 0 ? 'one-product-list last' : 'one-product-list' );
                     echo ($product == end($products) ? ' lastest' : '');
+                    echo $price_display_class;
                     ?>">
                              <?php if ($product['thumb']) { ?>
                             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
@@ -141,6 +144,7 @@ function display(view) {
                 html += '  <div class="description">' + $(element).find('.description').html() + '</div>';
 
                 var rating = $(element).find('.rating').html();
+                
 
                 if (rating != null) {
                     html += '<div class="rating">' + rating + '</div>';
@@ -149,7 +153,7 @@ function display(view) {
                 var price = $(element).find('.price').html();
                 var price_style = $(element).find('.price').attr("style");
 
-                if (price != null) {
+                if (price != null && !$(element).hasClass("telephone")) {
                     html += '<div class="price" style="'+price_style+'">' + price + '</div>';
                 }
 

@@ -88,8 +88,9 @@ if ($num_rows > 0 ) {
        $result .= "150;"; // Fixo
        $result .= "$numpedecom;"; //01
        $result .= ";;;"; // 02 - 04 : VAZIOS
-       $result .= "$codcliente;"; //05
-       $result .= "001";  //6
+       $result .= "001";  //5
+       $result .= "$codcliente;"; //06
+       
        $result .= ";;;"; // 07 - 08 : VAZIOS
        $result .= "$codtransp;"; //09
        $result .= ";;;;"; // 10 - 13 : VAZIOS
