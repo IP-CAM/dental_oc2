@@ -518,6 +518,9 @@
             $(".area>div.area_checkboxes>div").hide();
             if ($(".area>div.area_checkboxes>div[reference='" + $(this).val() + "']").length > 0) {
                 $(".area>div.area_checkboxes>div[reference='" + $(this).val() + "']").show();
+                
+                //un check others
+                $(".area>div.area_checkboxes>div[reference!='" + $(this).val() + "'] input[type='checkbox']").prop('checked', false);
             }
 
 

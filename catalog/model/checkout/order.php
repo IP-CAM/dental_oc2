@@ -42,7 +42,7 @@ class ModelCheckoutOrder extends Model {
                     $sytem_child_groups = array();
                     $notes = '';
                     if (!empty($data['payment_profession_atuacao'])) {
-                        $notes = utf8_decode($data['payment_profession_atuacao']);
+                        $notes = ($data['payment_profession_atuacao']);
                         $children = explode(',', $data['payment_profession_atuacao']);
                         foreach ($children as $child) {
 

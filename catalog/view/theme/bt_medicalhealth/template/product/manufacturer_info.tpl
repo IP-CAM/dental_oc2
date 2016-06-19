@@ -60,7 +60,7 @@
       </div>
       <?php } ?>
       <div class="cart">
-        <input type="button" value="<?php echo $button_cart; ?>" onclick="boss_addToCart('<?php echo $product['product_id']; ?>');" class="button" />
+        <input type="button" value="<?php echo $button_cart; ?>" onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button" />
       </div>
       <div class="compare"><a onclick="boss_addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>
       <div class="wishlist"><a onclick="boss_addToWishList('<?php echo $product['product_id']; ?>');"><?php echo $button_wishlist; ?></a></div>
@@ -182,5 +182,8 @@ if (view) {
 			display('grid');
 		}
 	}
+         function boss_redirect(path) {
+            window.location = path;
+         }
 //--></script> 
 <?php echo $footer; ?>

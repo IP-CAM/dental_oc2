@@ -131,7 +131,7 @@ class SubScriptMailChimp {
          */
         if (!empty($groups['data'])) {
             foreach ($groups['data'] as $group) {
-                $group['name'] = utf8_decode($group['name']);
+                $group['name'] = ($group['name']);
                 if ($by_name == true && $group['name'] == $group_name) {
                     return $group;
                     break;
@@ -155,7 +155,7 @@ class SubScriptMailChimp {
 
             $sub_groups = array();
             foreach ($group['groups'] as $sub_group) {
-                $sub_groups[] = utf8_decode($sub_group['name']);
+                $sub_groups[] = ($sub_group['name']);
             }
 
             $emails = array('email' => $email);

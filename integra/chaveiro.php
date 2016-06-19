@@ -9,7 +9,7 @@
  */
 
 $bdservidor = "localhost"; 
-$bancodedados = "dental";
+$bancodedados = "dental3";
 $bdusuario = "root";
 $bdsenha = "admin"; 
 $db_prefix = 'oc_';
