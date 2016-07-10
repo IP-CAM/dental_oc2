@@ -148,7 +148,7 @@ class SubScriptMailChimp {
      * 
      */
 
-    public function add_batch_subscribers($list_id, $email, $group, $customer = '', $notes = '', $childGroups = array()) {
+    public function add_batch_subscribers($list_id, $email, $group, $customer = '', $notes = '', $childGroups = array(), $login = true) {
         try {
 //            $batch[] = array('email' => array('email' => $email));
 //            self::$mc->lists->batchSubscribe($list_id, $batch);
@@ -179,9 +179,12 @@ class SubScriptMailChimp {
                 }
             }
 
-            if (!empty($customer)) {
+            if (!empty($customer) && $login) {
                 $merge_vars['FNAME'] = $customer->getFirstName();
                 $merge_vars['LNAME'] = $customer->getLastName();
+            } else {
+                $merge_vars['FNAME'] = $customer['firstname'];
+                $merge_vars['LNAME'] = $customer['lastname'];
             }
             if (!empty($notes)) {
 //                $merge_vars['mc_notes'] = array(

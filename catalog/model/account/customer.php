@@ -42,12 +42,47 @@ class ModelAccountCustomer extends Model {
         $column_string = "";
         if (!empty($columns)) {
             $column_string = "," . (implode($columns, ","));
+
+
+            //mail chimp code here
+            $res_mail_list = $this->db->query("Select value FROM " . DB_PREFIX . "setting as t WHERE t.key IN('config_mail_chimp')");
+            $res_mail_key = $this->db->query("Select value FROM " . DB_PREFIX . "setting as t WHERE t.key IN('config_mail_chimp_key')");
+            $res_mail_list = $res_mail_list->row['value'];
+            $res_mail_key = $res_mail_key->row['value'];
+
+            require_once getcwd() . '/system/library/MailChimp/SubScriptMailChimp.php';
+            $mailchimp = SubScriptMailChimp::getInstance($res_mail_key);
+
+
+            $list = $mailchimp->getList($res_mail_list);
+
+            if (!empty($list['data'])) {
+                if (!empty($data['payment_profession_type'])) {
+                    $add_group = array("name" => $data['payment_profession_type']);
+
+                    $groups = $mailchimp->addGroup($list['data']['id'], $add_group);
+                    $sytem_child_groups = array();
+                    $notes = '';
+                    if (!empty($data['payment_profession_atuacao'])) {
+                        $notes = ($data['payment_profession_atuacao']);
+                        $children = explode(',', $data['payment_profession_atuacao']);
+                        foreach ($children as $child) {
+
+                            $add_group = array("name" => $child);
+                            $child_group = $mailchimp->addGroup($list['data']['id'], $add_group);
+                            $sytem_child_groups[] = $child_group;
+                        }
+                    }
+                    //$mailchimp->add_batch_subscribers($list['data']['id'], $this->customer->getEmail(), $groups['data'], $this->customer);
+                    $res = $mailchimp->add_batch_subscribers($list['data']['id'], $data['email'], $groups['data'], $data, $notes, $sytem_child_groups,false);
+                }
+            }
         }
-//        echo "<pre>";
-//        print_r($columns);
-//        echo "</pre>";
-//
-//        die;
+        //        echo "<pre>";
+        //        print_r($columns);
+        //        echo "</pre>";
+        //
+              //        die;
 
 
 
@@ -63,8 +98,8 @@ class ModelAccountCustomer extends Model {
 
 
         $this->db->query($address_qurey);
-//echo $address_qurey;
-//        die;
+        //echo $address_qurey;
+        //        die;
 
         $address_id = $this->db->getLastId();
 
@@ -263,11 +298,13 @@ class ModelAccountCustomer extends Model {
         $this->load->model('account/address');
         return json_decode($this->model_account_address->area_codes, true);
     }
+
     /**
      * 
      * @return type
      */
-    public function getAddressInstance() {
+    public
+            function getAddressInstance() {
         $this->load->model('account/address');
         return $this->model_account_address;
     }

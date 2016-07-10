@@ -9,17 +9,19 @@ class ModelAccountMailchimp extends Model {
         $res_mail_key = $res_mail_key->row['value'];
 
         require_once getcwd() . '/system/library/MailChimp/SubScriptMailChimp.php';
-        
+
         $mailchimp = SubScriptMailChimp::getInstance($res_mail_key);
 
-       
+
 
 
 
         $list = $mailchimp->getList($res_mail_list);
+        echo "<pre>";
+        print_r($list);
 
         $data['payment_profession_type'] = 'Dentista';
-        $data['payment_profession_atuacao'] = 'Dentística,Endodontia,Ortodondia';
+        $data['payment_profession_atuacao'] = 'Clinica,Dentistica,Endodontia,Periodontia';
         $email = 'itsgeniusstar@gmail.com';
 
         if (!empty($list['data'])) {
@@ -27,26 +29,25 @@ class ModelAccountMailchimp extends Model {
                 $add_group = array("name" => $data['payment_profession_type']);
 
                 $groups = $mailchimp->addGroup($list['data']['id'], $add_group);
-                $sytem_groups = array();
+
+                print_r($groups);
+               
+                $sytem_child_groups = array();
                 $notes = '';
                 if (!empty($data['payment_profession_atuacao'])) {
-                    $notes = utf8_decode($data['payment_profession_atuacao']);
+                    $notes = ($data['payment_profession_atuacao']);
                     $children = explode(',', $data['payment_profession_atuacao']);
                     foreach ($children as $child) {
 
                         $add_group = array("name" => $child);
                         $child_group = $mailchimp->addGroup($list['data']['id'], $add_group);
-                        $sytem_groups[] = $child_group;
+                        $sytem_child_groups[] = $child_group;
                     }
                 }
-
-               
-
-
-                //$mailchimp->add_batch_subscribers($list['data']['id'], $this->customer->getEmail(), $groups['data'], $this->customer);
-                $res = $mailchimp->add_batch_subscribers($list['data']['id'], $email, $groups['data'], $this->customer, $notes,$sytem_groups);
-
                 
+                print_r($sytem_child_groups);
+                //$mailchimp->add_batch_subscribers($list['data']['id'], $this->customer->getEmail(), $groups['data'], $this->customer);
+                $res = $mailchimp->add_batch_subscribers($list['data']['id'], $email, $groups['data'], $this->customer, $notes, $sytem_child_groups);
             }
         }
     }
