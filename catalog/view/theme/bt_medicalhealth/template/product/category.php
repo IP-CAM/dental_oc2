@@ -134,7 +134,9 @@
 </div>
 <script type="text/javascript"><!--
 function display(view) {
+         console.log("------------"+view+"-----------");
         if (view == 'list') {
+           
             $('.product-grid').attr('class', 'product-list');
 
             $('.product-list > div').each(function (index, element) {
@@ -184,7 +186,7 @@ function display(view) {
 
             $('.product-grid > div').each(function (index, element) {
                 html = '';
-
+            
                 var image = $(element).find('.image').html();
 
                 if (image != null) {
@@ -202,7 +204,7 @@ function display(view) {
 
                 var price = $(element).find('.price').html();
 
-                if (price != null) {
+                if (price != null && !$(element).hasClass("telephone")) {
                     html += '<div class="price">' + price + '</div>';
                 }
 

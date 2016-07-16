@@ -412,7 +412,7 @@ class ControllerProductCategory extends Controller {
             $this->data['limit'] = $limit;
 
             $this->data['continue'] = $this->url->link('common/home');
-           
+            
             if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.php')) {
                
                 $this->template = $this->config->get('config_template') . '/template/product/category.php';
