@@ -234,6 +234,7 @@ class ControllerProductManufacturer extends Controller {
                     'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 100) . '..',
                     'price' => $price,
                     'special' => $special,
+                    'product_on_phone' => $result['product_on_phone'],
                     'tax' => $tax,
                     'rating' => $result['rating'],
                     'reviews' => sprintf($this->language->get('text_reviews'), (int) $result['reviews']),
@@ -358,8 +359,8 @@ class ControllerProductManufacturer extends Controller {
 
             $this->data['continue'] = $this->url->link('common/home');
 
-            if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/manufacturer_info.tpl')) {
-                $this->template = $this->config->get('config_template') . '/template/product/manufacturer_info.tpl';
+            if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/manufacturer_info.php')) {
+                $this->template = $this->config->get('config_template') . '/template/product/manufacturer_info.php';
             } else {
                 $this->template = 'default/template/product/manufacturer_info.tpl';
             }

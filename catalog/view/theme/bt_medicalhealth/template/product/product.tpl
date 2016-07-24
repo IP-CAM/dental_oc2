@@ -484,12 +484,25 @@
                 <div class="es-carousel">
                     <ul class="skin-opencart">
                         <?php foreach ($products as $product) { ?>
+                            <?php
+                                $button_cart_text = $button_cart;
+                                $btn_class = 'font-adjust';
+                                $price_display = "";
+                                if (isset($product['product_on_phone']) && $product['product_on_phone'] == 1) {
+                                    $button_cart_text = 'Compras pelo televendas';
+                                    $btn_class = 'font-adjust';
+                                    $price_display = "display:none";
+                                } else {
+                                    $button_cart_text = $button_cart;
+                                    $btn_class = '';
+                                }
+                            ?>
                             <li><div class="boss-tab-related">
                                     <?php if ($product['thumb']) { ?>
                                         <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>"  title="<?php echo $product['name']; ?>" /></a></div>
                                     <?php } ?>
                                     <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
-                                    <?php if ($product['price']) { ?>
+                                    <?php if (isset($product['price']) && empty($price_display)) { ?>
                                         <div class="price">
                                             <?php if (!$product['special']) { ?>
                                                 <?php echo $product['price']; ?>
@@ -498,17 +511,7 @@
                                             <?php } ?>
                                         </div>
                                     <?php } ?>
-                                    <?php
-                                    $button_cart_text = $button_cart;
-                                    $btn_class = 'font-adjust';
-                                    if (isset($product['product_on_phone']) && $product['product_on_phone'] == 1) {
-                                        $button_cart_text = 'Compras pelo televendas';
-                                        $btn_class = 'font-adjust';
-                                    } else {
-                                        $button_cart_text = $button_cart;
-                                        $btn_class = '';
-                                    }
-                                    ?>
+                                 
                                     <div class="cart"><a onclick="boss_redirect('<?php echo $product['href']; ?>');" class="button <?php echo $btn_class; ?>"><?php echo $button_cart_text; ?></a></div>
                                 </div></li>
                         <?php } ?>
