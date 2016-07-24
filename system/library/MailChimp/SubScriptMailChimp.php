@@ -26,6 +26,27 @@ class SubScriptMailChimp {
     }
 
     /**
+     * get already prepared list
+     */
+    public function getPreparedList() {
+        return array(
+            "Dentista" => "363969f8e1",
+            "Tecnico em Protese" => "4ed6814bb9",
+            "Academico" => "a44debd02e",
+        );
+    }
+
+    /**
+     * 
+     * @param type $list_name
+     * @return type
+     */
+    public function getPreparedListName($list_name) {
+        $lists = $this->getPreparedList();
+        return $lists[$list_name];
+    }
+
+    /**
      * 
      * @param type $list_name
      */
@@ -33,6 +54,32 @@ class SubScriptMailChimp {
         $res = array();
         try {
             $list = self::$mc->lists->getList(array("list_name" => $list_name));
+
+            if (!empty($list['data']) && !empty($list['data'][0])) {
+                $res['data'] = $list['data'][0];
+                $res['code'] = '200';
+            } else {
+                $res['code'] = '400';
+                $res['data'] = null;
+            }
+
+            return $res;
+        } catch (Exception $e) {
+            $res['code'] = '500';
+            $res['errors'] = array($e->getMessage());
+            $res['type'] = 'exception';
+            return $res;
+        }
+    }
+    /**
+     * 
+     * @param type $list_id
+     * @return string
+     */
+    public function getListById($list_id) {
+        $res = array();
+        try {
+            $list = self::$mc->lists->getList(array("list_id	" => $list_id));
 
             if (!empty($list['data']) && !empty($list['data'][0])) {
                 $res['data'] = $list['data'][0];
