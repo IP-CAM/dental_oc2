@@ -71,6 +71,7 @@ class SubScriptMailChimp {
             return $res;
         }
     }
+
     /**
      * 
      * @param type $list_id
@@ -208,10 +209,10 @@ class SubScriptMailChimp {
             $emails = array('email' => $email);
             $merge_vars = array(
                 'GROUPINGS' => array(
-                    array(
-                        'id' => (int) $group['id'],
-                    //'groups' => $sub_groups
-                    ),
+//                    array(
+//                        'id' => (int) $group['id'],
+//                    //'groups' => $sub_groups
+//                    ),
                 ), 'FNAME' => 'Not given', 'LNAME' => 'Not given',
             );
             //adding child group
@@ -260,6 +261,60 @@ class SubScriptMailChimp {
             $res['code'] = '500';
             $res['errors'] = array($ex->getMessage());
             $res['type'] = 'exception';
+            return $res;
+        }
+    }
+
+    public function add_batch_subscribers_with_groups($list_id, $email, $groups, $customer = array()) {
+        try {
+            echo "<pre>";
+            $emails = array('email' => $email);
+            $merge_vars = array(
+                'GROUPINGS' => array(
+                ), 'FNAME' => 'Not given', 'LNAME' => 'Not given',
+            );
+            //adding child group
+            if (!empty($groups)) {
+                foreach ($groups as $group_name) {
+
+                    $childGroup = $this->find_group_by_($list_id, $group_name, true);
+                    //rint_r($childGroup);
+                    $merge_vars['GROUPINGS'][] = array(
+                        'id' => (int) $childGroup['id'],
+//                        'id' => (int) $childGroup['data']['id'],
+                            'groups' => array($group_name),
+//                            'groups' => array($childGroup['groups'][0]['id']),
+                    );
+                }
+            }
+
+            if (!empty($customer) && isset($login) && !is_array($customer)) {
+                $merge_vars['FNAME'] = $customer->getFirstName();
+                $merge_vars['LNAME'] = $customer->getLastName();
+            } else {
+                $merge_vars['FNAME'] = $customer['firstname'];
+                $merge_vars['LNAME'] = $customer['lastname'];
+            }
+
+
+
+            //print_r($groups);
+            print_r($merge_vars);
+            print_r($emails);
+            
+            $result = self::$mc->lists->subscribe($list_id, $emails, $merge_vars, 'html', true, true);
+            echo "---------";    
+            print_r($result);
+            echo "</pre>";
+die;
+            $res['code'] = '200';
+            $res['msg'] = 'success';
+            $res['data'] = $result;
+        } catch (Exception $ex) {
+            $res['code'] = '500';
+            $res['errors'] = array($ex->getMessage());
+            $res['type'] = 'exception';
+            print_r($res);
             return $res;
         }
     }

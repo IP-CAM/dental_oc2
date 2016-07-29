@@ -137,6 +137,9 @@ class ModelCatalogSmartsearch extends Model {
             }
 
             $sql .= " LIMIT " . (int) $start . "," . (int) $limit;
+            
+//            echo $sql;
+//            die;
 
             $query = $this->db->query($sql);
 
@@ -176,6 +179,8 @@ class ModelCatalogSmartsearch extends Model {
             }
             $sql.= " AND p.referenc_id IS NULL ";
             $sql .= " AND p.status = '1' AND p.date_available <= NOW()";
+            
+           
 
             $query = $this->db->query($sql);
 

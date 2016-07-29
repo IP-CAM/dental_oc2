@@ -23,3 +23,5 @@ area_code.*
 /integra/ecommerce/
 /integra/sidicom/log/
 /integra/sidicom/RET_20160402150402.txt
+/integra/sidicom/RET_*
+/image/cache/*

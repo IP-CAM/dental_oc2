@@ -30,4 +30,9 @@ class ControllerAccountTest extends Controller {
         $this->model_account_mailchimp->test();
     }
 
+    public function mailchimpgropus() {
+        $this->load->model('account/mailchimp');
+        $this->model_account_mailchimp->test_add_groups();
+    }
+
 }

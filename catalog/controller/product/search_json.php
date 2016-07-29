@@ -122,7 +122,9 @@ class ControllerProductSearchJson extends Controller {
                 //$tag_results = $this->model_catalog_smartsearch->getProductsByTag($this->request->get['keyword'], isset($this->request->get['category_id']) ? $this->request->get['category_id'] : '', $sort, $order, 0, 5);
 
                 $tag_results = array();
+
                 foreach ($results as $key => $value) {
+                   
                     $tag_results[$value['product_id']] = $results[$key];
                 }
 
@@ -152,7 +154,12 @@ class ControllerProductSearchJson extends Controller {
 //////							$special = $this->currency->format($this->tax->calculate($special, $result['tax_class_id'], $this->config->get('config_tax')));
 //////						}					
 ////					}
-//					
+//			
+                    
+                    /******* product on phone *******/
+                    if (!empty($result['product_on_phone']) && $result['product_on_phone'] == 1) {
+                        $price = "";
+                    }
                     $this->data['products'][] = array(
                         'name' => $result['name'],
                         'model' => $result['model'],
