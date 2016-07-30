@@ -58,23 +58,20 @@ class ModelAccountCustomer extends Model {
 
                 $list_id = $mailchimp->getPreparedListName($data['payment_profession_type']);
 
-                $add_group = array("name" => $data['payment_profession_type']);
-
-                $groups = $mailchimp->addGroup($list_id, $add_group);
-                $sytem_child_groups = array();
-                $notes = '';
+                $groups = array();
                 if (!empty($data['payment_profession_atuacao'])) {
-                    $notes = ($data['payment_profession_atuacao']);
+
                     $children = explode(',', $data['payment_profession_atuacao']);
                     foreach ($children as $child) {
 
-                        $add_group = array("name" => $child);
-                        $child_group = $mailchimp->addGroup($list_id, $add_group);
-                        $sytem_child_groups[] = $child_group;
+                        $groups[] = $child;
                     }
                 }
+                $customer = array();
+                $customer['firstname'] = $data['firstname'];
+                $customer['lastname'] = $data['lastname'];
                 //$mailchimp->add_batch_subscribers($list_id, $this->customer->getEmail(), $groups['data'], $this->customer);
-                $res = $mailchimp->add_batch_subscribers($list_id, $data['email'], $groups['data'], $data, $notes, $sytem_child_groups, false);
+                $res = $mailchimp->add_batch_subscribers_with_groups($list_id, $data['email'], $groups, $customer);
             }
         }
         //        echo "<pre>";

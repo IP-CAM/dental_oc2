@@ -265,9 +265,9 @@ class SubScriptMailChimp {
         }
     }
 
-    public function add_batch_subscribers_with_groups($list_id, $email, $groups, $customer = array()) {
+    public function add_batch_subscribers_with_groups($list_id, $email, $groups, $customer = array(),$login = false) {
         try {
-            echo "<pre>";
+          
             $emails = array('email' => $email);
             $merge_vars = array(
                 'GROUPINGS' => array(
@@ -288,7 +288,7 @@ class SubScriptMailChimp {
                 }
             }
 
-            if (!empty($customer) && isset($login) && !is_array($customer)) {
+            if (!empty($customer) && isset($login) && $login && !is_array($customer)) {
                 $merge_vars['FNAME'] = $customer->getFirstName();
                 $merge_vars['LNAME'] = $customer->getLastName();
             } else {
@@ -296,17 +296,8 @@ class SubScriptMailChimp {
                 $merge_vars['LNAME'] = $customer['lastname'];
             }
 
-
-
-            //print_r($groups);
-            print_r($merge_vars);
-            print_r($emails);
-            
             $result = self::$mc->lists->subscribe($list_id, $emails, $merge_vars, 'html', true, true);
-            echo "---------";    
-            print_r($result);
-            echo "</pre>";
-die;
+
             $res['code'] = '200';
             $res['msg'] = 'success';
             $res['data'] = $result;
@@ -314,7 +305,7 @@ die;
             $res['code'] = '500';
             $res['errors'] = array($ex->getMessage());
             $res['type'] = 'exception';
-            print_r($res);
+           
             return $res;
         }
     }

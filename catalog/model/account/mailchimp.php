@@ -62,9 +62,16 @@ class ModelAccountMailchimp extends Model {
 
         $groups = array_merge($options_atuaca_dentista, $options_atuaca_técnico);
 
-        foreach ($groups as $group) {
+        foreach ($options_atuaca_dentista as $group) {
             $group1 = array("name" => $group);
-            $res = $mailchimp->addGroup("5945821b1c", $group1);
+            $res = $mailchimp->addGroup("363969f8e1", $group1);
+            echo "<pre>";
+            print_r($res);
+            echo "</pre>";
+        }
+        foreach ($options_atuaca_técnico as $group) {
+            $group1 = array("name" => $group);
+            $res = $mailchimp->addGroup("4ed6814bb9", $group1);
             echo "<pre>";
             print_r($res);
             echo "</pre>";
