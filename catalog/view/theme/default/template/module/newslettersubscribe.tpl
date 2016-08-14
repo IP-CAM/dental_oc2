@@ -8,11 +8,11 @@
   <?php }  ?>
   <?php 
    if($thickbox) { ?> <div id="frm_subscribe_hidden" style="display:none;"> <?php } ?>
-  <div id="frm_subscribe">
+  <div id="frm_subscribe" class="test">
   <form name="subscribe" id="subscribe"   >
   <table border="0" cellpadding="2" cellspacing="2">
    <tr>
-     <td align="left"><span class="required">*</span>&nbsp;<?php echo $entry_email; ?><br /><input type="text" value="" name="subscribe_email" id="subscribe_email"></td>
+     <td align="left"><span class="required">*</span>&nbsp;<?php echo $entry_email; ?><br /><input type="email" value="" name="subscribe_email" id="subscribe_email"></td>
    </tr>
    <tr>
      <td align="left"><?php echo $entry_name; ?>&nbsp;<br /><input type="text" value="" name="subscribe_name" id="subscribe_name"> </td>

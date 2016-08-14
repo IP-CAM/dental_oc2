@@ -1,26 +1,26 @@
 <?php
 // Heading 
-$_['heading_title'] 	 = 'News Letter';
+$_['heading_title'] 	 = 'Deseja receber nossos informativos?';
 
 //Fields
-$_['entry_email'] 		 = 'Email';
-$_['entry_name'] 		 = 'Name';
+$_['entry_email'] 		 = 'E-mail';
+$_['entry_name'] 		 = 'Nome';
 
 //Buttons
-$_['entry_button'] 		 = 'Subscribe';
-$_['entry_unbutton'] 	 = 'Unsubscribe';
+$_['entry_button'] 		 = 'Subscrever';
+$_['entry_unbutton'] 	 = 'Cancelar subscreveo';
 
 //text
-$_['text_subscribe'] 	 = 'Subscribe Here';
+$_['text_subscribe'] 	 = 'Subscrever aqui';
 
 $_['mail_subject']   	 = 'News Letter Subscribe';
 
 //Error
-$_['error_invalid'] 	 = 'Invalid Email';
+$_['error_invalid'] 	 = 'E-mail invalido';
 
-$_['subscribe']	    	 = 'Subscribed Successfully';
-$_['unsubscribe'] 	     = 'Unsubscribed Successfully';
-$_['alreadyexist'] 	     = 'Already Exist';
-$_['notexist'] 	    	 = 'Email Id not exist';
+$_['subscribe']	    	 = 'Subscrito com sucesso';
+$_['unsubscribe'] 	     = 'Cancelar subscriveo com sucesso';
+$_['alreadyexist'] 	     = 'Já existe';
+$_['notexist'] 	    	 = 'E-mail Id não existe';
 
 ?>

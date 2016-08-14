@@ -16,7 +16,7 @@ $_['text_subscribe'] 	 = 'Subscribe Here';
 $_['mail_subject']   	 = 'News Letter Subscribe';
 
 //Error
-$_['error_invalid'] 	 = 'Invalid Email';
+$_['error_invalid'] 	 = 'E-mail inválido';
 
 $_['subscribe']	    	 = 'Subscribed Successfully';
 $_['unsubscribe'] 	     = 'Unsubscribed Successfully';
