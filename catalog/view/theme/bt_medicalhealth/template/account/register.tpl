@@ -199,7 +199,8 @@
     </tr>
     <tr>
         <td colspan="2">
-            <?php
+            <?php 
+           
                 include_once(DIR_TEMPLATE."bt_medicalhealth/template/checkout/_customer_checkout.php");
             ?>
      

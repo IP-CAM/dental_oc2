@@ -23,8 +23,13 @@ class ControllerModuleNewslettersubscribe extends Controller {
         $this->language->load('module/newslettersubscribe');
 
         $this->load->model('account/newslettersubscribe');
+        $this->load->model('account/mailchimp');
 
         if (isset($this->request->post['subscribe_email']) and filter_var($this->request->post['subscribe_email'], FILTER_VALIDATE_EMAIL)) {
+
+            //email mail chimp
+            $this->model_account_mailchimp->mailchimpPosting($this->request->post['subscribe_email'], $this->request->post['subscribe_name']);
+
 
             if ($this->config->get('newslettersubscribe_registered') and $this->model_account_newslettersubscribe->checkRegisteredUser($this->request->post)) {
 
@@ -71,8 +76,7 @@ class ControllerModuleNewslettersubscribe extends Controller {
                     }
                     $message .= '</table>';
 
-                    //email mail chimp
-                    $this->mailchimpPosting($this->request->post['subscribe_email'], $this->request->post['subscribe_name']);
+
 
                     $mail = new Mail();
                     $mail->protocol = $this->config->get('config_mail_protocol');
@@ -108,15 +112,28 @@ class ControllerModuleNewslettersubscribe extends Controller {
         $res_mail_list = $res_mail_list->row['value'];
         $res_mail_key = $res_mail_key->row['value'];
 
-        require_once getcwd() . '/system/library/MailChimp/SubScriptMailChimp.php';
-        $mailchimp = SubScriptMailChimp::getInstance($res_mail_key);
+        echo "<pre>";
 
         $customer = array();
         $customer['firstname'] = $email;
         $customer['lastname'] = $name;
+        print_r($res_mail_key);
+        print_r($customer);
 
+        echo getcwd() . '/system/library/MailChimp/SubScriptMailChimp.php';
+        require_once getcwd() . '/system/library/MailChimp/SubScriptMailChimp.php';
+        $mailchimp = SubScriptMailChimp::getInstance($res_mail_key);
+
+
+        print_($mailchimp);
+
+
+
+
+        die;
         $list = $mailchimp->getNewsLetterList();
-
+        print_r($list);
+        die;
         $res = $mailchimp->add_batch_subscribers_with_groups($list['list']['id'], "", array(), $customer);
     }
 

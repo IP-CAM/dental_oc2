@@ -11,7 +11,9 @@ class ModelAccountMailchimp extends Model {
         require_once getcwd() . '/system/library/MailChimp/SubScriptMailChimp.php';
 
         $mailchimp = SubScriptMailChimp::getInstance($res_mail_key);
-
+        echo "<pre>";
+        print_r($res_mail_key);
+        print_r($mailchimp);
 
         $data['payment_profession_type'] = 'Dentista';
         $data['payment_profession_atuacao'] = 'Clinica,Dentistica,Endodontia,Periodontia';
@@ -22,17 +24,38 @@ class ModelAccountMailchimp extends Model {
 
 //            $list_id = $mailchimp->getPreparedListName($data['payment_profession_type']);
 
-            $list_id = "5945821b1c";
+            $list_id = "363969f8e1";
 
             $add_group = array("name" => $data['payment_profession_type']);
 
 //            $groups = $mailchimp->addGroup($list_id, $add_group);
-            $groups = explode(",",$data['payment_profession_atuacao']);
+            $groups = explode(",", $data['payment_profession_atuacao']);
 
             $customer = array("firstname" => "Ali", "lastname" => "Abbas");
             //$mailchimp->add_batch_subscribers($list_id, $this->customer->getEmail(), $groups['data'], $this->customer);
             $res = $mailchimp->add_batch_subscribers_with_groups($list_id, $email, $groups, $customer);
+
+            print_r($res);
         }
+    }
+
+    public function mailchimpPosting($email, $name) {
+        $res_mail_list = $this->db->query("Select value FROM " . DB_PREFIX . "setting as t WHERE t.key IN('config_mail_chimp')");
+        $res_mail_key = $this->db->query("Select value FROM " . DB_PREFIX . "setting as t WHERE t.key IN('config_mail_chimp_key')");
+        $res_mail_list = $res_mail_list->row['value'];
+        $res_mail_key = $res_mail_key->row['value'];
+
+
+
+        $customer = array();
+        $customer['firstname'] = $email;
+        $customer['lastname'] = $name;
+
+        require_once getcwd() . '/system/library/MailChimp/SubScriptMailChimp.php';
+        $mailchimp = SubScriptMailChimp::getInstance($res_mail_key);
+
+        $list = $mailchimp->getNewsLetterList();
+        $res = $mailchimp->add_batch_subscribers_with_groups($list['list']['id'], $email, "", $customer);
     }
 
     public function test_add_groups() {

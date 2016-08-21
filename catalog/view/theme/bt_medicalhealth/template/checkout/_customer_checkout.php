@@ -1,50 +1,13 @@
 <div class="customer_information">
     <div>
 
-        <!--        <div>
-        
-                    <div>
-        <?php echo $txt_payment_numero; ?>
-                    </div>
-                    <div>
-                        <select id="payment_numero" name="payment_numero">
-        <?php
-        foreach ($numero_options as $numero) {
-            $numero = $numero['numero_complemento'];
-            $selected = "";
-            if (isset($payment_numero) && $payment_numero == $numero) {
-                $selected = "selected = 'selected'";
-            }
-            ?>
-                                        <option <?php echo $selected; ?> value="<?php echo $numero; ?>"><?php echo $numero; ?></option>
-            <?php
-        }
-        ?>
-                        </select>
-                        
-                    </div>
-                    <div>
-        <?php echo $txt_payment_complemento; ?>
-                    </div>
-                    <div>
-                        <select id="payment_complemento" name="payment_complemento">
-        <?php
-        foreach ($complemento_options as $complemento) {
-            $complemento = $complemento['numero_complemento'];
-            $selected = "";
-            if (isset($payment_complemento) && $payment_complemento == $complemento) {
-                $selected = "selected = 'selected'";
-            }
-            ?>
-                                        <option <?php echo $selected; ?> value="<?php echo $complemento; ?>"><?php echo $complemento; ?></option>
-            <?php
-        }
-        ?>
-                        </select>
-                        
-                    </div>
-                </div>-->
         <div colspan="4">
+            <?php
+            $area_style = "";
+            if ($_GET['route'] == "account/register") {
+                $area_style = "display:none;";
+            }
+            ?>
             <?php
             $customer_types = array(
                 "Pessoa Física", "Pessoa Jurídica"
@@ -297,7 +260,6 @@
                                     $checkd = '';
                                 }
                             }
-                            
                             ?>
                             <input type="radio"  name="payment_profession_type" 
                                    value="<?php echo $type ?>" <?php echo $checkd; ?> /> 
@@ -403,7 +365,7 @@
                     </div>
 
                 </div>
-                <div class="area">
+                <div class="area" style="<?php echo $area_style; ?>">
 
                     <div class="area_heading">
                         <?php echo $txt_payment_profession_atuacao; ?>
@@ -477,7 +439,7 @@
 
 
                 </div>
-                <div class="">
+                <div class="news_letter" style="<?php echo $area_style; ?>">
                     <div>
                         <?php echo $txt_payment_news_letter; ?>
                     </div>
@@ -491,6 +453,7 @@
     </div>
 </div>
 <script>
+    var route = "<?php echo $_GET['route']; ?>";
     function customer_section_scripts() {
         $(".cusomer_type").click(function () {
             if ($(this).is(':checked')) {
@@ -506,41 +469,44 @@
         })
         $("input.cusomer_type[checked='checked']").trigger("click");
 
-        $("input[name='payment_profession_type'] ").click(function (event,param) {
-            
+        $("input[name='payment_profession_type'] ").click(function (event, param) {
+
             $(".od").hide();
             $(".pr").hide();
             $(".ac").hide();
 
-            if(typeof(param)=="undefined"){
+            if (typeof (param) == "undefined") {
                 $(".area>div.area_checkboxes input[type='checkbox']").prop('checked', false);
             }
             $(".area>div.area_checkboxes>div").hide();
             if ($(".area>div.area_checkboxes>div[reference='" + $(this).val() + "']").length > 0) {
                 $(".area>div.area_checkboxes>div[reference='" + $(this).val() + "']").show();
-                
+
                 //un check others
                 $(".area>div.area_checkboxes>div[reference!='" + $(this).val() + "'] input[type='checkbox']").prop('checked', false);
             }
-
-
-            if ($(this).is(':checked')) {
-                if ($(this).val() == 'Dentista') {
-                    $(".od").show();
-                    $(".area").show();
-                }
-                else if ($(this).val() == 'Tecnico em Protese') {
-                    $(".pr").show();
-                    $(".area").show();
-                }
-                else if ($(this).val() == 'Academico') {
-                    $(".ac").show();
-                    $(".area").hide();
+            
+            // a super condition for signup 
+            if (route != "account/register") {
+                if ($(this).is(':checked')) {
+                    if ($(this).val() == 'Dentista') {
+                        $(".od").show();
+                        $(".area").show();
+                    }
+                    else if ($(this).val() == 'Tecnico em Protese') {
+                        $(".pr").show();
+                        $(".area").show();
+                    }
+                    else if ($(this).val() == 'Academico') {
+                        $(".ac").show();
+                        $(".area").hide();
+                    }
                 }
             }
+
             console.log($(this).val());
         })
-        $("input[name='payment_profession_type'][checked='checked'] ").trigger("click", [{somedata:true}]);
+        $("input[name='payment_profession_type'][checked='checked'] ").trigger("click", [{somedata: true}]);
 
         //MANAGING MASKS
         $("#payment_cad_telefone").mask({mask: "(##)########?#"});
