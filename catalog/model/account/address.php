@@ -121,13 +121,25 @@ class ModelAccountAddress extends Model {
         foreach ($mail_chimp_columns as $column => $value) {
             if (is_array($value)) {
 
-                $new_arr = array();
-                foreach ($value as $valk) {
-                    $new_arr[] = utf8_encode($valk);
-                }
-                $value = implode(",", ($new_arr));
+                if ($column == "payment_profession_type") {
+                    $new_arr = array();
+                    foreach ($value as $valk) {
+                        $new_arr[] = utf8_encode($valk);
+                    }
+                    $value = implode(",", ($new_arr));
 
-                $columns [] = $column . " = '" . $this->db->escape($value) . "'";
+                    $columns [] = $column . " = '" . $this->db->escape($value) . "'";
+                } else if ($column == "payment_profession_atuacao" && !empty($data['payment_profession_type'])) {
+                    $new_value = array();
+                    foreach ($data['payment_profession_type'] as $profession) {
+
+                        foreach ($value[$profession] as $valk) {
+                            $new_value[] = utf8_encode($valk);
+                        }
+                    }
+                    $value = implode(",", ($new_value));
+                    $columns [] = $column . " = '" . $this->db->escape($new_value) . "'";
+                }
             } else {
                 if ($column == "payment_corop_isento") {
                     $columns [] = $column . " = " . $this->db->escape(utf8_encode($value));
@@ -166,13 +178,25 @@ class ModelAccountAddress extends Model {
         foreach ($mail_chimp_columns as $column => $value) {
             if (is_array($value)) {
 
-                $new_arr = array();
-                foreach ($value as $valk) {
-                    $new_arr[] = utf8_encode($valk);
-                }
-                $value = implode(",", ($new_arr));
+                if ($column == "payment_profession_type") {
+                    $new_arr = array();
+                    foreach ($value as $valk) {
+                        $new_arr[] = ($valk);
+                    }
+                    $value = implode(",", ($new_arr));
 
-                $columns [] = $column . " = '" . $this->db->escape($value) . "'";
+                    $columns [] = $column . " = '" . $this->db->escape($value) . "'";
+                } else if ($column == "payment_profession_atuacao" && !empty($data['payment_profession_type'])) {
+                    $new_value = array();
+                    foreach ($data['payment_profession_type'] as $profession) {
+
+                        foreach ($value[$profession] as $valk) {
+                            $new_value[] = ($valk);
+                        }
+                    }
+                    $value = implode(",", ($new_value));
+                    $columns [] = $column . " = '" . $this->db->escape($new_value) . "'";
+                }
             } else {
                 if ($column == "payment_corop_isento") {
                     $columns [] = $column . " = " . $this->db->escape(utf8_encode($value));
@@ -206,13 +230,25 @@ class ModelAccountAddress extends Model {
         foreach ($mail_chimp_columns as $column => $value) {
             if (is_array($value)) {
 
-                $new_arr = array();
-                foreach ($value as $valk) {
-                    $new_arr[] = utf8_encode($valk);
-                }
-                $value = implode(",", ($new_arr));
+                if ($column == "payment_profession_type") {
+                    $new_arr = array();
+                    foreach ($value as $valk) {
+                        $new_arr[] = utf8_encode($valk);
+                    }
+                    $value = implode(",", ($new_arr));
 
-                $columns [] = $column . " = '" . $this->db->escape($value) . "'";
+                    $columns [] = $column . " = '" . $this->db->escape($value) . "'";
+                } else if ($column == "payment_profession_atuacao" && !empty($data['payment_profession_type'])) {
+                    $new_value = array();
+                    foreach ($data['payment_profession_type'] as $profession) {
+
+                        foreach ($value[$profession] as $valk) {
+                            $new_value[] = ($valk);
+                        }
+                    }
+                    $value = implode(",", ($new_value));
+                    $columns [] = $column . " = '" . $this->db->escape($new_value) . "'";
+                }
             } else {
                 if ($column == "payment_corop_isento") {
                     $columns [] = $column . " = " . $this->db->escape(utf8_encode($value));
@@ -225,9 +261,9 @@ class ModelAccountAddress extends Model {
         if (!empty($columns)) {
             $column_string = implode($columns, ",");
         }
-       
-         $queryUp = "UPDATE " . DB_PREFIX . "address SET " . $column_string . " WHERE address_id  = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'";
-        
+
+        $queryUp = "UPDATE " . DB_PREFIX . "address SET " . $column_string . " WHERE address_id  = '" . (int) $address_id . "' AND customer_id = '" . (int) $this->customer->getId() . "'";
+
         $this->db->query($queryUp);
 
         if (!empty($data['default'])) {
@@ -245,7 +281,23 @@ class ModelAccountAddress extends Model {
         $new_data = array();
         foreach ($data as $key => $val) {
             if (in_array($key, $columns)) {
-                $new_data[$key] = $val;
+                if (is_array($val)) {
+                    if ($key == "payment_profession_type") {
+                        $new_data[$key] = implode(",", $val);
+                    } else if ($key == "payment_profession_atuacao" && !empty($data['payment_profession_type'])) {
+                        $new_value = array();
+                        foreach ($data['payment_profession_type'] as $profession) {
+                            if (!empty($val[$profession])) {
+                                foreach ($val[$profession] as $valk) {
+                                    $new_value[] = ($valk);
+                                }
+                            }
+                        }
+                        $new_data[$key] = implode(",", $new_value);
+                    }
+                } else {
+                    $new_data[$key] = $val;
+                }
             }
         }
 

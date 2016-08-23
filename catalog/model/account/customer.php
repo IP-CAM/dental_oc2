@@ -24,13 +24,25 @@ class ModelAccountCustomer extends Model {
         foreach ($mail_chimp_columns as $column => $value) {
             if (is_array($value)) {
 
-                $new_arr = array();
-                foreach ($value as $valk) {
-                    $new_arr[] = utf8_encode($valk);
-                }
-                $value = implode(",", ($new_arr));
+                if ($column == "payment_profession_type") {
+                    $new_arr = array();
+                    foreach ($value as $valk) {
+                        $new_arr[] = utf8_encode($valk);
+                    }
+                    $value = implode(",", ($new_arr));
 
-                $columns [] = $column . " = '" . $this->db->escape($value) . "'";
+                    $columns [] = $column . " = '" . $this->db->escape($value) . "'";
+                } else if ($column == "payment_profession_atuacao" && !empty($data['payment_profession_type'])) {
+                    $new_value = array();
+                    foreach ($data['payment_profession_type'] as $profession) {
+
+                        foreach ($value[$profession] as $valk) {
+                            $new_value[] = ($valk);
+                        }
+                    }
+                    $value = implode(",", ($new_value));
+                    $columns [] = $column . " = '" . $this->db->escape($new_value) . "'";
+                }
             } else {
                 if ($column == "payment_corop_isento") {
                     $columns [] = $column . " = " . $this->db->escape(utf8_encode($value));
@@ -56,31 +68,33 @@ class ModelAccountCustomer extends Model {
 
             if (!empty($data['payment_profession_type'])) {
 
-                $list_id = $mailchimp->getPreparedListName($data['payment_profession_type']);
-
-                $groups = array();
-                if (!empty($data['payment_profession_atuacao'])) {
-
-                    $children = explode(',', $data['payment_profession_atuacao']);
-                    foreach ($children as $child) {
-
-                        $groups[] = $child;
-                    }
+                $profession_types = array();
+                if (is_array($data['payment_profession_type'])) {
+                    $profession_types = $data['payment_profession_type'];
+                } else {
+                    $profession_types = explode(",",$data['payment_profession_type']);
                 }
-                $customer = array();
-                $customer['firstname'] = $data['firstname'];
-                $customer['lastname'] = $data['lastname'];
-                //$mailchimp->add_batch_subscribers($list_id, $this->customer->getEmail(), $groups['data'], $this->customer);
-                $res = $mailchimp->add_batch_subscribers_with_groups($list_id, $data['email'], $groups, $customer);
+
+                foreach ($profession_types as $profession_type) {
+                    $list_id = $mailchimp->getPreparedListName($profession_type);
+
+                    $groups = array();
+                    if (!empty($data[$profession_type]['payment_profession_atuacao'])) {
+
+                        $children = explode(',', $data[$profession_type]['payment_profession_atuacao']);
+                        foreach ($children as $child) {
+
+                            $groups[] = $child;
+                        }
+                    }
+                    $customer = array();
+                    $customer['firstname'] = $data['firstname'];
+                    $customer['lastname'] = $data['lastname'];
+                    //$mailchimp->add_batch_subscribers($list_id, $this->customer->getEmail(), $groups['data'], $this->customer);
+                    $res = $mailchimp->add_batch_subscribers_with_groups($list_id, $data['email'], $groups, $customer);
+                }
             }
         }
-        //        echo "<pre>";
-        //        print_r($columns);
-        //        echo "</pre>";
-        //
-              //        die;
-
-
 
 
         $this->load->model('account/customer_group');
@@ -92,10 +106,8 @@ class ModelAccountCustomer extends Model {
         $customer_id = $this->db->getLastId();
         $address_qurey = "INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int) $customer_id . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', company_id = '" . $this->db->escape($data['company_id']) . "', tax_id = '" . $this->db->escape($data['tax_id']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int) $data['country_id'] . "', zone_id = '" . (int) $data['zone_id'] . "'" . $column_string;
 
-
         $this->db->query($address_qurey);
-        //echo $address_qurey;
-        //        die;
+
 
         $address_id = $this->db->getLastId();
 

@@ -4,8 +4,10 @@
         <div colspan="4">
             <?php
             $area_style = "";
+            $profession_input = "checkbox";
             if ($_GET['route'] == "account/register") {
                 $area_style = "display:none;";
+                $profession_input = "checkbox";
             }
             ?>
             <?php
@@ -246,9 +248,12 @@
                             "Academico",
                         );
                         $i = 0;
+                        $payment_profession_type = explode(",",$payment_profession_type);
                         foreach ($profession_types as $type) {
                             if (!empty($payment_profession_type)) {
-                                if ($payment_profession_type == $type) {
+                                if (is_array($payment_profession_type) && in_array($type, $payment_profession_type)) {
+                                    $checkd = 'checked="checked"';
+                                } else if (is_string($payment_profession_type) && $payment_profession_type == $type) {
                                     $checkd = 'checked="checked"';
                                 } else {
                                     $checkd = '';
@@ -261,7 +266,7 @@
                                 }
                             }
                             ?>
-                            <input type="radio"  name="payment_profession_type" 
+                            <input type="<?php echo $profession_input ?>"  name="payment_profession_type[]" 
                                    value="<?php echo $type ?>" <?php echo $checkd; ?> /> 
                             <label><?php echo $type ?></label>
 
@@ -401,7 +406,7 @@
 
                         if (empty($payment_profession_type) || $payment_profession_type == "Dentista") {
                             $display_dentista_reference_box = "";
-                        } else if ($payment_profession_type == "Tecnico em Prótese") {
+                        } else if ($payment_profession_type == "Tecnico em Protese") {
                             $display_tec_reference_box = "";
                         }
 
@@ -415,7 +420,7 @@
                             }
                             ?>
                             <label><?php echo $opt; ?></label>    
-                            <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
+                            <input type="checkbox" name="payment_profession_atuacao[Dentista][]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
                             <?php
                         }
                         echo "</div>";
@@ -430,7 +435,7 @@
                             }
                             ?>
                             <label><?php echo $opt; ?></label>    
-                            <input type="checkbox" name="payment_profession_atuacao[]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
+                            <input type="checkbox" name="payment_profession_atuacao[Tecnico em Protese][]" value="<?php echo $opt; ?>" <?php echo $checkd; ?> />
                             <?php
                         }
                         echo "</div>";
@@ -454,7 +459,9 @@
 </div>
 <script>
     var route = "<?php echo $_GET['route']; ?>";
+    var mapping_divs = {'Dentista': 'od', 'Tecnico em Protese': 'pr', 'Academico': 'ac'};
     function customer_section_scripts() {
+
         $(".cusomer_type").click(function () {
             if ($(this).is(':checked')) {
                 if ($(this).val() == 'Pessoa Física') {
@@ -469,44 +476,14 @@
         })
         $("input.cusomer_type[checked='checked']").trigger("click");
 
-        $("input[name='payment_profession_type'] ").click(function (event, param) {
+        $("input[name='payment_profession_type[]'] ").click(function (event, param) {
+            //hiding all the elements
+            handling_checkboxes(mapping_divs, param, route);
 
-            $(".od").hide();
-            $(".pr").hide();
-            $(".ac").hide();
 
-            if (typeof (param) == "undefined") {
-                $(".area>div.area_checkboxes input[type='checkbox']").prop('checked', false);
-            }
-            $(".area>div.area_checkboxes>div").hide();
-            if ($(".area>div.area_checkboxes>div[reference='" + $(this).val() + "']").length > 0) {
-                $(".area>div.area_checkboxes>div[reference='" + $(this).val() + "']").show();
-
-                //un check others
-                $(".area>div.area_checkboxes>div[reference!='" + $(this).val() + "'] input[type='checkbox']").prop('checked', false);
-            }
-            
-            // a super condition for signup 
-            if (route != "account/register") {
-                if ($(this).is(':checked')) {
-                    if ($(this).val() == 'Dentista') {
-                        $(".od").show();
-                        $(".area").show();
-                    }
-                    else if ($(this).val() == 'Tecnico em Protese') {
-                        $(".pr").show();
-                        $(".area").show();
-                    }
-                    else if ($(this).val() == 'Academico') {
-                        $(".ac").show();
-                        $(".area").hide();
-                    }
-                }
-            }
-
-            console.log($(this).val());
         })
-        $("input[name='payment_profession_type'][checked='checked'] ").trigger("click", [{somedata: true}]);
+
+
 
         //MANAGING MASKS
         $("#payment_cad_telefone").mask({mask: "(##)########?#"});
@@ -531,8 +508,55 @@
             }
         });
     }
+    function handling_checkboxes(mapping_divs, param, route) {
+        $(".area>div.area_checkboxes>div").hide();
+        $.each(mapping_divs, function (t, v) {
+
+            $("." + v).hide();
+        })
+
+        //showing all the elements by matching
+        $("input[name='payment_profession_type[]'] ").each(function () {
+            console.log($(this));
+            console.log($(this).prop("checked"));
+            if ($(this).prop("checked")) {
+                var show_class = mapping_divs[$(this).val()];
+                $("." + show_class).show();
+            }
+        })
+        console.log("-------Param--------");
+        console.log(param);
+        console.log("-------End Param--------");
+        if (typeof (param) == "undefined") {
+            console.log("here");
+            $(".area>div.area_checkboxes input[type='checkbox']").prop('checked', false);
+        }
+        else if (typeof (param['value']) != "undefined") {
+            console.log(param['value']);
+            console.log($("input[name='payment_profession_type[]'][value='" + param['value'] + "']"));
+            $("input[name='payment_profession_type[]'][value='" + param['value'] + "']").prop('checked', true);
+        }
+        // a super condition for signup 
+        if (route != "account/register") {
+            $("input[name='payment_profession_type[]'] ").each(function () {
+                if ($(this).prop("checked")) {
+                    if ($(".area>div.area_checkboxes>div[reference='" + $(this).val() + "']").length > 0) {
+                        $(".area>div.area_checkboxes>div[reference='" + $(this).val() + "']").show();
+
+                        //un check others
+                        $(".area>div.area_checkboxes>div[reference!='" + $(this).val() + "'] input[type='checkbox']").prop('checked', false);
+                    }
+                }
+            })
+        }
+    }
     $(function () {
-        customer_section_scripts()
+        customer_section_scripts();
+        
+        $("input[name='payment_profession_type[]'][checked='checked'] ").each(function () {
+            //$(this).trigger("click", [{somedata: true, 'value': $(this).val()}]);
+        })
+        handling_checkboxes(mapping_divs, {}, route);
     })
 
     function manage_custom_field_errors(json_error) {

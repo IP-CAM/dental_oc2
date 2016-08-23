@@ -16,7 +16,7 @@ class SubScriptMailChimp {
         
     }
 
-    public static function getInstance($key = '8a5ff2864ed57767856a4b4579a7424a-us10') {
+    public static function getInstance($key = '3c5e19c001b9c88f552184a568aa3bdc-us9') {
         if (empty(self::$constr)) {
             self::$mc = new Mailchimp($key);
             self::$constr = new SubScriptMailChimp();
@@ -44,6 +44,16 @@ class SubScriptMailChimp {
     public function getPreparedListName($list_name) {
         $lists = $this->getPreparedList();
         return $lists[$list_name];
+    }
+
+    /**
+     * get news letter
+     */
+    public function getNewsLetterList() {
+        return array("list" => array(
+                "id" => "1f1692f6bd",
+                "name" => "News Letter"
+        ));
     }
 
     /**
@@ -265,9 +275,9 @@ class SubScriptMailChimp {
         }
     }
 
-    public function add_batch_subscribers_with_groups($list_id, $email, $groups, $customer = array(),$login = false) {
+    public function add_batch_subscribers_with_groups($list_id, $email, $groups, $customer = array(), $login = false) {
         try {
-          
+
             $emails = array('email' => $email);
             $merge_vars = array(
                 'GROUPINGS' => array(
@@ -282,7 +292,7 @@ class SubScriptMailChimp {
                     $merge_vars['GROUPINGS'][] = array(
                         'id' => (int) $childGroup['id'],
 //                        'id' => (int) $childGroup['data']['id'],
-                            'groups' => array($group_name),
+                        'groups' => array($group_name),
 //                            'groups' => array($childGroup['groups'][0]['id']),
                     );
                 }
@@ -305,7 +315,7 @@ class SubScriptMailChimp {
             $res['code'] = '500';
             $res['errors'] = array($ex->getMessage());
             $res['type'] = 'exception';
-           
+
             return $res;
         }
     }

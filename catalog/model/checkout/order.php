@@ -14,7 +14,13 @@ class ModelCheckoutOrder extends Model {
                 } else if ($col == "payment_news_letter") {
                     $new_columns [] = $col . " = '" . $data[$col] . "'";
                 } else {
-                    $new_columns [] = $col . " = '" . $data[$col] . "'";
+                    if(is_array($data[$col])){
+                         $new_columns [] = $col . " = '" . implode(",",$data[$col]) . "'";
+                    }
+                    else {
+                        $new_columns [] = $col . " = '" . $data[$col] . "'";
+                    }
+                    
                 }
             }
         }
@@ -35,22 +41,32 @@ class ModelCheckoutOrder extends Model {
 
             if (!empty($data['payment_profession_type'])) {
 
-                $list_id = $mailchimp->getPreparedListName($data['payment_profession_type']);
-
-                $groups = array();
-                if (!empty($data['payment_profession_atuacao'])) {
-
-                    $children = explode(',', $data['payment_profession_atuacao']);
-                    foreach ($children as $child) {
-
-                        $groups[] = $child;
-                    }
+                $profession_types = array();
+                if (is_array($data['payment_profession_type'])) {
+                    $profession_types = $data['payment_profession_type'];
+                } else {
+                    $profession_types = explode(",",$data['payment_profession_type']);
+                    
                 }
-                $customer = array();
-                $customer['firstname'] = $this->customer->getFirstName();
-                $customer['lastname'] = $this->customer->getLastName();
-                //$mailchimp->add_batch_subscribers($list_id, $this->customer->getEmail(), $groups['data'], $this->customer);
-                $res = $mailchimp->add_batch_subscribers_with_groups($list_id, $this->customer->getEmail(), $groups, $customer);
+
+                foreach ($profession_types as $profession_type) {
+                    $list_id = $mailchimp->getPreparedListName($profession_type);
+
+                    $groups = array();
+                    if (!empty($data[$profession_type]['payment_profession_atuacao'])) {
+
+                        $children = explode(',', $data[$profession_type]['payment_profession_atuacao']);
+                        foreach ($children as $child) {
+
+                            $groups[] = $child;
+                        }
+                    }
+                    $customer = array();
+                    $customer['firstname'] = $this->customer->getFirstName();
+                    $customer['lastname'] = $this->customer->getLastName();
+                    //$mailchimp->add_batch_subscribers($list_id, $this->customer->getEmail(), $groups['data'], $this->customer);
+                    $res = $mailchimp->add_batch_subscribers_with_groups($list_id, $this->customer->getEmail(), $groups, $customer);
+                }
             }
 
             /*
