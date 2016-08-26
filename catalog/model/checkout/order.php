@@ -53,9 +53,13 @@ class ModelCheckoutOrder extends Model {
                     $list_id = $mailchimp->getPreparedListName($profession_type);
 
                     $groups = array();
-                    if (!empty($data[$profession_type]['payment_profession_atuacao'])) {
-
-                        $children = explode(',', $data[$profession_type]['payment_profession_atuacao']);
+                    if (!empty($data['payment_profession_atuacao'][$profession_type])) {
+                        if(is_string($data['payment_profession_atuacao'][$profession_type])){
+                            $children = explode(',', $data['payment_profession_atuacao'][$profession_type]);
+                        }
+                        else {
+                            $children = $data['payment_profession_atuacao'][$profession_type];
+                        }
                         foreach ($children as $child) {
 
                             $groups[] = $child;
