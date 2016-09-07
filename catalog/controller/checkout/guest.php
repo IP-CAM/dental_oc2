@@ -4,8 +4,9 @@ class ControllerCheckoutGuest extends Controller {
 
     public function index() {
         $this->language->load('checkout/checkout');
-        
+
         $this->load->model('account/address');
+        $this->load->model('account/customer');
 
         $this->data['text_select'] = $this->language->get('text_select');
         $this->data['text_none'] = $this->language->get('text_none');
@@ -77,7 +78,7 @@ class ControllerCheckoutGuest extends Controller {
 
         $this->data['txt_payment_heading_customer_type'] = $this->language->get('txt_payment_heading_customer_type');
 
-        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes,true);
+        $this->data['area_codes'] = json_decode($this->model_account_address->area_codes, true);
         //end of mail chimp
 
 
@@ -115,6 +116,15 @@ class ControllerCheckoutGuest extends Controller {
             $this->data['company'] = $this->session->data['guest']['payment']['company'];
         } else {
             $this->data['company'] = '';
+        }
+
+        //setting mail chimp fields as post values
+        foreach (array_keys($this->model_account_customer->getAddressInstance()->_mail_chimp_columns) as $field) {
+            if (!empty($this->request->post[$field])) {
+                $this->data[$field] = $this->request->post[$field];
+            } else {
+                $this->data[$field] = "";
+            }
         }
 
         $this->load->model('account/customer_group');
@@ -205,20 +215,22 @@ class ControllerCheckoutGuest extends Controller {
             $this->data['shipping_address'] = true;
         }
         $this->data['confirm_btn_hide'] = 1;
-        
+
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/guest.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/checkout/guest.tpl';
         } else {
             $this->template = 'default/template/checkout/guest.tpl';
         }
 
-       
+
 
         $this->response->setOutput($this->render());
     }
 
     public function validate() {
         $this->language->load('checkout/checkout');
+        require_once getcwd() . '/system/library/validation/Validacao.php';
+        $validacao = new Validacao();
 
         $json = array();
 
@@ -252,6 +264,20 @@ class ControllerCheckoutGuest extends Controller {
 
             if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
                 $json['error']['telephone'] = $this->language->get('error_telephone');
+            }
+
+            if (!empty($this->request->post['payment_customer_type'])) {
+                if ($this->request->post['payment_customer_type'] == 'Pessoa Física') {
+
+                    if (!$validacao->validaCPF($this->request->post['payment_cad_cpf'])) {
+                        $json['error']['payment_cad_cpf'] = $this->language->get('error_payment_cad_cpf_valid');
+                    }
+                } else if ($this->request->post['payment_customer_type'] == 'Pessoa Jurídica') {
+
+                    if (!$validacao->validaCNPJ($this->request->post['payment_corop_cnpg'])) {
+                        $json['error']['payment_corop_cnpg'] = $this->language->get('errror_payment_corop_cnpg_valid');
+                    }
+                }
             }
 
             // Customer Group
