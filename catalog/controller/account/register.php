@@ -480,6 +480,10 @@ class ControllerAccountRegister extends Controller {
     }
 
     protected function validate() {
+        require_once getcwd() . '/system/library/validation/Validacao.php';
+
+        $validacao = new Validacao();
+
         if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
             $this->error['firstname'] = $this->language->get('error_firstname');
         }
@@ -524,15 +528,27 @@ class ControllerAccountRegister extends Controller {
                 if ((utf8_strlen($this->request->post['payment_corop_cnpg']) < 1)) {
                     $this->error['payment_corop_cnpg'] = $this->language->get('errror_payment_corop_cnpg');
                 }
+                else {
+                    if (!$validacao->validaCNPJ($this->request->post['payment_corop_cnpg'])) {
+                        $this->error['payment_corop_cnpg'] = $this->language->get('errror_payment_corop_cnpg_valid');
+                    }
+                }
             } else if (($this->request->post['payment_customer_type']) == "Pessoa Física") {
 
                 if ((utf8_strlen($this->request->post['payment_cad_cpf']) < 1)) {
                     $this->error['payment_cad_cpf'] = $this->language->get('error_payment_cad_cpf');
+                } else {
+                    if (!$validacao->validaCPF($this->request->post['payment_cad_cpf'])) {
+                        $this->error['payment_cad_cpf'] = $this->language->get('error_payment_cad_cpf_valid');
+                    }
                 }
             } else if (utf8_decode($this->request->post['payment_customer_type']) == "Pessoa Física") {
 
                 if ((utf8_strlen($this->request->post['payment_cad_cpf']) < 1)) {
                     $this->error['payment_cad_cpf'] = $this->language->get('error_payment_cad_cpf');
+                }
+                else {
+                    
                 }
             }
         }

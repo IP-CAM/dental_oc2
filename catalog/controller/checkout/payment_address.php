@@ -84,7 +84,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
         $this->data['addresses'] = array();
 
         $this->load->model('account/address');
-        
+
         //define area codes
         $this->data['area_codes'] = array_unique(json_decode($this->model_account_address->area_codes, true));
 
@@ -95,7 +95,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 
 
         $this->data['addresses'] = $this->model_account_address->getAddresses();
-       
+
         $last_index = array_keys($this->data['addresses']);
         if (!empty($last_index)) {
             //print_r($last_index[count($last_index) - 1]);
@@ -103,7 +103,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
                 $this->data[$field] = utf8_decode($this->data['addresses'][$last_index[count($last_index) - 1]][$field]);
             }
         }
-       
+
 
 
         $this->load->model('account/customer_group');
@@ -164,6 +164,8 @@ class ControllerCheckoutPaymentAddress extends Controller {
 //        print_r($_POST);
 //        echo "</pre>";
 //        die;
+        require_once getcwd() . '/system/library/validation/Validacao.php';
+        $validacao = new Validacao();
 
         $this->language->load('checkout/checkout');
 
@@ -207,7 +209,6 @@ class ControllerCheckoutPaymentAddress extends Controller {
                     $json['error']['warning'] = $this->language->get('error_address');
                 } elseif (!in_array($this->request->post['address_id'], array_keys($this->model_account_address->getAddresses()))) {
                     $json['error']['warning'] = $this->language->get('error_address');
-                
                 } elseif (empty($this->request->post['payment_cad_area_code'])) {
                     $json['error']['warning'] = $this->language->get('error_address_code');
                 } else {
@@ -232,6 +233,22 @@ class ControllerCheckoutPaymentAddress extends Controller {
                             $json['error']['warning'] = $this->language->get('error_tax_id');
                         }
                     }
+
+                    //
+                   
+                    if (!empty($this->request->post['payment_customer_type'])) {
+                        if ($this->request->post['payment_customer_type'] == 'Pessoa Física') {
+                            
+                            if (!$validacao->validaCPF($this->request->post['payment_cad_cpf'])) {
+                                $json['error']['payment_cad_cpf'] = $this->language->get('error_payment_cad_cpf_valid');
+                            }
+                        } else if ($this->request->post['payment_customer_type'] == 'Pessoa Jurídica') {
+
+                            if (!$validacao->validaCNPJ($this->request->post['payment_corop_cnpg'])) {
+                                $json['error']['payment_corop_cnpg'] = $this->language->get('errror_payment_corop_cnpg_valid');
+                            }
+                        }
+                    }
                 }
 
                 if (!$json) {
@@ -253,6 +270,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
                     }
                 }
             } else {
+
                 if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
                     $json['error']['firstname'] = $this->language->get('error_firstname');
                 }
@@ -287,11 +305,11 @@ class ControllerCheckoutPaymentAddress extends Controller {
                 }
 
                 //validate custom fields 
+                if (!empty($this->request->post['payment_customer_type'])) {
+                    if ($this->request->post['payment_customer_type'] == 'Pessoa Física') {
 
-                if (!empty($this->request->post['cusomer_type'])) {
-                    if ($this->request->post['cusomer_type'] == 'Pessoa Física') {
-                        if (!$this->validaCPF($this->request->post['payment_cad_cpf'])) {
-                            $json['error']['payment_cad_cpf'] = 'Not Valid CPF';
+                        if (!$validacao->validaCPF($this->request->post['payment_cad_cpf'])) {
+                            $json['error']['payment_cad_cpf'] = $this->language->get('error_payment_cad_cpf_valid');
                         }
                         if (empty($this->request->post['payment_cad_name'])) {
                             $json['error']['payment_cad_name'] = 'Not Valid Name';
@@ -305,7 +323,10 @@ class ControllerCheckoutPaymentAddress extends Controller {
                         if (empty($this->request->post['payment_cad_rg'])) {
                             $json['error']['payment_cad_rg'] = 'Not Valid RG';
                         }
-                    } else if ($this->request->post['cusomer_type'] == 'Pessoa Jurídica') {
+                    } else if ($this->request->post['payment_customer_type'] == 'Pessoa Jurídica') {
+                        if (!$validacao->validaCNPJ($this->request->post['payment_corop_cnpg'])) {
+                            $json['error']['payment_corop_cnpg'] = $this->language->get('errror_payment_corop_cnpg_valid');;
+                        }
 //                        if(!$this->validaCPF($this->request->post['payment_corop_cnpg'])){
 //                            $json['error']['payment_corop_cnpg'] = 'Not Valid CNPG';
 //                        }
@@ -359,7 +380,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
             if (!empty($this->request->post["address_id"])) {
                 $this->session->data['payment_address_id'] = $this->model_account_address->editMailChimpAddress($this->request->post["address_id"], $this->request->post);
             }
-            
+
 
 
             $this->session->data['payment_country_id'] = $this->request->post['country_id'];

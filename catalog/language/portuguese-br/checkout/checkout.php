@@ -139,4 +139,10 @@ $_['txt_payment_heading_customer_type'] = 'Tipo de cliente';
 
 $_['txt_payment_numero'] = 'Numero';
 $_['txt_payment_complemento'] = 'Complemento';
+
+//cpf 
+$_['errror_payment_corop_cnpg'] = 'Não deve estar vazio';
+$_['errror_payment_corop_cnpg_valid'] = 'Não deve estar vazio';
+$_['error_payment_cad_cpf'] = 'Não deve estar vazio';
+$_['error_payment_cad_cpf_valid'] = "Não válido CPF";
 ?>
