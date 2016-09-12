@@ -16,7 +16,6 @@ if (file_exists($logfilename)) {
 }
 
 
-
 $quebralinha = "\r\n";
 $nomearq = "";
 
@@ -42,13 +41,15 @@ $sql = "select order_id, customer_id,payment_corop_cnpg,payment_cad_cpf, shippin
         shipping_city, shipping_postcode, shipping_country_id, iso_code_3 
         from " . $db_prefix . "order 
         left join " . $db_prefix . "country on (" . $db_prefix . "order.shipping_country_id = " . $db_prefix . "country.country_id) 
-        where (date_added > '$lastexport')  or (date_modified > '$lastexport')";
+        where ((date_added > '$lastexport')  or (date_modified > '$lastexport')) AND order_status_id <> 0  ";
+
 
 
 $sql = mysqli_query($conexao, $sql);
 
 $num_rows = mysqli_num_rows($sql); /* Número de Pedidos Encontrados */
-
+//only for testing
+$customer_idd = "";
 if ($num_rows > 0) {
     while ($dados = mysqli_fetch_array($sql)) {
 
@@ -56,14 +57,14 @@ if ($num_rows > 0) {
         $numpedecom = $dados["order_id"]; //REG 01
         // REG 02 - 04
         $codcliente = $dados["customer_id"]; //REG 05
+        $customer_idd = $codcliente;
         //Getting customer information
 
         $customer_information = get_first_customer($codcliente, $db_prefix, $conexao);
-        
+
         //No need now
         //customer second information
         //$customer_second_information = get_second_customer($codcliente, $db_prefix, $conexao);
-
         //
         // REG 06 - 08
         $codtransp = $dados["shipping_code"]; //REG 09
@@ -128,7 +129,7 @@ if ($num_rows > 0) {
 //        print_r($customer_information);
 //        die;
 
-        $logentrega = !empty($customer_information['address_1']) ? $customer_information['address_1'] : ""; //address 1 will be for street address
+        $logentrega = !empty($customer_information['address_1']) ? utf8_decode($customer_information['address_1']) : ""; //address 1 will be for street address
         $numentrega = !empty($customer_information['payment_numero']) ? $customer_information['payment_numero'] : ""; //Numero will be here
         $comentrega = !empty($customer_information['payment_complemento']) ? $customer_information['payment_complemento'] : ""; //Complemento will be here
         $baientrega = !empty($customer_information['address_2']) ? $customer_information['address_2'] : ""; //Area Bairo
@@ -157,7 +158,7 @@ if ($num_rows > 0) {
         }
 
         //REGISTRO 151 : PRODUTOS DO PEDIDO
-        $sql2 = "select " . $db_prefix . "order_product.order_id, " . $db_prefix . "order_product.product_id, " . $db_prefix . "order_product.quantity, " . $db_prefix . "product.price as p1,
+        $sql2 = "select " . $db_prefix . "order_product.order_id, " . $db_prefix . "order_product.product_id, " . $db_prefix . "order_product.quantity, " . $db_prefix . "product.price as p1," . $db_prefix . "product.model as model,
                 " . $db_prefix . "order_product.price as p2, total
                 from " . $db_prefix . "order_product
                 left join " . $db_prefix . "product on (" . $db_prefix . "product.product_id = " . $db_prefix . "order_product.product_id) 
@@ -171,7 +172,7 @@ if ($num_rows > 0) {
         if ($num_rows2 > 0) {
             while ($dados2 = mysqli_fetch_assoc($sql2)) {
                 //REG 01 : $numpedecom
-                $codproduto = $dados2["product_id"]; //REG 02
+                $codproduto = !empty($dados2["model"])? $dados2["model"] : $dados2["product_id"]; //REG 02
                 //REG 03 - 04: 0 E 1
                 $quantidade = $dados2["quantity"]; //REG 05
                 //REG 06: VAZIO
@@ -195,131 +196,141 @@ if ($num_rows > 0) {
                 $result .= $quebralinha;
             }
         }
-    }
-    /* BUSCAR DADOS DE CLIENTES DOS PEDIDOS ADICIONADOS/MODIFICADOS */
-    $count = count($reg160);
-    for ($i = 0; $i < $count; $i++) {
-        $sql3 = "SELECT " . $db_prefix . "customer.customer_id, " . $db_prefix . "customer.firstname, " . $db_prefix . "customer.lastname, " . $db_prefix . "address.address_1,
+
+        /* BUSCAR DADOS DE CLIENTES DOS PEDIDOS ADICIONADOS/MODIFICADOS */
+        $count = count($reg160);
+
+        if (!empty($customer_idd)) {
+            //for ($i = 0; $i < $count; $i++) {
+            $sql3 = "SELECT " . $db_prefix . "customer.customer_id, " . $db_prefix . "customer.firstname, " . $db_prefix . "customer.lastname, " . $db_prefix . "address.address_1,
                  " . $db_prefix . "address.address_2, " . $db_prefix . "address.city, " . $db_prefix . "address.payment_numero," . $db_prefix . "address.payment_complemento," . $db_prefix . "address.postcode, telephone, email, " . $db_prefix . "country.iso_code_3 
                  FROM " . $db_prefix . "customer, " . $db_prefix . "address 
                  LEFT JOIN " . $db_prefix . "country on (" . $db_prefix . "country.country_id = " . $db_prefix . "address.country_id) 
-                 WHERE (" . $db_prefix . "customer.customer_id = $reg160[$i]) and (" . $db_prefix . "address.address_id = " . $db_prefix . "customer.address_id)";
+                 WHERE (" . $db_prefix . "customer.customer_id = $customer_idd) and (" . $db_prefix . "address.address_id = " . $db_prefix . "customer.address_id)";
 
-        $sql3 = mysqli_query($conexao, $sql3);
-        if ($sql3) {
-            while ($dados3 = mysqli_fetch_assoc($sql3)) {
-
-                $customer_information = get_first_customer($dados3['customer_id'], $db_prefix, $conexao);
-                //customer second information
-                $customer_second_information = get_second_customer($dados3['customer_id'], $db_prefix, $conexao);
+            $sql3 = mysqli_query($conexao, $sql3);
+            if ($sql3) {
+                while ($dados3 = mysqli_fetch_assoc($sql3)) {
 
 
-                $customer_name = implode(" ", array($dados3["firstname"], $dados3["lastname"]));
-                $customer_company = $customer_information['company'];
-
-                $customer_cpf = $customer_information["payment_cad_cpf"];
-                $customer_cnpj = $customer_information["payment_corop_cnpg"];
-                $customer_cpf_cnpj = !empty($customer_cpf) ? $customer_cpf : $customer_cpfcnpj;
-                $cusomer_payment_cad_rg = $customer_information['payment_cad_rg'];
-                $cusomer_payment_address1 = $customer_information['address_1'];
-                $cusomer_payment_complemento = $customer_information['payment_complemento'];
-                $cusomer_payment_numero = $customer_information['payment_numero'];
-
-                $cusomer_address2 = $customer_information['address_2']; //Biro
-               
+                    $customer_information = get_first_customer($dados3['customer_id'], $db_prefix, $conexao);
+                    //customer second information
+                    $customer_second_information = get_second_customer($dados3['customer_id'], $db_prefix, $conexao);
 
 
-                $cusomer_city = $customer_information['city']; //City
-                $cusomer_state = $customer_information['state_name']; //state_name
-                $cusomer_state_code = $customer_information['state_code']; //state code
-                $cusomer_postcode = $customer_information['postcode']; //CEP
-                $cusomer_country_name = $customer_information['country_name']; //Country
+                    $customer_name = implode(" ", array($dados3["firstname"], $dados3["lastname"]));
+                    $customer_company = $customer_information['company'];
 
-                $cusomer_phone = $dados3['telephone']; //Phone
-                if (substr($cusomer_phone, 0, 1) != "0") {
-                    $cusomer_phone = $customer_information['payment_cad_area_code'] . " " . $dados3['telephone']; //Phone
+                    $customer_cpf = $customer_information["payment_cad_cpf"];
+                    $customer_cnpj = $customer_information["payment_corop_cnpg"];
+                    $customer_cpf_cnpj = !empty($customer_cpf) ? $customer_cpf : $customer_cpfcnpj;
+                    $cusomer_payment_cad_rg = $customer_information['payment_cad_rg'];
+                    $cusomer_payment_address1 = $customer_information['address_1'];
+                    $cusomer_payment_complemento = $customer_information['payment_complemento'];
+                    $cusomer_payment_numero = $customer_information['payment_numero'];
+
+                    $cusomer_address2 = $customer_information['address_2']; //Biro
+
+
+
+                    $cusomer_city = $customer_information['city']; //City
+                    $cusomer_state = $customer_information['state_name']; //state_name
+                    $cusomer_state_code = $customer_information['state_code']; //state code
+                    $cusomer_postcode = $customer_information['postcode']; //CEP
+                    $cusomer_country_name = $customer_information['country_name']; //Country
+
+                    $cusomer_phone = $dados3['telephone']; //Phone
+                    if (substr($cusomer_phone, 0, 1) != "0") {
+                        $cusomer_phone = $customer_information['payment_cad_area_code'] . " " . $dados3['telephone']; //Phone
+                    }
+                    $cusomer_email = $dados3['email']; //Phone
+                    $cusomer_website = ""; // not in database;
+                    //ESCREVE REGISTRO 160
+                    $result .= "160;"; // Fixo //00
+                    $result .= "160;"; // Fixo //01
+
+                    
+                    $result .= $dados3['customer_id'] . ";"; // 01 - Controle customer_id
+
+
+
+
+
+                    $result .= $customer_name . ";"; // 03
+                    $result .= "$customer_company;"; // 04: Vazio
+                    $result .= "$customer_cpf_cnpj;"; // 05: CNPJ/CPF Não identificado no database
+                    $result .= "$cusomer_payment_cad_rg;"; // 06: IE/RG Não identificado no database
+                    $result .= $cusomer_payment_address1 . ";"; // 07
+
+                    $result .= $cusomer_payment_numero . ";"; // 8: Numero
+                    $result .= $cusomer_payment_complemento . ";"; // 09: Complemento - Não identificado no database
+
+                    $result .= $dados3["address_2"] . ";"; //10: Bairro - Não identificado no database
+
+                    $result .= $cusomer_city . ";"; // 11
+                    $result .= "$cusomer_state_code;"; // 12: UF - Não identificado no database
+                    $result .= $cusomer_postcode . ";"; // 13
+                    $result .= $cusomer_country_name . ";"; // 14
+                    $result .= $cusomer_phone . ";"; // 15
+                    $result .= $cusomer_email . ";"; // 16
+                    $result .= ";"; // 17 : site - Não identificado no database
+
+                    if (!empty($customer_second_information) && $customer_second_information['address_id'] != $customer_information['address_id']) {
+                        $result .= $customer_second_information['address_1'] . ";"; // shipping_adress
+                        $result .= $customer_second_information['payment_complemento'] . ";"; //numero
+                        $result .= $customer_second_information['payment_numero'] . ";"; //complemento
+                        $result .= $customer_second_information['address_2'] . ";"; //Biro
+                        $result .= $customer_second_information['city'] . ";"; //City
+                        $result .= $customer_second_information['state_code'] . ";"; //state
+                        $result .= $customer_second_information['postcode'] . ";"; //cep
+                        $result .= $customer_second_information['country_name'] . ";"; //country        
+                    } else {
+
+                        $result .= ";"; // shipping_adress
+                        $result .= ";"; //numero
+                        $result .= ";"; //complemento
+                        $result .= ";"; //Biro
+                        $result .= ";"; //City
+                        $result .= ";"; //state
+                        $result .= ";"; //cep
+                        $result .= ";"; //country
+                    }
+
+                    // 18 -25: Endereço de Cobrança
+                    /*
+                     * * ======= Requirment has been changed *********
+                      $result .= $dados3["address_1"] . ";"; // 18
+                      $result .= $dados3["address_2"] . ";"; // 19
+                      $result .= ";"; // 20: Complemento - Não identificado no database
+                      $result .= ";"; // 21: Bairro - Não identificado no database
+                      $result .= $dados3["city"] . ";"; // 22
+                      $result .= ";"; // 23: UF - Não identificado no database
+                      $result .= $dados3["postcode"] . ";"; // 24
+                      $result .= $dados3["iso_code_3"] . ";"; // 25
+                      //26 - 33: Endereço de Entrega
+                      $result .= ";"; // 26
+                      $result .= ";"; // 27
+                      $result .= ";"; // 28: Complemento - Não identificado no database
+                      $result .= ";"; // 29: Bairro - Não identificado no database
+                      $result .= ";"; // 30
+                      $result .= ";"; // 31: UF - Não identificado no database
+                      $result .= ";"; // 32
+                      $result .= ";"; // 33
+
+                      $result .= ";"; // 34 Vazio - Código região do cliente
+                      $result .= ";"; // 35 Vazio - Código sub-região do cliente
+                     */
+                    $result .= $quebralinha;
                 }
-                $cusomer_email = $dados3['email']; //Phone
-                $cusomer_website = ""; // not in database;
-                //ESCREVE REGISTRO 160
-                $result .= "160;"; // Fixo //00
-                $result .= "160;"; // Fixo //01
-                $result .= $dados3['customer_id'] . ";"; // 01 - Controle customer_id
-
-
-
-
-
-                $result .= $customer_name . ";"; // 03
-                $result .= "$customer_company;"; // 04: Vazio
-                $result .= "$customer_cpf_cnpj;"; // 05: CNPJ/CPF Não identificado no database
-                $result .= "$cusomer_payment_cad_rg;"; // 06: IE/RG Não identificado no database
-                $result .= $cusomer_payment_address1 . ";"; // 07
-
-                $result .= $cusomer_payment_numero . ";"; // 8: Numero
-                $result .= $cusomer_payment_complemento . ";"; // 09: Complemento - Não identificado no database
-
-                $result .= $dados3["address_2"] . ";"; //10: Bairro - Não identificado no database
-
-                $result .= $cusomer_city . ";"; // 11
-                $result .= "$cusomer_state_code;"; // 12: UF - Não identificado no database
-                $result .= $cusomer_postcode . ";"; // 13
-                $result .= $cusomer_country_name . ";"; // 14
-                $result .= $cusomer_phone . ";"; // 15
-                $result .= $cusomer_email . ";"; // 16
-                $result .= ";"; // 17 : site - Não identificado no database
-
-                if (!empty($customer_second_information) && $customer_second_information['address_id'] != $customer_information['address_id']) {
-                    $result .= $customer_second_information['address_1'] . ";"; // shipping_adress
-                    $result .= $customer_second_information['payment_complemento'] . ";"; //numero
-                    $result .= $customer_second_information['payment_numero'] . ";"; //complemento
-                    $result .= $customer_second_information['address_2'] . ";"; //Biro
-                    $result .= $customer_second_information['city'] . ";"; //City
-                    $result .= $customer_second_information['state_code'] . ";"; //state
-                    $result .= $customer_second_information['postcode'] . ";"; //cep
-                    $result .= $customer_second_information['country_name'] . ";"; //country        
-                } else {
-
-                    $result .= ";"; // shipping_adress
-                    $result .= ";"; //numero
-                    $result .= ";"; //complemento
-                    $result .= ";"; //Biro
-                    $result .= ";"; //City
-                    $result .= ";"; //state
-                    $result .= ";"; //cep
-                    $result .= ";"; //country
-                }
-
-                // 18 -25: Endereço de Cobrança
-                /*
-                 * * ======= Requirment has been changed *********
-                  $result .= $dados3["address_1"] . ";"; // 18
-                  $result .= $dados3["address_2"] . ";"; // 19
-                  $result .= ";"; // 20: Complemento - Não identificado no database
-                  $result .= ";"; // 21: Bairro - Não identificado no database
-                  $result .= $dados3["city"] . ";"; // 22
-                  $result .= ";"; // 23: UF - Não identificado no database
-                  $result .= $dados3["postcode"] . ";"; // 24
-                  $result .= $dados3["iso_code_3"] . ";"; // 25
-                  //26 - 33: Endereço de Entrega
-                  $result .= ";"; // 26
-                  $result .= ";"; // 27
-                  $result .= ";"; // 28: Complemento - Não identificado no database
-                  $result .= ";"; // 29: Bairro - Não identificado no database
-                  $result .= ";"; // 30
-                  $result .= ";"; // 31: UF - Não identificado no database
-                  $result .= ";"; // 32
-                  $result .= ";"; // 33
-
-                  $result .= ";"; // 34 Vazio - Código região do cliente
-                  $result .= ";"; // 35 Vazio - Código sub-região do cliente
-                 */
-                $result .= $quebralinha;
             }
+            //} //end of for loop
         }
     }
 
+
     $result .= "999" . $quebralinha;
+
+
 
     //SALVAR ARQUIVO GERADO
     $datahora = date("YmdHms");
@@ -331,10 +342,13 @@ if ($num_rows > 0) {
     $escreve = fwrite($fp, $result2);
 
     fclose($fp);
+
+  
     //FIM SALVAR ARQUIVO GERADO
 } else {
     $mensagem = "Não foram encontrados pedidos novos ou atualizados. Nenhum arquivo gerado";
 }
+
 
 //SALVA LOG DE ÚLTIMA EXECUÇÃO
 $logfile = fopen($logfilename, 'a');
