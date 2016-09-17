@@ -44,7 +44,7 @@ function get_shipping_totals($order_id, $db_prefix, $conexao) {
     $num_rows2 = mysqli_num_rows($sql2); /* Número de Pedidos Encontrados */
     $shipping_totals = 0;
     if ($num_rows2 > 0) {
-        while ($dados = mysqli_fetch_array($sql)) {
+        while ($dados = mysqli_fetch_array($sql2)) {
             if ($dados['code'] == 'shipping') {
                 $shipping_totals+=$dados['value'];
             }

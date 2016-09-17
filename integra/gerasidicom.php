@@ -15,6 +15,7 @@ if (file_exists($logfilename)) {
     $lastexport = "2014-01-01 00:00:00"; //Caso não encontre arquivo de log com dado de última exportação
 }
 
+//$lastexport = "2016-08-08 00:00:00";
 
 $quebralinha = "\r\n";
 $nomearq = "";
@@ -74,7 +75,7 @@ if ($num_rows > 0) {
         // REG 10 - 13
         $vlrtotal = $dados["total"]; //REG 14
         // REG 15 - 17
-        $vlrfrete = $shipping_cost; /* Shipping cost */ //REG 18
+        $vlrfrete = $shipping_cost; /* Shipping cost */ //REG 18 
         // REG 19 - 23
         $numoc = ""; /* campo não identificado no database; */ //REG 24
         $observacao = $dados["comment"]; //REG 25
@@ -130,7 +131,13 @@ if ($num_rows > 0) {
 //        print_r($customer_information);
 //        die;
 
-        $logentrega = !empty($customer_information['address_1']) ? utf8_decode($customer_information['address_1']) : ""; //address 1 will be for street address
+        $is_utf8 = mb_detect_encoding($customer_information['address_1'], 'UTF-8', true);
+
+        if (!empty($customer_information['address_1']) && ($is_utf8 == true || $is_utf8 == "UTF-8")) {
+            $customer_information['address_1'] = utf8_decode($customer_information['address_1']);
+        }
+
+        $logentrega = !empty($customer_information['address_1']) ? $customer_information['address_1'] : ""; //address 1 will be for street address
         $numentrega = !empty($customer_information['payment_numero']) ? $customer_information['payment_numero'] : ""; //Numero will be here
         $comentrega = !empty($customer_information['payment_complemento']) ? $customer_information['payment_complemento'] : ""; //Complemento will be here
         $baientrega = !empty($customer_information['address_2']) ? $customer_information['address_2'] : ""; //Area Bairo
@@ -227,6 +234,13 @@ if ($num_rows > 0) {
                     $customer_cpf_cnpj = !empty($customer_cpf) ? $customer_cpf : $customer_cpfcnpj;
                     $cusomer_payment_cad_rg = $customer_information['payment_cad_rg'];
                     $cusomer_payment_address1 = $customer_information['address_1'];
+
+                    $is_utf8_add = mb_detect_encoding($cusomer_payment_address1, 'UTF-8', true);
+
+                    if (!empty($cusomer_payment_address1) && ($is_utf8_add == true || $is_utf8_add == "UTF-8")) {
+                        $cusomer_payment_address1 = utf8_decode($cusomer_payment_address1);
+                    }
+
                     $cusomer_payment_complemento = $customer_information['payment_complemento'];
                     $cusomer_payment_numero = $customer_information['payment_numero'];
 
@@ -331,8 +345,8 @@ if ($num_rows > 0) {
 
     $result .= "999" . $quebralinha;
 
-
-
+//    echo $result;
+//    die;
     //SALVAR ARQUIVO GERADO
     $datahora = date("YmdHms");
     $nomearq = "RET_" . $datahora . ".txt";
