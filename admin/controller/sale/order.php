@@ -1693,6 +1693,9 @@ class ControllerSaleOrder extends Controller {
             $this->data['shipping_zone'] = $order_info['shipping_zone'];
             $this->data['shipping_zone_code'] = $order_info['shipping_zone_code'];
             $this->data['shipping_country'] = $order_info['shipping_country'];
+            //mail chimp fields
+            $this->data['mailchimp_fields'] = $this->model_sale_order->_mail_chimp_columns;
+            
 
             $this->data['products'] = array();
 
@@ -1770,7 +1773,8 @@ class ControllerSaleOrder extends Controller {
             }
 
             $this->data['totals'] = $this->model_sale_order->getOrderTotals($this->request->get['order_id']);
-
+          
+            
             $this->data['downloads'] = array();
 
             foreach ($products as $product) {
@@ -2002,7 +2006,7 @@ class ControllerSaleOrder extends Controller {
                 $this->data['payment_action'] = '';
             }
 
-            $this->template = 'sale/order_info.tpl';
+            $this->template = 'sale/order_info.php';
             $this->children = array(
                 'common/header',
                 'common/footer'

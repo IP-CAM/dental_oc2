@@ -83,41 +83,36 @@
     </tr>
 
     <?php
-    if ($payment_profession_type == "Odontologista") {
-        ?>
-        <tr>
-            <td><?php echo $txt_payment_profession_cro; ?></td>
-            <td><?php echo $payment_profession_cro; ?></td>
-        </tr>
-        <tr>
-            <td><?php echo $txt_payment_profession_atuacao; ?></td>
-            <td><?php echo $payment_profession_atuacao; ?></td>
-        </tr>
-        <?php
-    } else if ($payment_profession_type == "Protético") {
-        ?>
-        <tr>
-            <td><?php echo $txt_payment_profession_tdp; ?></td>
-            <td><?php echo $payment_profession_tdp; ?></td>
-        </tr>
-        <tr>
-            <td><?php echo $txt_payment_profession_atuacao; ?></td>
-            <td><?php echo $payment_profession_atuacao; ?></td>
-        </tr>
-        <?php
-    } else if ($payment_profession_type == "Acadêmico") {
-        ?>
-        <tr>
-            <td><?php echo $txt_payment_profession_matricula; ?></td>
-            <td><?php echo $payment_profession_matricula; ?></td>
-        </tr>
-        <tr>
-            <td><?php echo $txt_payment_profession_ensino; ?></td>
-            <td><?php echo $payment_profession_ensino; ?></td>
-        </tr>
-        <?php
-    }
     ?>
+    <tr>
+        <td><?php echo $txt_payment_profession_cro; ?></td>
+        <td><?php echo $payment_profession_cro; ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $txt_payment_profession_atuacao; ?></td>
+        <td><?php echo $payment_profession_atuacao; ?></td>
+    </tr>
+    <?php
+    ?>
+    <tr>
+        <td><?php echo $txt_payment_profession_tdp; ?></td>
+        <td><?php echo $payment_profession_tdp; ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $txt_payment_profession_atuacao; ?></td>
+        <td><?php echo $payment_profession_atuacao; ?></td>
+    </tr>
+    <?php
+    ?>
+    <tr>
+        <td><?php echo $txt_payment_profession_matricula; ?></td>
+        <td><?php echo $payment_profession_matricula; ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $txt_payment_profession_ensino; ?></td>
+        <td><?php echo $payment_profession_ensino; ?></td>
+    </tr>
+    <?php ?>
 
     <tr>
         <td><?php echo $txt_payment_profession_graduacao; ?></td>
@@ -129,7 +124,7 @@
     </tr>
     <tr>
         <td><?php echo $txt_payment_new_letter; ?></td>
-        <td><?php echo $payment_news_letter==1?'Yes':'No'; ?></td>
+        <td><?php echo $payment_news_letter == 1 ? 'Yes' : 'No'; ?></td>
     </tr>
 
 

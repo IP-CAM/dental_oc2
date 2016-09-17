@@ -53,6 +53,7 @@ $customer_idd = "";
 if ($num_rows > 0) {
     while ($dados = mysqli_fetch_array($sql)) {
 
+        $shipping_cost = get_shipping_totals($dados["order_id"], $db_prefix, $conexao);
 
         $numpedecom = $dados["order_id"]; //REG 01
         // REG 02 - 04
@@ -73,7 +74,7 @@ if ($num_rows > 0) {
         // REG 10 - 13
         $vlrtotal = $dados["total"]; //REG 14
         // REG 15 - 17
-        $vlrfrete = "0"; /* campo não identificado no database; */ //REG 18
+        $vlrfrete = $shipping_cost; /* Shipping cost */ //REG 18
         // REG 19 - 23
         $numoc = ""; /* campo não identificado no database; */ //REG 24
         $observacao = $dados["comment"]; //REG 25
@@ -172,7 +173,7 @@ if ($num_rows > 0) {
         if ($num_rows2 > 0) {
             while ($dados2 = mysqli_fetch_assoc($sql2)) {
                 //REG 01 : $numpedecom
-                $codproduto = !empty($dados2["model"])? $dados2["model"] : $dados2["product_id"]; //REG 02
+                $codproduto = !empty($dados2["model"]) ? $dados2["model"] : $dados2["product_id"]; //REG 02
                 //REG 03 - 04: 0 E 1
                 $quantidade = $dados2["quantity"]; //REG 05
                 //REG 06: VAZIO
@@ -249,7 +250,7 @@ if ($num_rows > 0) {
                     $result .= "160;"; // Fixo //00
                     $result .= "160;"; // Fixo //01
 
-                    
+
                     $result .= $dados3['customer_id'] . ";"; // 01 - Controle customer_id
 
 
@@ -343,7 +344,7 @@ if ($num_rows > 0) {
 
     fclose($fp);
 
-  
+
     //FIM SALVAR ARQUIVO GERADO
 } else {
     $mensagem = "Não foram encontrados pedidos novos ou atualizados. Nenhum arquivo gerado";
