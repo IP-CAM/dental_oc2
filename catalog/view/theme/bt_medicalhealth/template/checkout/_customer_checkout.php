@@ -4,6 +4,7 @@
         <div colspan="4">
             <?php
             $area_style = "";
+            $area_style = "display:none;";
             $profession_input = "checkbox";
             if ($_GET['route'] == "account/register") {
                 $area_style = "display:none;";
