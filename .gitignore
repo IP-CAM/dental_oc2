@@ -1,6 +1,7 @@
 /nbproject/private/
 vqmod/vqcache/*
 vqmod/vqcache/*
+/vqmod/logs/*
 config.php
 admin/config.php
 system/cache/
