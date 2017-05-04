@@ -75,7 +75,7 @@ abstract class VQMod {
 	 * @description Checks if a file has modifications and applies them, returning cache files or the file name
 	 */
 	public static function modCheck($sourceFile) {
-
+            
 		if(!self::$_folderChecks) {
 
 			if(self::$logging) {
